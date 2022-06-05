@@ -54,9 +54,9 @@ const Report = () => {
         </div>
       </div>
       <div className="chart-container">
-        <div className="chart"></div>
-        <div className="chart"></div>
-        <div className="chart"></div>
+        <div className="chart">{/* biểu đồ */}</div>
+        <div className="chart"> {/* biểu đồ */}</div>
+        <div className="chart"> {/* biểu đồ */}</div>
         <div className="quarter">
           <div>Q1/2021</div>
           <div>Q2/2021</div>
