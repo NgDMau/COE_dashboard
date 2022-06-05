@@ -1,11 +1,18 @@
 import React from "react";
+import ContentComponent from "./content";
 import FilterComponent from "./filter";
+import ReportForm from "./report-form";
+import { DashboardWrapper } from "./styled";
 
 const Dashboard = () => {
   return (
-    <div>
+    <DashboardWrapper>
       <FilterComponent />
-    </div>
+      <div className="content">
+        <ReportForm />
+        <ContentComponent />
+      </div>
+    </DashboardWrapper>
   );
 };
 

@@ -63,3 +63,18 @@ export const listCity = [
   "Hà Nội",
   "TP HCM",
 ];
+
+export const hostpitalList = [
+  "Bệnh viện Bạch Mai",
+  "Bệnh viện Hữu Nghị",
+  "Bệnh viện E, Hà Nội",
+  "Bệnh Viện Răng Hàm Mặt Trung Ương Hà Nội",
+  "Bệnh viện tai mũi họng Trung Ương Hà Nội",
+  "Bệnh viện mắt Trung Ương Hà Nội ",
+  "Bệnh Viện y học cổ truyền  Trung Ương Hà Nội",
+  "Bệnh viện nội tiết Trung Ương Hà Nội",
+  "Bệnh viện K",
+  "Bệnh viện Việt Đức",
+  "BỆNH VIỆN MẮT SÀI GÒN",
+  "BỆNH VIỆN MẮT SÀI GÒN",
+];

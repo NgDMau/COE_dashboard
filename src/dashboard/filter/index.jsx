@@ -1,31 +1,64 @@
-import { Select } from "antd";
-import { Option } from "antd/lib/mentions";
+import { Input, Select } from "antd";
 import React from "react";
-import { listCity } from "./listCity";
-import { FilterWraper } from "./styled";
+import { hostpitalList, listCity } from "./faleData";
+import { FilterWrapper } from "./styled";
 
 const FilterComponent = () => {
   return (
-    <FilterWraper>
+    <FilterWrapper>
       <div className="adress">
-        <span>Tinhr/Thành phố: </span>
+        <div className="export">Chuyển Excel</div>
+
+        <span>Tỉnh/ Thành phố: </span>
         <Select
-          defaultValue={listCity[1]}
-          className="select"
+          labelInValue={listCity[1]}
+          className="select-city"
           onChange={() => {}}
         >
           {listCity.map((element, index) => {
             return (
-              <Option key={String(index)}>
+              <Select.Option key={String(index)}>
                 {index + 1}. {element}
-              </Option>
+              </Select.Option>
             );
           })}
         </Select>
 
-        <div className="hostpital"></div>
+        <span className="hostpital">Bệnh viện: </span>
+        <Select
+          labelInValue={hostpitalList[1]}
+          className="select-hostpital"
+          onChange={() => {}}
+        >
+          {hostpitalList.map((element, index) => {
+            return (
+              <Select.Option key={String(index)}>
+                {index + 1}. {element}
+              </Select.Option>
+            );
+          })}
+        </Select>
       </div>
-    </FilterWraper>
+      <div className="fil-other">
+        <Input className="input-n" />
+        <div className="a-style">A</div>
+
+        <span className="information">Chỉ số: </span>
+        <Select
+          labelInValue={hostpitalList[1]}
+          className="select-information"
+          onChange={() => {}}
+        >
+          {hostpitalList.map((element, index) => {
+            return (
+              <Select.Option key={String(index)}>
+                {index + 1}. {element}
+              </Select.Option>
+            );
+          })}
+        </Select>
+      </div>
+    </FilterWrapper>
   );
 };
 
