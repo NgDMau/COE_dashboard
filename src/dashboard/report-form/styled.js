@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ReportFormWrapper = styled.div`
-  background-color: #ffeaa7;
+  background-color: #74b9ff;
   width: 180px;
   display: flex;
   height: 100%;

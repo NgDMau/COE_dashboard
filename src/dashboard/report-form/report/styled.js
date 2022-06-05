@@ -46,9 +46,9 @@ export const ReportWrapper = styled.div`
     display: flex;
     .chart {
       width: 410px;
-      background-color: tomato;
       height: 400px;
       margin: 0.5em;
+      border: 1px solid gray;
     }
     .quarter {
       div {

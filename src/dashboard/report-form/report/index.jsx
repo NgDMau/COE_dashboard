@@ -1,6 +1,8 @@
 import { Select } from "antd";
 import React, { useState } from "react";
 import { hostpitalList, listCity } from "../../filter/faleData";
+import ReportChart from "./dake-chart";
+import ReportLineChart from "./line-chart";
 import { ReportWrapper } from "./styled";
 
 const Report = () => {
@@ -54,9 +56,16 @@ const Report = () => {
         </div>
       </div>
       <div className="chart-container">
-        <div className="chart">{/* biểu đồ */}</div>
-        <div className="chart"> {/* biểu đồ */}</div>
-        <div className="chart"> {/* biểu đồ */}</div>
+        <div className="chart">
+          ,<ReportLineChart />
+        </div>
+        <div className="chart">
+          <ReportChart />
+        </div>
+        <div className="chart">
+          {" "}
+          <ReportChart color="red" />
+        </div>
         <div className="quarter">
           <div>Q1/2021</div>
           <div>Q2/2021</div>
