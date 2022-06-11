@@ -1,8 +1,9 @@
 import { Select } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import { hostpitalList, listCity } from "../../filter/faleData";
-import ReportChart from "./dake-chart";
-import ReportLineChart from "./line-chart";
+// import ReportChart from "./dake-chart";
+// import ReportLineChart from "./line-chart";
+import { LinePoint } from "./line-chart/LinePoint";
 import { ReportWrapper } from "./styled";
 
 const Report = () => {
@@ -56,17 +57,18 @@ const Report = () => {
         </div>
       </div>
       <div className="chart-container">
-        <div className="chart">
-          ,<ReportLineChart />
-        </div>
-        <div className="chart">
+      <LinePoint />
+        {/* <div className="chart">
+            <LinePoint />
+        </div> */}
+        {/* <div className="chart">
           <ReportChart />
         </div>
         <div className="chart">
           {" "}
           <ReportChart color="red" />
-        </div>
-        <div className="quarter">
+        </div> */}
+        {/* <div className="quarter">
           <div>Q1/2021</div>
           <div>Q2/2021</div>
           <div>Q3/2021</div>
@@ -75,7 +77,7 @@ const Report = () => {
           <div>Q2/2022</div>
           <div>Q3/2022</div>
           <div>Q4/2022</div>
-        </div>
+        </div> */}
       </div>
     </ReportWrapper>
   );
