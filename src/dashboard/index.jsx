@@ -1,17 +1,13 @@
 import React from "react";
-import ContentComponent from "./content";
-import FilterComponent from "./filter";
-import ReportForm from "./report-form";
+import AppContainer from "../container";
+import AppSidebar from "../sidebar";
 import { DashboardWrapper } from "./styled";
 
 const Dashboard = () => {
   return (
     <DashboardWrapper>
-      <FilterComponent />
-      <div className="content">
-        <ReportForm />
-        <ContentComponent />
-      </div>
+      <AppSidebar />
+      <AppContainer />
     </DashboardWrapper>
   );
 };

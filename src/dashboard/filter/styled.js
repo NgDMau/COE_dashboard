@@ -2,10 +2,9 @@ import styled from "styled-components";
 
 export const FilterWrapper = styled.div`
   width: 100%;
-  background-color: #dfe6e9;
+  background-color: white;
   padding: 1em;
   font-weight: 500;
-  padding-left: 180px;
   .adress {
     display: flex;
     align-items: center;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,10 +8,10 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-import moment from 'moment';
-import { faker } from '@faker-js/faker';
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import moment from "moment";
+import { faker } from "@faker-js/faker";
 
 ChartJS.register(
   CategoryScale,
@@ -27,7 +27,7 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'bottom',
+      position: "bottom",
     },
     title: {
       display: true,
@@ -36,9 +36,10 @@ export const options = {
   },
   scales: {
     y: {
-      type: 'linear',
+      type: "linear",
       display: true,
-      position: 'right',
+      position: "right",
+      min: -0,
     },
   },
 };
@@ -53,32 +54,32 @@ export const data = {
   labels,
   datasets: [
     {
-      label: 'Thực hiện da kề da',
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 100 })),
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      pointStyle: 'circle',
+      label: "Thực hiện da kề da",
+      data: labels.map(() => faker.datatype.number({ min: 80, max: 100 })),
+      borderColor: "rgb(255, 99, 132)",
+      backgroundColor: "rgba(255, 99, 132, 0.5)",
+      pointStyle: "circle",
       pointRadius: 10,
       pointHoverRadius: 15,
     },
     {
-      label: 'Da kề da đủ 90 phút liên tục',
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 100 })),
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      pointStyle: 'circle',
+      label: "Da kề da đủ 90 phút liên tục",
+      data: labels.map(() => faker.datatype.number({ min: 80, max: 100 })),
+      borderColor: "rgb(53, 162, 235)",
+      backgroundColor: "rgba(53, 162, 235, 0.5)",
+      pointStyle: "circle",
       pointRadius: 10,
       pointHoverRadius: 15,
       borderDash: [5, 5],
     },
     {
-      label: '',
+      label: "Mức trung bình",
       fill: false,
-      backgroundColor: 'green',
-      borderColor: 'green',
+      backgroundColor: "green",
+      borderColor: "green",
       borderDash: [5, 5],
-      data: labels.map(() => faker.datatype.number({ min: 50, max: 50 })),
-      pointStyle: 'hidden',
+      data: labels.map(() => faker.datatype.number({ min: 80, max: 80 })),
+      pointStyle: "hidden",
     },
   ],
 };

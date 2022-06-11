@@ -1,4 +1,4 @@
-import { Input, Select } from "antd";
+import { Select } from "antd";
 import React from "react";
 import { hostpitalList, listCity } from "./faleData";
 import { FilterWrapper } from "./styled";
@@ -28,25 +28,6 @@ const FilterComponent = () => {
         <Select
           labelInValue={hostpitalList[1]}
           className="select-hostpital"
-          onChange={() => {}}
-        >
-          {hostpitalList.map((element, index) => {
-            return (
-              <Select.Option key={String(index)}>
-                {index + 1}. {element}
-              </Select.Option>
-            );
-          })}
-        </Select>
-      </div>
-      <div className="fil-other">
-        <Input className="input-n" />
-        <div className="a-style">A</div>
-
-        <span className="information">Chỉ số: </span>
-        <Select
-          labelInValue={hostpitalList[1]}
-          className="select-information"
           onChange={() => {}}
         >
           {hostpitalList.map((element, index) => {
