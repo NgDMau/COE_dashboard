@@ -31,7 +31,6 @@ export const options = {
     },
     title: {
       display: true,
-      text: `thong ke`,
     },
   },
   scales: {

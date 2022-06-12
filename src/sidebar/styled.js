@@ -13,15 +13,18 @@ export const SiderbarWrapper = styled.div`
   .logo {
     width: 200px;
     height: 55px;
-    margin: 9px;
+    margin: 10px;
+    margin-bottom: 30px;
   }
   .title {
     border-top: 1px solid #dfe6e9;
-    padding-top: 0.5em;
-    margin-top: 1em;
+    padding: 0.5em;
     width: 100%;
-    text-align: center;
     font-size: 22px;
+    cursor: pointer;
+  }
+  .title:hover {
+    background-color: #dfe6e9;
   }
   .report {
     width: 100%;

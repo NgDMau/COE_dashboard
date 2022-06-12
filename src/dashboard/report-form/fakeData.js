@@ -12,3 +12,9 @@ export const listFormReport = [
   "5.b TVSD Sinh non",
   "5.c QC-TT Trong BV",
 ];
+
+export const listDocument = [
+  "Quy định 1",
+  "Nghị định 2",
+  "Hướng dẫn nghị quyết",
+];

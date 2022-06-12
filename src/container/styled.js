@@ -31,7 +31,8 @@ export const ContainerWrapper = styled.div`
   }
   .content-chart {
     width: 70vw;
-    height: 80vh;
+    height: 90vh;
+    padding-top: 1em;
     margin-left: 20px;
     margin-top: 20px;
     background-color: white;
@@ -39,6 +40,16 @@ export const ContainerWrapper = styled.div`
     h2 {
       margin-left: 20px;
       margin-top: 10px;
+    }
+  }
+  .document-container {
+    width: fit-content;
+    padding: 20px;
+    height: 100%;
+    background-color: white;
+    margin: 20px;
+    overflow: auto;
+    .document {
     }
   }
 `;
