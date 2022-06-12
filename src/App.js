@@ -20,9 +20,10 @@ const RootRouter = function () {
       <Suspense>
         {isAuth ? (
           <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/" element={<LoginPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/apps" element={<AppsPage />} />
-            <Route path="/login" element={<LoginPage />} />
           </Routes>
         ) : (
           <Routes>
