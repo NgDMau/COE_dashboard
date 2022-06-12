@@ -5,6 +5,7 @@ import { ContainerWrapper } from "./styled";
 import WidgetsDropdown from "./widgets/WidgetsDropdown";
 import document from "../assets/brand/document.png";
 import { screenFake } from "./screen";
+import { LinkOutlined } from "@ant-design/icons";
 
 const AppContainer = ({ screen, title }) => {
   return (
@@ -55,7 +56,20 @@ const AppContainer = ({ screen, title }) => {
           <img src={document} alt="" className="document" />
         </div>
       )}
-      {screen === 3 && <div>Quy định tài liệu</div>}
+      {screen === 3 && (
+        <div className="link-container">
+          <LinkOutlined />
+          Link khảo sát:{" "}
+          <span
+            className="link"
+            onClick={() => {
+              window.open("https://bmte.vn/form/quang_nam/v2");
+            }}
+          >
+            https://bmte.vn/form/quang_nam/v2
+          </span>
+        </div>
+      )}
     </ContainerWrapper>
   );
 };

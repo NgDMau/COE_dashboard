@@ -52,7 +52,21 @@ export const ContainerWrapper = styled.div`
     overflow: auto;
     background-image: url(${background});
     border-radius: 8px;
-    .document {
-    }
+  }
+  .link-container {
+    background-image: url(${background});
+    width: 90%;
+    background-size: cover;
+    padding: 20px;
+    margin: 20px;
+    font-size: 20px;
+  }
+  .link {
+    cursor: pointer;
+    margin-left: 1em;
+  }
+  .link:hover {
+    text-decoration: underline;
+    color: blue;
   }
 `;
