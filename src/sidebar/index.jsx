@@ -36,7 +36,7 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
           setTitle(listDocument[0]);
         }}
       >
-        Link khảo sát
+        Quy định, tài liệu
       </div>
       {screen === 2 &&
         listDocument.map((element, index) => (
@@ -52,10 +52,10 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
         className="title"
         onClick={() => {
           setScreen(3);
-          setTitle(listDocument[0]);
+          setTitle(listDocument[3]);
         }}
       >
-        Quy định, tài liệu
+        Link khảo sát
       </div>
     </SiderbarWrapper>
   );

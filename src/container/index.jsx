@@ -4,13 +4,14 @@ import { LinePoint } from "./line-chart/LinePoint";
 import { ContainerWrapper } from "./styled";
 import WidgetsDropdown from "./widgets/WidgetsDropdown";
 import document from "../assets/brand/document.png";
+import { screenFake } from "./screen";
 
 const AppContainer = ({ screen, title }) => {
   return (
     <ContainerWrapper>
       <div className="header">
         <div className="path">
-          <span>Home</span> / Dashboard
+          <span>Home</span> / Dashboard / {screenFake[screen - 1]}
         </div>
         <FilterComponent disabled={screen === 2} />
       </div>
