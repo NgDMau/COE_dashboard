@@ -3,7 +3,7 @@ import React from "react";
 import { hostpitalList, listCity } from "./faleData";
 import { FilterWrapper } from "./styled";
 
-const FilterComponent = () => {
+const FilterComponent = ({ disabled }) => {
   return (
     <FilterWrapper>
       <div className="adress">
@@ -14,6 +14,7 @@ const FilterComponent = () => {
           labelInValue={listCity[1]}
           className="select-city"
           onChange={() => {}}
+          disabled={disabled}
         >
           {listCity.map((element, index) => {
             return (
@@ -29,6 +30,7 @@ const FilterComponent = () => {
           labelInValue={hostpitalList[1]}
           className="select-hostpital"
           onChange={() => {}}
+          disabled={disabled}
         >
           {hostpitalList.map((element, index) => {
             return (

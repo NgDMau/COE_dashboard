@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import background from "../assets/brand/bg-app.jpg";
 
 export const ContainerWrapper = styled.div`
   height: 100vh;
@@ -49,6 +50,8 @@ export const ContainerWrapper = styled.div`
     background-color: white;
     margin: 20px;
     overflow: auto;
+    background-image: url(${background});
+    border-radius: 8px;
     .document {
     }
   }

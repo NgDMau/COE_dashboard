@@ -12,7 +12,7 @@ const AppContainer = ({ screen, title }) => {
         <div className="path">
           <span>Home</span> / Dashboard
         </div>
-        <FilterComponent />
+        <FilterComponent disabled={screen === 2} />
       </div>
       {screen === 1 && (
         <div>
