@@ -1,13 +1,6 @@
 import "./App.css";
 import Dashboard from "./dashboard/index";
-import "bootstrap/dist/css/bootstrap.css";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { Suspense } from "react";
 import LoginPage from "./pages/login";
 import AppsPage from "./pages/apps";
