@@ -3,6 +3,8 @@ import { AppsWrapper } from "./styled";
 import { useNavigate } from "react-router-dom";
 import { Button, Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
+import logo from "../../assets/brand/Logo_AnT.png";
+
 const AppsPage = () => {
   const navigate = useNavigate();
   const { confirm } = Modal;
@@ -10,17 +12,14 @@ const AppsPage = () => {
     confirm({
       icon: <ExclamationCircleOutlined />,
       content: <Button>Dự án đang phát triển</Button>,
-      onOk() {
-        console.log("OK");
-      },
-      onCancel() {
-        console.log("Cancel");
-      },
     });
   };
 
   return (
     <AppsWrapper>
+      <div className="logo">
+        <img src={logo} alt="" />
+      </div>
       <div className="content">
         <div className="item blue" onClick={() => navigate("/dashboard")}>
           Bệnh viện thực hành nuôi con bằng sữa mẹ

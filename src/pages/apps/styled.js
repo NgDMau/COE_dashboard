@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import background from "../../assets/brand/bg-logo.jpg";
+import background from "../../assets/brand/bg-app.jpg";
 export const AppsWrapper = styled.div`
   height: 100vh;
   width: 100vw;
@@ -8,6 +8,11 @@ export const AppsWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  .logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
   .content {
     padding: 40px 60px 80px 60px;
     display: flex;

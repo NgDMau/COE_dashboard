@@ -10,11 +10,26 @@ export const SiderbarWrapper = styled.div`
   flex-direction: column;
   padding-top: 1em;
   border-right: 1px solid #ecf0f1;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
   .logo {
-    width: 200px;
-    height: 55px;
-    margin: 10px;
-    margin-bottom: 30px;
+    width: 100%;
+    height: 96px;
+    padding-bottom: 30px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: white;
+    border-bottom: 1px solid #ecf0f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 200px;
+      height: auto;
+      padding: 10px;
+    }
   }
   .title {
     border-top: 1px solid #dfe6e9;
@@ -34,5 +49,23 @@ export const SiderbarWrapper = styled.div`
   }
   .report:hover {
     background-color: #dfe6e9;
+  }
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 `;
