@@ -33,12 +33,15 @@ export const ContainerWrapper = styled.div`
   .segmented {
     margin-left: 20px;
     margin-top: 20px;
-    /* .ant-segmented {
-      border-radius: 10px;
+    font-weight: 500;
+    .ant-segmented {
+      /* border-radius: 10px; */
       .ant-segmented-item-selected {
-        border-radius: 10px;
+        /* border-radius: 10px; */
+        color: #6f21d1;
+        font-weight: 700;
       }
-    } */
+    }
   }
   .content-chart {
     width: 70vw;
