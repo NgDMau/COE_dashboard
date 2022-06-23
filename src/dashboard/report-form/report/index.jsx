@@ -62,7 +62,7 @@ const Report = () => {
             <LinePoint />
         </div> */}
         {/* <div className="chart">
-          <ReportChart />
+         
         </div>
         <div className="chart">
           {" "}

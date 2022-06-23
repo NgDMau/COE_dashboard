@@ -30,6 +30,16 @@ export const ContainerWrapper = styled.div`
     margin-left: 20px;
     justify-content: space-between;
   }
+  .segmented {
+    margin-left: 20px;
+    margin-top: 20px;
+    /* .ant-segmented {
+      border-radius: 10px;
+      .ant-segmented-item-selected {
+        border-radius: 10px;
+      }
+    } */
+  }
   .content-chart {
     width: 70vw;
     height: 90vh;

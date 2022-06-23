@@ -6,8 +6,12 @@ import WidgetsDropdown from "./widgets/WidgetsDropdown";
 import document from "../assets/brand/document.png";
 import { screenFake } from "./screen";
 import { LinkOutlined } from "@ant-design/icons";
+import { useState } from "react";
+import { Segmented } from "antd";
+import ReportChart from "../dashboard/report-form/report/dake-chart/index";
 
 const AppContainer = ({ screen, title }) => {
+  const [value, setValue] = useState("TC Khoa sản");
   return (
     <ContainerWrapper>
       <div className="header">
@@ -44,9 +48,19 @@ const AppContainer = ({ screen, title }) => {
               color="#e55353"
             />
           </div>
+          <div className="segmented">
+            <Segmented
+              options={["TC Khoa sản", "TC Khoa nhi", "TC Chung"]}
+              value={value}
+              onChange={setValue}
+              size="large"
+            />
+          </div>
           <div className="content-chart">
             <h2>{title}</h2>
-            <LinePoint />
+            {value === "TC Khoa sản" && <LinePoint />}
+            {value === "TC Khoa nhi" && <ReportChart color="red" />}
+            {value === "TC Chung" && <ReportChart />}
           </div>
         </div>
       )}

@@ -2,9 +2,7 @@ import React from "react";
 import Chart from "react-google-charts";
 
 const options = {
-  chartArea: { width: "50%" },
   isStacked: true,
-  bar: { groupWidth: "30%" },
   hAxis: {
     title: "Total Population",
     minValue: 0,
@@ -16,7 +14,12 @@ const ReportChart = ({ color }) => {
   const data = [
     ["City", "2010 Population", { role: "style" }],
     ["66001", 98, color],
+    ["66015", 80, color],
+    ["66015", 96, color],
+    ["66015", 98, color],
     ["66015", 100, color],
+    ["66015", 98, color],
+    ["66015", 96, color],
   ];
 
   return (
@@ -24,7 +27,7 @@ const ReportChart = ({ color }) => {
       <Chart
         chartType="BarChart"
         width="100%"
-        height="300px"
+        height="400px"
         data={data}
         options={options}
       />
