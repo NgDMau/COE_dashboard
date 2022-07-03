@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import background from "../assets/brand/bg-app.jpg";
 
 export const ContainerWrapper = styled.div`
   height: 100vh;
   overflow: auto;
   padding-bottom: 2em;
   .header {
+    z-index: 1000;
     position: sticky;
     top: 0;
   }
@@ -31,9 +31,15 @@ export const ContainerWrapper = styled.div`
     justify-content: space-between;
   }
   .segmented {
+    width: 70vw;
     margin-left: 20px;
     margin-top: 20px;
     font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    .select-quarter {
+      width: 160px;
+    }
     .ant-segmented {
       /* border-radius: 10px; */
       .ant-segmented-item-selected {
@@ -45,7 +51,6 @@ export const ContainerWrapper = styled.div`
   }
   .content-chart {
     width: 70vw;
-    height: 90vh;
     padding-top: 1em;
     margin-left: 20px;
     margin-top: 20px;
@@ -55,31 +60,5 @@ export const ContainerWrapper = styled.div`
       margin-left: 20px;
       margin-top: 10px;
     }
-  }
-  .document-container {
-    width: fit-content;
-    padding: 20px;
-    height: 100%;
-    background-color: white;
-    margin: 20px;
-    overflow: auto;
-    background-image: url(${background});
-    border-radius: 8px;
-  }
-  .link-container {
-    background-image: url(${background});
-    width: 90%;
-    background-size: cover;
-    padding: 20px;
-    margin: 20px;
-    font-size: 20px;
-  }
-  .link {
-    cursor: pointer;
-    margin-left: 1em;
-  }
-  .link:hover {
-    text-decoration: underline;
-    color: blue;
   }
 `;

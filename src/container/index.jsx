@@ -1,14 +1,15 @@
 import React from "react";
 import FilterComponent from "../dashboard/filter";
-import { LinePoint } from "./line-chart/LinePoint";
 import { ContainerWrapper } from "./styled";
 import WidgetsDropdown from "./widgets/WidgetsDropdown";
-import document from "../assets/brand/document.png";
 import { screenFake } from "./screen";
-import { LinkOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import { Segmented } from "antd";
-import ReportChart from "../dashboard/report-form/report/dake-chart/index";
+import { Segmented, Select } from "antd";
+import BornComponent from "./born";
+import { ChildData, GeneralData, ObstetricsData, Quarter } from "./fakeData";
+import Document from "./document";
+import SurveyLink from "./survey";
+import RowData from "./row-data";
 
 const AppContainer = ({ screen, title }) => {
   const [value, setValue] = useState("TC Khoa sản");
@@ -18,36 +19,11 @@ const AppContainer = ({ screen, title }) => {
         <div className="path">
           <span>Home</span> / Dashboard / {screenFake[screen - 1]}
         </div>
-        <FilterComponent disabled={screen === 2} />
+        <FilterComponent disabled={screen === 2 || screen === 3} />
       </div>
       {screen === 1 && (
         <div>
-          <div className="Widgets-container">
-            <WidgetsDropdown
-              amount="26K"
-              semibold="Users"
-              percent="12.4"
-              color="#321fdb"
-            />
-            <WidgetsDropdown
-              amount="$6.200"
-              semibold="Income"
-              percent="40.9"
-              color="#39f"
-            />
-            <WidgetsDropdown
-              amount="2.49"
-              semibold="Conversion Rate"
-              percent="84.7"
-              color="#f9b115"
-            />
-            <WidgetsDropdown
-              amount="44K"
-              semibold="Sessions"
-              percent="23.6"
-              color="#e55353"
-            />
-          </div>
+          <WidgetsComponent />
           <div className="segmented">
             <Segmented
               options={["TC Khoa sản", "TC Khoa nhi", "TC Chung"]}
@@ -55,37 +31,65 @@ const AppContainer = ({ screen, title }) => {
               onChange={setValue}
               size="large"
             />
+            <div>
+              <Select
+                defaultValue={Quarter[0]}
+                className="select-quarter"
+                onChange={() => {}}
+              >
+                {Quarter.map((element, index) => {
+                  return (
+                    <Select.Option key={String(index)}>
+                      {index + 1}. {element}
+                    </Select.Option>
+                  );
+                })}
+              </Select>
+            </div>
           </div>
           <div className="content-chart">
-            <h2>{title}</h2>
-            {value === "TC Khoa sản" && <LinePoint />}
-            {value === "TC Khoa nhi" && <ReportChart color="red" />}
-            {value === "TC Chung" && <ReportChart />}
+            <h2>{value}</h2>
+            {value === "TC Khoa sản" && <BornComponent data={ObstetricsData} />}
+            {value === "TC Khoa nhi" && <BornComponent data={ChildData} />}
+            {value === "TC Chung" && <BornComponent data={GeneralData} />}
           </div>
         </div>
       )}
-      {screen === 2 && (
-        <div className="document-container">
-          <h3 className="title">{title}</h3>
-          <img src={document} alt="" className="document" />
-        </div>
-      )}
-      {screen === 3 && (
-        <div className="link-container">
-          <LinkOutlined />
-          Link khảo sát:{" "}
-          <span
-            className="link"
-            onClick={() => {
-              window.open("https://bmte.vn/form/quang_nam/v2");
-            }}
-          >
-            https://bmte.vn/form/quang_nam/v2
-          </span>
-        </div>
-      )}
+      {screen === 2 && <Document title={title} />}
+      {screen === 3 && <SurveyLink />}
+      {screen === 4 && <RowData />}
     </ContainerWrapper>
   );
 };
 
 export default AppContainer;
+function WidgetsComponent() {
+  return (
+    <div className="Widgets-container">
+      <WidgetsDropdown
+        amount="26K"
+        semibold="Users"
+        percent="12.4"
+        color="#321fdb"
+      />
+      <WidgetsDropdown
+        amount="$6.200"
+        semibold="Income"
+        percent="40.9"
+        color="#39f"
+      />
+      <WidgetsDropdown
+        amount="2.49"
+        semibold="Conversion Rate"
+        percent="84.7"
+        color="#f9b115"
+      />
+      <WidgetsDropdown
+        amount="44K"
+        semibold="Sessions"
+        percent="23.6"
+        color="#e55353"
+      />
+    </div>
+  );
+}

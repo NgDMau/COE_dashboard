@@ -1,5 +1,5 @@
 export const screenFake = [
-  "Mẫu Báo cáo",
+  "Bảng điều khiển",
   "Quy định, tài liệu",
   "Link khảo sát",
 ];

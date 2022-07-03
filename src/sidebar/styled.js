@@ -13,6 +13,9 @@ export const SiderbarWrapper = styled.div`
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
+  .ant-layout-sider {
+    background-color: white;
+  }
   .logo {
     width: 100%;
     height: 96px;
@@ -40,6 +43,11 @@ export const SiderbarWrapper = styled.div`
   }
   .title:hover {
     background-color: #dfe6e9;
+  }
+  .site-layout-background {
+    .ant-menu-inline {
+      border-right: none;
+    }
   }
   .report {
     width: 100%;

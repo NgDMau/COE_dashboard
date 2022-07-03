@@ -19,7 +19,7 @@ const ReportForm = () => {
         </div>
       ))}
       <Modal
-        title="Mẫu báo cáo"
+        title="Bảng điều khiển"
         visible={visible}
         onCancel={() => setVisible(false)}
         footer={null}
