@@ -23,15 +23,19 @@ function RowComponent({ obstetric, index }) {
   );
 }
 
-const BornComponent = ({ data }) => {
+const BornComponent = ({ data, isGeneral }) => {
   return (
     <BornWrapper>
       <div className="row sticky">
         <div className="stt font-bold">STT</div>
         <div className="criteria font-bold">Tiêu chí</div>
         <div className="chart font-bold">Biểu đồ</div>
-        <div className="w-10 font-bold">Sinh thường</div>
-        <div className="w-10 font-bold">Sinh mổ</div>
+        <div className="w-10 font-bold">
+          {isGeneral ? "Bà mẹ sau sinh" : "Sinh thường"}
+        </div>
+        <div className="w-10 font-bold">
+          {isGeneral ? "Bà mẹ/ người CS trẻ" : "Sinh mổ"}
+        </div>
         <div className="w-10 font-bold  border-none">Đạt</div>
       </div>
       {data?.map((element, index) => (

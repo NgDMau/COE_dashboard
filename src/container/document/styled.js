@@ -18,4 +18,22 @@ export const DocumentWrapper = styled.div`
       width: 200px;
     }
   }
+  .title {
+    border: 1px solid #ecf0f1;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: 500;
+    img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+  }
+  .title:hover {
+    color: green;
+    cursor: pointer;
+  }
 `;

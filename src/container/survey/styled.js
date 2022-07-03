@@ -12,11 +12,16 @@ export const SurveyLinkWrapper = styled.div`
     margin-bottom: 20px;
   }
   .link-container {
+    display: flex;
+    cursor: pointer;
+
+    div {
+      width: 200px;
+    }
     .link {
-      cursor: pointer;
       margin-left: 1em;
     }
-    .link:hover {
+    :hover {
       text-decoration: underline;
       color: blue;
     }

@@ -1,6 +1,7 @@
 import React from "react";
 import { DocumentWrapper } from "./styled";
 import documentiImg from "../../assets/brand/document.png";
+import download from "../../assets/icon/download.gif";
 import { Select } from "antd";
 import { listDocument } from "../../dashboard/report-form/fakeData";
 
@@ -9,7 +10,6 @@ const Document = ({ title }) => {
     <DocumentWrapper>
       <div className="document-container">
         <div className="document-header">
-          <h3 className="title">{title}</h3>
           <Select
             labelInValue={listDocument[0]}
             className="select-document"
@@ -24,6 +24,10 @@ const Document = ({ title }) => {
               );
             })}
           </Select>
+          <div className="title">
+            <img src={download} alt="" />
+            <span>Download</span>
+          </div>
         </div>
         <img src={documentiImg} alt="" className="document" />
       </div>

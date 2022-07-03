@@ -41,7 +41,9 @@ const SurveyLink = () => {
       />
       {cities.map((element) => (
         <div className="link-container">
-          <LinkOutlined /> {element}:{" "}
+          <div>
+            <LinkOutlined /> {element}:{" "}
+          </div>
           <span
             className="link"
             onClick={() => {

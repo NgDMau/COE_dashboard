@@ -51,7 +51,7 @@ const AppContainer = ({ screen, title }) => {
             <h2>{value}</h2>
             {value === "TC Khoa sản" && <BornComponent data={ObstetricsData} />}
             {value === "TC Khoa nhi" && <BornComponent data={ChildData} />}
-            {value === "TC Chung" && <BornComponent data={GeneralData} />}
+            {value === "TC Chung" && <BornComponent data={GeneralData} isGeneral/>}
           </div>
         </div>
       )}
