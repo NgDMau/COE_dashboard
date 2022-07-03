@@ -11,6 +11,7 @@ export const RowDataWrapper = styled.div`
   margin: 20px;
   font-size: 20px;
   .table-row-data {
+    margin-right: 20px;
     .ant-table-pagination.ant-pagination {
       width: 100%;
       display: flex;
@@ -23,21 +24,21 @@ export const RowDataWrapper = styled.div`
       background: #e8f0f9;
     }
     thead > tr > th {
-      border-bottom: 0.5px solid #bdc3c7;
+      border-bottom: 0.5px solid #dfe4ea;
     }
     .ant-table-thead {
-      border: 0.5px solid #bdc3c7 !important;
+      border: 0.5px solid #dfe4ea !important;
     }
     table thead {
       background-color: #dff9fb;
-      border-bottom: 0.5px solid #bdc3c7;
+      border-bottom: 0.5px solid #dfe4ea;
     }
     table tr td {
-      border-right: 0.5px solid #bdc3c7;
-      border-bottom: 0.5px solid #bdc3c7;
+      border-right: 0.5px solid #dfe4ea;
+      border-bottom: 0.5px solid #dfe4ea;
     }
     table tr td:nth-child(1) {
-      border-left: 0.5px solid #bdc3c7;
+      border-left: 0.5px solid #dfe4ea;
     }
   }
 `;

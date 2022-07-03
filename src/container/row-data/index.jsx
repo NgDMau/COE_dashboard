@@ -18,7 +18,6 @@ const RowData = () => {
   ];
   return (
     <RowDataWrapper>
-      {" "}
       <div>
         <Table
           className="table-row-data"

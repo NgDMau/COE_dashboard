@@ -2,6 +2,10 @@ import React, { useEffect } from "react";
 import { listFormReport } from "../dashboard/report-form/fakeData";
 import { SiderbarWrapper } from "./styled";
 import logo from "../assets/brand/cbimage.png";
+import overview from "../assets/icon/overview.svg";
+import link from "../assets/icon/link.svg";
+import document from "../assets/icon/document.svg";
+import database from "../assets/icon/database.png";
 import { Layout, Menu } from "antd";
 
 const { Sider } = Layout;
@@ -13,7 +17,7 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
     "Link khảo sát",
     "Dữ liệu thô",
   ];
-
+  const icons = [overview, document, link, database];
   useEffect(() => {
     setTitle(listFormReport[0]);
   }, [setTitle]);
@@ -38,6 +42,7 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
           }}
           items={items2.map((element, index) => ({
             key: String(index + 1),
+            icon: <img src={icons[index]} alt="" />,
             label: element,
           }))}
         />
