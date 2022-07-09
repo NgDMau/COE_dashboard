@@ -7,8 +7,6 @@ const FilterComponent = ({ disabled }) => {
   return (
     <FilterWrapper>
       <div className="adress">
-        <div className="export">Chuyển Excel</div>
-
         {!disabled && <span>Tỉnh/ Thành phố: </span>}
         {!disabled && (
           <Select
@@ -26,7 +24,6 @@ const FilterComponent = ({ disabled }) => {
             })}
           </Select>
         )}
-
         {!disabled && <span className="hostpital">Bệnh viện: </span>}
         {!disabled && (
           <Select
@@ -45,6 +42,7 @@ const FilterComponent = ({ disabled }) => {
           </Select>
         )}
       </div>
+      <div className="export">Xuất báo cáo</div>
     </FilterWrapper>
   );
 };

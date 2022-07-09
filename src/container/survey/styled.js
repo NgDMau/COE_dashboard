@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import background from "../../assets/brand/bg-app.jpg";
 
 export const SurveyLinkWrapper = styled.div`
-  background-image: url(${background});
   width: 90%;
   background-size: cover;
   padding: 20px;
@@ -11,19 +9,39 @@ export const SurveyLinkWrapper = styled.div`
   .search-input {
     margin-bottom: 20px;
   }
-  .link-container {
+  .container {
     display: flex;
-    cursor: pointer;
+    .city-link {
+      width: 35%;
+      .link-container {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        width: fit-content;
 
-    div {
-      width: 200px;
+        :hover {
+          text-decoration: underline;
+          color: blue;
+        }
+      }
+      .selected {
+        text-decoration: underline;
+        color: blue;
+      }
     }
-    .link {
-      margin-left: 1em;
-    }
-    :hover {
-      text-decoration: underline;
-      color: blue;
+    .link-selected {
+      flex: 65%;
+      .link {
+        cursor: pointer;
+        :hover {
+          text-decoration: underline;
+          color: blue;
+        }
+      }
+      .chart {
+        margin-top: 2em;
+        border-radius: 5px;
+      }
     }
   }
 `;

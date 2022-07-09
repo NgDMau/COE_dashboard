@@ -68,25 +68,25 @@ function WidgetsComponent() {
     <div className="Widgets-container">
       <WidgetsDropdown
         amount="26K"
-        semibold="Users"
+        semibold="Tổng số khảo sát thành công"
         percent="12.4"
         color="#321fdb"
       />
       <WidgetsDropdown
-        amount="$6.200"
-        semibold="Income"
+        amount="6200"
+        semibold="Tổng số tỉnh đã khảo sát"
         percent="40.9"
         color="#39f"
       />
       <WidgetsDropdown
-        amount="2.49"
-        semibold="Conversion Rate"
+        amount="249"
+        semibold="Tổng số bệnh viện đã khảo sát"
         percent="84.7"
         color="#f9b115"
       />
       <WidgetsDropdown
-        amount="44K"
-        semibold="Sessions"
+        amount="440"
+        semibold="Tổng số bà mẹ đã khảo sát"
         percent="23.6"
         color="#e55353"
       />

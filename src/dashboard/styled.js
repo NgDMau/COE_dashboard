@@ -1,9 +1,11 @@
 import styled from "styled-components";
+import background from "../assets/brand/bg-app.jpg";
 
 export const DashboardWrapper = styled.div`
   height: 100vh;
   width: 100vw;
-  background-color: #dfe6e9;
+  background-image: url(${background});
+  background-size: cover;
   display: flex;
   .container {
   }

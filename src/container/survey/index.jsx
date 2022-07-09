@@ -3,6 +3,7 @@ import { LinkOutlined } from "@ant-design/icons";
 import { SurveyLinkWrapper } from "./styled";
 import { listCity } from "../../dashboard/filter/faleData";
 import Input from "antd/lib/input/Input";
+import ChartLink from "./chart";
 function toNomal(str) {
   str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
   str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
@@ -22,6 +23,7 @@ function toNomal(str) {
 }
 const SurveyLink = () => {
   const [cities, setCities] = useState([...listCity]);
+  const [selected, setSelected] = useState(null);
 
   return (
     <SurveyLinkWrapper>
@@ -39,21 +41,33 @@ const SurveyLink = () => {
           );
         }}
       />
-      {cities.map((element) => (
-        <div className="link-container">
-          <div>
-            <LinkOutlined /> {element}:{" "}
-          </div>
+      <div className="container">
+        <div className="city-link">
+          {cities.map((element, index) => (
+            <div
+              className={`link-container ${element === selected && "selected"}`}
+              onClick={() => setSelected(element)}
+            >
+              <LinkOutlined />
+              {"   "} {element}:{" "}
+            </div>
+          ))}
+        </div>
+        <div className="link-selected">
           <span
             className="link"
             onClick={() => {
               window.open("https://bmte.vn/form/quang_nam/v2");
             }}
           >
+            {" "}
             https://bmte.vn/form/quang_nam/v2
           </span>
+          <div className="chart">
+            <ChartLink />
+          </div>
         </div>
-      ))}
+      </div>
     </SurveyLinkWrapper>
   );
 };
