@@ -8,6 +8,7 @@ export const FilterWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 60px;
   .adress {
     display: flex;
     align-items: center;
@@ -61,6 +62,10 @@ export const FilterWrapper = styled.div`
     border: 1px solid #dfe6e9;
     border-radius: 4px;
     padding: 4px 16px;
+    background-color: #ccffdd;
+    :hover {
+      border: 1px solid #00b894;
+    }
   }
   box-shadow: 0 1px 2px -1px gray;
 `;

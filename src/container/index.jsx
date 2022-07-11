@@ -19,7 +19,10 @@ const AppContainer = ({ screen, title }) => {
         <div className="path">
           <span>Home</span> / Dashboard / {screenFake[screen - 1]}
         </div>
-        <FilterComponent disabled={screen === 2 || screen === 3} />
+        <FilterComponent
+          disabled={screen === 2 || screen === 3}
+          screen={screen}
+        />
       </div>
       {screen === 1 && (
         <div>
@@ -51,7 +54,9 @@ const AppContainer = ({ screen, title }) => {
             <h2>{value}</h2>
             {value === "TC Khoa sản" && <BornComponent data={ObstetricsData} />}
             {value === "TC Khoa nhi" && <BornComponent data={ChildData} />}
-            {value === "TC Chung" && <BornComponent data={GeneralData} isGeneral/>}
+            {value === "TC Chung" && (
+              <BornComponent data={GeneralData} isGeneral />
+            )}
           </div>
         </div>
       )}

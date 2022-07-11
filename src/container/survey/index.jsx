@@ -43,30 +43,38 @@ const SurveyLink = () => {
       />
       <div className="container">
         <div className="city-link">
-          {cities.map((element, index) => (
+          {cities.map((element) => (
             <div
               className={`link-container ${element === selected && "selected"}`}
-              onClick={() => setSelected(element)}
+              onClick={() => {
+                if (element === selected) {
+                  setSelected(null);
+                } else {
+                  setSelected(element);
+                }
+              }}
             >
               <LinkOutlined />
               {"   "} {element}:{" "}
             </div>
           ))}
         </div>
-        <div className="link-selected">
-          <span
-            className="link"
-            onClick={() => {
-              window.open("https://bmte.vn/form/quang_nam/v2");
-            }}
-          >
-            {" "}
-            https://bmte.vn/form/quang_nam/v2
-          </span>
-          <div className="chart">
-            <ChartLink />
+        {selected !== null && (
+          <div className="link-selected">
+            <span
+              className="link"
+              onClick={() => {
+                window.open("https://bmte.vn/form/quang_nam/v2");
+              }}
+            >
+              {" "}
+              https://bmte.vn/form/quang_nam/v2
+            </span>
+            <div className="chart">
+              <ChartLink />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </SurveyLinkWrapper>
   );
