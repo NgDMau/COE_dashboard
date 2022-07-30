@@ -12,7 +12,7 @@ import SurveyLink from "./survey";
 import RowData from "./row-data";
 import ExportData from "./export-data";
 
-const AppContainer = ({ screen, title }) => {
+const AppContainer = ({ screen, title, setScreen }) => {
   const [value, setValue] = useState("TC Khoa sản");
   return (
     <ContainerWrapper>
@@ -23,48 +23,50 @@ const AppContainer = ({ screen, title }) => {
         <FilterComponent
           disabled={screen === 2 || screen === 3}
           screen={screen}
+          setScreen={setScreen}
         />
       </div>
       {screen === 1 && (
-        // <div>
-        //   <WidgetsComponent />
-        //   <div className="segmented">
-        //     <Segmented
-        //       options={["TC Khoa sản", "TC Khoa nhi", "TC Chung"]}
-        //       value={value}
-        //       onChange={setValue}
-        //       size="large"
-        //     />
-        //     <div>
-        //       <Select
-        //         defaultValue={Quarter[0]}
-        //         className="select-quarter"
-        //         onChange={() => {}}
-        //       >
-        //         {Quarter.map((element, index) => {
-        //           return (
-        //             <Select.Option key={String(index)}>
-        //               {index + 1}. {element}
-        //             </Select.Option>
-        //           );
-        //         })}
-        //       </Select>
-        //     </div>
-        //   </div>
-        //   <div className="content-chart">
-        //     <h2>{value}</h2>
-        //     {value === "TC Khoa sản" && <BornComponent data={ObstetricsData} />}
-        //     {value === "TC Khoa nhi" && <BornComponent data={ChildData} />}
-        //     {value === "TC Chung" && (
-        //       <BornComponent data={GeneralData} isGeneral />
-        //     )}
-        //   </div>
-        // </div>
-        <ExportData />
+        <div>
+          <WidgetsComponent />
+          <div className="segmented">
+            <Segmented
+              options={["TC Khoa sản", "TC Khoa nhi", "TC Chung"]}
+              value={value}
+              onChange={setValue}
+              size="large"
+            />
+            <div>
+              <Select
+                defaultValue={Quarter[0]}
+                className="select-quarter"
+                onChange={() => {}}
+              >
+                {Quarter.map((element, index) => {
+                  return (
+                    <Select.Option key={String(index)}>
+                      {index + 1}. {element}
+                    </Select.Option>
+                  );
+                })}
+              </Select>
+            </div>
+          </div>
+          <div className="content-chart">
+            <h2>{value}</h2>
+            {value === "TC Khoa sản" && <BornComponent data={ObstetricsData} />}
+            {value === "TC Khoa nhi" && <BornComponent data={ChildData} />}
+            {value === "TC Chung" && (
+              <BornComponent data={GeneralData} isGeneral />
+            )}
+          </div>
+        </div>
       )}
+
       {screen === 2 && <Document title={title} />}
       {screen === 3 && <SurveyLink />}
       {screen === 4 && <RowData />}
+      {screen === 5 && <ExportData />}
     </ContainerWrapper>
   );
 };

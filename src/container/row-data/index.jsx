@@ -2,13 +2,18 @@ import React from "react";
 import { RowDataWrapper } from "./styled";
 import { Table } from "antd";
 import dataTable from "../../dashboard/content/fakeData";
+import { rowData } from "./fakeData";
 
 const RowData = () => {
-  const arr = Array.from(Array(50).keys()).map((val, idx) => ({
-    title: `Q${idx}`,
-    dataIndex: `quarter_${idx}`,
-    key: `quarter_${idx}`,
+  const data = rowData;
+
+  const arr = Object.keys(data[0]).map((val, idx) => ({
+    title: `${val}`,
+    dataIndex: `${val}`,
+    key: `${val}`,
   }));
+
+  console.log("arrr", arr);
   const columns = [
     {
       title: "Hospital",
@@ -21,8 +26,8 @@ const RowData = () => {
       <div>
         <Table
           className="table-row-data"
-          columns={columns.concat(arr)}
-          dataSource={dataTable}
+          columns={arr}
+          dataSource={data}
           key={(recod) => recod.id}
           pagination={{
             defaultPageSize: 10,

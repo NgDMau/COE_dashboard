@@ -43,7 +43,7 @@ const SurveyLink = () => {
       />
       <div className="container">
         <div className="city-link">
-          {cities.map((element) => (
+          {cities.map((element, index) => (
             <div
               className={`link-container ${element === selected && "selected"}`}
               onClick={() => {
@@ -53,6 +53,7 @@ const SurveyLink = () => {
                   setSelected(element);
                 }
               }}
+              key={String(index)}
             >
               <LinkOutlined />
               {"   "} {element}:{" "}

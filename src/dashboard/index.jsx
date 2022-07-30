@@ -9,7 +9,7 @@ const Dashboard = () => {
   return (
     <DashboardWrapper>
       <AppSidebar screen={screen} setScreen={setScreen} setTitle={setTitle} />
-      <AppContainer screen={screen} title={title} />
+      <AppContainer screen={screen} title={title} setScreen={setScreen} />
     </DashboardWrapper>
   );
 };

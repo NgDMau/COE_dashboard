@@ -3,7 +3,7 @@ import React from "react";
 import { hostpitalList, listCity } from "./faleData";
 import { FilterWrapper } from "./styled";
 
-const FilterComponent = ({ disabled, screen }) => {
+const FilterComponent = ({ disabled, screen, setScreen }) => {
   return (
     <FilterWrapper>
       <div className="adress">
@@ -42,7 +42,11 @@ const FilterComponent = ({ disabled, screen }) => {
           </Select>
         )}
       </div>
-      {screen === 1 && <div className="export">Xuất báo cáo</div>}
+      {screen === 1 && (
+        <div className="export" onClick={() => setScreen(5)}>
+          Xuất báo cáo
+        </div>
+      )}
     </FilterWrapper>
   );
 };
