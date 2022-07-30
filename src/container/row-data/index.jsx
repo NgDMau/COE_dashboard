@@ -3,31 +3,23 @@ import { RowDataWrapper } from "./styled";
 import { Table } from "antd";
 import dataTable from "../../dashboard/content/fakeData";
 import { rowData } from "./fakeData";
-
+import { useSelector } from "react-redux";
 const RowData = () => {
-  const data = rowData;
+  const listRowData = useSelector((state) => state.data.listRowData);
 
-  const arr = Object.keys(data[0]).map((val, idx) => ({
+  const arr = Object.keys(listRowData[0]).map((val, idx) => ({
     title: `${val}`,
     dataIndex: `${val}`,
     key: `${val}`,
   }));
 
-  console.log("arrr", arr);
-  const columns = [
-    {
-      title: "Hospital",
-      dataIndex: "quarter_1",
-      key: "quarter_1",
-    },
-  ];
   return (
     <RowDataWrapper>
       <div>
         <Table
           className="table-row-data"
           columns={arr}
-          dataSource={data}
+          dataSource={listRowData}
           key={(recod) => recod.id}
           pagination={{
             defaultPageSize: 10,
