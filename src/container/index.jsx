@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FilterComponent from "../dashboard/filter";
 import { ContainerWrapper } from "./styled";
 import WidgetsDropdown from "./widgets/WidgetsDropdown";
@@ -14,6 +14,41 @@ import ExportData from "./export-data";
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const [value, setValue] = useState("TC Khoa sản");
+
+  const getDataDashboard = async () => {
+    const myHeaders = new Headers({
+      Authorization: "Token " + "458c6afb05d750dd8637a40c7cedb97765de1c7e",
+      "Content-Type": "application/x-www-form-urlencoded",
+    });
+    fetch("https://1527-113-22-84-32.ngrok.io/dm/initialize", {
+      method: "POST",
+      headers: myHeaders,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("datadata", data);
+      });
+  };
+
+  const login = async () => {
+    fetch("https://1527-113-22-84-32.ngrok.io/user/api-auth-token", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: "mau01",
+        password: "ahihi123",
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("datadata", data);
+      });
+  };
+
+  // useEffect(() => {
+  //   getDataDashboard();
+  // }, []);
+
   return (
     <ContainerWrapper>
       <div className="header">

@@ -19,24 +19,24 @@ const RootRouter = function () {
   useEffect(() => {
     // dispatch(storeSetListHasTag(listRowData.concat(listRowData[0])))
   }, []);
-  const authToken = "2da85980d74b87041eaa3d01f9d3f619c584aff5";
-  const chatSocket = new WebSocket(
-    "wss://" + "f99b-113-175-119-25.ngrok.io" + "/ws/data/" + "AnT" + "/",
-    ["Token", authToken]
-  );
-  useEffect(() => {
-    chatSocket.onmessage = function (e) {
-      const data = JSON.parse(e?.data);
-      console.log("ssss", data);
-      const message = JSON.parse(
-        data?.message?.replaceAll(`'`, `"`).replaceAll("None", `null`)
-      );
-      console.log("dataaa", message);
-      if (message) {
-        dispatch(storeSetListHasTag(listRowData.concat(message)));
-      }
-    };
-  }, [listRowData]);
+  // const authToken = "2da85980d74b87041eaa3d01f9d3f619c584aff5";
+  // const chatSocket = new WebSocket(
+  //   "wss://" + "f99b-113-175-119-25.ngrok.io" + "/ws/data/" + "AnT" + "/",
+  //   ["Token", authToken]
+  // );
+  // useEffect(() => {
+  //   chatSocket.onmessage = function (e) {
+  //     const data = JSON.parse(e?.data);
+  //     console.log("ssss", data);
+  //     const message = JSON.parse(
+  //       data?.message?.replaceAll(`'`, `"`).replaceAll("None", `null`)
+  //     );
+  //     console.log("dataaa", message);
+  //     if (message) {
+  //       dispatch(storeSetListHasTag(listRowData.concat(message)));
+  //     }
+  //   };
+  // }, [listRowData]);
 
   return (
     <div>
