@@ -29,22 +29,6 @@ const AppContainer = ({ screen, title, setScreen }) => {
         console.log("datadata", data);
       });
   };
-
-  const login = async () => {
-    fetch("https://1527-113-22-84-32.ngrok.io/user/api-auth-token", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: "mau01",
-        password: "ahihi123",
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("datadata", data);
-      });
-  };
-
   // useEffect(() => {
   //   getDataDashboard();
   // }, []);

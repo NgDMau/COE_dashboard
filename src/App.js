@@ -44,13 +44,13 @@ const RootRouter = function () {
         {isAuth ? (
           <Routes>
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/" element={<LoginPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/apps" element={<AppsPage />} />
           </Routes>
         ) : (
           <Routes>
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/" element={<LoginPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         )}
