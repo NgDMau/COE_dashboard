@@ -43,55 +43,52 @@ export const options = {
   },
 };
 
-const labels = Array.from({ length: 8 }, (_, i) => {
-  const q = (i + 1) % 4;
-  const year = moment().year();
-  return `Q${q === 0 ? 4 : q}/ ${i <= 4 ? year - 1 : year}`;
-});
+export function LinePoint({ dataST, dataSM, time }) {
+  const labels = Array.from({ length: 8 }, (_, i) => {
+    return time ? time[i] : "";
+  });
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Sinh thường",
+        data: dataST || [],
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        pointStyle: "circle",
+        pointRadius: 10,
+        pointHoverRadius: 15,
+      },
+      {
+        label: "Sinh mổ",
+        data: dataSM || [],
+        borderColor: "#2ed573",
+        backgroundColor: "#7bed9f",
+        pointStyle: "circle",
+        pointRadius: 10,
+        pointHoverRadius: 15,
+        borderDash: [5, 5],
+      },
+      {
+        label: "Mức sinh mổ",
+        fill: false,
+        backgroundColor: "red",
+        borderColor: "red",
+        borderDash: [5, 5],
+        data: labels.map(() => faker.datatype.number({ min: 75, max: 75 })),
+        pointStyle: "hidden",
+      },
+      {
+        label: "Mức sinh thường",
+        fill: false,
+        backgroundColor: "green",
+        borderColor: "green",
+        borderDash: [5, 5],
+        data: labels.map(() => faker.datatype.number({ min: 70, max: 70 })),
+        pointStyle: "hidden",
+      },
+    ],
+  };
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Sinh thường",
-      data: labels.map(() => faker.datatype.number({ min: 80, max: 100 })),
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-      pointStyle: "circle",
-      pointRadius: 10,
-      pointHoverRadius: 15,
-    },
-    {
-      label: "Sinh mổ",
-      data: labels.map(() => faker.datatype.number({ min: 80, max: 100 })),
-      borderColor: "#2ed573",
-      backgroundColor: "#7bed9f",
-      pointStyle: "circle",
-      pointRadius: 10,
-      pointHoverRadius: 15,
-      borderDash: [5, 5],
-    },
-    {
-      label: "Mức sinh mổ",
-      fill: false,
-      backgroundColor: "red",
-      borderColor: "red",
-      borderDash: [5, 5],
-      data: labels.map(() => faker.datatype.number({ min: 75, max: 75 })),
-      pointStyle: "hidden",
-    },
-    {
-      label: "Mức sinh thường",
-      fill: false,
-      backgroundColor: "green",
-      borderColor: "green",
-      borderDash: [5, 5],
-      data: labels.map(() => faker.datatype.number({ min: 70, max: 70 })),
-      pointStyle: "hidden",
-    },
-  ],
-};
-
-export function LinePoint() {
   return <Line options={options} data={data} />;
 }

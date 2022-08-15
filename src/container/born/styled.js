@@ -41,6 +41,9 @@ export const BornWrapper = styled.div`
         height: fit-content;
       }
     }
+    .w-20 {
+      width: 14%;
+    }
     .criteria {
       width: 20%;
       font-size: 20px;

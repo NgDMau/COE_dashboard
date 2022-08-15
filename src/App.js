@@ -9,11 +9,13 @@ import { store } from "./rootStore";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { storeSetListHasTag } from "./store/data-reducer";
+import { useState } from "react";
 
 const RootRouter = function () {
   const navigate = useNavigate();
-  const isAuth = true;
   const listRowData = useSelector((state) => state.data.listRowData);
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log("useruseruser", user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,9 +43,9 @@ const RootRouter = function () {
   return (
     <div>
       <Suspense>
-        {isAuth ? (
+        {user?.token ? (
           <Routes>
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/apps" element={<AppsPage />} />
           </Routes>

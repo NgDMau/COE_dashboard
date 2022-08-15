@@ -3,6 +3,8 @@ import { rowData } from "../../container/row-data/fakeData";
 
 const initialState = {
   listRowData: rowData,
+  dashboardData: null,
+  currentQuarter: 7,
 };
 
 const dataSlice = createSlice({
@@ -12,9 +14,19 @@ const dataSlice = createSlice({
     storeSetListHasTag: (state, { payload }) => {
       state.listRowData = payload;
     },
+    storeSetDashboardData: (state, { payload }) => {
+      state.dashboardData = payload;
+    },
+    storeSetCurrentQuarter: (state, { payload }) => {
+      state.currentQuarter = payload;
+    },
   },
 });
 
-export const { storeSetListHasTag } = dataSlice.actions;
+export const {
+  storeSetListHasTag,
+  storeSetDashboardData,
+  storeSetCurrentQuarter,
+} = dataSlice.actions;
 
 export default dataSlice.reducer;

@@ -6,8 +6,12 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import logo from "../../assets/brand/cbimage.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { storeSetToken } from "../../store/auth-reducer";
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -19,17 +23,23 @@ const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);
 
   const login = async () => {
-    fetch("https://1527-113-22-84-32.ngrok.io/user/login", {
+    fetch("https://1527-113-22-84-32.ngrok.io/user/login-with-token", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+      },
+      body: new URLSearchParams({
         username: userName,
         password: password,
       }),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("datadata", data);
+        if (data?.status === "successful") {
+          navigate("/");
+          dispatch(storeSetToken(data?.user?.token || null));
+          localStorage.setItem("user", JSON.stringify(data?.user));
+        }
       });
   };
 
@@ -67,7 +77,7 @@ const LoginPage = () => {
               >
                 Đăng ký
               </div>
-              <Button className="btn-login" onClick={() => navigate("/apps")}>
+              <Button className="btn-login" onClick={login}>
                 Đăng nhập
               </Button>
             </div>

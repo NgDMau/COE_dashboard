@@ -11,13 +11,23 @@ import Document from "./document";
 import SurveyLink from "./survey";
 import RowData from "./row-data";
 import ExportData from "./export-data";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  storeSetCurrentQuarter,
+  storeSetDashboardData,
+} from "../store/data-reducer";
 
 const AppContainer = ({ screen, title, setScreen }) => {
+  const dispath = useDispatch();
+
   const [value, setValue] = useState("TC Khoa sản");
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const dashboardData = useSelector((state) => state?.data?.dashboardData);
 
   const getDataDashboard = async () => {
     const myHeaders = new Headers({
-      Authorization: "Token " + "458c6afb05d750dd8637a40c7cedb97765de1c7e",
+      Authorization: "Token " + user?.token,
       "Content-Type": "application/x-www-form-urlencoded",
     });
     fetch("https://1527-113-22-84-32.ngrok.io/dm/initialize", {
@@ -26,12 +36,12 @@ const AppContainer = ({ screen, title, setScreen }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("datadata", data);
+        dispath(storeSetDashboardData(data));
       });
   };
-  // useEffect(() => {
-  //   getDataDashboard();
-  // }, []);
+  useEffect(() => {
+    getDataDashboard();
+  }, []);
 
   return (
     <ContainerWrapper>
@@ -48,36 +58,21 @@ const AppContainer = ({ screen, title, setScreen }) => {
       {screen === 1 && (
         <div>
           <WidgetsComponent />
-          <div className="segmented">
-            <Segmented
-              options={["TC Khoa sản", "TC Khoa nhi", "TC Chung"]}
-              value={value}
-              onChange={setValue}
-              size="large"
-            />
-            <div>
-              <Select
-                defaultValue={Quarter[0]}
-                className="select-quarter"
-                onChange={() => {}}
-              >
-                {Quarter.map((element, index) => {
-                  return (
-                    <Select.Option key={String(index)}>
-                      {index + 1}. {element}
-                    </Select.Option>
-                  );
-                })}
-              </Select>
-            </div>
-          </div>
+          <HeaderScreen value={value} setValue={setValue} />
           <div className="content-chart">
             <h2>{value}</h2>
-            {value === "TC Khoa sản" && <BornComponent data={ObstetricsData} />}
-            {value === "TC Khoa nhi" && <BornComponent data={ChildData} />}
-            {value === "TC Chung" && (
-              <BornComponent data={GeneralData} isGeneral />
+            {value === "TC Khoa sản" && (
+              <BornComponent
+                data={ObstetricsData}
+                dataList={dashboardData?.SK}
+              />
             )}
+            {value === "TC Khoa nhi" && (
+              <BornComponent data={ChildData} dataList={dashboardData?.NK} />
+            )}
+            {/* {value === "TC Chung" && (
+              <BornComponent data={GeneralData} isGeneral />
+            )} */}
           </div>
         </div>
       )}
@@ -91,6 +86,44 @@ const AppContainer = ({ screen, title, setScreen }) => {
 };
 
 export default AppContainer;
+
+function HeaderScreen({ value, setValue }) {
+  const dispatch = useDispatch();
+
+  const dashboardData =
+    useSelector((state) => state?.data?.dashboardData) || null;
+  const currentQuarter =
+    useSelector((state) => state?.data?.currentQuarter) || null;
+
+  return (
+    <div className="segmented">
+      <Segmented
+        options={["TC Khoa sản", "TC Khoa nhi", "TC Chung"]}
+        value={value}
+        onChange={setValue}
+        size="large"
+      />
+      <div>
+        {dashboardData && (
+          <Select
+            defaultValue={dashboardData?.time[currentQuarter]}
+            className="select-quarter"
+            onChange={(e) => {
+              dispatch(storeSetCurrentQuarter(e));
+            }}
+          >
+            {dashboardData?.time?.map((element, index) => {
+              return (
+                <Select.Option key={String(index)}>{element}</Select.Option>
+              );
+            })}
+          </Select>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function WidgetsComponent() {
   return (
     <div className="Widgets-container">
