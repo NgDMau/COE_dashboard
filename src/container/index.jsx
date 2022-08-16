@@ -20,28 +20,34 @@ import {
 const AppContainer = ({ screen, title, setScreen }) => {
   const dispath = useDispatch();
 
-  const [value, setValue] = useState("TC Khoa sản");
   const user = JSON.parse(localStorage.getItem("user"));
-
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
+  const hostPitalSelected = useSelector(
+    (state) => state?.data?.hostPitalSelected
+  );
 
-  const getDataDashboard = async () => {
+  const [value, setValue] = useState("TC Khoa sản");
+
+  const getDataDashboard = async (selectedCode) => {
     const myHeaders = new Headers({
       Authorization: "Token " + user?.token,
       "Content-Type": "application/x-www-form-urlencoded",
     });
-    fetch("https://1527-113-22-84-32.ngrok.io/dm/initialize", {
-      method: "POST",
-      headers: myHeaders,
-    })
+    fetch(
+      `https://1527-113-22-84-32.ngrok.io/dm/data/evaluation?hospital=${selectedCode}`,
+      {
+        method: "POST",
+        headers: myHeaders,
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         dispath(storeSetDashboardData(data));
       });
   };
   useEffect(() => {
-    getDataDashboard();
-  }, []);
+    getDataDashboard(hostPitalSelected?.code);
+  }, [hostPitalSelected]);
 
   return (
     <ContainerWrapper>
@@ -59,21 +65,20 @@ const AppContainer = ({ screen, title, setScreen }) => {
         <div>
           <WidgetsComponent />
           <HeaderScreen value={value} setValue={setValue} />
-          <div className="content-chart">
-            <h2>{value}</h2>
-            {value === "TC Khoa sản" && (
-              <BornComponent
-                data={ObstetricsData}
-                dataList={dashboardData?.SK}
-              />
-            )}
-            {value === "TC Khoa nhi" && (
-              <BornComponent data={ChildData} dataList={dashboardData?.NK} />
-            )}
-            {/* {value === "TC Chung" && (
-              <BornComponent data={GeneralData} isGeneral />
-            )} */}
-          </div>
+          {hostPitalSelected && (
+            <div className="content-chart">
+              <h2>{value}</h2>
+              {value === "TC Khoa sản" && (
+                <BornComponent
+                  data={ObstetricsData}
+                  dataList={dashboardData?.SK}
+                />
+              )}
+              {value === "TC Khoa nhi" && (
+                <BornComponent data={ChildData} dataList={dashboardData?.NK} />
+              )}
+            </div>
+          )}
         </div>
       )}
 
@@ -98,7 +103,7 @@ function HeaderScreen({ value, setValue }) {
   return (
     <div className="segmented">
       <Segmented
-        options={["TC Khoa sản", "TC Khoa nhi", "TC Chung"]}
+        options={["TC Khoa sản", "TC Khoa nhi"]}
         value={value}
         onChange={setValue}
         size="large"

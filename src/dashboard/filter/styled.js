@@ -9,6 +9,20 @@ export const FilterWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 60px;
+  .back {
+    margin-right: 20px;
+    cursor: pointer;
+    height: fit-content;
+    font-size: 500;
+    padding: 4px 12px;
+    background-color: #54a0ff;
+    border-radius: 5px;
+    color: white;
+    :hover {
+      box-shadow: 1px 1px 1px 1px #c8d6e5;
+      background-color: #2e86de;
+    }
+  }
   .adress {
     display: flex;
     align-items: center;

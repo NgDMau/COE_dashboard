@@ -46,6 +46,19 @@ export const ObstetricsData = [
     normal: "65%",
     achieve: false,
   },
+  {
+    criteria: "NVYT tư vấn dùng sữa bột/sữa công thức",
+    caesarean: "80%",
+    normal: "75%",
+    achieve: true,
+  },
+  {
+    criteria:
+      "Bệnh viện quảng cáo tiếp thị sữa bột sữa công thức cho trẻ dưới 24 tháng tuổi, bình bú, vú ngậm nhân tạo",
+    caesarean: "80%",
+    normal: "75%",
+    achieve: true,
+  },
 ];
 export const ChildData = [
   {
@@ -74,6 +87,19 @@ export const ChildData = [
   },
   {
     criteria: "NVYT tư vấn và hướng dẫn NCBSM",
+    caesarean: "80%",
+    normal: "75%",
+    achieve: true,
+  },
+  {
+    criteria: "NVYT tư vấn dùng sữa bột/sữa công thức",
+    caesarean: "80%",
+    normal: "75%",
+    achieve: true,
+  },
+  {
+    criteria:
+      "Bệnh viện quảng cáo tiếp thị sữa bột sữa công thức cho trẻ dưới 24 tháng tuổi, bình bú, vú ngậm nhân tạo",
     caesarean: "80%",
     normal: "75%",
     achieve: true,

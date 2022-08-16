@@ -5,7 +5,7 @@ import close from "../../assets/born/close.png";
 import accept from "../../assets/born/accept.png";
 import { useSelector } from "react-redux";
 
-function RowComponent({ obstetric, index, elementST, elementSM }) {
+function RowComponent({ obstetric, index, elementST, elementSM, evaluation }) {
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
   const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
 
@@ -32,14 +32,16 @@ function RowComponent({ obstetric, index, elementST, elementSM }) {
       )}
 
       <div className="w-10 border-none">
-        <img alt="" src={obstetric.achieve ? accept : close} />
+        <img
+          alt=""
+          src={evaluation[currentQuarter] === "passed" ? accept : close}
+        />
       </div>
     </div>
   );
 }
 
-const BornComponent = ({ data, isGeneral, dataList }) => {
-  console.log("dataListdataList", dataList);
+const BornComponent = ({ data, isGeneral, dataList, evaluation }) => {
   return (
     <BornWrapper>
       <div className="row sticky">
@@ -70,6 +72,7 @@ const BornComponent = ({ data, isGeneral, dataList }) => {
               index={index}
               elementST={dataList[index + 1]?.values?.ST}
               elementSM={dataList[index + 1]?.values?.SM}
+              evaluation={dataList[index + 1]?.values?.evaluation}
             />
           </div>
         ))}

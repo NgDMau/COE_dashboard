@@ -42,6 +42,13 @@ export const SurveyLinkWrapper = styled.div`
         margin-top: 2em;
         border-radius: 5px;
       }
+      .loading-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-top: 100px;
+      }
     }
   }
 `;
