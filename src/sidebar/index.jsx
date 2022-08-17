@@ -6,18 +6,36 @@ import overview from "../assets/icon/overview.svg";
 import link from "../assets/icon/link.svg";
 import document from "../assets/icon/document.svg";
 import database from "../assets/icon/database.png";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Modal } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const { Sider } = Layout;
 
 const AppSidebar = ({ screen, setScreen, setTitle }) => {
+  const navigate = useNavigate()
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const { confirm } = Modal;
+  const showConfirm = () => {
+    confirm({
+      content: "Chức năng bị hạn chế vui lòng liên hệ quản trị viên",
+    });
+  };
+
   const items2 = [
     "Bảng điều khiển",
     "Quy định, tài liệu",
     "Link khảo sát",
     "Dữ liệu thô",
+    "Đăng xuất"
   ];
   const icons = [overview, document, link, database];
+
+  const logout = () => {
+    localStorage.removeItem("user");
+    navigate("/login")
+  }
+
   useEffect(() => {
     setTitle(listFormReport[0]);
   }, [setTitle]);
@@ -35,8 +53,14 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
       >
         <Menu
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={[screen]}
           onSelect={(e) => {
+            if(Number(e.key) === 5){
+              logout()
+            }
+            if (Number(e.key) === 4 && user.is_superuser === "False") {
+              showConfirm();
+            }
             setScreen(Number(e.key));
             setTitle(items2[Number(e.key) - 1]);
           }}

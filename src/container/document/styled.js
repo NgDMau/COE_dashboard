@@ -22,6 +22,7 @@ export const DocumentWrapper = styled.div`
     }
     .document {
       width: 60vw;
+      height: 80vh;
       height: fit-content;
     }
     .title {
@@ -42,5 +43,25 @@ export const DocumentWrapper = styled.div`
       color: green;
       cursor: pointer;
     }
+  }
+  .container {
+    /* To position the loading */
+    position: relative;
+  }
+
+  .loading {
+    /* Absolute position */
+    left: 0;
+    position: absolute;
+    top: 0;
+
+    /* Take full size */
+    height: 100%;
+    width: 100%;
+
+    /* Center */
+    align-items: center;
+    display: flex;
+    justify-content: center;
   }
 `;

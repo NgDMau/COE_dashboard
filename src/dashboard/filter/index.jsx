@@ -75,7 +75,6 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
           <Select
             className="select-city"
             onChange={(e) => {
-              console.log(e);
               getHostPital(citiesData[e].code);
               dispatch(storeSetHostpitalData([]));
             }}
@@ -118,7 +117,7 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
         )}
       </div>
       {screen === 1 && (
-        <div className="export" onClick={() => setScreen(5)}>
+        <div className="export" onClick={() => setScreen(6)}>
           Xem báo cáo
         </div>
       )}

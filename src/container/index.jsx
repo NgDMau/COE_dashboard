@@ -46,7 +46,9 @@ const AppContainer = ({ screen, title, setScreen }) => {
       });
   };
   useEffect(() => {
-    getDataDashboard(hostPitalSelected?.code);
+    if (hostPitalSelected) {
+      getDataDashboard(hostPitalSelected?.code);
+    }
   }, [hostPitalSelected]);
 
   return (
@@ -85,7 +87,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
       {screen === 2 && <Document title={title} />}
       {screen === 3 && <SurveyLink />}
       {screen === 4 && <RowData />}
-      {screen === 5 && <ExportData />}
+      {screen === 6 && <ExportData />}
     </ContainerWrapper>
   );
 };
@@ -109,7 +111,7 @@ function HeaderScreen({ value, setValue }) {
         size="large"
       />
       <div>
-        {dashboardData && (
+        {dashboardData?.time?.length > 0 && (
           <Select
             defaultValue={dashboardData?.time[currentQuarter]}
             className="select-quarter"

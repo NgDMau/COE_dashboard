@@ -4,8 +4,17 @@ import documentiImg from "../../assets/brand/document.png";
 import download from "../../assets/icon/download.gif";
 import { Select } from "antd";
 import { listDocument } from "../../dashboard/report-form/fakeData";
+import { useState } from "react";
 
 const Document = ({ title }) => {
+  const [idIframe, setIdIframe] = useState("1");
+
+  const downLoadPdf = () => {
+    window.open(
+      `https://1527-113-22-84-32.ngrok.io/dm/data/docs?id=${idIframe}`
+    );
+  };
+
   return (
     <DocumentWrapper>
       <div className="document-container">
@@ -14,7 +23,9 @@ const Document = ({ title }) => {
             labelInValue={listDocument[0]}
             className="select-document"
             defaultValue={listDocument[0]}
-            onChange={() => {}}
+            onChange={(e) => {
+              setIdIframe(e.label[0]);
+            }}
           >
             {listDocument.map((element, index) => {
               return (
@@ -24,12 +35,18 @@ const Document = ({ title }) => {
               );
             })}
           </Select>
-          <div className="title">
+          <div className="title" onClick={downLoadPdf}>
             <img src={download} alt="" />
             <span>Download</span>
           </div>
         </div>
-        <img src={documentiImg} alt="" className="document" />
+        {/* <img src={documentiImg} alt="" className="document" /> */}
+        <iframe
+          title="iframe"
+          src={`https://docs.google.com/viewerng/viewer?url=https://1527-113-22-84-32.ngrok.io/dm/data/docs?id=${idIframe}&embedded=true`}
+          height="800px"
+          width="800px"
+        />
       </div>
     </DocumentWrapper>
   );

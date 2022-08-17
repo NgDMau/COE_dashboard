@@ -1,6 +1,6 @@
 import Input from "antd/lib/input/Input";
 import { Button } from "antd/lib/radio";
-import React from "react";
+import React, { useEffect } from "react";
 import { LoginWrapper } from "./styled";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import logo from "../../assets/brand/cbimage.png";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { storeSetToken } from "../../store/auth-reducer";
+import { storeSetCitiesData, storeSetCurrentQuarter, storeSetDashboardData, storeSetHostpitalData, storeSetHostpitalSelected, storeSetListHasTag } from "../../store/data-reducer";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -36,12 +37,20 @@ const LoginPage = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data?.status === "successful") {
-          navigate("/");
           dispatch(storeSetToken(data?.user?.token || null));
           localStorage.setItem("user", JSON.stringify(data?.user));
+          navigate("/apps");
         }
       });
   };
+
+  useEffect(() => {
+    dispatch(storeSetDashboardData(null));
+    dispatch(storeSetCurrentQuarter(7));
+    dispatch(storeSetCitiesData());
+    dispatch(storeSetHostpitalData([]));
+    dispatch(storeSetHostpitalSelected(null));
+  }, []);
 
   return (
     <LoginWrapper>

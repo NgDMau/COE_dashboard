@@ -14,7 +14,6 @@ export const listFormReport = [
 ];
 
 export const listDocument = [
-  "Quy định 1",
-  "Nghị định 2",
-  "Hướng dẫn nghị quyết",
+  "Quyết định số 5913",
+  "Báo cáo mẫu - tỉnh Quảng Ngãi",
 ];

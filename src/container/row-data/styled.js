@@ -11,6 +11,9 @@ export const RowDataWrapper = styled.div`
   margin: 20px;
   font-size: 20px;
   .table-row-data {
+    .ant-pagination-options {
+      display: none;
+    }
     margin-right: 20px;
     .ant-table-pagination.ant-pagination {
       width: 100%;
