@@ -62,7 +62,7 @@ const LoginPage = () => {
               <img src={logo} alt="" className="image" />
             </div>
             <div className="login">
-              <h1>Wellcome</h1>
+              <h1>Welcome</h1>
               <Input
                 className="input"
                 placeholder="Tên đăng nhập"
@@ -100,7 +100,7 @@ const LoginPage = () => {
               <img src={logo} alt="" className="image" />
             </div>
             <div className="login">
-              <h1>Wellcome</h1>
+              <h1>Welcome</h1>
               <Input
                 className="input"
                 placeholder="Tên đăng nhập"
