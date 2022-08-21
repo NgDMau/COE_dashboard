@@ -8,7 +8,15 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { storeSetToken } from "../../store/auth-reducer";
-import { storeSetCitiesData, storeSetCurrentQuarter, storeSetDashboardData, storeSetHostpitalData, storeSetHostpitalSelected, storeSetListHasTag } from "../../store/data-reducer";
+import {
+  storeSetCitiesData,
+  storeSetCurrentQuarter,
+  storeSetDashboardData,
+  storeSetHostpitalData,
+  storeSetHostpitalSelected,
+  storeSetListHasTag,
+} from "../../store/data-reducer";
+import { linkApi } from "../../common/ngok";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -24,7 +32,7 @@ const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);
 
   const login = async () => {
-    fetch("https://1527-113-22-84-32.ngrok.io/user/login-with-token", {
+    fetch(`${linkApi}/user/login-with-token`, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",

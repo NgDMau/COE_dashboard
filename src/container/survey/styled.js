@@ -51,4 +51,7 @@ export const SurveyLinkWrapper = styled.div`
       }
     }
   }
+  .select-hostpital {
+    width: 200px;
+  }
 `;

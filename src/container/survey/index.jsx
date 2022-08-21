@@ -5,7 +5,8 @@ import Input from "antd/lib/input/Input";
 import ChartLink from "./chart";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Spin } from "antd";
+import { Select, Spin } from "antd";
+import { linkApi } from "../../common/ngok";
 
 function toNomal(str) {
   str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
@@ -40,13 +41,10 @@ const SurveyLink = () => {
       Authorization: "Token " + user?.token,
       "Content-Type": "application/x-www-form-urlencoded",
     });
-    fetch(
-      `https://1527-113-22-84-32.ngrok.io/dm/data/process?province=${code}`,
-      {
-        method: "POST",
-        headers: myHeaders,
-      }
-    )
+    fetch(`${linkApi}/dm/data/process?province=${code}`, {
+      method: "POST",
+      headers: myHeaders,
+    })
       .then((response) => response.json())
       .then((data) => {
         const dataClone = [...data?.data];
@@ -125,17 +123,38 @@ const SurveyLink = () => {
               </div>
             ) : (
               <>
-                <span
-                  className="link"
-                  onClick={() => {
-                    window.open("https://bmte.vn/form/quang_nam/v2");
-                  }}
-                >
-                  {" "}
-                  {selected?.survey_url}
-                </span>
+                <div>
+                  <span
+                    className="link"
+                    onClick={() => {
+                      window.open("https://bmte.vn/form/quang_nam/v2");
+                    }}
+                  >
+                    {" "}
+                    {selected?.survey_url}
+                  </span>
+                </div>
 
-                {dataTableChart.length > 0 && (
+                <Select className="select-hostpital" onChange={(e) => {}}>
+                  {[
+                    "Q1/21",
+                    "Q2/21",
+                    "Q3/21",
+                    "Q4/21",
+                    "Q1/22",
+                    "Q2/22",
+                    "Q3/22",
+                    "Q4/22",
+                  ]?.map((element, index) => {
+                    return (
+                      <Select.Option key={String(index)}>
+                        {index + 1}. {element}
+                      </Select.Option>
+                    );
+                  })}
+                </Select>
+
+                {dataTableChart?.length > 0 && (
                   <div className="chart">
                     <ChartLink
                       dataTableChart={dataTableChart}

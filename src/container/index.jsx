@@ -16,6 +16,8 @@ import {
   storeSetCurrentQuarter,
   storeSetDashboardData,
 } from "../store/data-reducer";
+import RadaChart from "../components/RadaChart/RadaChart";
+import { linkApi } from "../common/ngok";
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const dispath = useDispatch();
@@ -33,13 +35,10 @@ const AppContainer = ({ screen, title, setScreen }) => {
       Authorization: "Token " + user?.token,
       "Content-Type": "application/x-www-form-urlencoded",
     });
-    fetch(
-      `https://1527-113-22-84-32.ngrok.io/dm/data/evaluation?hospital=${selectedCode}`,
-      {
-        method: "POST",
-        headers: myHeaders,
-      }
-    )
+    fetch(`${linkApi}/dm/data/evaluation?hospital=${selectedCode}`, {
+      method: "POST",
+      headers: myHeaders,
+    })
       .then((response) => response.json())
       .then((data) => {
         dispath(storeSetDashboardData(data));
@@ -65,7 +64,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
       </div>
       {screen === 1 && (
         <div>
-          <WidgetsComponent />
+          <RadaChart />
           <HeaderScreen value={value} setValue={setValue} />
           {hostPitalSelected && (
             <div className="content-chart">
@@ -84,9 +83,9 @@ const AppContainer = ({ screen, title, setScreen }) => {
         </div>
       )}
 
-      {screen === 2 && <Document title={title} />}
-      {screen === 3 && <SurveyLink />}
-      {screen === 4 && <RowData />}
+      {screen === 2 && <SurveyLink />}
+      {screen === 3 && <RowData />}
+      {screen === 4 && <Document title={title} />}
       {screen === 6 && <ExportData />}
     </ContainerWrapper>
   );

@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 const { Sider } = Layout;
 
 const AppSidebar = ({ screen, setScreen, setTitle }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
 
   const { confirm } = Modal;
@@ -23,23 +23,23 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
   };
 
   const items2 = [
-    "Bảng điều khiển",
-    "Quy định, tài liệu",
+    "Kết quả khảo sát",
     "Link khảo sát",
     "Dữ liệu thô",
-    "Đăng xuất"
+    "Quy định, tài liệu",
+    "Đăng xuất",
   ];
-  const icons = [overview, document, link, database];
+  const icons = [overview, link, database, document];
 
   const logout = () => {
     localStorage.removeItem("user");
-    navigate("/login")
-  }
+    navigate("/login");
+  };
 
   useEffect(() => {
     setTitle(listFormReport[0]);
   }, [setTitle]);
-
+  console.log("Screen", screen);
   return (
     <SiderbarWrapper>
       <div className="logo">
@@ -55,10 +55,10 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
           mode="inline"
           defaultSelectedKeys={[screen]}
           onSelect={(e) => {
-            if(Number(e.key) === 5){
-              logout()
+            if (Number(e.key) === 5) {
+              logout();
             }
-            if (Number(e.key) === 4 && user.is_superuser === "False") {
+            if (Number(e.key) === 4 && user?.is_superuser === "False") {
               showConfirm();
             }
             setScreen(Number(e.key));

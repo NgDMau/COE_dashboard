@@ -44,4 +44,9 @@ export const RowDataWrapper = styled.div`
       border-left: 0.5px solid #dfe4ea;
     }
   }
+  .visible {
+    table {
+      visibility: hidden;
+    }
+  }
 `;

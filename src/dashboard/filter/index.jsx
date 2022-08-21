@@ -10,6 +10,7 @@ import {
   storeSetHostpitalSelected,
 } from "../../store/data-reducer";
 import { useState } from "react";
+import { linkApi } from "../../common/ngok";
 
 const FilterComponent = ({ disabled, screen, setScreen }) => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
       Authorization: "Token " + user?.token,
       "Content-Type": "application/x-www-form-urlencoded",
     });
-    fetch("https://1527-113-22-84-32.ngrok.io/dm/data/province?info=all", {
+    fetch(`${linkApi}/dm/data/province?info=all`, {
       method: "POST",
       headers: myHeaders,
     })
@@ -41,13 +42,10 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
       Authorization: "Token " + user?.token,
       "Content-Type": "application/x-www-form-urlencoded",
     });
-    fetch(
-      `https://1527-113-22-84-32.ngrok.io/dm/data/province?code=${code}&info=hospitals`,
-      {
-        method: "POST",
-        headers: myHeaders,
-      }
-    )
+    fetch(`${linkApi}/dm/data/province?code=${code}&info=hospitals`, {
+      method: "POST",
+      headers: myHeaders,
+    })
       .then((response) => response.json())
       .then((data) => {
         dispatch(storeSetHostpitalData(data?.hospitals || []));

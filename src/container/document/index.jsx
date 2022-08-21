@@ -5,14 +5,13 @@ import download from "../../assets/icon/download.gif";
 import { Select } from "antd";
 import { listDocument } from "../../dashboard/report-form/fakeData";
 import { useState } from "react";
+import { linkApi } from "../../common/ngok";
 
 const Document = ({ title }) => {
   const [idIframe, setIdIframe] = useState("1");
 
   const downLoadPdf = () => {
-    window.open(
-      `https://1527-113-22-84-32.ngrok.io/dm/data/docs?id=${idIframe}`
-    );
+    window.open(`${linkApi}/dm/data/docs?id=${idIframe}`);
   };
 
   return (
@@ -43,7 +42,7 @@ const Document = ({ title }) => {
         {/* <img src={documentiImg} alt="" className="document" /> */}
         <iframe
           title="iframe"
-          src={`https://docs.google.com/viewerng/viewer?url=https://1527-113-22-84-32.ngrok.io/dm/data/docs?id=${idIframe}&embedded=true`}
+          src={`https://docs.google.com/viewerng/viewer?url=${linkApi}/dm/data/docs?id=${idIframe}&embedded=true`}
           height="800px"
           width="800px"
         />

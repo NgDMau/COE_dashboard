@@ -5,14 +5,17 @@ import dataTable from "../../dashboard/content/fakeData";
 import { rowData } from "./fakeData";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import { DownloadTableExcel } from "react-export-table-to-excel";
+import { useRef } from "react";
+import { linkApi } from "../../common/ngok";
+
 const RowData = React.memo(() => {
   const user = JSON.parse(localStorage.getItem("user"));
+  const tableRef = useRef(null);
 
   const [isLoading, setIsLoading] = useState(false);
   const [rowData, setRowData] = useState([]);
   const [numEntries, setNumEntries] = useState({});
-
-
 
   const getDataRow = async (page) => {
     if (isLoading) {
@@ -23,13 +26,10 @@ const RowData = React.memo(() => {
       Authorization: "Token " + user?.token,
       "Content-Type": "application/x-www-form-urlencoded",
     });
-    fetch(
-      `https://1527-113-22-84-32.ngrok.io/dm/data/raw?page=${page}&size=5`,
-      {
-        method: "GET",
-        headers: myHeaders,
-      }
-    )
+    fetch(`${linkApi}/dm/data/raw?page=${page}&size=5`, {
+      method: "GET",
+      headers: myHeaders,
+    })
       .then((response) => response.json())
       .then((data) => {
         if (data?.status === "successful") {
@@ -90,6 +90,36 @@ const RowData = React.memo(() => {
             }}
           />
         )}
+      </div>
+
+      <div className="visible">
+        <DownloadTableExcel
+          filename="users table"
+          sheet="users"
+          currentTableRef={tableRef.current}
+        >
+          <button> Export excel </button>
+        </DownloadTableExcel>
+
+        <table ref={tableRef}>
+          <tbody>
+            <tr>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>Age</th>
+            </tr>
+            <tr>
+              <td>Edison</td>
+              <td>Padilla</td>
+              <td>20</td>
+            </tr>
+            <tr>
+              <td>Alberto</td>
+              <td>Lopez</td>
+              <td>94</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </RowDataWrapper>
   );

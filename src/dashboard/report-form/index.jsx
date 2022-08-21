@@ -19,7 +19,7 @@ const ReportForm = () => {
         </div>
       ))}
       <Modal
-        title="Bảng điều khiển"
+        title="Kết quả khảo sát"
         visible={visible}
         onCancel={() => setVisible(false)}
         footer={null}
