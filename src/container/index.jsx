@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import FilterComponent from "../dashboard/filter";
-import { ContainerWrapper } from "./styled";
+import { ContainerWrapper, SpinWrapper } from "./styled";
 import WidgetsDropdown from "./widgets/WidgetsDropdown";
 import { screenFake } from "./screen";
 import { useState } from "react";
-import { Segmented, Select } from "antd";
+import { Segmented, Select, Spin } from "antd";
 import BornComponent from "./born";
-import { ChildData, GeneralData, ObstetricsData, Quarter } from "./fakeData";
+import { ChildData, ObstetricsData } from "./fakeData";
 import Document from "./document";
 import SurveyLink from "./survey";
 import RowData from "./row-data";
@@ -18,6 +18,7 @@ import {
 } from "../store/data-reducer";
 import RadaChart from "../components/RadaChart/RadaChart";
 import { linkApi } from "../common/ngok";
+import VietNamChart from "../components/VietNamChart/VietNamChart";
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const dispath = useDispatch();
@@ -29,8 +30,10 @@ const AppContainer = ({ screen, title, setScreen }) => {
   );
 
   const [value, setValue] = useState("TC Khoa sản");
+  const [isLoading, setIsLoading] = useState(false);
 
   const getDataDashboard = async (selectedCode) => {
+    setIsLoading(true);
     const myHeaders = new Headers({
       Authorization: "Token " + user?.token,
       "Content-Type": "application/x-www-form-urlencoded",
@@ -42,7 +45,8 @@ const AppContainer = ({ screen, title, setScreen }) => {
       .then((response) => response.json())
       .then((data) => {
         dispath(storeSetDashboardData(data));
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
   useEffect(() => {
     if (hostPitalSelected) {
@@ -57,7 +61,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
           <span>Home</span> / Dashboard / {screenFake[screen - 1]}
         </div>
         <FilterComponent
-          disabled={screen === 2 || screen === 3}
+          disabled={screen === 2 || screen === 4}
           screen={screen}
           setScreen={setScreen}
         />
@@ -65,21 +69,32 @@ const AppContainer = ({ screen, title, setScreen }) => {
       {screen === 1 && (
         <div>
           <RadaChart />
-          <HeaderScreen value={value} setValue={setValue} />
-          {hostPitalSelected && (
-            <div className="content-chart">
-              <h2>{value}</h2>
-              {value === "TC Khoa sản" && (
-                <BornComponent
-                  data={ObstetricsData}
-                  dataList={dashboardData?.SK}
-                />
-              )}
-              {value === "TC Khoa nhi" && (
-                <BornComponent data={ChildData} dataList={dashboardData?.NK} />
-              )}
-            </div>
+          {isLoading && (
+            <SpinWrapper>
+              <Spin size="large" />
+            </SpinWrapper>
           )}
+          {hostPitalSelected && !isLoading ? (
+            <>
+              <HeaderScreen value={value} setValue={setValue} />
+              <div className="content-chart">
+                <h2>{value}</h2>
+                {value === "TC Khoa sản" && (
+                  <BornComponent
+                    data={ObstetricsData}
+                    dataList={dashboardData?.SK}
+                  />
+                )}
+                {value === "TC Khoa nhi" && (
+                  <BornComponent
+                    data={ChildData}
+                    dataList={dashboardData?.NK}
+                  />
+                )}
+              </div>
+            </>
+          ) : null}
+          {!hostPitalSelected && <VietNamChart />}
         </div>
       )}
 
@@ -126,37 +141,6 @@ function HeaderScreen({ value, setValue }) {
           </Select>
         )}
       </div>
-    </div>
-  );
-}
-
-function WidgetsComponent() {
-  return (
-    <div className="Widgets-container">
-      <WidgetsDropdown
-        amount="26K"
-        semibold="Tổng số khảo sát thành công"
-        percent="12.4"
-        color="#321fdb"
-      />
-      <WidgetsDropdown
-        amount="6200"
-        semibold="Tổng số tỉnh đã khảo sát"
-        percent="40.9"
-        color="#39f"
-      />
-      <WidgetsDropdown
-        amount="249"
-        semibold="Tổng số bệnh viện đã khảo sát"
-        percent="84.7"
-        color="#f9b115"
-      />
-      <WidgetsDropdown
-        amount="440"
-        semibold="Tổng số bà mẹ đã khảo sát"
-        percent="23.6"
-        color="#e55353"
-      />
     </div>
   );
 }

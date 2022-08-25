@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Select, Spin } from "antd";
 import { linkApi } from "../../common/ngok";
+import VietNamChart from "../../components/VietNamChart/VietNamChart";
 
 function toNomal(str) {
   str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
@@ -114,7 +115,7 @@ const SurveyLink = () => {
             </div>
           ))}
         </div>
-
+        {selected === null && <VietNamChart />}
         {selected !== null && (
           <div className="link-selected">
             {isLoading ? (

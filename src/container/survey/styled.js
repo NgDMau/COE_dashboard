@@ -12,7 +12,7 @@ export const SurveyLinkWrapper = styled.div`
   .container {
     display: flex;
     .city-link {
-      width: 35%;
+      width: 20%;
       .link-container {
         display: flex;
         align-items: center;
@@ -30,7 +30,7 @@ export const SurveyLinkWrapper = styled.div`
       }
     }
     .link-selected {
-      flex: 65%;
+      flex: 80%;
       .link {
         cursor: pointer;
         :hover {
