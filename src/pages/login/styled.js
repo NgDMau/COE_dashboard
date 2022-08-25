@@ -21,14 +21,14 @@ export const LoginWrapper = styled.div`
         width: 250px;
         height: 250px;
         border-radius: 125px;
-        background-color:  white;
+        background-color: white;
         overflow: hidden;
         margin: 16px;
         box-shadow: 2px 3px 5px 2px #b2bec3;
         display: flex;
         align-items: center;
         justify-content: center;
-        .image{
+        .image {
           width: 240px;
           height: auto;
         }
@@ -75,6 +75,9 @@ export const LoginWrapper = styled.div`
           ::before {
             display: none;
           }
+        }
+        .error {
+          color: tomato;
         }
       }
     }

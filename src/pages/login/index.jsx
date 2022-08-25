@@ -1,12 +1,15 @@
+import React, { useEffect, useState } from "react";
+
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import Input from "antd/lib/input/Input";
 import { Button } from "antd/lib/radio";
-import React, { useEffect } from "react";
 import { LoginWrapper } from "./styled";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { UserOutlined, LockOutlined, LoadingOutlined } from "@ant-design/icons";
+
 import logo from "../../assets/brand/cbimage.png";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { linkApi } from "../../common/ngok";
 import { storeSetToken } from "../../store/auth-reducer";
 import {
   storeSetCitiesData,
@@ -14,14 +17,12 @@ import {
   storeSetDashboardData,
   storeSetHostpitalData,
   storeSetHostpitalSelected,
-  storeSetListHasTag,
 } from "../../store/data-reducer";
-import { linkApi } from "../../common/ngok";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
+
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,9 +30,13 @@ const LoginPage = () => {
   const [passwordRegist, setPasswordRegist] = useState("");
   const [passwordRetype, setPasswordRetype] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
+  const [error, setError] = useState("");
 
   const login = async () => {
+    setIsLoading(true);
+    setError("");
     fetch(`${linkApi}/user/login-with-token`, {
       method: "POST",
       headers: {
@@ -48,8 +53,12 @@ const LoginPage = () => {
           dispatch(storeSetToken(data?.user?.token || null));
           localStorage.setItem("user", JSON.stringify(data?.user));
           navigate("/apps");
+        } else {
+          setError("Sai tên tài khoản hoặc mật khẩu");
         }
-      });
+      })
+      .catch(() => setError("Sai tên tài khoản hoặc mật khẩu"))
+      .finally(() => setIsLoading(false));
   };
 
   useEffect(() => {
@@ -72,6 +81,7 @@ const LoginPage = () => {
             <div className="login">
               <h1>Welcome</h1>
               <Input
+                disabled={isLoading}
                 className="input"
                 placeholder="Tên đăng nhập"
                 onChange={(e) => setUserName(e?.target?.value)}
@@ -80,6 +90,7 @@ const LoginPage = () => {
                 }
               />
               <Input
+                disabled={isLoading}
                 className="input"
                 type="password"
                 placeholder="Mật khẩu"
@@ -88,14 +99,24 @@ const LoginPage = () => {
                   <LockOutlined style={{ color: "green" }} size="large" />
                 }
               />
+              <div className="error">{error}</div>
               <div
                 className="forgot-password"
-                onClick={() => setIsLogin(!isLogin)}
+                onClick={() => {
+                  if (!isLoading) {
+                    setIsLogin(!isLogin);
+                  }
+                }}
               >
                 Đăng ký
               </div>
-              <Button className="btn-login" onClick={login}>
-                Đăng nhập
+              <Button
+                type="primary"
+                className="btn-login"
+                onClick={login}
+                disabled={isLoading}
+              >
+                {isLoading ? <LoadingOutlined /> : "Đăng nhập"}
               </Button>
             </div>
           </div>
@@ -110,6 +131,7 @@ const LoginPage = () => {
             <div className="login">
               <h1>Welcome</h1>
               <Input
+                disabled={isLoading}
                 className="input"
                 placeholder="Tên đăng nhập"
                 onChange={(e) => setUserNameRegist(e?.target?.value)}
@@ -118,6 +140,7 @@ const LoginPage = () => {
                 }
               />
               <Input
+                disabled={isLoading}
                 className="input"
                 type="password"
                 placeholder="Mật khẩu"
@@ -127,6 +150,7 @@ const LoginPage = () => {
                 }
               />
               <Input
+                disabled={isLoading}
                 className="input"
                 type="password"
                 placeholder="Nhập lại Mật khẩu"
@@ -141,8 +165,12 @@ const LoginPage = () => {
               >
                 Đăng nhập
               </div>
-              <Button className="btn-login" onClick={() => navigate("/apps")}>
-                Đăng ký
+              <Button
+                className="btn-login"
+                onClick={() => navigate("/apps")}
+                disabled={isLoading}
+              >
+                {isLoading ? <LoadingOutlined /> : "Đăng ký"}
               </Button>
             </div>
           </div>
