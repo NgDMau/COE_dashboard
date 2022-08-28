@@ -39,7 +39,6 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
   useEffect(() => {
     setTitle(listFormReport[0]);
   }, [setTitle]);
-  console.log("Screen", screen);
   return (
     <SiderbarWrapper>
       <div className="logo">

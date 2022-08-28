@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./App.css";
 import Dashboard from "./dashboard/index";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
@@ -16,7 +17,6 @@ import { useState } from "react";
 
 const RootRouter = function () {
   const navigate = useNavigate();
-  const listRowData = useSelector((state) => state.data.listRowData);
   const user = JSON.parse(localStorage.getItem("user"));
   console.log("useruseruser", user);
   const dispatch = useDispatch();
@@ -51,36 +51,11 @@ const RootRouter = function () {
         dispatch(storeSetDashboardData(message));
       }
     };
-
-    // coeSocket.onclose = function (e) {
-    //   if (coeSocket.readyState == 3) {
-    //     coeSocket = null;
-    //     setTimeout(function () {
-    //       wsConnectionCOE(url, options, "reload");
-    //     }, 5000);
-    //   }
-    // };
   }
 
-  // const chatSocket = new WebSocket(
-  //   "wss://" + "1527-113-22-84-32.ngrok.io" + "/ws/data/" + "AnT" + "/",
-  //   ["Token", user?.token]
-  // );
   useEffect(() => {
     wsConnectionCOE(COE_WS_URL, SUB_PROTOCOL);
-
-    // chatSocket.onmessage = function (e) {
-    //   const data = JSON.parse(e?.data);
-    //   console.log("ssss", data);
-    //   const message = JSON.parse(
-    //     data?.message?.replaceAll(`'`, `"`).replaceAll("None", `null`)
-    //   );
-    //   console.log("dataaa", message);
-    //   if (message) {
-    //     dispatch(storeSetListHasTag(listRowData.concat(message)));
-    //   }
-    // };
-  }, [listRowData]);
+  }, [user]);
 
   return (
     <div>

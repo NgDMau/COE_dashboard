@@ -22,7 +22,6 @@ const listColor = [
 const VietNamChart = () => {
   const vietnam = [vietnamGeoUrl];
   const [content, setContent] = useState("");
-  console.log("content", content);
   return (
     <VietNamChartWrapper>
       <ContentWrapper>{content}</ContentWrapper>
