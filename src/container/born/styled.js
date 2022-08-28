@@ -55,7 +55,8 @@ export const BornWrapper = styled.div`
       .container-chart {
         width: 100%;
         height: 100%;
-        border: 1px solid #ced6e0;
+        /* border: 1px solid #ced6e0; */
+        border-right: none;
       }
     }
     .border-none {

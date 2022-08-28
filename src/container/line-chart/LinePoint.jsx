@@ -39,6 +39,14 @@ export const options = {
       display: true,
       position: "right",
       min: -0,
+      // grid: {
+      //   display: false,
+      // },
+    },
+    x: {
+      // grid: {
+      //   display: false,
+      // },
     },
   },
 };
@@ -56,16 +64,16 @@ export function LinePoint({ dataST, dataSM, time }) {
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
         pointStyle: "circle",
-        pointRadius: 8,
+        pointRadius: 6,
         pointHoverRadius: 10,
       },
       {
         label: "Sinh mổ",
         data: dataSM || [],
-        borderColor: "#2ed573",
-        backgroundColor: "rgb(123, 237, 159,0.5)",
+        borderColor: "#0984e3",
+        backgroundColor: "rgb(9, 132, 227,0.5)",
         pointStyle: "circle",
-        pointRadius: 8,
+        pointRadius: 6,
         pointHoverRadius: 10,
       },
       {
@@ -80,8 +88,8 @@ export function LinePoint({ dataST, dataSM, time }) {
       {
         label: "Mức sinh thường",
         fill: false,
-        backgroundColor: "green",
-        borderColor: "green",
+        backgroundColor: "#0984e3",
+        borderColor: "#0984e3",
         borderDash: [5, 5],
         data: labels.map(() => faker.datatype.number({ min: 70, max: 70 })),
         pointStyle: "hidden",
