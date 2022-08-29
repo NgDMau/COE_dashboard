@@ -12,7 +12,7 @@ export const SurveyLinkWrapper = styled.div`
   .container {
     display: flex;
     .city-link {
-      width: 12%;
+      width: 20%;
       font-size: 14px;
       .link-container {
         display: flex;

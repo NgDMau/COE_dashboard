@@ -10,9 +10,9 @@ export const ExportWrapper = styled.div`
     padding: 20px 40px;
     margin-top: 20px;
     border-radius: 4px;
-    width: 55vw;
+    width: 800px;
     background-color: white;
-    height: 150vh;
-    box-shadow: 3px 3px 3px 3px #dcdde1;
+    height: fit-content;
+    /* box-shadow: 3px 3px 3px 3px #dcdde1; */
   }
 `;
