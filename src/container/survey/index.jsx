@@ -136,25 +136,6 @@ const SurveyLink = () => {
                   </span>
                 </div>
 
-                <Select className="select-hostpital" onChange={(e) => {}}>
-                  {[
-                    "Q1/21",
-                    "Q2/21",
-                    "Q3/21",
-                    "Q4/21",
-                    "Q1/22",
-                    "Q2/22",
-                    "Q3/22",
-                    "Q4/22",
-                  ]?.map((element, index) => {
-                    return (
-                      <Select.Option key={String(index)}>
-                        {index + 1}. {element}
-                      </Select.Option>
-                    );
-                  })}
-                </Select>
-
                 {dataTableChart?.length > 0 && (
                   <div className="chart">
                     <ChartLink

@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import FilterComponent from "../dashboard/filter";
 import { ContainerWrapper, SpinWrapper } from "./styled";
-import WidgetsDropdown from "./widgets/WidgetsDropdown";
 import { screenFake } from "./screen";
 import { useState } from "react";
-import { Segmented, Select, Spin } from "antd";
+import { Segmented, Spin } from "antd";
 import BornComponent from "./born";
 import { ChildData, ObstetricsData } from "./fakeData";
 import Document from "./document";
@@ -13,7 +12,6 @@ import RowData from "./row-data";
 import ExportData from "./export-data";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  storeSetCurrentQuarter,
   storeSetDashboardData,
 } from "../store/data-reducer";
 import RadaChart from "../components/RadaChart/RadaChart";
@@ -109,13 +107,6 @@ const AppContainer = ({ screen, title, setScreen }) => {
 export default AppContainer;
 
 function HeaderScreen({ value, setValue }) {
-  const dispatch = useDispatch();
-
-  const dashboardData =
-    useSelector((state) => state?.data?.dashboardData) || null;
-  const currentQuarter =
-    useSelector((state) => state?.data?.currentQuarter) || null;
-
   return (
     <div className="segmented">
       <Segmented
@@ -124,23 +115,6 @@ function HeaderScreen({ value, setValue }) {
         onChange={setValue}
         size="large"
       />
-      <div>
-        {dashboardData?.time?.length > 0 && (
-          <Select
-            defaultValue={dashboardData?.time[currentQuarter]}
-            className="select-quarter"
-            onChange={(e) => {
-              dispatch(storeSetCurrentQuarter(e));
-            }}
-          >
-            {dashboardData?.time?.map((element, index) => {
-              return (
-                <Select.Option key={String(index)}>{element}</Select.Option>
-              );
-            })}
-          </Select>
-        )}
-      </div>
     </div>
   );
 }

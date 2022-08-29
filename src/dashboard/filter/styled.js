@@ -82,4 +82,8 @@ export const FilterWrapper = styled.div`
     }
   }
   box-shadow: 0 1px 2px -1px gray;
+  .select-quarter {
+    margin-left: 1em;
+    width: 100px;
+  }
 `;

@@ -6,6 +6,7 @@ import { FilterWrapper } from "./styled";
 import { useSelector, useDispatch } from "react-redux";
 import {
   storeSetCitiesData,
+  storeSetCurrentQuarter,
   storeSetHostpitalData,
   storeSetHostpitalSelected,
 } from "../../store/data-reducer";
@@ -15,6 +16,10 @@ import { linkApi } from "../../common/ngok";
 const FilterComponent = ({ disabled, screen, setScreen }) => {
   const dispatch = useDispatch();
 
+  const dashboardData =
+    useSelector((state) => state?.data?.dashboardData) || null;
+  const currentQuarter =
+    useSelector((state) => state?.data?.currentQuarter) || null;
   const user = JSON.parse(localStorage.getItem("user"));
   const citiesData = useSelector((state) => state.data.citiesData);
   const hostPitals = useSelector((state) => state.data.hostPitals);
@@ -112,6 +117,25 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
               </>
             )}
           </Select>
+        )}
+        {!disabled && (
+          <div>
+            {!dashboardData?.time?.length > 0 && (
+              <Select
+                defaultValue={dashboardData?.time[currentQuarter]}
+                className="select-quarter"
+                onChange={(e) => {
+                  dispatch(storeSetCurrentQuarter(e));
+                }}
+              >
+                {dashboardData?.time?.map((element, index) => {
+                  return (
+                    <Select.Option key={String(index)}>{element}</Select.Option>
+                  );
+                })}
+              </Select>
+            )}
+          </div>
         )}
       </div>
       {screen === 1 && (
