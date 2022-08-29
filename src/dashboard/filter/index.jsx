@@ -1,7 +1,7 @@
 import { Select, Spin } from "antd";
 import React from "react";
 import { useEffect } from "react";
-import { hostpitalList } from "./faleData";
+import { hostpitalList } from "../../container/survey/faleData";
 import { FilterWrapper } from "./styled";
 import { useSelector, useDispatch } from "react-redux";
 import {

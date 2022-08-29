@@ -1,19 +1,11 @@
 import React from "react";
 import Chart from "react-google-charts";
-
-const data = [
-  ["hospital_name", "no_D1TT", "no_SM", "no_ST"],
-  ["BV Phụ sản Nhi Đà Nẵng", 14, 27, 37],
-  ["Bệnh viện Gia đình Đà Nẵng", 92, 21, 25],
-  ["TTYT Quận Cẩm Lệ", 42, 18, 98],
-  ["TTYT Quận Sơn Trà", 61, 14, 79],
-  ["TTYT Quận Hải Châu", 64, 70, 67],
-];
+import { ChartLinkWrapper } from "./styled";
 
 const ChartLink = ({ dataTableChart, selected }) => {
   const options = {
-    title: `Thống kê khảo sát - ${selected.name}`,
-    chartArea: { width: "50%" },
+    title: `Thống kê khảo sát - ${selected?.name}`,
+    chartArea: { width: "60%" },
     isStacked: true,
     // hAxis: {
     //   minValue: 0,
@@ -28,7 +20,7 @@ const ChartLink = ({ dataTableChart, selected }) => {
   };
 
   return (
-    <div>
+    <ChartLinkWrapper>
       <Chart
         chartType="ColumnChart"
         width="100%"
@@ -36,7 +28,8 @@ const ChartLink = ({ dataTableChart, selected }) => {
         data={dataTableChart}
         options={options}
       />
-    </div>
+      <div className="certificate">Đã nhận danh hiệu BV xuất sắc 2022</div>
+    </ChartLinkWrapper>
   );
 };
 

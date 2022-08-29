@@ -6,7 +6,8 @@ export const VietNamChartWrapper = styled.div`
   height: 750px;
 `;
 export const ContentWrapper = styled.div`
-  width: 300px;
+  text-align: center;
+  height: 30px;
 `;
 export const ColorGroup = styled.div`
   margin-left: 100px;

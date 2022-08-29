@@ -24,7 +24,6 @@ const VietNamChart = () => {
   const [content, setContent] = useState("");
   return (
     <VietNamChartWrapper>
-      <ContentWrapper>{content}</ContentWrapper>
       <div>
         <ColorGroup>
           <Tag color="#d9f7be">Dưới 100</Tag>
@@ -35,6 +34,7 @@ const VietNamChart = () => {
           <Tag color="#389e0d">500 - 600</Tag>
           <Tag color="#237804">Trên 600</Tag>
         </ColorGroup>
+        <ContentWrapper>{content}</ContentWrapper>
         <ComposableMap
           data-tip=""
           projection="geoMercator"

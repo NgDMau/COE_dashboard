@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { Select, Spin } from "antd";
 import { linkApi } from "../../common/ngok";
 import VietNamChart from "../../components/VietNamChart/VietNamChart";
+import { listCity } from "./faleData";
 
 function toNomal(str) {
   str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
@@ -92,7 +93,7 @@ const SurveyLink = () => {
 
       <div className="container">
         <div className="city-link">
-          {cities?.map((element, index) => (
+          {listCity.map((element, index) => (
             <div
               className={`link-container ${
                 element?.id === selected?.id && "selected"
@@ -111,11 +112,12 @@ const SurveyLink = () => {
               key={String(index)}
             >
               <LinkOutlined />
-              {"   "} {element?.name}{" "}
+              {"   "} {element}{" "}
             </div>
           ))}
         </div>
-        {selected === null && <VietNamChart />}
+        <VietNamChart />
+
         {selected !== null && (
           <div className="link-selected">
             {isLoading ? (
