@@ -1,20 +1,26 @@
-import { Select, Spin } from "antd";
 import React from "react";
+import { useMemo } from "react";
+import { useState } from "react";
 import { useEffect } from "react";
-import { hostpitalList } from "../../container/survey/faleData";
-import { FilterWrapper } from "./styled";
+
+import { DatePicker } from "antd";
+import { Select, Spin } from "antd";
+
+import html2pdf from "html2pdf.js";
+
 import { useSelector, useDispatch } from "react-redux";
+import { FilterWrapper } from "./styled";
+import { linkApi } from "../../common/ngok";
+
 import {
   storeSetCitiesData,
   storeSetCurrentQuarter,
   storeSetHostpitalData,
   storeSetHostpitalSelected,
 } from "../../store/data-reducer";
-import { useState } from "react";
-import { linkApi } from "../../common/ngok";
-import html2pdf from "html2pdf.js";
-import { useMemo } from "react";
+
 const FilterComponent = ({ disabled, screen, setScreen }) => {
+  const { RangePicker } = DatePicker;
   const dispatch = useDispatch();
   const hostPitalSelected = useSelector(
     (state) => state?.data?.hostPitalSelected
@@ -31,8 +37,9 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
 
   const defaultCity = useMemo(() => {
     return (
-      citiesData?.find((element) => element?.id === hostPitalSelected?.province_id)
-        ?.name || ""
+      citiesData?.find(
+        (element) => element?.id === hostPitalSelected?.province_id
+      )?.name || ""
     );
   }, [hostPitalSelected, citiesData]);
   console.log("defaultCity", citiesData);
@@ -40,14 +47,14 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
     var element = document.getElementById("exportDagta");
     const opt = {
       margin: 1,
-      filename: "myfile.pdf",
       image: { type: "jpeg", quality: 0.98 },
+      filename: "KQKS_Q2_2022.pdf",
       html2canvas: { scale: 1 },
       jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
       pagebreak: { mode: ["legacy"] },
     };
     html2pdf().set(opt);
-    html2pdf(element);
+    html2pdf(element).save("KQKS_Q2_2022.pdf");
   };
 
   const getCities = async () => {
@@ -98,6 +105,7 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
         )}
 
         {!disabled && <span>Tỉnh/ Thành phố: </span>}
+
         {!disabled && (
           <Select
             defaultValue={defaultCity || ""}
@@ -118,6 +126,7 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
           </Select>
         )}
         {!disabled && <span className="hostpital">Bệnh viện: </span>}
+
         {!disabled && (
           <Select
             defaultValue={hostPitalSelected?.name || ""}
@@ -144,7 +153,8 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
             )}
           </Select>
         )}
-        {!disabled && (
+
+        {!disabled || screen === 2 ? (
           <div>
             {dashboardData?.time?.length > 0 && (
               <Select
@@ -162,13 +172,16 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
               </Select>
             )}
           </div>
-        )}
+        ) : null}
+        {screen === 3 && <RangePicker className="datePicker" />}
       </div>
-      {screen === 1 && (
+
+      {screen === 1 && dashboardData ? (
         <div className="export" onClick={() => setScreen(6)}>
           Xem báo cáo
         </div>
-      )}
+      ) : null}
+
       {screen === 6 && (
         <div className="export" onClick={exportPdfData}>
           Xuất báo cáo

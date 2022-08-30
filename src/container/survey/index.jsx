@@ -1,15 +1,16 @@
 import React, { useMemo, useState } from "react";
 import { LinkOutlined } from "@ant-design/icons";
-import { SurveyLinkWrapper } from "./styled";
+import { ButtonSelectCity, SurveyLinkWrapper } from "./styled";
 import Input from "antd/lib/input/Input";
 import ChartLink from "./chart";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Spin } from "antd";
+import { Button, Spin } from "antd";
 import { linkApi } from "../../common/ngok";
 import VietNamChart from "../../components/VietNamChart/VietNamChart";
 import { listCity } from "./faleData";
 import { toNomal } from "../../helpers/to-nomal";
+import buttonCity from "../../assets/icon/button-city.png";
 
 const SurveyLink = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -116,8 +117,10 @@ const SurveyLink = () => {
               }}
               key={String(index)}
             >
-              <LinkOutlined />
-              {"   "} {element.name}{" "}
+              <ButtonSelectCity>
+                <img src={buttonCity} alt="" />
+                <div>{element.name}</div>
+              </ButtonSelectCity>
             </div>
           ))}
         </div>
@@ -132,15 +135,15 @@ const SurveyLink = () => {
             ) : (
               <>
                 <div>
-                  <span
+                  <Button
                     className="link"
                     onClick={() => {
                       window.open("https://bmte.vn/form/quang_nam/v2");
                     }}
                   >
                     {" "}
-                    {selected?.survey_url}
-                  </span>
+                    Link khảo sát
+                  </Button>
                 </div>
 
                 {dataTableChart?.length > 0 && (

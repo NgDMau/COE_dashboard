@@ -1,5 +1,22 @@
 import styled from "styled-components";
 
+export const ButtonLogout = styled.div`
+  cursor: pointer;
+  width: 100%;
+  padding-left: 40px;
+  margin-bottom: 30px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  img {
+    width: 22px;
+    height: auto;
+    margin-right: 6px;
+  }
+  :hover {
+    color: #1890ff;
+  }
+`;
 export const SiderbarWrapper = styled.div`
   background-color: white;
   width: 280px;
@@ -13,6 +30,8 @@ export const SiderbarWrapper = styled.div`
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
+  display: flex;
+  justify-content: space-between;
   .ant-layout-sider {
     background-color: white;
   }

@@ -24,10 +24,6 @@ export const rankingData = [
     count: [4, 5, 5, 5, 5, 5],
   },
   {
-    name: "TTYT huyện Quế Sơn",
-    count: [5, 5, 4, 5, 5, 5],
-  },
-  {
     name: "BVĐKTW Quảng Nam (Ở Núi Thành)",
     count: [4, 5, 5, 5, 5, 5],
   },
@@ -48,10 +44,6 @@ export const rankingData = [
     count: [3, 5, 5, 5, 5, 5],
   },
   {
-    name: "BV Thành phố Huế",
-    count: [2, 5, 5, 5, 5, 3],
-  },
-  {
     name: "BVĐKKV Quảng Nam",
     count: [1, 4, 5, 5, 5, 5],
   },
@@ -66,10 +58,6 @@ export const rankingData = [
   {
     name: "TTYT huyện Nam Đông",
     count: [1, null, 3, 5, 5, 5],
-  },
-  {
-    name: "BVĐK Thành phố Vinh",
-    count: [null, 0, 5, null, 5, 5],
   },
   {
     name: "BVĐKKV Gò Công",
@@ -92,16 +80,8 @@ export const rankingData = [
     count: [1, 0, 5, 5, 5, 5],
   },
   {
-    name: "BV Thị xã Hương Trà",
-    count: [1, 0, 3, 5, 5, 5],
-  },
-  {
     name: "TTYT huyện Phong Điền",
     count: [1, null, 1, 5, 5, 3],
-  },
-  {
-    name: "Công ty TNHH BV Hồng Ngọc (BV Hồng Ngọc)",
-    count: [4, 1, 1, 5, 5, 0],
   },
   {
     name: "BV huyện Phú Lộc",

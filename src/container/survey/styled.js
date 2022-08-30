@@ -1,5 +1,19 @@
 import styled from "styled-components";
 
+export const ButtonSelectCity = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  div {
+    display: flex;
+    align-items: center;
+  }
+  img {
+    width: 30px;
+    height: 30px;
+  }
+`;
+
 export const SurveyLinkWrapper = styled.div`
   width: 90%;
   background-size: cover;
@@ -22,12 +36,12 @@ export const SurveyLinkWrapper = styled.div`
 
         :hover {
           text-decoration: underline;
-          color: blue;
+          color: green;
         }
       }
       .selected {
         text-decoration: underline;
-        color: blue;
+        color: green;
       }
     }
     .link-selected {

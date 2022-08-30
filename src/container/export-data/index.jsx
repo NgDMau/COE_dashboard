@@ -15,14 +15,14 @@ const ExportData = () => {
     }
     const dataAll = {
       ...dashboardData?.SK,
-      6: dashboardData?.SK[1],
-      7: dashboardData?.SK[2],
-      8: dashboardData?.SK[3],
-      9: dashboardData?.SK[4],
-      10: dashboardData?.SK[5],
-      11: dashboardData?.SK[6],
-      12: dashboardData?.SK[7],
-      13: dashboardData?.SK[8],
+      6: dashboardData?.NK[1],
+      7: dashboardData?.NK[2],
+      8: dashboardData?.NK[3],
+      9: dashboardData?.NK[4],
+      10: dashboardData?.NK[5],
+      11: dashboardData?.NK[6],
+      12: dashboardData?.NK[7],
+      13: dashboardData?.NK[8],
     };
     return dataAll;
   }, [dashboardData]);

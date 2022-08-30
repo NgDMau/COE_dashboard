@@ -44,6 +44,9 @@ export const FilterWrapper = styled.div`
       margin-left: 1em;
       width: 400px;
     }
+    .datePicker {
+      margin-left: 40px;
+    }
   }
   .fil-other {
     margin-top: 0.5em;
