@@ -8,7 +8,6 @@ export const createPDF = async (id) => {
     orientation: "p",
     format: [1902, 820],
   });
-  console.log("doc.getFontList()doc.getFontList()", doc.getFontList());
   // add custom font to file
   doc.addFont("ConsolasHex.ttf", "ConsolasHex", "Bold");
   doc.setFont("ConsolasHex", "Bold");
@@ -26,11 +25,8 @@ export const createPDF = async (id) => {
     },
   });
   var content = document.getElementById("exportDagta");
-  console.log("content", content);
-  console.log("document.body", document.body);
   doc.html(content, {
     callback: function (doc) {
-      console.log("in callback");
       doc.save();
     },
   });

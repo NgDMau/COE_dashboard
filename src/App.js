@@ -47,6 +47,7 @@ const RootRouter = function () {
         : data.message + "\n";
       // YOUR CODE HERE TO HANDLE MESSAGE...
       // Em lấy message server gửi về ở đây rồi xử lý tiếp nhé
+      console.log("message", message);
       if (message) {
         dispatch(storeSetDashboardData(message));
       }

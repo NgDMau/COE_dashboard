@@ -41,7 +41,6 @@ const SurveyLink = () => {
     });
     return data || [];
   }, [citiesDefault]);
-  console.log("cities", citiesDataMap);
 
   const getDataDashboard = async (code) => {
     setIsLoading(true);

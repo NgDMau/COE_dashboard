@@ -10,7 +10,6 @@ const HeaderExport = () => {
   const hostPitalSelected = useSelector(
     (state) => state?.data?.hostPitalSelected
   );
-  console.log("hostPitalSelected", hostPitalSelected);
   return (
     <HeaderExportWrapper>
       <div className="title">

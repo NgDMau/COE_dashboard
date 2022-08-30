@@ -32,7 +32,6 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const citiesData = useSelector((state) => state.data.citiesData);
   const hostPitals = useSelector((state) => state.data.hostPitals);
-  console.log("hostPitals", hostPitalSelected);
   const [isLoading, setIsLoading] = useState(false);
 
   const defaultCity = useMemo(() => {
@@ -42,7 +41,6 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
       )?.name || ""
     );
   }, [hostPitalSelected, citiesData]);
-  console.log("defaultCity", citiesData);
   const exportPdfData = () => {
     var element = document.getElementById("exportDagta");
     const opt = {

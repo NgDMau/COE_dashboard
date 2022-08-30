@@ -61,7 +61,6 @@ const VietNamChart = ({ onSelectCity }) => {
                       }
                     }}
                     onMouseEnter={() => {
-                      console.log("geo", geo);
                       if (geo?.properties?.ten_tinh) {
                         setContent(geo?.properties?.ten_tinh);
                       }

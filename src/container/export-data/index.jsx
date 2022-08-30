@@ -27,8 +27,6 @@ const ExportData = () => {
     return dataAll;
   }, [dashboardData]);
 
-  console.log("dataList", dataList);
-
   return (
     <ExportWrapper id="exportDagta">
       <div></div>
