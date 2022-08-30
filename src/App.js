@@ -23,7 +23,7 @@ const RootRouter = function () {
   var coeSocket = null;
   const AUTH_TOKEN = user?.token;
   const COE_WS_URL =
-    "wss://" + "5c45-103-168-58-73.ap.ngrok.io" + "/ws/data/" + "AnT" + "/";
+    "wss://" + "192b-1-52-47-102.ngrok.io" + "/ws/data/" + "AnT" + "/";
   const SUB_PROTOCOL = ["Token", AUTH_TOKEN];
 
   function wsConnectionCOE(url, options, ws_message) {
