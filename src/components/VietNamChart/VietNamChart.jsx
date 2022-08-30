@@ -19,7 +19,7 @@ const listColor = [
   "#389e0d",
   "#237804",
 ];
-const VietNamChart = () => {
+const VietNamChart = ({ onSelectCity }) => {
   const vietnam = [vietnamGeoUrl];
   const [content, setContent] = useState("");
   return (
@@ -55,6 +55,11 @@ const VietNamChart = () => {
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
+                    onClick={() => {
+                      if (onSelectCity) {
+                        onSelectCity(geo?.properties?.ten_tinh);
+                      }
+                    }}
                     onMouseEnter={() => {
                       console.log("geo", geo);
                       if (geo?.properties?.ten_tinh) {

@@ -80,6 +80,18 @@ const SurveyLink = () => {
     setCities([...citiesDataMap]);
   }, [citiesDataMap]);
 
+  const onSelectCity = (city) => {
+    const find = cities?.find(
+      (element) =>
+        toNomal(element?.name).trim().toLowerCase() ===
+        toNomal(city).trim().toLowerCase()
+    );
+    if (find) {
+      setSelected(find);
+      getDataDashboard(find?.code);
+    }
+  };
+
   return (
     <SurveyLinkWrapper>
       <Input
@@ -124,7 +136,7 @@ const SurveyLink = () => {
             </div>
           ))}
         </div>
-        <VietNamChart />
+        <VietNamChart onSelectCity={onSelectCity} />
 
         {selected !== null && (
           <div className="link-selected">

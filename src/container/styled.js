@@ -6,6 +6,12 @@ export const SpinWrapper = styled.div`
   justify-content: center;
   margin-top: 100px;
 `;
+export const ChartWrapper = styled.div`
+  width: 70vw;
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+`;
 export const ContainerWrapper = styled.div`
   height: 100vh;
   overflow: auto;

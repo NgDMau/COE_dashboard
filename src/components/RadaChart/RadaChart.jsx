@@ -5,12 +5,12 @@ import { RadarWrapper } from "./styled";
 const RadaChart = () => {
   const RadarData = {
     labels: [
-      "Finger Strength",
-      "Power",
-      "Endurance",
-      "Stability",
-      "Flexability",
-      "HaNoi",
+      "Thực hiện da kề da",
+      "Thực hiện da kề da đủ 90 phút",
+      "Không cách ly mẹ con",
+      "Hoàn thành cữ bú đầu tiên trong 1h đầu sau sinh",
+      "Bú mẹ hoàn toàn trong lúc ở viện",
+      "Nhân viên y tế tư vấn NCBSM cho sản phụ sau sinh",
     ],
     datasets: [
       {

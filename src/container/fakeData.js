@@ -138,7 +138,7 @@ export const ALL_DATA = [
     achieve: false,
   },
   {
-    criteria: " Nhân viên y tế tư vấn NCBSM cho sản phụ sau sinh",
+    criteria: "Nhân viên y tế tư vấn NCBSM cho sản phụ sau sinh",
     caesarean: "70%",
     normal: "65%",
     achieve: false,

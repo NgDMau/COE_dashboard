@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import FilterComponent from "../dashboard/filter";
-import { ContainerWrapper, SpinWrapper } from "./styled";
+import { ChartWrapper, ContainerWrapper, SpinWrapper } from "./styled";
 import { screenFake } from "./screen";
 import { useState } from "react";
 import { Segmented, Spin } from "antd";
@@ -11,9 +11,7 @@ import SurveyLink from "./survey";
 import RowData from "./row-data";
 import ExportData from "./export-data";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  storeSetDashboardData,
-} from "../store/data-reducer";
+import { storeSetDashboardData } from "../store/data-reducer";
 import RadaChart from "../components/RadaChart/RadaChart";
 import { linkApi } from "../common/ngok";
 import VietNamChart from "../components/VietNamChart/VietNamChart";
@@ -66,7 +64,12 @@ const AppContainer = ({ screen, title, setScreen }) => {
       </div>
       {screen === 1 && (
         <div>
-          <RadaChart />
+          {!hostPitalSelected && (
+            <ChartWrapper>
+              <RadaChart />
+              <VietNamChart />
+            </ChartWrapper>
+          )}
           {isLoading && (
             <SpinWrapper>
               <Spin size="large" />
@@ -92,7 +95,6 @@ const AppContainer = ({ screen, title, setScreen }) => {
               </div>
             </>
           ) : null}
-          {!hostPitalSelected && <VietNamChart />}
         </div>
       )}
 
