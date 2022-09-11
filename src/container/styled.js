@@ -12,6 +12,24 @@ export const ChartWrapper = styled.div`
   justify-content: center;
   margin-top: 100px;
 `;
+
+export const PathWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border-bottom: 0.5px solid #dfe6e9;
+  padding: 10px;
+  font-size: 18px;
+  span {
+    cursor: pointer;
+  }
+  span:hover {
+    text-decoration: underline;
+  }
+`;
+
 export const ContainerWrapper = styled.div`
   height: 100vh;
   overflow: auto;
@@ -20,19 +38,6 @@ export const ContainerWrapper = styled.div`
     z-index: 1000;
     position: sticky;
     top: 0;
-  }
-  .path {
-    /* height: 50px; */
-    background-color: white;
-    border-bottom: 0.5px solid #dfe6e9;
-    padding: 10px;
-    font-size: 18px;
-    span {
-      cursor: pointer;
-    }
-    span:hover {
-      text-decoration: underline;
-    }
   }
   width: 100%;
   .Widgets-container {

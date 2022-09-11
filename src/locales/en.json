@@ -1,0 +1,23 @@
+{
+  "common": {
+    "login": "Đăng nhập",
+    "signUp": "Đăng ký",
+    "username": "Tài khoản",
+    "password": "Mật khẩu",
+    "rememberMe": "Nhớ tài khoản",
+    "noData": "Không có dữ liệu"
+  },
+  "screen": {
+    "surveyResults": "Survey results",
+    "home": "Home",
+    "surveyLink": "Survey link",
+    "rowData": "Row Data",
+    "regulations": "Regulations",
+    "exportReport": "Export Report",
+    "logout": "Đăng xuất"
+  },
+  "setting": {
+    "setting": "Setting",
+    "changelanguage": "Change Language"
+  }
+}

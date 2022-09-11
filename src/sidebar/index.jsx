@@ -9,10 +9,12 @@ import database from "../assets/icon/database.png";
 import logoutIcon from "../assets/icon/logout.png";
 import { Layout, Menu, Modal } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const { Sider } = Layout;
 
 const AppSidebar = ({ screen, setScreen, setTitle }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -24,10 +26,10 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
   };
 
   const items2 = [
-    "Kết quả khảo sát",
-    "Link khảo sát",
-    "Dữ liệu thô",
-    "Quy định, tài liệu",
+    t("screen.surveyResults"),
+    t("screen.surveyLink"),
+    t("screen.rowData"),
+    t("screen.regulations"),
   ];
   const icons = [overview, link, database, document];
 
@@ -71,7 +73,7 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
       </div>
       <ButtonLogout onClick={logout}>
         <img src={logoutIcon} alt="" />
-        <span>Đăng xuất</span>
+        <span>{t("screen.logout")}</span>
       </ButtonLogout>
     </SiderbarWrapper>
   );

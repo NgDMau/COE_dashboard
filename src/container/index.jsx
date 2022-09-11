@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import FilterComponent from "../dashboard/filter";
-import { ChartWrapper, ContainerWrapper, SpinWrapper } from "./styled";
-import { screenFake } from "./screen";
+import {
+  ChartWrapper,
+  ContainerWrapper,
+  PathWrapper,
+  SpinWrapper,
+} from "./styled";
 import { useState } from "react";
-import { Segmented, Spin } from "antd";
+import { Button, Dropdown, Menu, Segmented, Spin } from "antd";
 import BornComponent from "./born";
 import { ChildData, ObstetricsData } from "./fakeData";
 import Document from "./document";
@@ -15,6 +19,8 @@ import { storeSetDashboardData } from "../store/data-reducer";
 import RadaChart from "../components/RadaChart/RadaChart";
 import { linkApi } from "../common/ngok";
 import VietNamChart from "../components/VietNamChart/VietNamChart";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const dispath = useDispatch();
@@ -53,9 +59,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
   return (
     <ContainerWrapper>
       <div className="header">
-        <div className="path">
-          <span>Home</span> / Dashboard / {screenFake[screen - 1]}
-        </div>
+        <PathComponent screen={screen} />
         <FilterComponent
           disabled={screen === 2 || screen === 4}
           screen={screen}
@@ -107,6 +111,47 @@ const AppContainer = ({ screen, title, setScreen }) => {
 };
 
 export default AppContainer;
+
+function PathComponent({ screen }) {
+  const { t } = useTranslation();
+  const [language, setLanguage] = useState("vi");
+  const menu = (
+    <Menu
+      items={[
+        {
+          key: "1",
+          label: (
+            <div
+              onClick={() => {
+                i18next.changeLanguage(language === "vi" ? "en" : "vi");
+                setLanguage(language === "vi" ? "en" : "vi");
+              }}
+            >
+              {t("setting.changelanguage")}
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
+  const screenFake = [
+    t("screen.surveyResults"),
+    t("screen.surveyLink"),
+    t("screen.rowData"),
+    t("screen.regulations"),
+    t("screen.exportReport"),
+  ];
+  return (
+    <PathWrapper>
+      <div>
+        <span>{t("screen.home")}</span> / {screenFake[screen - 1]}
+      </div>
+      <Dropdown overlay={menu} placement="bottomLeft">
+        <Button>{t("setting.setting")}</Button>
+      </Dropdown>
+    </PathWrapper>
+  );
+}
 
 function HeaderScreen({ value, setValue }) {
   return (

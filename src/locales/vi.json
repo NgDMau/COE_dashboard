@@ -1,0 +1,23 @@
+{
+  "common": {
+    "login": "Đăng nhập",
+    "signUp": "Đăng ký",
+    "username": "Tài khoản",
+    "password": "Mật khẩu",
+    "rememberMe": "Nhớ tài khoản",
+    "noData": "Không có dữ liệu"
+  },
+  "screen": {
+    "surveyResults": "Kết quả khảo sát",
+    "home": "Trang chủ",
+    "surveyLink": "Link khảo sát",
+    "rowData": "Dữ liệu thô",
+    "regulations": "Quy định, tài liệu",
+    "exportReport": "Xuất báo cáo",
+    "logout": "Đăng xuất"
+  },
+  "setting": {
+    "setting": "Cài đặt",
+    "changelanguage": "Thay đổi ngôn ngữ"
+  }
+}
