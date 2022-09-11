@@ -24,11 +24,11 @@ function RowComponent({ obstetric, index, elementST, elementSM, evaluation }) {
       </div>
       {elementSM ? (
         <>
-          <div className="w-10">{elementST[currentQuarter] || ""}%</div>
-          <div className="w-10">{elementSM[currentQuarter] || ""}%</div>
+          <div className="w-10">{elementST[currentQuarter] || "0"}%</div>
+          <div className="w-10">{elementSM[currentQuarter] || "0"}%</div>
         </>
       ) : (
-        <div className="w-20">{elementST[currentQuarter] || ""}%</div>
+        <div className="w-20">{elementST[currentQuarter] || "0"}%</div>
       )}
 
       <div className="w-10 border-none">
