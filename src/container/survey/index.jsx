@@ -1,18 +1,22 @@
 import React, { useMemo, useState } from "react";
-import { LinkOutlined } from "@ant-design/icons";
+import { Button, Spin } from "antd";
 import { ButtonSelectCity, SurveyLinkWrapper } from "./styled";
+
 import Input from "antd/lib/input/Input";
 import ChartLink from "./chart";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Button, Spin } from "antd";
-import { linkApi } from "../../common/ngok";
-import VietNamChart from "../../components/VietNamChart/VietNamChart";
-import { listCity } from "./faleData";
-import { toNomal } from "../../helpers/to-nomal";
+
 import buttonCity from "../../assets/icon/button-city.png";
+import { toNomal } from "../../helpers/to-nomal";
+import { linkApi } from "../../common/ngok";
+import { listCity } from "./faleData";
+import VietNamChart from "../../components/VietNamChart/VietNamChart";
+import { useTranslation } from "react-i18next";
 
 const SurveyLink = () => {
+  const { t } = useTranslation();
+
   const user = JSON.parse(localStorage.getItem("user"));
   const citiesDefault = useSelector((state) => state.data.citiesData);
 
@@ -95,7 +99,7 @@ const SurveyLink = () => {
     <SurveyLinkWrapper>
       <Input
         className="search-input"
-        placeholder="Tìm kiếm..."
+        placeholder={t("surveyLink.search")}
         onChange={(e) => {
           setCities(
             citiesDataMap.filter((element) =>
@@ -153,7 +157,7 @@ const SurveyLink = () => {
                     }}
                   >
                     {" "}
-                    Link khảo sát
+                    {t("screen.surveyLink")}
                   </Button>
                 </div>
 

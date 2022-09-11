@@ -18,9 +18,11 @@ import {
   storeSetHostpitalData,
   storeSetHostpitalSelected,
 } from "../../store/data-reducer";
+import { useTranslation } from "react-i18next";
 
 const FilterComponent = ({ disabled, screen, setScreen }) => {
   const { RangePicker } = DatePicker;
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const hostPitalSelected = useSelector(
     (state) => state?.data?.hostPitalSelected
@@ -98,12 +100,10 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
       <div className="adress">
         {screen === 5 && (
           <div className="back" onClick={() => setScreen(1)}>
-            Quay lại
+            {t("filter.back")}
           </div>
         )}
-
-        {!disabled && <span>Tỉnh/ Thành phố: </span>}
-
+        {!disabled && <span>{t("filter.city")}</span>}
         {!disabled && (
           <Select
             defaultValue={defaultCity || ""}
@@ -123,8 +123,7 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
             })}
           </Select>
         )}
-        {!disabled && <span className="hostpital">Bệnh viện: </span>}
-
+        {!disabled && <span className="hostpital">{t("filter.hospital")}</span>}
         {!disabled && (
           <Select
             defaultValue={hostPitalSelected?.name || ""}
@@ -151,7 +150,6 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
             )}
           </Select>
         )}
-
         {!disabled || screen === 2 ? (
           <div>
             {dashboardData?.time?.length > 0 && (

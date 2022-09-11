@@ -19,5 +19,23 @@
   "setting": {
     "setting": "Cài đặt",
     "changelanguage": "Thay đổi ngôn ngữ"
-  }
+  },
+  "filter": {
+    "back": "Quay lại",
+    "city": "Tỉnh/ Thành phố: ",
+    "hospital": "Bệnh viện: "
+  },
+  "chart": {
+    "under": "Dưới",
+    "above": "Trên"
+  },
+  "born": {
+    "criteria": "Tiêu chí",
+    "chart": "Biểu đồ",
+    "complete": "Đạt"
+  },
+  "surveyLink": {
+    "search": "Tìm kiếm..."
+  },
+  "development": "Dự án đang phát triển"
 }

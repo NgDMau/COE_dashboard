@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import VietNamChart from "../components/VietNamChart/VietNamChart";
 import AppContainer from "../container";
 import AppSidebar from "../sidebar";
 import { DashboardWrapper } from "./styled";
@@ -11,7 +10,6 @@ const Dashboard = () => {
     <DashboardWrapper>
       <AppSidebar screen={screen} setScreen={setScreen} setTitle={setTitle} />
       <AppContainer screen={screen} title={title} setScreen={setScreen} />
-      {/* <VietNamChart /> */}
     </DashboardWrapper>
   );
 };

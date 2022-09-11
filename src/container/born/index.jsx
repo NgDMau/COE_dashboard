@@ -4,6 +4,7 @@ import { BornWrapper } from "./styled";
 import close from "../../assets/born/close.png";
 import accept from "../../assets/born/accept.png";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 function RowComponent({ obstetric, index, elementST, elementSM, evaluation }) {
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
@@ -42,12 +43,13 @@ function RowComponent({ obstetric, index, elementST, elementSM, evaluation }) {
 }
 
 const BornComponent = ({ data, isGeneral, dataList, evaluation }) => {
+  const { t } = useTranslation();
   return (
     <BornWrapper>
       <div className="row sticky">
         <div className="stt font-bold">STT</div>
-        <div className="criteria font-bold">Tiêu chí</div>
-        <div className="chart font-bold">Biểu đồ</div>
+        <div className="criteria font-bold">{t("born.criteria")}</div>
+        <div className="chart font-bold">{t("born.chart")}</div>
         {dataList && dataList[1]?.values?.SM ? (
           <>
             <div className="w-10 font-bold">
@@ -62,7 +64,7 @@ const BornComponent = ({ data, isGeneral, dataList, evaluation }) => {
             {isGeneral ? "Bà mẹ sau sinh" : "Chỉ số"}
           </div>
         )}
-        <div className="w-10 font-bold  border-none">Đạt</div>
+        <div className="w-10 font-bold  border-none">{t("born.complete")}</div>
       </div>
       {dataList &&
         data?.map((element, index) => (

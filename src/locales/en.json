@@ -14,10 +14,28 @@
     "rowData": "Row Data",
     "regulations": "Regulations",
     "exportReport": "Export Report",
-    "logout": "Đăng xuất"
+    "logout": "Logout"
   },
   "setting": {
     "setting": "Setting",
     "changelanguage": "Change Language"
-  }
+  },
+  "filter": {
+    "back": "Back",
+    "city": "City: ",
+    "hospital": "Hospital: "
+  },
+  "chart": {
+    "under": "Under",
+    "above": "Above"
+  },
+  "born": {
+    "criteria": "Criteria",
+    "chart": "Chart",
+    "complete": "Complete"
+  },
+  "surveyLink": {
+    "search": "Search..."
+  },
+  "development": "Project in development"
 }

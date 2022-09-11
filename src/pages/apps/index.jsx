@@ -4,14 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { Button, Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import logo from "../../assets/brand/Logo_AnT.png";
+import { useTranslation } from "react-i18next";
 
 const AppsPage = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { confirm } = Modal;
   const showConfirm = () => {
     confirm({
       icon: <ExclamationCircleOutlined />,
-      content: <Button>Dự án đang phát triển</Button>,
+      content: <Button>{t("development")}</Button>,
     });
   };
 

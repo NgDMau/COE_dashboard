@@ -1,6 +1,7 @@
 import { Tag } from "antd";
 import React from "react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import { ColorGroup, ContentWrapper, VietNamChartWrapper } from "./styled";
 
@@ -20,19 +21,20 @@ const listColor = [
   "#237804",
 ];
 const VietNamChart = ({ onSelectCity }) => {
+  const { t } = useTranslation();
   const vietnam = [vietnamGeoUrl];
   const [content, setContent] = useState("");
   return (
     <VietNamChartWrapper>
       <div>
         <ColorGroup>
-          <Tag color="#d9f7be">Dưới 100</Tag>
+          <Tag color="#d9f7be">{t("chart.under")} 100</Tag>
           <Tag color="#b7eb8f">100 - 200</Tag>
           <Tag color="#95de64">200 - 300</Tag>
           <Tag color="#73d13d">300 - 400</Tag>
           <Tag color="#52c41a">400 - 500</Tag>
           <Tag color="#389e0d">500 - 600</Tag>
-          <Tag color="#237804">Trên 600</Tag>
+          <Tag color="#237804">{t("chart.above")} 600</Tag>
         </ColorGroup>
         <ContentWrapper>{content}</ContentWrapper>
         <ComposableMap
