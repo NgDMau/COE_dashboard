@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Button, Spin } from "antd";
+import { Button, Spin, Tooltip } from "antd";
 import { ButtonSelectCity, SurveyLinkWrapper } from "./styled";
 
 import Input from "antd/lib/input/Input";
@@ -117,6 +117,8 @@ const SurveyLink = () => {
           {cities.map((element, index) => (
             <div
               className={`link-container ${
+                !selected?.id && "not-participate"
+              } ${
                 element?.id === selected?.id && element?.id ? "selected" : ""
               }`}
               onClick={() => {
@@ -132,10 +134,15 @@ const SurveyLink = () => {
               }}
               key={String(index)}
             >
-              <ButtonSelectCity>
-                <img src={buttonCity} alt="" />
-                <div>{element.name}</div>
-              </ButtonSelectCity>
+              <Tooltip
+                placement="rightTop"
+                title={!selected?.id ? t("surveyLink.notParticipate") : ""}
+              >
+                <ButtonSelectCity>
+                  <img src={buttonCity} alt="" />
+                  <div>{element.name}</div>
+                </ButtonSelectCity>
+              </Tooltip>
             </div>
           ))}
         </div>

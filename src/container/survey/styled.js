@@ -39,6 +39,9 @@ export const SurveyLinkWrapper = styled.div`
           color: green;
         }
       }
+      .not-participate {
+        color: red;
+      }
       .selected {
         text-decoration: underline;
         color: green;

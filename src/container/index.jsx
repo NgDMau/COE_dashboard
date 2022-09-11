@@ -21,6 +21,7 @@ import { linkApi } from "../common/ngok";
 import VietNamChart from "../components/VietNamChart/VietNamChart";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
+import FormInputData from "./FormInputData/FormInputData";
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const dispath = useDispatch();
@@ -106,6 +107,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
       {screen === 3 && <RowData />}
       {screen === 4 && <Document title={title} />}
       {screen === 6 && <ExportData />}
+      {screen === 7 && <FormInputData />}
     </ContainerWrapper>
   );
 };

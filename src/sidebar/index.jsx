@@ -30,6 +30,7 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
     t("screen.surveyLink"),
     t("screen.rowData"),
     t("screen.regulations"),
+    t("screen.inputForm"),
   ];
   const icons = [overview, link, database, document];
 
@@ -60,8 +61,13 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
               if (Number(e.key) === 4 && user?.is_superuser === "False") {
                 showConfirm();
               }
+              if (Number(e.key) === 5) {
+                setScreen(Number(7));
+                return;
+              }
               setScreen(Number(e.key));
               setTitle(items2[Number(e.key) - 1]);
+              console.log(e);
             }}
             items={items2.map((element, index) => ({
               key: String(index + 1),

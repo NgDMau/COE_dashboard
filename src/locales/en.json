@@ -14,6 +14,7 @@
     "rowData": "Row Data",
     "regulations": "Regulations",
     "exportReport": "Export Report",
+    "inputForm": "Nhập dữ liệu",
     "logout": "Logout"
   },
   "setting": {
@@ -35,7 +36,8 @@
     "complete": "Complete"
   },
   "surveyLink": {
-    "search": "Search..."
+    "search": "Search...",
+    "notParticipate": "Not participate"
   },
   "development": "Project in development"
 }

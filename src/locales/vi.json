@@ -14,6 +14,7 @@
     "rowData": "Dữ liệu thô",
     "regulations": "Quy định, tài liệu",
     "exportReport": "Xuất báo cáo",
+    "inputForm": "Nhập dữ liệu",
     "logout": "Đăng xuất"
   },
   "setting": {
@@ -35,7 +36,8 @@
     "complete": "Đạt"
   },
   "surveyLink": {
-    "search": "Tìm kiếm..."
+    "search": "Tìm kiếm...",
+    "notParticipate": "Chưa tham gia"
   },
   "development": "Dự án đang phát triển"
 }
