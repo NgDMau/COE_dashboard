@@ -82,6 +82,10 @@ const AppContainer = ({ screen, title, setScreen }) => {
           )}
           {hostPitalSelected && !isLoading ? (
             <>
+              <ChartWrapper>
+                <RadaChart />
+                <RadaChart />
+              </ChartWrapper>
               <HeaderScreen value={value} setValue={setValue} />
               <div className="content-chart">
                 <h2>{value}</h2>
