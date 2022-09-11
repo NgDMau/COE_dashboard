@@ -30,7 +30,7 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
     t("screen.surveyLink"),
     t("screen.rowData"),
     t("screen.regulations"),
-    t("screen.inputForm"),
+    // t("screen.inputForm"),
   ];
   const icons = [overview, link, database, document];
 
