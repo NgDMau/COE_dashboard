@@ -5,7 +5,9 @@
     "username": "Tài khoản",
     "password": "Mật khẩu",
     "rememberMe": "Nhớ tài khoản",
-    "noData": "Không có dữ liệu"
+    "noData": "Không có dữ liệu",
+    "vietNam": "Tiếng Việt",
+    "engLish": "English"
   },
   "screen": {
     "surveyResults": "Kết quả khảo sát",

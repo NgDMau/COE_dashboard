@@ -1,3 +1,4 @@
+import { Button } from "antd";
 import styled from "styled-components";
 
 export const SpinWrapper = styled.div`
@@ -28,6 +29,18 @@ export const PathWrapper = styled.div`
   span:hover {
     text-decoration: underline;
   }
+`;
+export const IConLanguage = styled.img`
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+`;
+export const Buttonanguage = styled(Button)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 85px;
+ 
 `;
 
 export const ContainerWrapper = styled.div`

@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import background from "../../assets/brand/bg-app.jpg";
 
 export const RowDataWrapper = styled.div`
-  background-image: url(${background});
   background-size: cover;
   width: 96%;
   height: 85%;

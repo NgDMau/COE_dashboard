@@ -1,13 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import FilterComponent from "../dashboard/filter";
 import {
+  Buttonanguage,
   ChartWrapper,
   ContainerWrapper,
+  IConLanguage,
   PathWrapper,
   SpinWrapper,
 } from "./styled";
 import { useState } from "react";
-import { Button, Dropdown, Menu, Segmented, Spin } from "antd";
+import { Dropdown, Menu, Segmented, Spin } from "antd";
 import BornComponent from "./born";
 import { ChildData, ObstetricsData } from "./fakeData";
 import Document from "./document";
@@ -22,6 +25,8 @@ import VietNamChart from "../components/VietNamChart/VietNamChart";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import FormInputData from "./FormInputData/FormInputData";
+import iconUnitedStates from "../assets/icon/united-states.png";
+import iconVietnam from "../assets/icon/vietnam.png";
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const dispath = useDispatch();
@@ -129,11 +134,25 @@ function PathComponent({ screen }) {
           label: (
             <div
               onClick={() => {
-                i18next.changeLanguage(language === "vi" ? "en" : "vi");
-                setLanguage(language === "vi" ? "en" : "vi");
+                i18next.changeLanguage("vi");
+                setLanguage("vi");
               }}
             >
-              {t("setting.changelanguage")}
+              <IConLanguage src={iconVietnam} alt="" /> {t("common.vietNam")}
+            </div>
+          ),
+        },
+        {
+          key: "2",
+          label: (
+            <div
+              onClick={() => {
+                i18next.changeLanguage("en");
+                setLanguage("en");
+              }}
+            >
+              <IConLanguage src={iconUnitedStates} alt="" />{" "}
+              {t("common.engLish")}
             </div>
           ),
         },
@@ -153,7 +172,14 @@ function PathComponent({ screen }) {
         <span>{t("screen.home")}</span> / {screenFake[screen - 1]}
       </div>
       <Dropdown overlay={menu} placement="bottomLeft">
-        <Button>{t("setting.setting")}</Button>
+        <Buttonanguage>
+          {" "}
+          <IConLanguage
+            src={language === "vi" ? iconVietnam : iconUnitedStates}
+            alt=""
+          />{" "}
+          {language}
+        </Buttonanguage>
       </Dropdown>
     </PathWrapper>
   );

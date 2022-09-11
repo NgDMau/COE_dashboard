@@ -19,7 +19,6 @@ const SurveyLink = () => {
 
   const user = JSON.parse(localStorage.getItem("user"));
   const citiesDefault = useSelector((state) => state.data.citiesData);
-
   const [cities, setCities] = useState([]);
   const [selected, setSelected] = useState(null);
 
@@ -117,9 +116,11 @@ const SurveyLink = () => {
           {cities.map((element, index) => (
             <div
               className={`link-container ${
-                !selected?.id && "not-participate"
+                !element?.id && "not-participate"
               } ${
-                element?.id === selected?.id && element?.id ? "selected" : ""
+                selected?.id && element?.id === selected?.id && element?.id
+                  ? "selected"
+                  : ""
               }`}
               onClick={() => {
                 if (isLoading) {
@@ -136,7 +137,7 @@ const SurveyLink = () => {
             >
               <Tooltip
                 placement="rightTop"
-                title={!selected?.id ? t("surveyLink.notParticipate") : ""}
+                title={!element?.id ? t("surveyLink.notParticipate") : ""}
               >
                 <ButtonSelectCity>
                   <img src={buttonCity} alt="" />

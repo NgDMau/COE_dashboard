@@ -40,7 +40,7 @@ export const listCity = [
   "Phú Thọ",
   "Quảng Bình",
   "Quảng Nam",
-  "Quảng nghãi",
+  "Quảng Ngãi",
   "Quảng Ninh",
   "Quảng Trị",
   "Sóc Trăng",
@@ -61,7 +61,7 @@ export const listCity = [
   "Đà Nẵng",
   "Hải Phòng",
   "Hà Nội",
-  "Hồ Chí Minh",
+  "TP Hồ Chí Minh",
 ];
 
 export const hostpitalList = [

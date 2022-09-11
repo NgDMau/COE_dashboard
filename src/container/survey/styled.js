@@ -40,7 +40,7 @@ export const SurveyLinkWrapper = styled.div`
         }
       }
       .not-participate {
-        color: red;
+        color: #bdc3c7;
       }
       .selected {
         text-decoration: underline;

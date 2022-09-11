@@ -5,14 +5,16 @@
     "username": "Tài khoản",
     "password": "Mật khẩu",
     "rememberMe": "Nhớ tài khoản",
-    "noData": "Không có dữ liệu"
+    "noData": "Không có dữ liệu",
+    "vietNam": "Tiếng Việt",
+    "engLish": "English"
   },
   "screen": {
-    "surveyResults": "Survey results",
+    "surveyResults": "Statistics",
     "home": "Home",
-    "surveyLink": "Survey link",
-    "rowData": "Row Data",
-    "regulations": "Regulations",
+    "surveyLink": "Survey URLs",
+    "rowData": "Raw Data",
+    "regulations": "Documents",
     "exportReport": "Export Report",
     "inputForm": "Input Data",
     "logout": "Logout"
