@@ -1,6 +1,6 @@
-import React from "react";
-import { HeaderExportWrapper } from "./styled";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { HeaderExportWrapper } from './styled';
+import { useDispatch, useSelector } from 'react-redux';
 
 const HeaderExport = () => {
   const dashboardData =
@@ -12,13 +12,13 @@ const HeaderExport = () => {
   );
   return (
     <HeaderExportWrapper>
-      <div className="title">
-        KẾT QUẢ KHẢO SÁT SẢN PHỤ QUA ĐIỆN THOẠI DI ĐỘNG
+      <div className='title'>
+        RESULTS OF SURVEY OF SUBSCRIPTION VIA MOBILE PHONES
       </div>
-      <div className="last-update">
-        Cập nhật đến {dashboardData?.time[currentQuarter]}
+      <div className='last-update'>
+        Update to {dashboardData?.time[currentQuarter]}
       </div>
-      <div className="hospital">{hospitalSelected?.name}</div>
+      <div className='hospital'>{hospitalSelected?.name}</div>
     </HeaderExportWrapper>
   );
 };

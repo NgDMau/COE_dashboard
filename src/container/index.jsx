@@ -176,7 +176,7 @@ export default AppContainer;
 
 function PathComponent({ screen }) {
   const { t } = useTranslation();
-  const [language, setLanguage] = useState('vi');
+  const [language, setLanguage] = useState('en');
   const menu = (
     <Menu
       items={[

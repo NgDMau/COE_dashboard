@@ -1,5 +1,5 @@
-import { Button } from "antd";
-import styled from "styled-components";
+import { Button } from 'antd';
+import styled from 'styled-components';
 
 export const SpinWrapper = styled.div`
   width: 70vw;
@@ -39,8 +39,8 @@ export const Buttonanguage = styled(Button)`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   width: 85px;
- 
 `;
 
 export const ContainerWrapper = styled.div`
