@@ -9,6 +9,31 @@
     "vietNam": "Tiếng Việt",
     "engLish": "English"
   },
+  "obstetricsData": {
+    "obstetricsKS_1": "Was your baby placed on your chest/abdomen for skin-to-skin contact immediately after birth?",
+    "obstetricsKS_2": "How long was your baby in skin-to-skin contact with you?",
+    "obstetricsKS_3": "How long after birth was your baby returned to stay with you?",
+    "obstetricsKS_4": "Was your baby breastfed for the first time before getting separated from you?",
+    "obstetricsKS_5": "During the postpartum period in the hospital, did you give the baby water or formula milk?",
+    "obstetricsKS_6": "During your hospital stay, did the medical staffs give you advice and guidance on breastfeeding?",
+    "obstetricsKS_7": "Did doctors and nurses in the hospital counsel you to use formula milk for babies under 24 months? (except for cases specifically prescribed by doctors)",
+    "obstetricsKS_8": "Did you see any forms of advert/marketing of formula milk for babies aged under 24 months, feeding bottles and artificial pacifiers in the hospital?",
+    "obstetricsKN_1": "Was the baby incubated in the Kangaroo position (≥20 hours/day, intermittent ≤ 30 minutes/time)?",
+    "obstetricsKN_2": "Were you allowed to stay with your baby or visit your baby at least once a day while s/he was quarantined in the Neonatal Resuscitation unit?",
+    "obstetricsKN_3": "During the hospital stay, what did your baby eat?",
+    "obstetricsKN_4": "How did your baby have breast milk?",
+    "obstetricsKN_5": "During your hospital stay, did the medical staffs give you advice and guidance on breastfeeding?",
+    "obstetricsKN_6": "Did doctors and nurses in the hospital counsel you to use formula milk for babies under 24 months? (except for cases specifically prescribed by doctors)",
+    "obstetricsKN_7": "Did you see any forms of advert/marketing of formula milk for babies aged under 24 months, feeding bottles and artificial pacifiers in the hospital?",
+    "obstetricsPassKS_1": "“Pass” if more than 80% of mothers giving birth vaginally, and 50% of mothers having C-section answer Yes",
+    "obstetricsPassKS_2": "“Pass” if more than 80% mothers giving birth vaginally, and 50% of mothers having C-section answer “More than 90 minutes”",
+    "obstetricsPassKS_3": "“Pass” if more than 95% of mothers giving birth vaginally answer “Immediately after giving birth”",
+    "obstetricsPassKS_4": "“Pass” if more than 80% of mothers giving birth vaginally, and 50% of mothers having C-section answer Yes",
+    "obstetricsPassKS_5": "“Pass” if more than 90% of mothers giving birth vaginally and having C-section answer No",
+    "obstetricsPassKS_6": "“Pass” if more than 80% of mothers giving birth vaginally and having C-section answer Yes",
+    "obstetricsPassKS_7": "“Pass” if 100% mothers giving birth vaginally and having C-section answer No (excluding cases specifically prescribed by doctors)",
+    "obstetricsPassKS_8": "“Pass” if 100% % mothers giving birth vaginally and having C-section answer No"
+  },
   "screen": {
     "surveyResults": "Statistics",
     "home": "Home",
@@ -26,7 +51,9 @@
   "filter": {
     "back": "Back",
     "city": "City: ",
-    "hospital": "Hospital: "
+    "hospital": "Hospital: ",
+    "generateReport": "Generate Report",
+    "exportReport": "Export Report"
   },
   "chart": {
     "under": "Under",
@@ -34,12 +61,25 @@
   },
   "born": {
     "criteria": "Criteria",
-    "chart": "Chart",
-    "complete": "Complete"
+    "chart": "Charts",
+    "complete": "Complete",
+    "vaginalDelivery": "Vaginal Delievery",
+    "Csection": "C-section"
   },
   "surveyLink": {
     "search": "Search...",
     "notParticipate": "Not participate"
   },
-  "development": "Project in development"
+  "development": "Project in development",
+  "dashBoard": {
+    "obstetricDept": "Obstetric Dept.",
+    "pediatricDept": "Pediatric Dept."
+  },
+  "export": {
+    "content": "Content",
+    "criteria": "Criteria",
+    "Assessment": "Assessment (Pass/Fail)",
+    "conclusion": "conclusion",
+    "conclusionContent": "Pass if all of the above criteria are met"
+  }
 }

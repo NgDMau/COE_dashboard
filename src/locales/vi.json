@@ -9,6 +9,31 @@
     "vietNam": "Tiếng Việt",
     "engLish": "English"
   },
+  "obstetricsData": {
+    "obstetricsKS_1": "Thực hiện da kề da",
+    "obstetricsKS_2": "Thực hiện da kề da đủ 90 phút",
+    "obstetricsKS_3": "Không cách ly mẹ con",
+    "obstetricsKS_4": "Hoàn thành cữ bú đầu tiên trong 1h đầu sau sinh",
+    "obstetricsKS_5": "Bú mẹ hoàn toàn trong lúc ở viện",
+    "obstetricsKS_6": "Nhân viên y tế tư vấn NCBSM cho sản phụ sau sinh",
+    "obstetricsKS_7": "NVYT tư vấn dùng sữa bột/sữa công thức",
+    "obstetricsKS_8": "Bệnh viện quảng cáo tiếp thị sữa bột sữa công thức cho trẻ dưới 24 tháng tuổi, bình bú, vú ngậm nhân tạo",
+    "obstetricsKN_1": "Thực hiện Kangaroo",
+    "obstetricsKN_2": "Không cách ly mẹ con",
+    "obstetricsKN_3": "Phương thức nuôi dưỡng",
+    "obstetricsKN_4": "Trẻ ăn sữa mẹ bằng cách nào?",
+    "obstetricsKN_5": "NVYT tư vấn và hướng dẫn NCBSM",
+    "obstetricsKN_6": "NVYT tư vấn dùng sữa bột/sữa công thức",
+    "obstetricsKN_7": "Bệnh viện quảng cáo tiếp thị sữa bột sữa công thức cho trẻ dưới 24 tháng tuổi, bình bú, vú ngậm nhân tạo",
+    "obstetricsPassKS_1": "“Đạt” nếu trên 80% bà mẹ sinh thường, và 50% bà mẹ sinh mổ trả lời được thực hiện da kề da.",
+    "obstetricsPassKS_2": "“Đạt” nếu trên 80% bà mẹ sinh thường, và 50% bà mẹ sinh mổ được thực hiện da kề da từ 90 phút trở lên.",
+    "obstetricsPassKS_3": "“Đạt” nếu trên 95% bà mẹ sinh thường có con sinh ra nằm cùng luôn với mẹ.",
+    "obstetricsPassKS_4": "“Đạt” nếu trên 80% bà mẹ sinh thường, và 50% bà mẹ sinh mổ cho trẻ bú trong vòng 60 phút sau sinh.",
+    "obstetricsPassKS_5": "“Đạt” nếu trên 90% bà mẹ cả sinh thường và sinh mổ chỉ cho trẻ bú sữa mẹ",
+    "obstetricsPassKS_6": "“Đạt” nếu trên 80% bà mẹ sinh thườngvà sinh mổ được cán bộ y tế tại bệnh viện hướng dẫn về cách cho con bú.",
+    "obstetricsPassKS_7": "“Đạt” nếu 100% bà mẹ cả sinh thường và sinh mổ trả lời “Không” nhận được tư vấn sử dụng sữa công thức từ CBYT (trừ các trường hợp được chỉ định)",
+    "obstetricsPassKS_8": "“Đạt” nếu 100% bà mẹ cả sinh thường và sinh mổ phản hồi “Không” thấy trong bệnh viện có bất kỳ hình thức quảng cáo, tiếp thị sữa công thức."
+  },
   "screen": {
     "surveyResults": "Kết quả khảo sát",
     "home": "Trang chủ",
@@ -26,7 +51,9 @@
   "filter": {
     "back": "Quay lại",
     "city": "Tỉnh/ Thành phố: ",
-    "hospital": "Bệnh viện: "
+    "hospital": "Bệnh viện: ",
+    "generateReport": "Xem báo cáo",
+    "exportReport": "Xuất báo cáo"
   },
   "chart": {
     "under": "Dưới",
@@ -35,11 +62,24 @@
   "born": {
     "criteria": "Tiêu chí",
     "chart": "Biểu đồ",
-    "complete": "Đạt"
+    "complete": "Đạt",
+    "vaginalDelivery": "Sinh thường",
+    "Csection": "Sinh mổ"
   },
   "surveyLink": {
     "search": "Tìm kiếm...",
     "notParticipate": "Chưa tham gia"
   },
-  "development": "Dự án đang phát triển"
+  "development": "Dự án đang phát triển",
+  "dashBoard": {
+    "obstetricDept": "TC Khoa sản",
+    "pediatricDept": "TC Khoa nhi"
+  },
+  "export": {
+    "content": "Nội dung",
+    "criteria": "Tiêu chí",
+    "Assessment": "Đánh giá (Đạt/ không đạt)",
+    "conclusion": "kết luận",
+    "conclusionContent": "Đạt nếu tất cả các tiêu chí trên đều đạt"
+  }
 }

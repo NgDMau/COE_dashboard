@@ -1,26 +1,28 @@
-import React from "react";
-import { Radar } from "react-chartjs-2";
-import { RadarWrapper } from "./styled";
+import React from 'react';
+import { Radar } from 'react-chartjs-2';
+import { useTranslation } from 'react-i18next';
+import { RadarWrapper } from './styled';
 
 const RadaChart = () => {
+  const { t } = useTranslation();
   const RadarData = {
     labels: [
-      "Thực hiện da kề da",
-      "Thực hiện da kề da đủ 90 phút",
-      "Không cách ly mẹ con",
-      "Hoàn thành cữ bú đầu tiên trong 1h đầu sau sinh",
-      "Bú mẹ hoàn toàn trong lúc ở viện",
-      "Nhân viên y tế tư vấn NCBSM cho sản phụ sau sinh",
+      t('obstetricsData.obstetricsKS_1'),
+      t('obstetricsData.obstetricsKS_2'),
+      t('obstetricsData.obstetricsKS_3'),
+      t('obstetricsData.obstetricsKS_4'),
+      t('obstetricsData.obstetricsKS_5'),
+      t('obstetricsData.obstetricsKS_6'),
     ],
     datasets: [
       {
-        label: "March",
-        backgroundColor: "rgba(34, 202, 236, .2)",
-        borderColor: "rgba(34, 202, 236, 1)",
-        pointBackgroundColor: "rgba(34, 202, 236, 1)",
-        poingBorderColor: "#fff",
-        pointHoverBackgroundColor: "#fff",
-        pointHoverBorderColor: "rgba(34, 202, 236, 1)",
+        label: 'March',
+        backgroundColor: 'rgba(34, 202, 236, .2)',
+        borderColor: 'rgba(34, 202, 236, 1)',
+        pointBackgroundColor: 'rgba(34, 202, 236, 1)',
+        poingBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(34, 202, 236, 1)',
         data: [70, 70, 70, 70, 70, 70],
       },
     ],
@@ -32,14 +34,14 @@ const RadaChart = () => {
       ticks: {
         stepSize: 20,
         showLabelBackdrop: false,
-        backdropColor: "rgba(203, 197, 11, 1)",
+        backdropColor: 'rgba(203, 197, 11, 1)',
       },
       angleLines: {
-        color: "rgba(255, 255, 255, .3)",
+        color: 'rgba(255, 255, 255, .3)',
         lineWidth: 1,
       },
       gridLines: {
-        color: "rgba(255, 255, 255, .3)",
+        color: 'rgba(255, 255, 255, .3)',
         circular: true,
       },
     },

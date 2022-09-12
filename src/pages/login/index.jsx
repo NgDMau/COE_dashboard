@@ -16,7 +16,7 @@ import {
   storeSetCurrentQuarter,
   storeSetDashboardData,
   storeSetHostpitalData,
-  storeSetHostpitalSelected,
+  storeSethospitalSelected,
 } from "../../store/data-reducer";
 
 const LoginPage = () => {
@@ -66,7 +66,7 @@ const LoginPage = () => {
     dispatch(storeSetCurrentQuarter(7));
     dispatch(storeSetCitiesData());
     dispatch(storeSetHostpitalData([]));
-    dispatch(storeSetHostpitalSelected(null));
+    dispatch(storeSethospitalSelected(null));
   }, []);
 
   return (

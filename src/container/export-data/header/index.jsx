@@ -7,8 +7,8 @@ const HeaderExport = () => {
     useSelector((state) => state?.data?.dashboardData) || null;
   const currentQuarter =
     useSelector((state) => state?.data?.currentQuarter) || null;
-  const hostPitalSelected = useSelector(
-    (state) => state?.data?.hostPitalSelected
+  const hospitalSelected = useSelector(
+    (state) => state?.data?.hospitalSelected
   );
   return (
     <HeaderExportWrapper>
@@ -18,7 +18,7 @@ const HeaderExport = () => {
       <div className="last-update">
         Cập nhật đến {dashboardData?.time[currentQuarter]}
       </div>
-      <div className="hospital">{hostPitalSelected?.name}</div>
+      <div className="hospital">{hospitalSelected?.name}</div>
     </HeaderExportWrapper>
   );
 };
