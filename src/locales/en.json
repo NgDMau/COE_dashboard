@@ -57,18 +57,29 @@
   },
   "chart": {
     "under": "Under",
-    "above": "Above"
+    "above": "Above",
+    "vaginalDelievery": "Vaginal Delievery",
+    "CSection": "C-Section",
+    "caesareanRate": "Caesarean section rate",
+    "normalRate": "Normal fertility rate",
+    "receivedTitle":"Received the title of excellent BV 2022"
   },
   "born": {
     "criteria": "Criteria",
     "chart": "Charts",
     "complete": "Complete",
     "vaginalDelivery": "Vaginal Delievery",
-    "Csection": "C-section"
+    "Csection": "C-section",
+    "postpartumMother": "Postpartum Mother",
+    "motherYoung": "Bà mẹ/ người CS trẻ",
+    "parameter": "Parameter"
   },
   "surveyLink": {
     "search": "Search...",
-    "notParticipate": "Not participate"
+    "notParticipate": "Not participate",
+    "underMonth": "Mothers with children under 1 month old",
+    "sectionMothers": "C-section mothers",
+    "normalMother": "Normal birth mother"
   },
   "development": "Project in development",
   "dashBoard": {
@@ -81,5 +92,17 @@
     "Assessment": "Assessment (Pass/Fail)",
     "conclusion": "conclusion",
     "conclusionContent": "Pass if all of the above criteria are met"
+  },
+  "document": {
+    "download": "Download"
+  },
+  "exportData": {
+    "indexHospitals": "Index of hospitals in the province/city",
+    "title": "RESULTS OF SURVEY OF SUBSCRIPTION VIA MOBILE PHONES",
+    "updateTo": "Update to",
+    "hospitalRatings": "Xếp hạng bệnh viện dựa trên kết quả",
+    "quarterReport": "Quarter-report: ",
+    "hospital": "Hospital",
+    "score": "Score"
   }
 }

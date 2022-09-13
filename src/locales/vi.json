@@ -57,18 +57,29 @@
   },
   "chart": {
     "under": "Dưới",
-    "above": "Trên"
+    "above": "Trên",
+    "vaginalDelievery": "Sinh thường",
+    "CSection": "Sinh mổ",
+    "caesareanRate": "Mức sinh mổ",
+    "normalRate": "Mức sinh thường",
+    "receivedTitle": "Đạt danh hiệu BV xuất sắc 2022"
   },
   "born": {
     "criteria": "Tiêu chí",
     "chart": "Biểu đồ",
     "complete": "Đạt",
     "vaginalDelivery": "Sinh thường",
-    "Csection": "Sinh mổ"
+    "Csection": "Sinh mổ",
+    "postpartumMother": "Bà mẹ sau sinh",
+    "motherYoung": "Bà mẹ/ người CS trẻ",
+    "parameter": "Chỉ số"
   },
   "surveyLink": {
     "search": "Tìm kiếm...",
-    "notParticipate": "Chưa tham gia"
+    "notParticipate": "Chưa tham gia",
+    "underMonth": "Bà mẹ có con dưới 1 tháng tuổi",
+    "sectionMothers": "Bà mẹ sinh mổ",
+    "normalMother": "Bà mẹ sinh thường"
   },
   "development": "Dự án đang phát triển",
   "dashBoard": {
@@ -81,5 +92,17 @@
     "Assessment": "Đánh giá (Đạt/ không đạt)",
     "conclusion": "kết luận",
     "conclusionContent": "Đạt nếu tất cả các tiêu chí trên đều đạt"
+  },
+  "document": {
+    "download": "Tải xuống"
+  },
+  "exportData": {
+    "indexHospitals": "Chỉ số của các bệnh viện trong tỉnh/thành phố",
+    "title": "KẾT QUẢ KHẢO SÁT ĐĂNG KÝ QUA ĐIỆN THOẠI DI ĐỘNG",
+    "updateTo": "Cập nhật đến",
+    "hospitalRatings": "Hospital ratings based on results",
+    "quarterReport": "Báo cáo quý: ",
+    "hospital": "Bệnh viện",
+    "score": "Điểm số"
   }
 }

@@ -5,9 +5,6 @@ import { useTranslation } from "react-i18next";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import { ColorGroup, ContentWrapper, VietNamChartWrapper } from "./styled";
 
-const geoUrl =
-  "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
-
 const vietnamGeoUrl =
   "https://res.cloudinary.com/pv-duc/raw/upload/v1626132866/province.json?fbclid=IwAR1fDTBNTPRKAq9Vw2JXrKWmhL8mQI_S9yLcgB9uTyTPKxUe492rj1-vowQ";
 

@@ -1,8 +1,10 @@
-import React from 'react';
-import { HeaderExportWrapper } from './styled';
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
+import { HeaderExportWrapper } from "./styled";
+import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const HeaderExport = () => {
+  const { t } = useTranslation();
   const dashboardData =
     useSelector((state) => state?.data?.dashboardData) || null;
   const currentQuarter =
@@ -12,13 +14,11 @@ const HeaderExport = () => {
   );
   return (
     <HeaderExportWrapper>
-      <div className='title'>
-        RESULTS OF SURVEY OF SUBSCRIPTION VIA MOBILE PHONES
+      <div className="title">{t("exportData.title")}</div>
+      <div className="last-update">
+        {t("exportData.updateTo")} {dashboardData?.time[currentQuarter]}
       </div>
-      <div className='last-update'>
-        Update to {dashboardData?.time[currentQuarter]}
-      </div>
-      <div className='hospital'>{hospitalSelected?.name}</div>
+      <div className="hospital">{hospitalSelected?.name}</div>
     </HeaderExportWrapper>
   );
 };

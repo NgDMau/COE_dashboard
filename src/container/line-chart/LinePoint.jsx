@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,10 +8,10 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-import moment from 'moment';
-import { faker } from '@faker-js/faker';
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import { faker } from "@faker-js/faker";
+import { useTranslation } from "react-i18next";
 
 ChartJS.register(
   CategoryScale,
@@ -27,7 +27,7 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'bottom',
+      position: "bottom",
     },
     title: {
       display: true,
@@ -35,9 +35,9 @@ export const options = {
   },
   scales: {
     y: {
-      type: 'linear',
+      type: "linear",
       display: true,
-      position: 'right',
+      position: "right",
       min: -0,
       // grid: {
       //   display: false,
@@ -52,47 +52,48 @@ export const options = {
 };
 
 export function LinePoint({ dataST, dataSM, time }) {
+  const { t } = useTranslation();
   const labels = Array.from({ length: 8 }, (_, i) => {
-    return time ? time[i] : '';
+    return time ? time[i] : "";
   });
   const data = {
     labels,
     datasets: [
       {
-        label: 'Vaginal Delievery',
+        label: t("chart.vaginalDelievery"),
         data: dataST || [],
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        pointStyle: 'circle',
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        pointStyle: "circle",
         pointRadius: 6,
         pointHoverRadius: 10,
       },
       {
-        label: 'C-section',
+        label: t("chart.CSection"),
         data: dataSM || [],
-        borderColor: '#0984e3',
-        backgroundColor: 'rgb(9, 132, 227,0.5)',
-        pointStyle: 'circle',
+        borderColor: "#0984e3",
+        backgroundColor: "rgb(9, 132, 227,0.5)",
+        pointStyle: "circle",
         pointRadius: 6,
         pointHoverRadius: 10,
       },
       {
-        label: 'Caesarean section rate',
+        label: t("chart.caesareanRate"),
         fill: false,
-        backgroundColor: 'red',
-        borderColor: 'red',
+        backgroundColor: "red",
+        borderColor: "red",
         borderDash: [5, 5],
         data: labels.map(() => faker.datatype.number({ min: 75, max: 75 })),
-        pointStyle: 'hidden',
+        pointStyle: "hidden",
       },
       {
-        label: 'Normal fertility rate',
+        label: t("chart.normalRate"),
         fill: false,
-        backgroundColor: '#0984e3',
-        borderColor: '#0984e3',
+        backgroundColor: "#0984e3",
+        borderColor: "#0984e3",
         borderDash: [5, 5],
         data: labels.map(() => faker.datatype.number({ min: 70, max: 70 })),
-        pointStyle: 'hidden',
+        pointStyle: "hidden",
       },
     ],
   };

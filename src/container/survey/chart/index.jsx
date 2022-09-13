@@ -1,11 +1,13 @@
-import React from 'react';
-import Chart from 'react-google-charts';
-import { ChartLinkWrapper } from './styled';
+import React from "react";
+import Chart from "react-google-charts";
+import { useTranslation } from "react-i18next";
+import { ChartLinkWrapper } from "./styled";
 
 const ChartLink = ({ dataTableChart, selected }) => {
+  const { t } = useTranslation();
   const options = {
     title: `Survey statistics - ${selected?.name}`,
-    chartArea: { width: '60%' },
+    chartArea: { width: "60%" },
     isStacked: true,
     // hAxis: {
     //   minValue: 0,
@@ -22,13 +24,13 @@ const ChartLink = ({ dataTableChart, selected }) => {
   return (
     <ChartLinkWrapper>
       <Chart
-        chartType='ColumnChart'
-        width='100%'
-        height='400px'
+        chartType="ColumnChart"
+        width="100%"
+        height="400px"
         data={dataTableChart}
         options={options}
       />
-      <div className='certificate'>Received the title of excellent BV 2022</div>
+      <div className="certificate">{t("chart.receivedTitle")}</div>
     </ChartLinkWrapper>
   );
 };

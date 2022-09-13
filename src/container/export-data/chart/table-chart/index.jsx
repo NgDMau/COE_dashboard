@@ -1,8 +1,10 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { dataTableExport } from "./fakeData";
 import { TableChartWrapper } from "./styled";
 
 const TableChart = () => {
+  const { t } = useTranslation();
   const checkWarning = (data) => {
     if (Number(data) < 80) {
       return true;
@@ -13,9 +15,7 @@ const TableChart = () => {
   return (
     <TableChartWrapper>
       <div className="header-chart background-color">
-        <div className="criteria">
-          Chỉ số của các bệnh viện trong tỉnh/thành phố
-        </div>
+        <div className="criteria">{t("exportData.indexHospitals")}</div>
         <div className="quarter">Q1/20</div>
         <div className="quarter">Q1/20</div>
         <div className="quarter">Q1/20</div>
@@ -39,7 +39,10 @@ const TableChart = () => {
             <div className="quarter border-right-none" />
           </div>
           {element.hospitals.map((hospital, indexSub) => (
-            <div className="header-chart border-top-none" key={String(indexSub)}>
+            <div
+              className="header-chart border-top-none"
+              key={String(indexSub)}
+            >
               <div className="criteria padding-left-30">{hospital.name}</div>
               <div
                 className={`quarter ${

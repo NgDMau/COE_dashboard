@@ -1,23 +1,23 @@
-import React, { useMemo, useState } from 'react';
-import { Button, Spin, Tooltip } from 'antd';
-import { ButtonSelectCity, SurveyLinkWrapper } from './styled';
+import React, { useMemo, useState } from "react";
+import { Button, Spin, Tooltip } from "antd";
+import { ButtonSelectCity, SurveyLinkWrapper } from "./styled";
 
-import Input from 'antd/lib/input/Input';
-import ChartLink from './chart';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import Input from "antd/lib/input/Input";
+import ChartLink from "./chart";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
-import buttonCity from '../../assets/icon/button-city.png';
-import { toNomal } from '../../helpers/to-nomal';
-import { linkApi } from '../../common/ngok';
-import { listCity } from './faleData';
-import VietNamChart from '../../components/VietNamChart/VietNamChart';
-import { useTranslation } from 'react-i18next';
+import buttonCity from "../../assets/icon/button-city.png";
+import { toNomal } from "../../helpers/to-nomal";
+import { linkApi } from "../../common/ngok";
+import { listCity } from "./faleData";
+import VietNamChart from "../../components/VietNamChart/VietNamChart";
+import { useTranslation } from "react-i18next";
 
 const SurveyLink = () => {
   const { t } = useTranslation();
 
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem("user"));
   const citiesDefault = useSelector((state) => state.data.citiesData);
   const [cities, setCities] = useState([]);
   const [selected, setSelected] = useState(null);
@@ -39,7 +39,7 @@ const SurveyLink = () => {
       return {
         code_name: toNomal(element).trim().toLowerCase(),
         name: element,
-        survey_url: 'https://ee.humanitarianresponse.info/x/68',
+        survey_url: "https://ee.humanitarianresponse.info/x/68",
       };
     });
     return data || [];
@@ -48,11 +48,11 @@ const SurveyLink = () => {
   const getDataDashboard = async (code) => {
     setIsLoading(true);
     const myHeaders = new Headers({
-      Authorization: 'Token ' + user?.token,
-      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: "Token " + user?.token,
+      "Content-Type": "application/x-www-form-urlencoded",
     });
     fetch(`${linkApi}/dm/data/process?province=${code}`, {
-      method: 'POST',
+      method: "POST",
       headers: myHeaders,
     })
       .then((response) => response.json())
@@ -60,10 +60,10 @@ const SurveyLink = () => {
         const dataClone = [...data?.data];
         const chartData = [];
         chartData.push([
-          'hospital_name',
-          'Mothers with children under 1 month old',
-          'C-section mothers',
-          'Normal birth mother',
+          "hospital_name",
+          t("surveyLink.underMonth"),
+          t("surveyLink.sectionMothers"),
+          t("surveyLink.normalMother"),
         ]);
         dataClone.forEach((element) => {
           const item = [];
@@ -97,8 +97,8 @@ const SurveyLink = () => {
   return (
     <SurveyLinkWrapper>
       <Input
-        className='search-input'
-        placeholder={t('surveyLink.search')}
+        className="search-input"
+        placeholder={t("surveyLink.search")}
         onChange={(e) => {
           setCities(
             citiesDataMap.filter((element) =>
@@ -111,14 +111,14 @@ const SurveyLink = () => {
         }}
       />
 
-      <div className='container'>
-        <div className='city-link'>
+      <div className="container">
+        <div className="city-link">
           {cities.map((element, index) => (
             <div
-              className={`link-container ${!element?.id && 'not-participate'} ${
+              className={`link-container ${!element?.id && "not-participate"} ${
                 selected?.id && element?.id === selected?.id && element?.id
-                  ? 'selected'
-                  : ''
+                  ? "selected"
+                  : ""
               }`}
               onClick={() => {
                 if (isLoading) {
@@ -134,11 +134,11 @@ const SurveyLink = () => {
               key={String(index)}
             >
               <Tooltip
-                placement='rightTop'
-                title={!element?.id ? t('surveyLink.notParticipate') : ''}
+                placement="rightTop"
+                title={!element?.id ? t("surveyLink.notParticipate") : ""}
               >
                 <ButtonSelectCity>
-                  <img src={buttonCity} alt='' />
+                  <img src={buttonCity} alt="" />
                   <div>{element.name}</div>
                 </ButtonSelectCity>
               </Tooltip>
@@ -148,27 +148,27 @@ const SurveyLink = () => {
         <VietNamChart onSelectCity={onSelectCity} />
 
         {selected !== null && (
-          <div className='link-selected'>
+          <div className="link-selected">
             {isLoading ? (
-              <div className='loading-wrapper'>
-                <Spin size='large' />
+              <div className="loading-wrapper">
+                <Spin size="large" />
               </div>
             ) : (
               <>
                 <div>
                   <Button
-                    className='link'
+                    className="link"
                     onClick={() => {
-                      window.open('https://bmte.vn/form/quang_nam/v2');
+                      window.open("https://bmte.vn/form/quang_nam/v2");
                     }}
                   >
-                    {' '}
-                    {t('screen.surveyLink')}
+                    {" "}
+                    {t("screen.surveyLink")}
                   </Button>
                 </div>
 
                 {dataTableChart?.length > 0 && (
-                  <div className='chart'>
+                  <div className="chart">
                     <ChartLink
                       dataTableChart={dataTableChart}
                       selected={selected}
