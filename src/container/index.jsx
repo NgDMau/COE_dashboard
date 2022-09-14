@@ -89,7 +89,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
     (state) => state?.data?.hospitalSelected
   );
 
-  const [value, setValue] = useState("TC Khoa sản");
+  const [value, setValue] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
   const getDataDashboard = async (selectedCode) => {
@@ -146,13 +146,13 @@ const AppContainer = ({ screen, title, setScreen }) => {
               <HeaderScreen value={value} setValue={setValue} />
               <div className="content-chart">
                 <h2>{value}</h2>
-                {value === "TC Khoa sản" && (
+                {value === 1 && (
                   <BornComponent
                     data={ObstetricsData}
                     dataList={dashboardData?.SK}
                   />
                 )}
-                {value === "TC Khoa nhi" && (
+                {value === 2 && (
                   <BornComponent
                     data={ChildData}
                     dataList={dashboardData?.NK}
@@ -243,10 +243,14 @@ function PathComponent({ screen }) {
 }
 
 function HeaderScreen({ value, setValue }) {
+  const { t } = useTranslation();
   return (
     <div className="segmented">
       <Segmented
-        options={["TC Khoa sản", "TC Khoa nhi"]}
+        options={[
+          { label: t("dashBoard.obstetricDept"), value: 1 },
+          { label: t("dashBoard.pediatricDept"), value: 2 },
+        ]}
         value={value}
         onChange={setValue}
         size="large"
