@@ -30,6 +30,7 @@ import {
   PathWrapper,
   SpinWrapper,
 } from "./styled";
+import { useMemo } from "react";
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const { t } = useTranslation();
@@ -117,6 +118,23 @@ const AppContainer = ({ screen, title, setScreen }) => {
     }
   }, [hospitalSelected]);
 
+  const dataRadarSM = useMemo(() => {
+    // if (!dashboardData) {
+    return [86, 86, 100, 100, 100, 100];
+    // }
+    // const data = [1, 2, 3, 4, 5, 6]?.map((element) =>
+    //   value === 1
+    //     ? dashboardData?.SK[element]?.values?.SM[7]
+    //     : dashboardData?.NK[element]?.values?.SM[7]
+    // );
+    // return data || null;
+  }, [dashboardData, value]);
+
+  const dataRadarST = useMemo(() => {
+    return [100, 100, 100, 100, 96, 100];
+  }, [dashboardData, value]);
+  console.log("dashboardData?.SKdashboardData?.SK", dataRadarSM, dataRadarST);
+
   return (
     <ContainerWrapper>
       <div className="header">
@@ -131,7 +149,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
         <div>
           {!hospitalSelected && (
             <ChartWrapper>
-              <RadaChart />
+              <RadaChart data={[70, 70, 70, 70, 70, 70]} />
               <VietNamChart />
             </ChartWrapper>
           )}
@@ -143,8 +161,8 @@ const AppContainer = ({ screen, title, setScreen }) => {
           {hospitalSelected && !isLoading ? (
             <>
               <ChartWrapper>
-                <RadaChart />
-                <RadaChart />
+                <RadaChart data={dataRadarST} isNomal />
+                <RadaChart data={dataRadarSM} />
               </ChartWrapper>
               <HeaderScreen value={value} setValue={setValue} />
               <div className="content-chart">
