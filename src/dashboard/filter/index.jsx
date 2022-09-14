@@ -1,24 +1,25 @@
-import React from 'react';
-import { useMemo } from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import React from "react";
+import { useMemo } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 
-import { DatePicker } from 'antd';
-import { Select, Spin } from 'antd';
+import { DatePicker } from "antd";
+import { Select, Spin } from "antd";
 
-import html2pdf from 'html2pdf.js';
+import html2pdf from "html2pdf.js";
 
-import { useSelector, useDispatch } from 'react-redux';
-import { FilterWrapper } from './styled';
-import { linkApi } from '../../common/ngok';
+import { useSelector, useDispatch } from "react-redux";
+import { FilterWrapper } from "./styled";
+import { linkApi } from "../../common/ngok";
 
 import {
   storeSetCitiesData,
   storeSetCurrentQuarter,
   storeSetHostpitalData,
   storeSethospitalSelected,
-} from '../../store/data-reducer';
-import { useTranslation } from 'react-i18next';
+} from "../../store/data-reducer";
+import { useTranslation } from "react-i18next";
+import { ButtonDownload } from "../../container/document/styled";
 
 const FilterComponent = ({ disabled, screen, setScreen }) => {
   const { RangePicker } = DatePicker;
@@ -31,7 +32,7 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
     useSelector((state) => state?.data?.dashboardData) || null;
   const currentQuarter =
     useSelector((state) => state?.data?.currentQuarter) || null;
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem("user"));
   const citiesData = useSelector((state) => state.data.citiesData);
   const hostPitals = useSelector((state) => state.data.hostPitals);
   const [isLoading, setIsLoading] = useState(false);
@@ -40,30 +41,30 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
     return (
       citiesData?.find(
         (element) => element?.id === hospitalSelected?.province_id
-      )?.name || ''
+      )?.name || ""
     );
   }, [hospitalSelected, citiesData]);
   const exportPdfData = () => {
-    var element = document.getElementById('exportDagta');
+    var element = document.getElementById("exportDagta");
     const opt = {
       margin: 1,
-      image: { type: 'jpeg', quality: 0.98 },
-      filename: 'KQKS_Q2_2022.pdf',
+      image: { type: "jpeg", quality: 0.98 },
+      filename: "KQKS_Q2_2022.pdf",
       html2canvas: { scale: 1 },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-      pagebreak: { mode: ['legacy'] },
+      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+      pagebreak: { mode: ["legacy"] },
     };
     html2pdf().set(opt);
-    html2pdf(element).save('KQKS_Q2_2022.pdf');
+    html2pdf(element).save("KQKS_Q2_2022.pdf");
   };
 
   const getCities = async () => {
     const myHeaders = new Headers({
-      Authorization: 'Token ' + user?.token,
-      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: "Token " + user?.token,
+      "Content-Type": "application/x-www-form-urlencoded",
     });
     fetch(`${linkApi}/dm/data/province?info=all`, {
-      method: 'POST',
+      method: "POST",
       headers: myHeaders,
     })
       .then((response) => response.json())
@@ -75,11 +76,11 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
   const getHostPital = async (code) => {
     setIsLoading(true);
     const myHeaders = new Headers({
-      Authorization: 'Token ' + user?.token,
-      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: "Token " + user?.token,
+      "Content-Type": "application/x-www-form-urlencoded",
     });
     fetch(`${linkApi}/dm/data/province?code=${code}&info=hospitals`, {
-      method: 'POST',
+      method: "POST",
       headers: myHeaders,
     })
       .then((response) => response.json())
@@ -97,17 +98,17 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
 
   return (
     <FilterWrapper>
-      <div className='adress'>
+      <div className="adress">
         {screen === 5 && (
-          <div className='back' onClick={() => setScreen(1)}>
-            {t('filter.back')}
+          <div className="back" onClick={() => setScreen(1)}>
+            {t("filter.back")}
           </div>
         )}
-        {!disabled && <span>{t('filter.city')}</span>}
+        {!disabled && <span>{t("filter.city")}</span>}
         {!disabled && (
           <Select
-            defaultValue={defaultCity || ''}
-            className='select-city'
+            defaultValue={defaultCity || ""}
+            className="select-city"
             onChange={(e) => {
               getHostPital(citiesData[e].code);
               dispatch(storeSetHostpitalData([]));
@@ -123,11 +124,11 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
             })}
           </Select>
         )}
-        {!disabled && <span className='hostpital'>{t('filter.hospital')}</span>}
+        {!disabled && <span className="hostpital">{t("filter.hospital")}</span>}
         {!disabled && (
           <Select
-            defaultValue={hospitalSelected?.name || ''}
-            className='select-hostpital'
+            defaultValue={hospitalSelected?.name || ""}
+            className="select-hostpital"
             onChange={(e) => {
               dispatch(storeSethospitalSelected(hostPitals[e]));
             }}
@@ -155,7 +156,7 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
             {dashboardData?.time?.length > 0 && (
               <Select
                 defaultValue={dashboardData?.time[currentQuarter]}
-                className='select-quarter'
+                className="select-quarter"
                 onChange={(e) => {
                   dispatch(storeSetCurrentQuarter(e));
                 }}
@@ -169,18 +170,28 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
             )}
           </div>
         ) : null}
-        {screen === 3 && <RangePicker className='datePicker' />}
+        {screen === 3 && <RangePicker className="datePicker" />}
+        {/* {screen === 4 && (
+          <ButtonDownload onClick={() => {}}>
+            <span>Last Awarded Year: 15/9/2020</span>
+          </ButtonDownload>
+        )}
+        {screen === 4 && (
+          <ButtonDownload onClick={() => {}}>
+            <span>Next Re-evaluation Year: 15/9/2020</span>
+          </ButtonDownload>
+        )} */}
       </div>
 
       {screen === 1 && dashboardData ? (
-        <div className='export' onClick={() => setScreen(6)}>
-          {t('filter.generateReport')}
+        <div className="export" onClick={() => setScreen(6)}>
+          {t("filter.generateReport")}
         </div>
       ) : null}
 
       {screen === 6 && (
-        <div className='export' onClick={exportPdfData}>
-          {t('filter.exportReport')}
+        <div className="export" onClick={exportPdfData}>
+          {t("filter.exportReport")}
         </div>
       )}
     </FilterWrapper>

@@ -6,6 +6,7 @@ import { listDocument } from "../../dashboard/report-form/fakeData";
 import { useState } from "react";
 import { linkApi } from "../../common/ngok";
 import { useTranslation } from "react-i18next";
+import FormInputData from "../FormInputData/FormInputData";
 
 const Document = ({ title }) => {
   const { t } = useTranslation();
@@ -48,6 +49,7 @@ const Document = ({ title }) => {
           width="800px"
         />
       </div>
+      <FormInputData />
     </DocumentWrapper>
   );
 };

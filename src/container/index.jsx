@@ -120,7 +120,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
   return (
     <ContainerWrapper>
       <div className="header">
-        <PathComponent screen={screen} />
+        <PathComponent screen={screen} setScreen={setScreen} />
         <FilterComponent
           disabled={screen === 2 || screen === 4}
           screen={screen}
@@ -178,7 +178,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
 
 export default AppContainer;
 
-function PathComponent({ screen }) {
+function PathComponent({ screen, setScreen }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const language = useSelector((state) => state?.auth?.language);
@@ -229,7 +229,8 @@ function PathComponent({ screen }) {
   return (
     <PathWrapper>
       <div>
-        <span>{t("screen.home")}</span> / {screenFake[screen - 1]}
+        <span onClick={() => setScreen(1)}>{t("screen.home")}</span> /{" "}
+        {screenFake[screen - 1]}
       </div>
       <Dropdown overlay={menu} placement="bottomLeft">
         <Buttonanguage>

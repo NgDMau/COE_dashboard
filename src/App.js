@@ -1,29 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./App.css";
 import Dashboard from "./dashboard/index";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense } from "react";
 import LoginPage from "./pages/login";
 import AppsPage from "./pages/apps";
 import { Provider } from "react-redux";
 import { store } from "./rootStore";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import {
-  storeSetDashboardData,
-  storeSetListHasTag,
-} from "./store/data-reducer";
-import { useState } from "react";
+import { storeSetDashboardData } from "./store/data-reducer";
 
 const RootRouter = function () {
-  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   console.log("useruseruser", user);
   const dispatch = useDispatch();
   var coeSocket = null;
   const AUTH_TOKEN = user?.token;
   const COE_WS_URL =
-    "wss://" + "fe5e-103-168-58-73.ap.ngrok.io" + "/ws/data/" + "AnT" + "/";
+    "wss://" + "1563-42-119-190-1.ngrok.io" + "/ws/data/" + "AnT" + "/";
   const SUB_PROTOCOL = ["Token", AUTH_TOKEN];
 
   function wsConnectionCOE(url, options, ws_message) {

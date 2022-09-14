@@ -1,1 +1,1 @@
-export const linkApi = "https://fe5e-103-168-58-73.ap.ngrok.io";
+export const linkApi = "https://1563-42-119-190-1.ngrok.io";

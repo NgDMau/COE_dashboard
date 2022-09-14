@@ -4,7 +4,6 @@ export const DocumentWrapper = styled.div`
   width: 100%;
   background: none;
   display: flex;
-  justify-content: center;
   .document-container {
     width: fit-content;
     background-color: white;
@@ -63,5 +62,23 @@ export const DocumentWrapper = styled.div`
     align-items: center;
     display: flex;
     justify-content: center;
+  }
+`;
+export const ButtonDownload = styled.div`
+  border-radius: 4px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: 500;
+  img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  :hover {
+    color: green;
+    cursor: pointer;
   }
 `;
