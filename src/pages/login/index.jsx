@@ -1,46 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-import Input from 'antd/lib/input/Input';
-import { Button } from 'antd/lib/radio';
-import { LoginWrapper } from './styled';
-import { UserOutlined, LockOutlined, LoadingOutlined } from '@ant-design/icons';
+import Input from "antd/lib/input/Input";
+import i18next from "i18next";
+import { Button } from "antd/lib/radio";
+import { DropdownLanguage, LoginWrapper } from "./styled";
+import { UserOutlined, LockOutlined, LoadingOutlined } from "@ant-design/icons";
 
-import logo from '../../assets/brand/cbimage.png';
-import { linkApi } from '../../common/ngok';
-import { storeSetToken } from '../../store/auth-reducer';
+import logo from "../../assets/brand/cbimage.png";
+import { linkApi } from "../../common/ngok";
+import { storeSetLanguage, storeSetToken } from "../../store/auth-reducer";
 import {
   storeSetCitiesData,
   storeSetCurrentQuarter,
   storeSetDashboardData,
   storeSetHostpitalData,
   storeSethospitalSelected,
-} from '../../store/data-reducer';
+} from "../../store/data-reducer";
+import { useTranslation } from "react-i18next";
+import MenuLanguage from "../menuLanguage";
 
 const LoginPage = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [userNameRegist, setUserNameRegist] = useState('');
-  const [passwordRegist, setPasswordRegist] = useState('');
-  const [passwordRetype, setPasswordRetype] = useState('');
+  const [userNameRegist, setUserNameRegist] = useState("");
+  const [passwordRegist, setPasswordRegist] = useState("");
+  const [passwordRetype, setPasswordRetype] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const login = async () => {
     setIsLoading(true);
-    setError('');
+    setError("");
     fetch(`${linkApi}/user/login-with-token`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
       },
       body: new URLSearchParams({
         username: userName,
@@ -49,15 +53,15 @@ const LoginPage = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data?.status === 'successful') {
+        if (data?.status === "successful") {
           dispatch(storeSetToken(data?.user?.token || null));
-          localStorage.setItem('user', JSON.stringify(data?.user));
-          navigate('/apps');
+          localStorage.setItem("user", JSON.stringify(data?.user));
+          navigate("/apps");
         } else {
-          setError('Wrong username or password');
+          setError("Wrong username or password");
         }
       })
-      .catch(() => setError('Wrong username or password'))
+      .catch(() => setError("Wrong username or password"))
       .finally(() => setIsLoading(false));
   };
 
@@ -71,106 +75,107 @@ const LoginPage = () => {
 
   return (
     <LoginWrapper>
+      <MenuLanguage />
       {isLogin ? (
-        <div className='login-form'>
-          <span>login</span>
-          <div className='form'>
-            <div className='logo'>
-              <img src={logo} alt='' className='image' />
+        <div className="login-form">
+          <span>{t("common.login")}</span>
+          <div className="form">
+            <div className="logo">
+              <img src={logo} alt="" className="image" />
             </div>
-            <div className='login'>
-              <h1>Welcome</h1>
+            <div className="login">
+              <h1>{t("common.welcome")}</h1>
               <Input
                 disabled={isLoading}
-                className='input'
-                placeholder='User name'
+                className="input"
+                placeholder={t("common.username")}
                 onChange={(e) => setUserName(e?.target?.value)}
                 prefix={
-                  <UserOutlined style={{ color: 'green' }} size='large' />
+                  <UserOutlined style={{ color: "green" }} size="large" />
                 }
               />
               <Input
                 disabled={isLoading}
-                className='input'
-                type='password'
-                placeholder='password'
+                className="input"
+                type="password"
+                placeholder={t("common.password")}
                 onChange={(e) => setPassword(e?.target?.value)}
                 prefix={
-                  <LockOutlined style={{ color: 'green' }} size='large' />
+                  <LockOutlined style={{ color: "green" }} size="large" />
                 }
               />
-              <div className='error'>{error}</div>
+              <div className="error">{error}</div>
               <div
-                className='forgot-password'
+                className="forgot-password"
                 onClick={() => {
                   if (!isLoading) {
                     setIsLogin(!isLogin);
                   }
                 }}
               >
-                Register
+                {t("common.signUp")}
               </div>
               <Button
-                type='primary'
-                className='btn-login'
+                type="primary"
+                className="btn-login"
                 onClick={login}
                 disabled={isLoading}
               >
-                {isLoading ? <LoadingOutlined /> : 'Log in'}
+                {isLoading ? <LoadingOutlined /> : t("common.login")}
               </Button>
             </div>
           </div>
         </div>
       ) : (
-        <div className='login-form'>
-          <span>login</span>
-          <div className='form'>
-            <div className='logo'>
-              <img src={logo} alt='' className='image' />
+        <div className="login-form">
+          <span>{t("common.login")}</span>
+          <div className="form">
+            <div className="logo">
+              <img src={logo} alt="" className="image" />
             </div>
-            <div className='login'>
-              <h1>Welcome</h1>
+            <div className="login">
+              <h1>{t("common.welcome")}</h1>
               <Input
                 disabled={isLoading}
-                className='input'
-                placeholder='User name'
+                className="input"
+                placeholder={t("common.username")}
                 onChange={(e) => setUserNameRegist(e?.target?.value)}
                 prefix={
-                  <UserOutlined style={{ color: 'green' }} size='large' />
+                  <UserOutlined style={{ color: "green" }} size="large" />
                 }
               />
               <Input
                 disabled={isLoading}
-                className='input'
-                type='password'
-                placeholder='password'
+                className="input"
+                type="password"
+                placeholder={t("common.password")}
                 onChange={(e) => setPasswordRegist(e?.target?.value)}
                 prefix={
-                  <LockOutlined style={{ color: 'green' }} size='large' />
+                  <LockOutlined style={{ color: "green" }} size="large" />
                 }
               />
               <Input
                 disabled={isLoading}
-                className='input'
-                type='password'
-                placeholder='retype password'
+                className="input"
+                type="password"
+                placeholder={t("common.retypePassword")}
                 onChange={(e) => setPasswordRetype(e?.target?.value)}
                 prefix={
-                  <LockOutlined style={{ color: 'green' }} size='large' />
+                  <LockOutlined style={{ color: "green" }} size="large" />
                 }
               />
               <div
-                className='forgot-password'
+                className="forgot-password"
                 onClick={() => setIsLogin(!isLogin)}
               >
-                Log in
+                {t("common.login")}
               </div>
               <Button
-                className='btn-login'
-                onClick={() => navigate('/apps')}
+                className="btn-login"
+                onClick={() => navigate("/apps")}
                 disabled={isLoading}
               >
-                {isLoading ? <LoadingOutlined /> : 'Register'}
+                {isLoading ? <LoadingOutlined /> : t("common.signUp")}
               </Button>
             </div>
           </div>

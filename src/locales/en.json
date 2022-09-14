@@ -1,13 +1,15 @@
 {
   "common": {
-    "login": "Đăng nhập",
-    "signUp": "Đăng ký",
-    "username": "Tài khoản",
-    "password": "Mật khẩu",
+    "login": "Login",
+    "signUp": "SignUp",
+    "username": "User Name",
+    "password": "Password",
     "rememberMe": "Nhớ tài khoản",
     "noData": "Không có dữ liệu",
     "vietNam": "Tiếng Việt",
-    "engLish": "English"
+    "engLish": "English",
+    "welcome": "Welcome",
+    "retypePassword": "retype password"
   },
   "obstetricsData": {
     "obstetricsKS_1": "Was your baby placed on your chest/abdomen for skin-to-skin contact immediately after birth?",
@@ -62,7 +64,7 @@
     "CSection": "C-Section",
     "caesareanRate": "Caesarean section rate",
     "normalRate": "Normal fertility rate",
-    "receivedTitle":"Received the title of excellent BV 2022"
+    "receivedTitle": "Received the title of excellent BV 2022"
   },
   "born": {
     "criteria": "Criteria",
@@ -100,9 +102,14 @@
     "indexHospitals": "Index of hospitals in the province/city",
     "title": "RESULTS OF SURVEY OF SUBSCRIPTION VIA MOBILE PHONES",
     "updateTo": "Update to",
-    "hospitalRatings": "Xếp hạng bệnh viện dựa trên kết quả",
+    "hospitalRatings": "Hospital ratings based on results",
     "quarterReport": "Quarter-report: ",
     "hospital": "Hospital",
     "score": "Score"
+  },
+  "app": {
+    "breastfeeding": "The hospital practices breastfeeding",
+    "breastMilkBank": "Breast milk bank",
+    "nationalMinorities": "National Target Program on Ethnic Minorities"
   }
 }

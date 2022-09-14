@@ -5,6 +5,7 @@ import { Button, Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import logo from "../../assets/brand/Logo_AnT.png";
 import { useTranslation } from "react-i18next";
+import MenuLanguage from "../menuLanguage";
 
 const AppsPage = () => {
   const { t } = useTranslation();
@@ -19,18 +20,19 @@ const AppsPage = () => {
 
   return (
     <AppsWrapper>
+      <MenuLanguage />
       <div className="logo">
         <img src={logo} alt="" />
       </div>
       <div className="content">
         <div className="item blue" onClick={() => navigate("/dashboard")}>
-          Bệnh viện thực hành nuôi con bằng sữa mẹ
+          {t("app.breastfeeding")}
         </div>
         <div className="item yellow" onClick={showConfirm}>
-          Ngân hàng sữa mẹ
+          {t("app.breastMilkBank")}
         </div>
         <div className="item green" onClick={showConfirm}>
-          Chương trình mục tiêu Quốc gia về Dân Tộc thiểu số
+          {t("app.nationalMinorities")}
         </div>
       </div>
     </AppsWrapper>

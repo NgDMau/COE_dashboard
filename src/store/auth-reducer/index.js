@@ -3,6 +3,7 @@ import { rowData } from "../../container/row-data/fakeData";
 
 const initialState = {
   token: null,
+  language: "en",
 };
 
 const authSlice = createSlice({
@@ -12,9 +13,12 @@ const authSlice = createSlice({
     storeSetToken: (state, { payload }) => {
       state.token = payload;
     },
+    storeSetLanguage: (state, { payload }) => {
+      state.language = payload;
+    },
   },
 });
 
-export const { storeSetToken } = authSlice.actions;
+export const { storeSetToken, storeSetLanguage } = authSlice.actions;
 
 export default authSlice.reducer;

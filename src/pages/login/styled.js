@@ -1,5 +1,11 @@
+import { Dropdown } from "antd";
 import styled from "styled-components";
 import background from "../../assets/brand/bg-app.jpg";
+export const DropdownLanguage = styled(Dropdown)`
+  position: fixed;
+  top: 20px;
+  right: 20px;
+`;
 export const LoginWrapper = styled.div`
   height: 100vh;
   width: 100vw;

@@ -7,7 +7,9 @@
     "rememberMe": "Nhớ tài khoản",
     "noData": "Không có dữ liệu",
     "vietNam": "Tiếng Việt",
-    "engLish": "English"
+    "engLish": "English",
+    "welcome": "Chào mừng",
+    "retypePassword": "Nhập lại mật khẩu"
   },
   "obstetricsData": {
     "obstetricsKS_1": "Thực hiện da kề da",
@@ -100,9 +102,14 @@
     "indexHospitals": "Chỉ số của các bệnh viện trong tỉnh/thành phố",
     "title": "KẾT QUẢ KHẢO SÁT ĐĂNG KÝ QUA ĐIỆN THOẠI DI ĐỘNG",
     "updateTo": "Cập nhật đến",
-    "hospitalRatings": "Hospital ratings based on results",
+    "hospitalRatings": "Xếp hạng bệnh viện dựa trên kết quả",
     "quarterReport": "Báo cáo quý: ",
     "hospital": "Bệnh viện",
     "score": "Điểm số"
+  },
+  "app": {
+    "breastfeeding": "Bệnh viện thực hành nuôi con bằng sữa mẹ",
+    "breastMilkBank": "Ngân hàng sữa mẹ",
+    "nationalMinorities": "Chương trình mục tiêu Quốc gia về Dân Tộc thiểu số"
   }
 }
