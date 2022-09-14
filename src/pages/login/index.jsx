@@ -4,14 +4,15 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import Input from "antd/lib/input/Input";
-import i18next from "i18next";
 import { Button } from "antd/lib/radio";
-import { DropdownLanguage, LoginWrapper } from "./styled";
+import { LoginWrapper } from "./styled";
 import { UserOutlined, LockOutlined, LoadingOutlined } from "@ant-design/icons";
 
 import logo from "../../assets/brand/cbimage.png";
 import { linkApi } from "../../common/ngok";
-import { storeSetLanguage, storeSetToken } from "../../store/auth-reducer";
+import MenuLanguage from "../menuLanguage";
+import { storeSetToken } from "../../store/auth-reducer";
+import { useTranslation } from "react-i18next";
 import {
   storeSetCitiesData,
   storeSetCurrentQuarter,
@@ -19,8 +20,6 @@ import {
   storeSetHostpitalData,
   storeSethospitalSelected,
 } from "../../store/data-reducer";
-import { useTranslation } from "react-i18next";
-import MenuLanguage from "../menuLanguage";
 
 const LoginPage = () => {
   const { t } = useTranslation();

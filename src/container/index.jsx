@@ -1,6 +1,27 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
+import Document from "./document";
+import { Dropdown, Menu, Segmented, Spin } from "antd";
+
+import i18next from "i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
+
+import RowData from "./row-data";
+import RadaChart from "../components/RadaChart/RadaChart";
+import SurveyLink from "./survey";
+import ExportData from "./export-data";
+import iconVietnam from "../assets/icon/vietnam.png";
+import VietNamChart from "../components/VietNamChart/VietNamChart";
+import BornComponent from "./born";
+import FormInputData from "./FormInputData/FormInputData";
 import FilterComponent from "../dashboard/filter";
+import iconUnitedStates from "../assets/icon/united-states.png";
+
+import { linkApi } from "../common/ngok";
+import { storeSetLanguage } from "../store/auth-reducer";
+import { storeSetDashboardData } from "../store/data-reducer";
 import {
   Buttonanguage,
   ChartWrapper,
@@ -9,24 +30,6 @@ import {
   PathWrapper,
   SpinWrapper,
 } from "./styled";
-import { useState } from "react";
-import { Dropdown, Menu, Segmented, Spin } from "antd";
-import BornComponent from "./born";
-import Document from "./document";
-import SurveyLink from "./survey";
-import RowData from "./row-data";
-import ExportData from "./export-data";
-import { useDispatch, useSelector } from "react-redux";
-import { storeSetDashboardData } from "../store/data-reducer";
-import RadaChart from "../components/RadaChart/RadaChart";
-import { linkApi } from "../common/ngok";
-import VietNamChart from "../components/VietNamChart/VietNamChart";
-import i18next from "i18next";
-import { useTranslation } from "react-i18next";
-import FormInputData from "./FormInputData/FormInputData";
-import iconUnitedStates from "../assets/icon/united-states.png";
-import iconVietnam from "../assets/icon/vietnam.png";
-import { storeSetLanguage } from "../store/auth-reducer";
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const { t } = useTranslation();
