@@ -1,5 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import './App.css';
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+
 import Dashboard from './dashboard/index';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Suspense } from 'react';
