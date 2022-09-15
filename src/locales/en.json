@@ -27,14 +27,14 @@
     "obstetricsKN_5": "During your hospital stay, did the medical staffs give you advice and guidance on breastfeeding?",
     "obstetricsKN_6": "Did doctors and nurses in the hospital counsel you to use formula milk for babies under 24 months? (except for cases specifically prescribed by doctors)",
     "obstetricsKN_7": "Did you see any forms of advert/marketing of formula milk for babies aged under 24 months, feeding bottles and artificial pacifiers in the hospital?",
-    "obstetricsPassKS_1": "“Pass” if more than 80% of mothers giving birth vaginally, and 50% of mothers having C-section answer Yes",
-    "obstetricsPassKS_2": "“Pass” if more than 80% mothers giving birth vaginally, and 50% of mothers having C-section answer “More than 90 minutes”",
-    "obstetricsPassKS_3": "“Pass” if more than 95% of mothers giving birth vaginally answer “Immediately after giving birth”",
-    "obstetricsPassKS_4": "“Pass” if more than 80% of mothers giving birth vaginally, and 50% of mothers having C-section answer Yes",
-    "obstetricsPassKS_5": "“Pass” if more than 90% of mothers giving birth vaginally and having C-section answer No",
-    "obstetricsPassKS_6": "“Pass” if more than 80% of mothers giving birth vaginally and having C-section answer Yes",
-    "obstetricsPassKS_7": "“Pass” if 100% mothers giving birth vaginally and having C-section answer No (excluding cases specifically prescribed by doctors)",
-    "obstetricsPassKS_8": "“Pass” if 100% % mothers giving birth vaginally and having C-section answer No"
+    "obstetricsPassKS_1": "“Pass” if more than 80% of vaginal cases and 50% of C-section cases answered “skin to skin contact was implemented immediately”",
+    "obstetricsPassKS_2": "“Pass” if more than 80% of vaginal cases and 50% of C-section cases answered “More than 90 minutes”",
+    "obstetricsPassKS_3": "“Pass” if more than 95% of vaginal cases answered that their child was returned to stay with them immediately after birth. ",
+    "obstetricsPassKS_4": "“Pass” if more than 80% of vaginal cases and 50% of C-section breastfeed within 60 minutes after birth.",
+    "obstetricsPassKS_5": "“Pass” if more than 90% of vaginal cases and C-section cases only breastfeed the baby during hospital stay.",
+    "obstetricsPassKS_6": "“Pass” if more than 80% of vaginal cases and C-section cases received breastfeeding counseling during hospital stay.",
+    "obstetricsPassKS_7": "“Pass” if 100% among vaginal cases and C-section cases “Didn’t receive formula milk counseling from health worker” (except as correctly prescribed by doctors)",
+    "obstetricsPassKS_8": "“Pass” if 100% among vaginal cases and C-section cases “Didn’t see any forms of formula milk substitutes in the hospital”"
   },
   "screen": {
     "surveyResults": "Statistics",
@@ -90,10 +90,10 @@
   },
   "export": {
     "content": "Content",
-    "criteria": "Criteria",
-    "Assessment": "Assessment (Pass/Fail)",
+    "criteria": "Passing criteria",
+    "Assessment": "Evaluation (Pass/Do not pass)",
     "conclusion": "conclusion",
-    "conclusionContent": "Pass if all of the above criteria are met"
+    "conclusionContent": "“Pass” if all criteria are “Pass” "
   },
   "document": {
     "download": "Download"

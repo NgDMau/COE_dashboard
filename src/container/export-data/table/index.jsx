@@ -71,7 +71,7 @@ const TableExport = () => {
   return (
     <TableExportWrapper>
       <HeaderExport />
-      <div className="quarter">Quý {dashboardData?.time[currentQuarter]}</div>
+      <div className="quarter">Quarter {dashboardData?.time[currentQuarter]}</div>
       <div className="header-table">
         <div className="content">{t("export.content")}</div>
         <div className="criteria">{t("export.criteria")}</div>
