@@ -34,7 +34,13 @@
     "obstetricsPassKS_5": "“Đạt” nếu trên 90% bà mẹ cả sinh thường và sinh mổ chỉ cho trẻ bú sữa mẹ",
     "obstetricsPassKS_6": "“Đạt” nếu trên 80% bà mẹ sinh thườngvà sinh mổ được cán bộ y tế tại bệnh viện hướng dẫn về cách cho con bú.",
     "obstetricsPassKS_7": "“Đạt” nếu 100% bà mẹ cả sinh thường và sinh mổ trả lời “Không” nhận được tư vấn sử dụng sữa công thức từ CBYT (trừ các trường hợp được chỉ định)",
-    "obstetricsPassKS_8": "“Đạt” nếu 100% bà mẹ cả sinh thường và sinh mổ phản hồi “Không” thấy trong bệnh viện có bất kỳ hình thức quảng cáo, tiếp thị sữa công thức."
+    "obstetricsPassKS_8": "“Đạt” nếu 100% bà mẹ cả sinh thường và sinh mổ phản hồi “Không” thấy trong bệnh viện có bất kỳ hình thức quảng cáo, tiếp thị sữa công thức.",
+    "radar_1": "Da kề da đủ 90 phút",
+    "radar_2": "Bú sớm sau sinh",
+    "radar_3": "Bú mẹ hoàn toàn trong thời gian ở viện",
+    "radar_4": "Tư vấn nuôi con bằng sữa mẹ",
+    "radar_5": "Tuân thủ Nghị định 100",
+    "radar_6": "Tư vấn nuôi con bằng sữa mẹ"
   },
   "screen": {
     "surveyResults": "Kết quả khảo sát",

@@ -34,7 +34,13 @@
     "obstetricsPassKS_5": "“Pass” if more than 90% of vaginal cases and C-section cases only breastfeed the baby during hospital stay.",
     "obstetricsPassKS_6": "“Pass” if more than 80% of vaginal cases and C-section cases received breastfeeding counseling during hospital stay.",
     "obstetricsPassKS_7": "“Pass” if 100% among vaginal cases and C-section cases “Didn’t receive formula milk counseling from health worker” (except as correctly prescribed by doctors)",
-    "obstetricsPassKS_8": "“Pass” if 100% among vaginal cases and C-section cases “Didn’t see any forms of formula milk substitutes in the hospital”"
+    "obstetricsPassKS_8": "“Pass” if 100% among vaginal cases and C-section cases “Didn’t see any forms of formula milk substitutes in the hospital”",
+    "radar_1": "Prolonged skin to skin contact",
+    "radar_2": "Early initial breastfeeding",
+    "radar_3": "Exclusive breastfeeding during hospital stay",
+    "radar_4": "Breastfeeding counseling",
+    "radar_5": "Code compliance",
+    "radar_6": "Early initial breastfeeding"
   },
   "screen": {
     "surveyResults": "Statistics",
