@@ -16,13 +16,13 @@ export const TableExportWrapper = styled.div`
     border: 1px solid #000;
     font-weight: 600;
     .content {
-      width: 25%;
+      width: 35%;
       padding: 10px;
       text-align: center;
       border-right: 1px solid #000;
     }
     .criteria {
-      width: 60%;
+      width: 50%;
       padding: 10px;
       text-align: center;
       border-right: 1px solid #000;
@@ -41,12 +41,12 @@ export const TableExportWrapper = styled.div`
     border-top: none;
     font-weight: 600;
     .content {
-      width: 25%;
+      width: 35%;
       padding: 6px;
       border-right: 1px solid #000;
     }
     .criteria {
-      width: 60%;
+      width: 50%;
       padding: 6px;
       border-right: 1px solid #000;
       font-style: italic;
@@ -67,7 +67,7 @@ export const TableExportWrapper = styled.div`
     border-top: none;
     font-weight: 600;
     .content {
-      width: 25%;
+      width: 35%;
       padding: 10px;
       border-right: 1px solid #000;
       display: flex;
@@ -75,7 +75,7 @@ export const TableExportWrapper = styled.div`
       justify-content: center;
     }
     .criteria {
-      width: 60%;
+      width: 50%;
       padding: 10px;
       border-right: 1px solid #000;
       font-style: italic;
