@@ -1,7 +1,6 @@
 import React from "react";
 import { useMemo } from "react";
 import HeaderExport from "../header";
-import { dataExport } from "./fakeData";
 import { TableExportWrapper } from "./styled";
 import close from "../../../assets/born/close.png";
 import accept from "../../../assets/born/accept.png";

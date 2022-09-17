@@ -19,8 +19,7 @@ const RootRouter = function () {
   const dispatch = useDispatch();
   var coeSocket = null;
   const AUTH_TOKEN = token;
-  const COE_WS_URL =
-    "wss://" + "fe5e-103-168-58-73.ap.ngrok.io" + "/ws/data/" + "AnT" + "/";
+  const COE_WS_URL = "wss://fe5e-103-168-58-73.ap.ngrok.io/ws/data/AnT/";
   const SUB_PROTOCOL = ["Token", AUTH_TOKEN];
 
   function wsConnectionCOE(url, options, ws_message) {
@@ -53,7 +52,6 @@ const RootRouter = function () {
 
   useEffect(() => {
     if (token) {
-      console.log("11111111111");
       wsConnectionCOE(COE_WS_URL, SUB_PROTOCOL);
     }
   }, [token]);
@@ -71,8 +69,6 @@ const RootRouter = function () {
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/" element={<LoginPage />} />
-            {/* <Route path="/dashboard" element={<LoginPage />} /> */}
-            {/* <Route path="/apps" element={<AppsPage />} /> */}
           </Routes>
         )}
       </Suspense>

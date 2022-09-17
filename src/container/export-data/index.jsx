@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { ALL_DATA } from '../fakeData';
 import ChartExport from './chart';
 import RankExport from './rank';
 import { ExportWrapper } from './styled';

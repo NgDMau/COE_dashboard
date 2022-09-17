@@ -1,20 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
 import { InboxOutlined } from "@ant-design/icons";
-import {
-  Form,
-  Input,
-  Button,
-  Radio,
-  Select,
-  Cascader,
-  DatePicker,
-  InputNumber,
-  TreeSelect,
-  Switch,
-  Checkbox,
-  Upload,
-  message,
-} from "antd";
+import { DatePicker, message } from "antd";
 import {
   ButtonSave,
   ButtonUpdate,
@@ -22,12 +9,9 @@ import {
   FormWrapper,
   Title,
 } from "./styled";
-import Dragger from "antd/lib/upload/Dragger";
 import { linkApi } from "../../common/ngok";
 import { useEffect } from "react";
 import moment from "moment";
-const { RangePicker } = DatePicker;
-const { TextArea } = Input;
 
 const FormInputData = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -35,7 +19,7 @@ const FormInputData = () => {
   const [updating, setUpdating] = useState(false);
   const [hospital, setHospital] = useState(null);
   const [yearPicker, setyearPicker] = useState("");
-  console.log(moment(yearPicker).format("YYYY"));
+
   const props = {
     name: "file",
     multiple: true,
