@@ -11,7 +11,7 @@ const initialState = {
 };
 
 const dataSlice = createSlice({
-  name: "row_data",
+  name: "data",
   initialState,
   reducers: {
     storeSetListHasTag: (state, { payload }) => {

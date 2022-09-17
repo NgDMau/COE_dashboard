@@ -10,8 +10,14 @@ export const authPersistConfig = {
   whitelist: ["token"],
 };
 
+export const dataPersistConfig = {
+  key: "data",
+  storage: localStorage,
+  whitelist: ["citiesData", "hostPitals", "hospitalSelected"],
+};
+
 const rootReducer = combineReducers({
-  data: dataReducer,
+  data: persistReducer(dataPersistConfig, dataReducer),
   auth: persistReducer(authPersistConfig, authReducer),
 });
 

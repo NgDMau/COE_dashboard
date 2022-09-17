@@ -93,7 +93,9 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
   };
 
   useEffect(() => {
-    getCities();
+    if (citiesData?.length === 0) {
+      getCities();
+    }
   }, []);
 
   return (

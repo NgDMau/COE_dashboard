@@ -88,7 +88,6 @@ const AppContainer = ({ screen, title, setScreen }) => {
     },
   ];
 
-  const user = JSON.parse(localStorage.getItem("user"));
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
   const hospitalSelected = useSelector(
     (state) => state?.data?.hospitalSelected
@@ -103,7 +102,6 @@ const AppContainer = ({ screen, title, setScreen }) => {
       const response = await sendPost(
         `/dm/data/evaluation?hospital=${selectedCode}`
       );
-      console.log("responseresponse", response);
       if (response) {
         dispath(storeSetDashboardData(response));
       }
