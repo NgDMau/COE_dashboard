@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const authSlice = createSlice({
-  name: "row_data",
+  name: "auth",
   initialState,
   reducers: {
     storeSetToken: (state, { payload }) => {
