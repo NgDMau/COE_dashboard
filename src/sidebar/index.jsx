@@ -10,12 +10,15 @@ import logoutIcon from "../assets/icon/logout.png";
 import { Layout, Menu, Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { storeSetToken } from "../store/auth-reducer";
 
 const { Sider } = Layout;
 
 const AppSidebar = ({ screen, setScreen, setTitle }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
 
   const { confirm } = Modal;
@@ -36,6 +39,7 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
 
   const logout = () => {
     localStorage.removeItem("user");
+    dispatch(storeSetToken(null));
     navigate("/login");
   };
 

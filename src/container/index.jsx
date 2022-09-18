@@ -31,7 +31,7 @@ import {
   SpinWrapper,
 } from "./styled";
 import { useMemo } from "react";
-import { sendGet, sendPost } from "../api/axios";
+import { sendPost } from "../api/axios";
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const { t } = useTranslation();
