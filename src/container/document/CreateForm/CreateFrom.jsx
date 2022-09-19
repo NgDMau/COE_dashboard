@@ -10,6 +10,7 @@ import {
   DraggerFile,
   FormWrapper,
   Title,
+  TitleUpdateDoc,
   UploadWrapper,
 } from "../../FormInputData/styled";
 import { ButtonCustom } from "../styled";
@@ -82,6 +83,7 @@ const Createfrom = ({ selected, getDataDocument, setSelected }) => {
   return (
     <FormWrapper>
       <>
+        <TitleUpdateDoc>Create Document</TitleUpdateDoc>
         <Title>Document Name</Title>
         <Input
           placeholder="Document Name"

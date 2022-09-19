@@ -110,6 +110,7 @@ export const SelectWrapperDoc = styled.div`
   flex-direction: row;
 `;
 export const CreatefromWrapper = styled.div`
+  margin-top: -50px;
   width: 800px;
   height: 800px;
 `;
