@@ -1,10 +1,13 @@
-import { Select } from "antd";
+import { Button, Select } from "antd";
 import styled from "styled-components";
 
 export const DocumentWrapper = styled.div`
   width: 100%;
   background: none;
   display: flex;
+  .width-300 {
+    width: 300px;
+  }
   .document-container {
     width: fit-content;
     background-color: white;
@@ -100,4 +103,16 @@ export const SelectWrapper = styled.div`
     width: 20px;
     height: 20px;
   }
+`;
+export const SelectWrapperDoc = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+`;
+export const CreatefromWrapper = styled.div`
+  width: 800px;
+  height: 800px;
+`;
+export const ButtonCustom = styled(Button)`
+  margin-right: 12px;
 `;

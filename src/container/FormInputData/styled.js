@@ -19,6 +19,11 @@ export const ButtonUpdate = styled.div`
   text-decoration: underline;
   margin-left: 20px;
   font-size: 14px;
+  img {
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+  }
   :hover {
     color: green;
   }
@@ -48,5 +53,17 @@ export const FormWrapper = styled.div`
   .blue {
     margin-left: 8px;
     color: blue;
+  }
+`;
+export const UploadWrapper = styled.div`
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  img {
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
   }
 `;
