@@ -67,3 +67,8 @@ export const UploadWrapper = styled.div`
     height: 28px;
   }
 `;
+export const TitleUpdateDoc = styled.div`
+  font-size: 20px;
+  margin-top: 50px;
+  font-weight: 500;
+`;

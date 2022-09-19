@@ -8,6 +8,7 @@ import {
   DraggerFile,
   FormWrapper,
   Title,
+  TitleUpdateDoc,
   UploadWrapper,
 } from "./styled";
 import { linkApi } from "../../common/ngok";
@@ -142,8 +143,12 @@ const FormInputData = ({ selected }) => {
             hospital?.last_awarded_year || ""
           )}
         </span>
-        <ButtonUpdate onClick={() => setUpdating(!updating)}>
-          {!updating ? <img src={editIcon} alt="" /> : <span>Update</span>}
+        <ButtonUpdate>
+          {!updating ? (
+            <img src={editIcon} alt="" onClick={() => setUpdating(!updating)} />
+          ) : (
+            <span onClick={postData}>Update</span>
+          )}
         </ButtonUpdate>
       </div>
       <div className="Awarded ">
@@ -152,7 +157,7 @@ const FormInputData = ({ selected }) => {
       </div>
       {selected && (
         <>
-          {/* <Title>Last Awarded Year</Title> */}
+          <TitleUpdateDoc>Update Document</TitleUpdateDoc>
 
           <Title>Document Name</Title>
           <Input
