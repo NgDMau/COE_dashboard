@@ -37,7 +37,7 @@ const FormInputData = ({ selected }) => {
       "Content-Type": "application/x-www-form-urlencoded",
     });
     fetch(`${linkApi}/dm/data/hospital?code=61`, {
-      method: "POST",
+      method: "GET",
       headers: myHeaders,
     })
       .then((response) => response.json())

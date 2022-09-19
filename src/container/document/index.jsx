@@ -21,7 +21,7 @@ const Document = ({ title }) => {
   const [idIframe, setIdIframe] = useState("1");
   const [ListDoc, setListDoc] = useState([]);
   const [selected, setSelected] = useState("");
-  console.log("selectedselected", selected);
+
   const downLoadPdf = () => {
     window.open(`${linkApi}/dm/data/docs?id=${idIframe}`);
   };
