@@ -1,5 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { rowData } from "../../container/row-data/fakeData";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   token: null,
@@ -7,7 +6,7 @@ const initialState = {
 };
 
 const authSlice = createSlice({
-  name: "row_data",
+  name: "auth",
   initialState,
   reducers: {
     storeSetToken: (state, { payload }) => {

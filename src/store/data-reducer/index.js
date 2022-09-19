@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { rowData } from "../../container/row-data/fakeData";
 
 const initialState = {
@@ -11,7 +11,7 @@ const initialState = {
 };
 
 const dataSlice = createSlice({
-  name: "row_data",
+  name: "data",
   initialState,
   reducers: {
     storeSetListHasTag: (state, { payload }) => {

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useMemo } from "react";
 import { useState } from "react";
@@ -19,7 +20,6 @@ import {
   storeSethospitalSelected,
 } from "../../store/data-reducer";
 import { useTranslation } from "react-i18next";
-import { ButtonDownload } from "../../container/document/styled";
 
 const FilterComponent = ({ disabled, screen, setScreen }) => {
   const { RangePicker } = DatePicker;
@@ -93,7 +93,9 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
   };
 
   useEffect(() => {
-    getCities();
+    if (citiesData?.length === 0) {
+      getCities();
+    }
   }, []);
 
   return (
