@@ -1,5 +1,5 @@
 import React from "react";
-import { DocumentWrapper } from "./styled";
+import { DocumentWrapper, SelectWrapper } from "./styled";
 import download from "../../assets/icon/download.gif";
 import { Select } from "antd";
 import { listDocument } from "../../dashboard/report-form/fakeData";
@@ -7,6 +7,7 @@ import { useState } from "react";
 import { linkApi } from "../../common/ngok";
 import { useTranslation } from "react-i18next";
 import FormInputData from "../FormInputData/FormInputData";
+import editIcon from "../../assets/icon/edit-text.png";
 
 const Document = ({ title }) => {
   const { t } = useTranslation();
@@ -31,7 +32,12 @@ const Document = ({ title }) => {
             {listDocument.map((element, index) => {
               return (
                 <Select.Option key={String(index)}>
-                  {index + 1}. {element}
+                  <SelectWrapper>
+                    <div>
+                      {index + 1}. {element}
+                    </div>
+                    <img src={editIcon} alt="" />
+                  </SelectWrapper>
                 </Select.Option>
               );
             })}

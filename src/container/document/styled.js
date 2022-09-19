@@ -1,3 +1,4 @@
+import { Select } from "antd";
 import styled from "styled-components";
 
 export const DocumentWrapper = styled.div`
@@ -16,7 +17,7 @@ export const DocumentWrapper = styled.div`
       flex-direction: row;
       justify-content: space-between;
       .select-document {
-        width: 200px;
+        width: 250px;
       }
     }
     .document {
@@ -80,5 +81,23 @@ export const ButtonDownload = styled.div`
   :hover {
     color: green;
     cursor: pointer;
+  }
+`;
+export const SelectWrapper = styled.div`
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  div {
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  img {
+    width: 20px;
+    height: 20px;
   }
 `;
