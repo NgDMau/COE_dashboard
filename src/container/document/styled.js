@@ -1,9 +1,13 @@
+import { Button, Select } from "antd";
 import styled from "styled-components";
 
 export const DocumentWrapper = styled.div`
   width: 100%;
   background: none;
   display: flex;
+  .width-300 {
+    width: 300px;
+  }
   .document-container {
     width: fit-content;
     background-color: white;
@@ -16,7 +20,7 @@ export const DocumentWrapper = styled.div`
       flex-direction: row;
       justify-content: space-between;
       .select-document {
-        width: 200px;
+        width: 250px;
       }
     }
     .document {
@@ -81,4 +85,35 @@ export const ButtonDownload = styled.div`
     color: green;
     cursor: pointer;
   }
+`;
+export const SelectWrapper = styled.div`
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  div {
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  img {
+    width: 20px;
+    height: 20px;
+  }
+`;
+export const SelectWrapperDoc = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+`;
+export const CreatefromWrapper = styled.div`
+  margin-top: -50px;
+  width: 800px;
+  height: 800px;
+`;
+export const ButtonCustom = styled(Button)`
+  margin-right: 12px;
 `;

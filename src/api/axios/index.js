@@ -37,7 +37,7 @@ axiosInstance.interceptors.response.use(
 );
 
 export const sendGet = (url, params) =>
-  axiosInstance.get(url, { params }).then((res) => res);
+  axiosInstance.get(url, params).then((res) => res);
 export const sendPost = (url, params) =>
   axiosInstance.post(url, params).then((res) => res);
 export const sendPut = (url, params) =>
