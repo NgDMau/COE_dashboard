@@ -98,13 +98,13 @@ const Document = ({ title }) => {
           //   width='800px'
           // />
           <object
-            data='https://coe.unopixel.io/media/documents/61/COE_Certification.pdf'
+            data={`https://coe.unopixel.io/media/${selected?.url}`}
             type='application/pdf'
             height='800px'
             width='800px'
           >
             <iframe
-              src='https://docs.google.com/viewer?url=https://coe.unopixel.io/media/documents/61/COE_Certification.pdf&embedded=true'
+              src={`https://docs.google.com/viewer?url=https://coe.unopixel.io/media/${selected?.url}&embedded=true`}
               height='800px'
               width='800px'
             />
