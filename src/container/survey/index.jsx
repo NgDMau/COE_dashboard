@@ -27,7 +27,7 @@ const SurveyLink = () => {
 
   const citiesDataMap = useMemo(() => {
     const data = listCity.map((element) => {
-      const find = citiesDefault.find((city) =>
+      const find = citiesDefault?.find((city) =>
         toNomal(element)
           .trim()
           .toLowerCase()
