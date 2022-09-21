@@ -91,12 +91,24 @@ const Document = ({ title }) => {
             />
           </CreatefromWrapper>
         ) : (
-          <iframe
-            title='iframe'
-            src={`https://docs.google.com/viewerng/viewer?url=https://fe5e-103-168-58-73.ap.ngrok.io/media/documents/61/COE_Certification.pdf&embedded=true`}
+          // <iframe
+          //   title='iframe'
+          //   src={`https://docs.google.com/viewerng/viewer?url=https://coe.unopixel.io/media/documents/61/COE_Certification.pdf&embedded=true`}
+          //   height='800px'
+          //   width='800px'
+          // />
+          <object
+            data='https://coe.unopixel.io/media/documents/61/COE_Certification.pdf'
+            type='application/pdf'
             height='800px'
             width='800px'
-          />
+          >
+            <iframe
+              src='https://docs.google.com/viewer?url=https://coe.unopixel.io/media/documents/61/COE_Certification.pdf&embedded=true'
+              height='800px'
+              width='800px'
+            />
+          </object>
         )}
       </div>
       <FormInputData selected={selected} />
