@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from "react";
-import { InboxOutlined, UploadOutlined } from "@ant-design/icons";
-import { Button, DatePicker, Input, message, Row, Upload } from "antd";
+import React, { useState } from 'react';
+import { InboxOutlined, UploadOutlined } from '@ant-design/icons';
+import { Button, DatePicker, Input, message, Row, Upload } from 'antd';
 import {
   ButtonSave,
   ButtonUpdate,
@@ -10,34 +10,34 @@ import {
   Title,
   TitleUpdateDoc,
   UploadWrapper,
-} from "./styled";
-import { linkApi } from "../../common/ngok";
-import { useEffect } from "react";
-import moment from "moment";
-import editIcon from "../../assets/icon/edit-text.png";
-import deleteIcon from "../../assets/icon/delete.png";
-import TextArea from "antd/lib/input/TextArea";
-import { ButtonCustom } from "../document/styled";
+} from './styled';
+import { linkApi } from '../../common/ngok';
+import { useEffect } from 'react';
+import moment from 'moment';
+import editIcon from '../../assets/icon/edit-text.png';
+import deleteIcon from '../../assets/icon/delete.png';
+import TextArea from 'antd/lib/input/TextArea';
+import { ButtonCustom } from '../document/styled';
 
 const FormInputData = ({ selected }) => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  console.log("useruseruser", user);
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log('useruseruser', user);
   const [updating, setUpdating] = useState(false);
   const [hospital, setHospital] = useState(null);
-  const [yearPicker, setyearPicker] = useState("");
+  const [yearPicker, setyearPicker] = useState('');
 
   const [fileList, setFileList] = useState([]);
   const [uploading, setUploading] = useState(false);
-  const [docName, setDocName] = useState("");
-  const [docNote, setDocNote] = useState("");
+  const [docName, setDocName] = useState('');
+  const [docNote, setDocNote] = useState('');
 
   const getDataAwarded = async () => {
     const myHeaders = new Headers({
-      Authorization: "Token " + user?.token,
-      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization: 'Token ' + user?.token,
+      'Content-Type': 'application/x-www-form-urlencoded',
     });
     fetch(`${linkApi}/dm/data/hospital?code=61`, {
-      method: "GET",
+      method: 'GET',
       headers: myHeaders,
     })
       .then((response) => response.json())
@@ -49,14 +49,14 @@ const FormInputData = ({ selected }) => {
 
   const postData = async () => {
     const myHeaders = new Headers({
-      Authorization: "Token " + user?.token,
-      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization: 'Token ' + user?.token,
+      'Content-Type': 'application/x-www-form-urlencoded',
     });
     fetch(`${linkApi}/dm/data/hospital?code=61`, {
-      method: "POST",
+      method: 'POST',
       headers: myHeaders,
       body: new URLSearchParams({
-        last_awarded_year: moment(yearPicker).format("YYYY"),
+        last_awarded_year: moment(yearPicker).format('YYYY'),
       }),
     })
       .then((response) => response.json())
@@ -64,7 +64,9 @@ const FormInputData = ({ selected }) => {
         setHospital(data?.hospital);
         message.success(`Updated successfully.`);
       })
-      .finally(() => {});
+      .finally(() => {
+        setUpdating(false);
+      });
   };
 
   useEffect(() => {
@@ -84,33 +86,30 @@ const FormInputData = ({ selected }) => {
   const handleUpload = () => {
     var myHeaders = new Headers();
     myHeaders.append(
-      "Authorization",
-      "Token c2692a2ab2eaf4d285a78d9cd3d67e108aeb2280"
+      'Authorization',
+      'Token c2692a2ab2eaf4d285a78d9cd3d67e108aeb2280'
     );
     myHeaders.append(
-      "Cookie",
-      "csrftoken=iBZFVxTK55EuqJtf8E8fQsPM7FPB9T9fvcwZd0p84fHQooETm1i99ycSF1NITwZn"
+      'Cookie',
+      'csrftoken=iBZFVxTK55EuqJtf8E8fQsPM7FPB9T9fvcwZd0p84fHQooETm1i99ycSF1NITwZn'
     );
 
     var formdata = new FormData();
-    formdata.append("docfile", fileList[0]);
-    formdata.append("docname", docName);
-    formdata.append("docnote", docNote);
+    formdata.append('docfile', fileList[0]);
+    formdata.append('docname', docName);
+    formdata.append('docnote', docNote);
 
     var requestOptions = {
-      method: "POST",
+      method: 'UPDATE',
       headers: myHeaders,
       body: formdata,
-      redirect: "follow",
+      redirect: 'follow',
     };
 
-    fetch(
-      "https://fe5e-103-168-58-73.ap.ngrok.io/dm/data/upload",
-      requestOptions
-    )
+    fetch('https://coe.unopixel.io/dm/data/upload', requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error));
   };
 
   const props = {
@@ -129,31 +128,31 @@ const FormInputData = ({ selected }) => {
 
   return (
     <FormWrapper>
-      <div className="Awarded ">
+      <div className='Awarded '>
         Last Awarded Year:
-        <span className="green">
-          {" "}
+        <span className='green'>
+          {' '}
           {updating ? (
             <DatePicker
-              picker="year"
-              defaultValue={moment("1-1-2020")}
+              picker='year'
+              defaultValue={moment(hospital?.last_awarded_year)}
               onChange={(e) => setyearPicker(e)}
             />
           ) : (
-            hospital?.last_awarded_year || ""
+            hospital?.last_awarded_year || ''
           )}
         </span>
         <ButtonUpdate>
           {!updating ? (
-            <img src={editIcon} alt="" onClick={() => setUpdating(!updating)} />
+            <img src={editIcon} alt='' onClick={() => setUpdating(!updating)} />
           ) : (
             <span onClick={postData}>Update</span>
           )}
         </ButtonUpdate>
       </div>
-      <div className="Awarded ">
+      <div className='Awarded '>
         Re-evaluation Year:
-        <span className="blue"> {hospital?.next_recheck_year || ""}</span>
+        <span className='blue'> {hospital?.next_recheck_year || ''}</span>
       </div>
       {selected && (
         <>
@@ -161,14 +160,14 @@ const FormInputData = ({ selected }) => {
 
           <Title>Document Name</Title>
           <Input
-            placeholder="Document Name"
+            placeholder='Document Name'
             value={docName}
             onChange={(e) => setDocName(e?.target?.value)}
           />
 
           <Title>Document Note</Title>
           <TextArea
-            placeholder="Document Note"
+            placeholder='Document Note'
             value={docNote}
             onChange={(e) => setDocNote(e?.target?.value)}
           />
@@ -181,10 +180,10 @@ const FormInputData = ({ selected }) => {
             value={fileList}
             {...props}
           >
-            <p className="ant-upload-drag-icon">
+            <p className='ant-upload-drag-icon'>
               <InboxOutlined />
             </p>
-            <p className="ant-upload-text">
+            <p className='ant-upload-text'>
               Click or drag file to this area to upload
             </p>
           </DraggerFile>
@@ -192,22 +191,22 @@ const FormInputData = ({ selected }) => {
           <UploadWrapper>
             <Row>
               <ButtonCustom
-                type="primary"
+                type='primary'
                 onClick={handleUpload}
                 disabled={fileList.length === 0 || !docName || !docNote}
                 loading={uploading}
               >
-                {uploading ? "Uploading" : "Save"}
+                {uploading ? 'Uploading' : 'Save'}
               </ButtonCustom>
               <ButtonCustom
-                type="primary"
+                type='primary'
                 onClick={handleUpload}
                 loading={uploading}
               >
-                {"Cancel"}
+                {'Cancel'}
               </ButtonCustom>
             </Row>
-            <img src={deleteIcon} alt="" />
+            <img src={deleteIcon} alt='' />
           </UploadWrapper>
         </>
       )}
