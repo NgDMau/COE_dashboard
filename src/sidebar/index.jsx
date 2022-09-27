@@ -41,7 +41,7 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
   const logout = () => {
     localStorage.removeItem("user");
     dispatch(storeSetToken(null));
-    navigate("/login");
+    navigate("/apps");
   };
 
   useEffect(() => {
