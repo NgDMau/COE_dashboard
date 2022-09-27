@@ -15,7 +15,7 @@
     "obstetricsKS_1": "Thực hiện da kề da",
     "obstetricsKS_2": "Thực hiện da kề da đủ 90 phút",
     "obstetricsKS_3": "Không cách ly mẹ con",
-    "obstetricsKS_4": "Hoàn thành cữ bú đầu tiên trong 1h đầu sau sinh",
+    "obstetricsKS_4": "Bú sớm trong 01 giờ đầu sau sinh",
     "obstetricsKS_5": "Bú mẹ hoàn toàn trong lúc ở viện",
     "obstetricsKS_6": "Nhân viên y tế tư vấn NCBSM cho sản phụ sau sinh",
     "obstetricsKS_7": "NVYT tư vấn dùng sữa bột/sữa công thức",
@@ -68,8 +68,8 @@
     "above": "Trên",
     "vaginalDelievery": "Sinh thường",
     "CSection": "Sinh mổ",
-    "caesareanRate": "Mức sinh mổ",
-    "normalRate": "Mức sinh thường",
+    "caesareanRate": "Ngưỡng sinh mổ",
+    "normalRate": "Ngưỡng sinh thường",
     "receivedTitle": "Đạt danh hiệu BV xuất sắc 2022"
   },
   "born": {
