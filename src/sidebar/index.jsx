@@ -7,6 +7,7 @@ import link from "../assets/icon/link.svg";
 import document from "../assets/icon/document.svg";
 import database from "../assets/icon/database.png";
 import logoutIcon from "../assets/icon/logout.png";
+import userIcon from "../assets/icon/user.png";
 import { Layout, Menu, Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -33,9 +34,9 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
     t("screen.surveyLink"),
     t("screen.rowData"),
     t("screen.regulations"),
-    // t("screen.inputForm"),
+    "User Manager",
   ];
-  const icons = [overview, link, database, document];
+  const icons = [overview, link, database, document, userIcon];
 
   const logout = () => {
     localStorage.removeItem("user");
@@ -62,6 +63,11 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
             mode="inline"
             defaultSelectedKeys={[screen]}
             onSelect={(e) => {
+              console.log("eeeeeeeeeeeeee", e);
+              if (Number(e.key) === 5) {
+                navigate("/users");
+                return;
+              }
               if (Number(e.key) === 4 && user?.is_superuser === "False") {
                 showConfirm();
               }

@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { storeSetDashboardData } from "./store/data-reducer";
 import { PersistGate } from "redux-persist/integration/react";
+import UserManager from "./pages/users";
+import StyleGlobal from "./styles";
 
 const RootRouter = function () {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -63,6 +65,7 @@ const RootRouter = function () {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/users" element={<UserManager />} />
           </Routes>
         ) : (
           <Routes>
@@ -81,6 +84,7 @@ function App() {
     <BrowserRouter>
       <Provider store={store}>
         <PersistGate persistor={persistor} loading={null}>
+          <StyleGlobal />
           <RootRouter />
         </PersistGate>
       </Provider>

@@ -68,6 +68,10 @@ export const SiderbarWrapper = styled.div`
       border-right: none;
     }
   }
+  img {
+    width: 16px;
+    height: 16px;
+  }
   .report {
     width: 100%;
     padding: 0.9em 3.5em;
