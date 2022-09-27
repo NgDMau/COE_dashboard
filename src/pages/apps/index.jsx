@@ -26,7 +26,7 @@ const AppsPage = () => {
         <img src={logo} alt='' />
       </div>
       <div className='content'>
-        <div className='item blue' onClick={() => navigate('/dashboard')}>
+        <div className='item blue' onClick={() => navigate('/login')}>
           {t('app.breastfeeding')}
         </div>
         <div className='item yellow' onClick={showConfirm}>

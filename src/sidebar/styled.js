@@ -19,7 +19,7 @@ export const ButtonLogout = styled.div`
 `;
 export const SiderbarWrapper = styled.div`
   background-color: white;
-  width: 280px;
+  width: 220px;
   display: flex;
   height: 100%;
   align-items: center;
@@ -37,8 +37,8 @@ export const SiderbarWrapper = styled.div`
   }
   .logo {
     width: 100%;
-    height: 96px;
-    padding-bottom: 30px;
+    height: 100px;
+    padding-bottom: 20px;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -48,7 +48,7 @@ export const SiderbarWrapper = styled.div`
     align-items: center;
     justify-content: center;
     img {
-      width: 200px;
+      width: 150px;
       height: auto;
       padding: 10px;
     }
