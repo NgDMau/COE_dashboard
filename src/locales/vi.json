@@ -97,7 +97,7 @@
   "export": {
     "content": "Nội dung",
     "criteria": "Tiêu chí",
-    "Assessment": "Đánh giá (Đạt/ không đạt)",
+    "Assessment": "Đánh giá (Đạt)",
     "conclusion": "kết luận",
     "conclusionContent": "Đạt nếu tất cả các tiêu chí trên đều đạt"
   },

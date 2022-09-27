@@ -97,7 +97,7 @@
   "export": {
     "content": "Content",
     "criteria": "Passing criteria",
-    "Assessment": "Evaluation (Pass/Do not pass)",
+    "Assessment": "Evaluation (Pass)",
     "conclusion": "conclusion",
     "conclusionContent": "“Pass” if all criteria are “Pass” "
   },

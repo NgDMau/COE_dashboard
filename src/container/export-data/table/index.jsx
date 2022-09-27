@@ -70,7 +70,9 @@ const TableExport = () => {
   return (
     <TableExportWrapper>
       <HeaderExport />
-      <div className="quarter">Quarter {dashboardData?.time[currentQuarter]}</div>
+      <div className="quarter">
+        Quarter {dashboardData?.time[currentQuarter]}
+      </div>
       <div className="header-table">
         <div className="content">{t("export.content")}</div>
         <div className="criteria">{t("export.criteria")}</div>
@@ -83,16 +85,9 @@ const TableExport = () => {
           </div>
           <div className="criteria">{dataElement.criteria}</div>
           <div className="achieve">
-            <img
-              alt=""
-              src={
-                dashboardData?.SK[index + 1]?.values?.evaluation[
-                  currentQuarter
-                ] === "passed"
-                  ? accept
-                  : close
-              }
-            />
+            {dashboardData?.SK[index + 1]?.values?.evaluation[
+              currentQuarter
+            ] === "passed" && <img alt="" src={accept} />}
           </div>
         </div>
       ))}
@@ -100,7 +95,7 @@ const TableExport = () => {
         <div className="content">{t("export.conclusion")}</div>
         <div className="criteria">{t("export.conclusionContent")}</div>
         <div className="achieve">
-          <img alt="" src={checkSuccess ? close : accept} />
+          {!checkSuccess && <img alt="" src={accept} />}
         </div>
       </div>
     </TableExportWrapper>
