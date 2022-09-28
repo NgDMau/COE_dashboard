@@ -15,7 +15,7 @@
     "obstetricsKS_1": "Thực hiện da kề da",
     "obstetricsKS_2": "Thực hiện da kề da đủ 90 phút",
     "obstetricsKS_3": "Không cách ly mẹ con",
-    "obstetricsKS_4": "Hoàn thành cữ bú đầu tiên trong 1h đầu sau sinh",
+    "obstetricsKS_4": "Bú sớm trong 01 giờ đầu sau sinh",
     "obstetricsKS_5": "Bú mẹ hoàn toàn trong lúc ở viện",
     "obstetricsKS_6": "Nhân viên y tế tư vấn NCBSM cho sản phụ sau sinh",
     "obstetricsKS_7": "NVYT tư vấn dùng sữa bột/sữa công thức",
@@ -47,7 +47,7 @@
     "home": "Trang chủ",
     "surveyLink": "Link khảo sát",
     "rowData": "Dữ liệu thô",
-    "regulations": "Quy định, tài liệu",
+    "regulations": "Tài liệu tham khảo",
     "exportReport": "Xuất báo cáo",
     "inputForm": "Nhập dữ liệu",
     "logout": "Đăng xuất"
@@ -68,8 +68,8 @@
     "above": "Trên",
     "vaginalDelievery": "Sinh thường",
     "CSection": "Sinh mổ",
-    "caesareanRate": "Mức sinh mổ",
-    "normalRate": "Mức sinh thường",
+    "caesareanRate": "Ngưỡng sinh mổ",
+    "normalRate": "Ngưỡng sinh thường",
     "receivedTitle": "Đạt danh hiệu BV xuất sắc 2022"
   },
   "born": {
@@ -97,7 +97,7 @@
   "export": {
     "content": "Nội dung",
     "criteria": "Tiêu chí",
-    "Assessment": "Đánh giá (Đạt/ không đạt)",
+    "Assessment": "Đánh giá (Đạt)",
     "conclusion": "kết luận",
     "conclusionContent": "Đạt nếu tất cả các tiêu chí trên đều đạt"
   },

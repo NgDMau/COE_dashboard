@@ -97,7 +97,7 @@
   "export": {
     "content": "Content",
     "criteria": "Passing criteria",
-    "Assessment": "Evaluation (Pass/Do not pass)",
+    "Assessment": "Evaluation (Pass)",
     "conclusion": "conclusion",
     "conclusionContent": "“Pass” if all criteria are “Pass” "
   },
@@ -114,8 +114,8 @@
     "score": "Score"
   },
   "app": {
-    "breastfeeding": "The hospital practices breastfeeding",
-    "breastMilkBank": "Breast milk bank",
+    "breastfeeding": "Centers of Excellence for Breastfeeding",
+    "breastMilkBank": "Human milk bank",
     "nationalMinorities": "National Target Program on Ethnic Minorities"
   }
 }

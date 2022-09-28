@@ -42,10 +42,7 @@ function RowComponent({ obstetric, index, elementST, elementSM, evaluation }) {
       )}
 
       <div className="w-10 border-none">
-        <img
-          alt=""
-          src={evaluation[currentQuarter] === "passed" ? accept : close}
-        />
+        {evaluation[currentQuarter] === "passed" && <img alt="" src={accept} />}
       </div>
     </div>
   );

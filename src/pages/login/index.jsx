@@ -56,7 +56,7 @@ const LoginPage = () => {
           dispatch(storeSetToken(data?.user?.token || null));
           localStorage.setItem("user", JSON.stringify(data?.user));
           localStorage.setItem("token", JSON.stringify(data?.user?.token));
-          navigate("/apps");
+          navigate("/dashboard");
         } else {
           setError("Wrong username or password");
         }
