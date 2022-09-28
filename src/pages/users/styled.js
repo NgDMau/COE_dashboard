@@ -2,7 +2,7 @@ import styled from "styled-components";
 import background from "../../assets/brand/bg-app.jpg";
 export const UserManagerWrapper = styled.div`
   background-image: url(${background});
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@ export const UserManagerWrapper = styled.div`
 `;
 export const LeftContainer = styled.div`
   margin-top: 30px;
-  width: 80%;
+  width: 90%;
 `;
 export const RightContainer = styled.div`
   width: 35%;
