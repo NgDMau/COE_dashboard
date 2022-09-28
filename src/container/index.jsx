@@ -32,6 +32,7 @@ import {
 } from './styled';
 import { useMemo } from 'react';
 import { sendGet, sendPost } from '../api/axios';
+import UserManager from './../pages/users/index';
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const { t } = useTranslation();
@@ -212,7 +213,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
       {screen === 3 && <RowData />}
       {screen === 4 && <Document title={title} />}
       {screen === 6 && <ExportData />}
-      {screen === 7 && <FormInputData />}
+      {screen === 7 && <UserManager />}
     </ContainerWrapper>
   );
 };

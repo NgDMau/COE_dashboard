@@ -32,9 +32,9 @@ const AppsPage = () => {
         <div className='item yellow' onClick={showConfirm}>
           {t('app.breastMilkBank')}
         </div>
-        {/* <div className='item green' onClick={showConfirm}>
+        <div className='item green' onClick={showConfirm}>
           {t('app.nationalMinorities')}
-        </div> */}
+        </div>
       </div>
     </AppsWrapper>
   );

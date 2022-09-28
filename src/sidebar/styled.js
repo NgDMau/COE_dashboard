@@ -48,7 +48,7 @@ export const SiderbarWrapper = styled.div`
     align-items: center;
     justify-content: center;
     img {
-      width: 150px;
+      width: 100px;
       height: auto;
       padding: 10px;
     }
