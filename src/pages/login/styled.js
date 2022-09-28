@@ -37,8 +37,6 @@ export const LoginWrapper = styled.div`
         .image {
           width: 240px;
           height: auto;
-          margin-right: -10px;
-          margin-top: -8px;
         }
       }
       .login {
