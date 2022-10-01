@@ -10,19 +10,18 @@ import { Select } from "antd";
 import { useState } from "react";
 import { linkApi } from "../../common/ngok";
 import { useTranslation } from "react-i18next";
-import FormInputData from "../FormInputData/FormInputData";
 import editIcon from "../../assets/icon/edit-text.png";
-import { sendGet, sendPost } from "../../api/axios";
-import Createfrom from "./CreateForm/CreateFrom";
+import { sendGet } from "../../api/axios";
 import { FileAddOutlined } from "@ant-design/icons";
 import ListHospital from "../../components/document/listHospital/ListHospital";
+import Createfrom from "../../components/document/CreateForm/CreateFrom";
 
 const Document = ({ title }) => {
   const { t } = useTranslation();
   const [idIframe, setIdIframe] = useState("1");
   const [ListDoc, setListDoc] = useState([]);
   const [selected, setSelected] = useState("");
-
+  console.log("ListDocListDoc", ListDoc);
   const downLoadPdf = () => {
     window.open(`${linkApi}/dm/data/docs?id=${idIframe}`);
   };
@@ -92,12 +91,6 @@ const Document = ({ title }) => {
             />
           </CreatefromWrapper>
         ) : (
-          // <iframe
-          //   title='iframe'
-          //   src={`https://docs.google.com/viewerng/viewer?url=https://coe.unopixel.io/media/documents/61/COE_Certification.pdf&embedded=true`}
-          //   height='800px'
-          //   width='800px'
-          // />
           <object
             data={`https://coe.unopixel.io/media/${selected?.url}`}
             type="application/pdf"

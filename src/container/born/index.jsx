@@ -1,10 +1,9 @@
 import React from "react";
-import { LinePoint } from "../line-chart/LinePoint";
 import { BornWrapper } from "./styled";
-import close from "../../assets/born/close.png";
 import accept from "../../assets/born/accept.png";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { LinePoint } from "../../components/common/line-chart/LinePoint";
 
 function RowComponent({ obstetric, index, elementST, elementSM, evaluation }) {
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
