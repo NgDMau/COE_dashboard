@@ -7,7 +7,7 @@ const ChartLink = ({ dataTableChart, selected }) => {
   const { t } = useTranslation();
   const options = {
     title: `Survey statistics - ${selected?.name}`,
-    chartArea: { width: "60%" },
+    chartArea: { width: "65%" },
     isStacked: true,
     // hAxis: {
     //   minValue: 0,

@@ -14,6 +14,15 @@ export const ButtonSelectCity = styled.div`
   }
 `;
 
+export const CityWrapper = styled.div`
+  font-weight: 500;
+`;
+export const LinkHeader = styled.div`
+  display: flex;
+  width: 60vw;
+  align-items: center;
+  justify-content: space-between;
+`;
 export const SurveyLinkWrapper = styled.div`
   width: 90%;
   background-size: cover;
@@ -57,6 +66,7 @@ export const SurveyLinkWrapper = styled.div`
         }
       }
       .chart {
+        width: 60vw;
         margin-top: 2em;
         border-radius: 5px;
       }
