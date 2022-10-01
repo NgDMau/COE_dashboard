@@ -1,12 +1,15 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
 import React, { useEffect } from "react";
 import {
+  ButtonDownLoadWrapper,
   CreatefromWrapper,
   DocumentWrapper,
+  NothingContent,
   SelectWrapper,
   SelectWrapperDoc,
 } from "./styled";
 import download from "../../assets/icon/download.gif";
-import { Select } from "antd";
+import { Select, Tooltip } from "antd";
 import { useState } from "react";
 import { linkApi } from "../../common/ngok";
 import { useTranslation } from "react-i18next";
@@ -23,7 +26,10 @@ const Document = ({ title }) => {
   const [selected, setSelected] = useState("");
   console.log("ListDocListDoc", ListDoc);
   const downLoadPdf = () => {
-    window.open(`${linkApi}/dm/data/docs?id=${idIframe}`);
+    if (!selected) {
+      return;
+    }
+    window.open(`https://coe.unopixel.io/media/${selected?.url}`);
   };
 
   const getDataDocument = async (callback) => {
@@ -67,30 +73,40 @@ const Document = ({ title }) => {
                 );
               })}
             </Select>
-            <FileAddOutlined
-              onClick={() => setSelected(null)}
-              style={{
-                fontSize: "25px",
-                marginLeft: "8px",
-                cursor: "pointer",
-              }}
-            />
+            <Tooltip placement="right" title="Upload a document">
+              <FileAddOutlined
+                onClick={() => setSelected(null)}
+                style={{
+                  fontSize: "25px",
+                  marginLeft: "8px",
+                  cursor: "pointer",
+                }}
+              />
+            </Tooltip>
           </SelectWrapperDoc>
-          <div className="title" onClick={downLoadPdf}>
+          <ButtonDownLoadWrapper onClick={downLoadPdf} disabled={!!selected}>
             <img src={download} alt="" />
             <span>{t("document.download")}</span>
-          </div>
+          </ButtonDownLoadWrapper>
         </div>
         {/* <img src={documentiImg} alt="" className="document" /> */}
-        {!selected ? (
+        {!selected && (
           <CreatefromWrapper>
-            <Createfrom
-              selected={selected}
-              getDataDocument={getDataDocument}
-              setSelected={setSelected}
-            />
+            {selected === null && (
+              <Createfrom
+                selected={selected}
+                getDataDocument={getDataDocument}
+                setSelected={setSelected}
+              />
+            )}
+            {selected === "" && (
+              <NothingContent>
+                Please search or upload a document
+              </NothingContent>
+            )}
           </CreatefromWrapper>
-        ) : (
+        )}
+        {selected && (
           <object
             data={`https://coe.unopixel.io/media/${selected?.url}`}
             type="application/pdf"

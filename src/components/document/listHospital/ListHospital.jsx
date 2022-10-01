@@ -1,4 +1,4 @@
-import { message, Select } from "antd";
+import { message, Select, Tooltip } from "antd";
 import moment from "moment";
 import React from "react";
 import { useEffect } from "react";
@@ -43,7 +43,6 @@ const ListHospital = () => {
   const onUpdate = async (year, name) => {
     // const response = await sendPost("/dm/data/hospital?code=61", {
     //   last_awarded_year: moment(year).format("YYYY"),
-    //   name,
     // });
     // console.log("response", response);
     const myHeaders = new Headers({
@@ -92,7 +91,9 @@ const ListHospital = () => {
             <Select.Option value={index}>{element?.name}</Select.Option>
           ))}
         </SelectHospitals>
-        <IconAdd src={getImagePath("more.png")} alt="" />
+        <Tooltip placement="right" title="Add awared hospital">
+          <IconAdd src={getImagePath("more.png")} alt="" />
+        </Tooltip>
       </SelectWrapper>
       {hospital?.map((element) => (
         <ItemHospital item={element} onUpdate={onUpdate} />
