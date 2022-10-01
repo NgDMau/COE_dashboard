@@ -165,7 +165,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
       <div className="header">
         <PathComponent screen={screen} setScreen={setScreen} />
         <FilterComponent
-          disabled={screen === 2 || screen === 4}
+          disabled={screen === 2 || screen === 4 || screen === 6}
           screen={screen}
           setScreen={setScreen}
         />

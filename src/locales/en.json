@@ -61,7 +61,7 @@
     "city": "City: ",
     "hospital": "Hospital: ",
     "generateReport": "Generate Report",
-    "exportReport": "Export Report"
+    "exportReport": "Download Report"
   },
   "chart": {
     "under": "Under",

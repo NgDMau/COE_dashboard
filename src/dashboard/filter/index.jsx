@@ -101,7 +101,7 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
   return (
     <FilterWrapper>
       <div className='adress'>
-        {screen === 5 && (
+        {screen === 6 && (
           <div className='back' onClick={() => setScreen(1)}>
             {t('filter.back')}
           </div>
