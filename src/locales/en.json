@@ -2,7 +2,7 @@
   "common": {
     "login": "Login",
     "signUp": "SignUp",
-    "username": "User Name",
+    "username": "Username",
     "password": "Password",
     "rememberMe": "Nhớ tài khoản",
     "noData": "Không có dữ liệu",
@@ -115,7 +115,7 @@
   },
   "app": {
     "breastfeeding": "Centers of Excellence for Breastfeeding",
-    "breastMilkBank": "Human milk bank",
+    "breastMilkBank": "Human Milk Bank",
     "nationalMinorities": "National Target Program on Ethnic Minorities"
   }
 }
