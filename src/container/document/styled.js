@@ -1,6 +1,32 @@
 import { Button, Select } from "antd";
 import styled from "styled-components";
 
+export const NothingContent = styled.div`
+  text-align: center;
+  margin-top: 300px;
+  font-size: 30px;
+  color: gray;
+`;
+export const ButtonDownLoadWrapper = styled.div`
+  border: 1px solid #ecf0f1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  cursor: ${(props) => (props?.disabled ? "pointer" : "no-drop")} !important;
+  font-weight: bold;
+  color: ${(props) => !props?.disabled && "gray"};
+  /* background-color: ${(props) => (!props?.disabled ? "gray" : "unset")}; */
+  img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  :hover {
+    color: ${(props) => (!props?.disabled ? "unset" : "green")};
+    cursor: pointer;
+  }
+`;
 export const DocumentWrapper = styled.div`
   width: 100%;
   background: none;

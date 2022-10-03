@@ -1,57 +1,57 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from 'react';
-import { InboxOutlined } from '@ant-design/icons';
-import { Input, Row } from 'antd';
+import React, { useState } from "react";
+import { InboxOutlined } from "@ant-design/icons";
+import { Input, Row } from "antd";
 
-import { useEffect } from 'react';
-import deleteIcon from '../../../assets/icon/delete.png';
-import TextArea from 'antd/lib/input/TextArea';
+import { useEffect } from "react";
+import TextArea from "antd/lib/input/TextArea";
+
+import { ButtonCustom } from "../../../container/document/styled";
 import {
   DraggerFile,
   FormWrapper,
   Title,
   TitleUpdateDoc,
   UploadWrapper,
-} from '../../FormInputData/styled';
-import { ButtonCustom } from '../styled';
+} from "../../../container/FormInputData/styled";
 
 const Createfrom = ({ selected, getDataDocument, setSelected }) => {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem("user"));
   const [fileList, setFileList] = useState([]);
   const [uploading, setUploading] = useState(false);
-  const [docName, setDocName] = useState('');
-  const [docNote, setDocNote] = useState('');
+  const [docName, setDocName] = useState("");
+  const [docNote, setDocNote] = useState("");
 
   useEffect(() => {
-    setDocName('');
-    setDocNote('');
+    setDocName("");
+    setDocNote("");
     setFileList([]);
   }, []);
 
   const handleUpload = () => {
     var myHeaders = new Headers();
     myHeaders.append(
-      'Authorization',
-      'Token c2692a2ab2eaf4d285a78d9cd3d67e108aeb2280'
+      "Authorization",
+      "Token c2692a2ab2eaf4d285a78d9cd3d67e108aeb2280"
     );
     myHeaders.append(
-      'Cookie',
-      'csrftoken=iBZFVxTK55EuqJtf8E8fQsPM7FPB9T9fvcwZd0p84fHQooETm1i99ycSF1NITwZn'
+      "Cookie",
+      "csrftoken=iBZFVxTK55EuqJtf8E8fQsPM7FPB9T9fvcwZd0p84fHQooETm1i99ycSF1NITwZn"
     );
 
     var formdata = new FormData();
-    formdata.append('docfile', fileList[0]);
-    formdata.append('docname', docName);
-    formdata.append('docnote', docNote);
+    formdata.append("docfile", fileList[0]);
+    formdata.append("docname", docName);
+    formdata.append("docnote", docNote);
 
     var requestOptions = {
-      method: 'POST',
+      method: "POST",
       headers: myHeaders,
       body: formdata,
-      redirect: 'follow',
+      redirect: "follow",
     };
 
-    fetch('https://coe.unopixel.io/dm/data/upload', requestOptions)
+    fetch("https://coe.unopixel.io/dm/data/upload", requestOptions)
       .then((response) => response.text())
       .then((result) =>
         getDataDocument((res) => {
@@ -60,7 +60,7 @@ const Createfrom = ({ selected, getDataDocument, setSelected }) => {
           }
         })
       )
-      .catch((error) => console.log('error', error));
+      .catch((error) => console.log("error", error));
   };
 
   const props = {
@@ -83,16 +83,16 @@ const Createfrom = ({ selected, getDataDocument, setSelected }) => {
         <TitleUpdateDoc>Create Document</TitleUpdateDoc>
         <Title>Document Name</Title>
         <Input
-          placeholder='Document Name'
-          className='width-300'
+          placeholder="Document Name"
+          className="width-300"
           value={docName}
           onChange={(e) => setDocName(e?.target?.value)}
         />
 
         <Title>Document Note</Title>
         <TextArea
-          placeholder='Document Note'
-          className='width-300'
+          placeholder="Document Note"
+          className="width-300"
           value={docNote}
           onChange={(e) => setDocNote(e?.target?.value)}
         />
@@ -105,10 +105,10 @@ const Createfrom = ({ selected, getDataDocument, setSelected }) => {
           value={fileList}
           {...props}
         >
-          <p className='ant-upload-drag-icon'>
+          <p className="ant-upload-drag-icon">
             <InboxOutlined />
           </p>
-          <p className='ant-upload-text'>
+          <p className="ant-upload-text">
             Click or drag file to this area to upload
           </p>
         </DraggerFile>
@@ -116,12 +116,12 @@ const Createfrom = ({ selected, getDataDocument, setSelected }) => {
         <UploadWrapper>
           <Row>
             <ButtonCustom
-              type='primary'
+              type="primary"
               onClick={handleUpload}
               disabled={fileList.length === 0 || !docName || !docNote}
               loading={uploading}
             >
-              {uploading ? 'Uploading' : 'Save'}
+              {uploading ? "Uploading" : "Save"}
             </ButtonCustom>
             {/* <ButtonCustom
               type="primary"

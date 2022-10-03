@@ -1,8 +1,8 @@
 import React from "react";
-import { LinePoint } from "../../line-chart/LinePoint";
 import HeaderExport from "../header";
 import { ChartExportWrapper } from "./styled";
 import { useSelector } from "react-redux";
+import { LinePoint } from "../../../components/common/line-chart/LinePoint";
 
 const ChartExport = ({ elementST, elementSM, criteria }) => {
   const dashboardData = useSelector((state) => state?.data?.dashboardData);

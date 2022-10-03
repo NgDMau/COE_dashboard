@@ -1,27 +1,27 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import Document from './document';
-import { Dropdown, Menu, Segmented, Spin } from 'antd';
+import Document from "./document";
+import { Dropdown, Menu, Segmented, Spin } from "antd";
 
-import i18next from 'i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
+import i18next from "i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
-import RowData from './row-data';
-import RadaChart from '../components/RadaChart/RadaChart';
-import SurveyLink from './survey';
-import ExportData from './export-data';
-import iconVietnam from '../assets/icon/vietnam.png';
-import VietNamChart from '../components/VietNamChart/VietNamChart';
-import BornComponent from './born';
-import FormInputData from './FormInputData/FormInputData';
-import FilterComponent from '../dashboard/filter';
-import iconUnitedStates from '../assets/icon/united-states.png';
+import RowData from "./row-data";
+import RadaChart from "../components/RadaChart/RadaChart";
+import SurveyLink from "./survey";
+import ExportData from "./export-data";
+import iconVietnam from "../assets/icon/vietnam.png";
+import VietNamChart from "../components/VietNamChart/VietNamChart";
+import BornComponent from "./born";
+import FormInputData from "./FormInputData/FormInputData";
+import FilterComponent from "../dashboard/filter";
+import iconUnitedStates from "../assets/icon/united-states.png";
 
-import { linkApi } from '../common/ngok';
-import { storeSetLanguage } from '../store/auth-reducer';
-import { storeSetDashboardData } from '../store/data-reducer';
+import { linkApi } from "../common/ngok";
+import { storeSetLanguage } from "../store/auth-reducer";
+import { storeSetDashboardData } from "../store/data-reducer";
 import {
   Buttonanguage,
   ChartWrapper,
@@ -29,10 +29,10 @@ import {
   IConLanguage,
   PathWrapper,
   SpinWrapper,
-} from './styled';
-import { useMemo } from 'react';
-import { sendGet, sendPost } from '../api/axios';
-import UserManager from './../pages/users/index';
+} from "./styled";
+import { useMemo } from "react";
+import { sendGet, sendPost } from "../api/axios";
+import UserManager from "./../pages/users/index";
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const { t } = useTranslation();
@@ -40,52 +40,52 @@ const AppContainer = ({ screen, title, setScreen }) => {
 
   const ObstetricsData = [
     {
-      criteria: t('obstetricsData.obstetricsKS_1'),
+      criteria: t("obstetricsData.obstetricsKS_1"),
     },
     {
-      criteria: t('obstetricsData.obstetricsKS_2'),
+      criteria: t("obstetricsData.obstetricsKS_2"),
     },
     {
-      criteria: t('obstetricsData.obstetricsKS_3'),
+      criteria: t("obstetricsData.obstetricsKS_3"),
     },
     {
-      criteria: t('obstetricsData.obstetricsKS_4'),
+      criteria: t("obstetricsData.obstetricsKS_4"),
     },
     {
-      criteria: t('obstetricsData.obstetricsKS_5'),
+      criteria: t("obstetricsData.obstetricsKS_5"),
     },
     {
-      criteria: t('obstetricsData.obstetricsKS_6'),
+      criteria: t("obstetricsData.obstetricsKS_6"),
     },
     {
-      criteria: t('obstetricsData.obstetricsKS_7'),
+      criteria: t("obstetricsData.obstetricsKS_7"),
     },
     {
-      criteria: t('obstetricsData.obstetricsKS_8'),
+      criteria: t("obstetricsData.obstetricsKS_8"),
     },
   ];
 
   const ChildData = [
     {
-      criteria: t('obstetricsData.obstetricsKN_1'),
+      criteria: t("obstetricsData.obstetricsKN_1"),
     },
     {
-      criteria: t('obstetricsData.obstetricsKN_2'),
+      criteria: t("obstetricsData.obstetricsKN_2"),
     },
     {
-      criteria: t('obstetricsData.obstetricsKN_3'),
+      criteria: t("obstetricsData.obstetricsKN_3"),
     },
     {
-      criteria: t('obstetricsData.obstetricsKN_4'),
+      criteria: t("obstetricsData.obstetricsKN_4"),
     },
     {
-      criteria: t('obstetricsData.obstetricsKN_5'),
+      criteria: t("obstetricsData.obstetricsKN_5"),
     },
     {
-      criteria: t('obstetricsData.obstetricsKN_6'),
+      criteria: t("obstetricsData.obstetricsKN_6"),
     },
     {
-      criteria: t('obstetricsData.obstetricsKN_7'),
+      criteria: t("obstetricsData.obstetricsKN_7"),
     },
   ];
 
@@ -134,18 +134,21 @@ const AppContainer = ({ screen, title, setScreen }) => {
   }, [dashboardData, value]);
 
   const isAllNaNK = useMemo(() => {
+    if (!dashboardData?.SK) {
+      return false;
+    }
     let sum = 0;
     [100, 100, 100, 100, 96, 100].forEach((element) => {
       if (
         dashboardData?.SK[element]?.values?.SM?.find(
-          (findElement) => findElement !== 'N/A'
+          (findElement) => findElement !== "N/A"
         )
       ) {
         sum++;
       }
       if (
         dashboardData?.SK[element]?.values?.ST?.find(
-          (findElement) => findElement !== 'N/A'
+          (findElement) => findElement !== "N/A"
         )
       ) {
         sum++;
@@ -159,10 +162,10 @@ const AppContainer = ({ screen, title, setScreen }) => {
 
   return (
     <ContainerWrapper>
-      <div className='header'>
+      <div className="header">
         <PathComponent screen={screen} setScreen={setScreen} />
         <FilterComponent
-          disabled={screen === 2 || screen === 4}
+          disabled={screen === 2 || screen === 4 || screen === 6}
           screen={screen}
           setScreen={setScreen}
         />
@@ -177,7 +180,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
           )}
           {isLoading && (
             <SpinWrapper>
-              <Spin size='large' />
+              <Spin size="large" />
             </SpinWrapper>
           )}
           {hospitalSelected && !isLoading ? (
@@ -187,7 +190,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
                 <RadaChart data={dataRadarSM} />
               </ChartWrapper>
               {isAllNaNK && <HeaderScreen value={value} setValue={setValue} />}
-              <div className='content-chart'>
+              <div className="content-chart">
                 {/* <h2>{value}</h2> */}
                 {value === 1 && (
                   <BornComponent
@@ -232,29 +235,29 @@ function PathComponent({ screen, setScreen }) {
     <Menu
       items={[
         {
-          key: '1',
+          key: "1",
           label: (
             <div
               onClick={() => {
-                i18next.changeLanguage('vi');
-                setLanguage('vi');
+                i18next.changeLanguage("vi");
+                setLanguage("vi");
               }}
             >
-              <IConLanguage src={iconVietnam} alt='' /> {t('common.vietNam')}
+              <IConLanguage src={iconVietnam} alt="" /> {t("common.vietNam")}
             </div>
           ),
         },
         {
-          key: '2',
+          key: "2",
           label: (
             <div
               onClick={() => {
-                i18next.changeLanguage('en');
-                setLanguage('en');
+                i18next.changeLanguage("en");
+                setLanguage("en");
               }}
             >
-              <IConLanguage src={iconUnitedStates} alt='' />{' '}
-              {t('common.engLish')}
+              <IConLanguage src={iconUnitedStates} alt="" />{" "}
+              {t("common.engLish")}
             </div>
           ),
         },
@@ -262,25 +265,25 @@ function PathComponent({ screen, setScreen }) {
     />
   );
   const screenFake = [
-    t('screen.surveyResults'),
-    t('screen.surveyLink'),
-    t('screen.rowData'),
-    t('screen.regulations'),
-    t('screen.exportReport'),
+    t("screen.surveyResults"),
+    t("screen.surveyLink"),
+    t("screen.rowData"),
+    t("screen.regulations"),
+    t("screen.exportReport"),
   ];
   return (
     <PathWrapper>
       <div>
-        <span onClick={() => setScreen(1)}>{t('screen.home')}</span> /{' '}
+        <span onClick={() => setScreen(1)}>{t("screen.home")}</span> /{" "}
         {screenFake[screen - 1]}
       </div>
-      <Dropdown overlay={menu} placement='bottomLeft'>
+      <Dropdown overlay={menu} placement="bottomLeft">
         <Buttonanguage>
-          {' '}
+          {" "}
           <IConLanguage
-            src={language === 'vi' ? iconVietnam : iconUnitedStates}
-            alt=''
-          />{' '}
+            src={language === "vi" ? iconVietnam : iconUnitedStates}
+            alt=""
+          />{" "}
           {language}
         </Buttonanguage>
       </Dropdown>
@@ -291,15 +294,15 @@ function PathComponent({ screen, setScreen }) {
 function HeaderScreen({ value, setValue }) {
   const { t } = useTranslation();
   return (
-    <div className='segmented'>
+    <div className="segmented">
       <Segmented
         options={[
-          { label: t('dashBoard.obstetricDept'), value: 1 },
-          { label: t('dashBoard.pediatricDept'), value: 2 },
+          { label: t("dashBoard.obstetricDept"), value: 1 },
+          { label: t("dashBoard.pediatricDept"), value: 2 },
         ]}
         value={value}
         onChange={setValue}
-        size='large'
+        size="large"
       />
     </div>
   );
