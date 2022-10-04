@@ -65,7 +65,11 @@ const RootRouter = function () {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/users" element={<UserManager />} />
+            <Route path="/survey_urls" element={<Dashboard />} />
+            <Route path="/raw_data" element={<Dashboard />} />
+            <Route path="/documents" element={<Dashboard />} />
+            <Route path="/user_management" element={<Dashboard />} />
+            <Route path="/exportData" element={<Dashboard />} />
           </Routes>
         ) : (
           <Routes>
