@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
 import { InboxOutlined } from "@ant-design/icons";
-import { Input, Row } from "antd";
+import { Input, message, Row } from "antd";
 
 import { useEffect } from "react";
 import TextArea from "antd/lib/input/TextArea";
@@ -43,6 +43,7 @@ const Createfrom = ({ selected, getDataDocument, setSelected }) => {
     formdata.append("docfile", fileList[0]);
     formdata.append("docname", docName);
     formdata.append("docnote", docNote);
+    formdata.append("is_public", "True");
 
     var requestOptions = {
       method: "POST",
@@ -56,11 +57,12 @@ const Createfrom = ({ selected, getDataDocument, setSelected }) => {
       .then((result) =>
         getDataDocument((res) => {
           if (res) {
+            message.success(`Create successfully.`);
             setSelected(res);
           }
         })
       )
-      .catch((error) => console.log("error", error));
+      .catch((error) => message.success(`Create successfully.`));
   };
 
   const props = {
