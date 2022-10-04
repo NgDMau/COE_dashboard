@@ -21,7 +21,9 @@ import { useTranslation } from "react-i18next";
 
 const SurveyLink = () => {
   const { t } = useTranslation();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
   const hospitalSelected = useSelector(
     (state) => state?.data?.hospitalSelected
   );
