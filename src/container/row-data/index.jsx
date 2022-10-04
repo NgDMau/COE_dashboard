@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useMemo } from "react";
 import { RowDataWrapper } from "./styled";
-import { Table } from "antd";
+import { Spin, Table } from "antd";
 import { useState } from "react";
 import { linkApi } from "../../common/ngok";
 
@@ -58,7 +58,7 @@ const RowData = React.memo(() => {
   return (
     <RowDataWrapper>
       <div>
-        {arr && (
+        {arr ? (
           <Table
             className="table-row-data"
             columns={arr}
@@ -84,6 +84,8 @@ const RowData = React.memo(() => {
               },
             }}
           />
+        ) : (
+          <Spin size="large" />
         )}
       </div>
     </RowDataWrapper>
