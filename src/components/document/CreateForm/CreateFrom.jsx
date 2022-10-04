@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
 import { InboxOutlined } from "@ant-design/icons";
-import { Input, Row } from "antd";
+import { Input, message, Row } from "antd";
 
 import { useEffect } from "react";
 import TextArea from "antd/lib/input/TextArea";
@@ -30,10 +30,7 @@ const Createfrom = ({ selected, getDataDocument, setSelected }) => {
 
   const handleUpload = () => {
     var myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      "Token c2692a2ab2eaf4d285a78d9cd3d67e108aeb2280"
-    );
+    myHeaders.append("Authorization", "Token " + user?.token);
     myHeaders.append(
       "Cookie",
       "csrftoken=iBZFVxTK55EuqJtf8E8fQsPM7FPB9T9fvcwZd0p84fHQooETm1i99ycSF1NITwZn"
@@ -43,6 +40,7 @@ const Createfrom = ({ selected, getDataDocument, setSelected }) => {
     formdata.append("docfile", fileList[0]);
     formdata.append("docname", docName);
     formdata.append("docnote", docNote);
+    formdata.append("is_public", "True");
 
     var requestOptions = {
       method: "POST",
@@ -51,16 +49,17 @@ const Createfrom = ({ selected, getDataDocument, setSelected }) => {
       redirect: "follow",
     };
 
-    fetch("https://coe.unopixel.io/dm/data/upload", requestOptions)
+    fetch("https://coe.unopixel.io/dm/data/docs", requestOptions)
       .then((response) => response.text())
       .then((result) =>
         getDataDocument((res) => {
           if (res) {
+            message.success(`Create successfully.`);
             setSelected(res);
           }
         })
       )
-      .catch((error) => console.log("error", error));
+      .catch((error) => message.success(`Create successfully.`));
   };
 
   const props = {

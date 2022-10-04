@@ -19,7 +19,7 @@ import FormInputData from "./FormInputData/FormInputData";
 import FilterComponent from "../dashboard/filter";
 import iconUnitedStates from "../assets/icon/united-states.png";
 
-import { linkApi } from "../common/ngok";
+import { linkApi, SCREEN_DEFAULT } from "../common/ngok";
 import { storeSetLanguage } from "../store/auth-reducer";
 import { storeSetDashboardData } from "../store/data-reducer";
 import {
@@ -33,10 +33,13 @@ import {
 import { useMemo } from "react";
 import { sendGet, sendPost } from "../api/axios";
 import UserManager from "./../pages/users/index";
+import { useLocation } from "react-router-dom";
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const { t } = useTranslation();
   const dispath = useDispatch();
+  const location = useLocation();
+  const patch = location?.pathname || "/dashboard";
 
   const ObstetricsData = [
     {
@@ -165,12 +168,16 @@ const AppContainer = ({ screen, title, setScreen }) => {
       <div className="header">
         <PathComponent screen={screen} setScreen={setScreen} />
         <FilterComponent
-          disabled={screen === 2 || screen === 4 || screen === 6}
+          disabled={
+            patch === SCREEN_DEFAULT[2] ||
+            patch === SCREEN_DEFAULT[4] ||
+            patch === SCREEN_DEFAULT[6]
+          }
           screen={screen}
           setScreen={setScreen}
         />
       </div>
-      {screen === 1 && (
+      {patch === SCREEN_DEFAULT[1] && (
         <div>
           {!hospitalSelected && (
             <ChartWrapper>
@@ -212,11 +219,11 @@ const AppContainer = ({ screen, title, setScreen }) => {
         </div>
       )}
 
-      {screen === 2 && <SurveyLink />}
-      {screen === 3 && <RowData />}
-      {screen === 4 && <Document title={title} />}
-      {screen === 6 && <ExportData />}
-      {screen === 7 && <UserManager />}
+      {patch === SCREEN_DEFAULT[2] && <SurveyLink />}
+      {patch === SCREEN_DEFAULT[3] && <RowData />}
+      {patch === SCREEN_DEFAULT[4] && <Document title={title} />}
+      {patch === SCREEN_DEFAULT[6] && <ExportData />}
+      {patch === SCREEN_DEFAULT[7] && <UserManager />}
     </ContainerWrapper>
   );
 };

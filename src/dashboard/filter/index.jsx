@@ -11,7 +11,7 @@ import html2pdf from "html2pdf.js";
 
 import { useSelector, useDispatch } from "react-redux";
 import { FilterWrapper } from "./styled";
-import { linkApi } from "../../common/ngok";
+import { linkApi, SCREEN_DEFAULT } from "../../common/ngok";
 
 import {
   storeSetCitiesData,
@@ -21,11 +21,15 @@ import {
   storeSetCitySelected,
 } from "../../store/data-reducer";
 import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const FilterComponent = ({ disabled, screen, setScreen }) => {
   const { RangePicker } = DatePicker;
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+  const patch = location?.pathname || "/dashboard";
   const hospitalSelected = useSelector(
     (state) => state?.data?.hospitalSelected
   );
@@ -102,13 +106,16 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
   return (
     <FilterWrapper>
       <div className="adress">
-        {screen === 6 && (
-          <div className="back" onClick={() => setScreen(1)}>
+        {patch === SCREEN_DEFAULT[6] && (
+          <div
+            className="back"
+            onClick={() => navigate(`${SCREEN_DEFAULT[1]}`)}
+          >
             {t("filter.back")}
           </div>
         )}
         {!disabled && <span>{t("filter.city")}</span>}
-        {!disabled || screen === 2 ? (
+        {!disabled || patch === SCREEN_DEFAULT[2] ? (
           <Select
             defaultValue={defaultCity || ""}
             className="select-city"
@@ -176,7 +183,7 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
             )}
           </div>
         ) : null}
-        {screen === 3 && <RangePicker className="datePicker" />}
+        {patch === SCREEN_DEFAULT[3] && <RangePicker className="datePicker" />}
         {/* {screen === 4 && (
           <ButtonDownload onClick={() => {}}>
             <span>Last Awarded Year: 15/9/2020</span>
@@ -189,13 +196,16 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
         )} */}
       </div>
 
-      {screen === 1 && dashboardData ? (
-        <div className="export" onClick={() => setScreen(6)}>
+      {patch === SCREEN_DEFAULT[1] && dashboardData ? (
+        <div
+          className="export"
+          onClick={() => navigate(`${SCREEN_DEFAULT[6]}`)}
+        >
           {t("filter.generateReport")}
         </div>
       ) : null}
 
-      {screen === 6 && (
+      {patch === SCREEN_DEFAULT[6] && (
         <div className="export" onClick={exportPdfData}>
           {t("filter.exportReport")}
         </div>

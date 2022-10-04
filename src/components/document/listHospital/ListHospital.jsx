@@ -69,6 +69,9 @@ const ListHospital = () => {
         ]);
         message.success(`Updated successfully.`);
       })
+      .catch(() => {
+        message.warning(`Updated error.`);
+      })
       .finally(() => {});
   };
 
