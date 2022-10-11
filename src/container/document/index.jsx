@@ -18,18 +18,18 @@ import { sendGet } from "../../api/axios";
 import { FileAddOutlined } from "@ant-design/icons";
 import ListHospital from "../../components/document/listHospital/ListHospital";
 import Createfrom from "../../components/document/CreateForm/CreateFrom";
+import FormInputData from "../FormInputData/FormInputData";
 
 const Document = ({ title }) => {
   const { t } = useTranslation();
-  const [idIframe, setIdIframe] = useState("1");
   const [ListDoc, setListDoc] = useState([]);
   const [selected, setSelected] = useState("");
-  console.log("ListDocListDoc", ListDoc);
+  const [editing, setEditing] = useState(false);
   const downLoadPdf = () => {
     if (!selected) {
       return;
     }
-    window.open(`https://coe.unopixel.io/media/${selected?.url}`);
+    window.open(`https://api.coe.bmte.vn/media/${selected?.url}`);
   };
 
   const getDataDocument = async (callback) => {
@@ -55,9 +55,8 @@ const Document = ({ title }) => {
               className="select-document"
               value={selected?.name}
               onChange={(e) => {
-                console.log("eeeee", e);
                 setSelected(ListDoc[Number(e)]);
-                setIdIframe(Number(e));
+                setEditing(false);
               }}
             >
               {ListDoc?.map((element, index) => {
@@ -67,7 +66,15 @@ const Document = ({ title }) => {
                       <div>
                         {index + 1}. {element?.name}
                       </div>
-                      <img src={editIcon} alt="" />
+                      <img
+                        src={editIcon}
+                        alt=""
+                        onClick={(e) => {
+                          setTimeout(() => {
+                            setEditing(true);
+                          }, 0);
+                        }}
+                      />
                     </SelectWrapper>
                   </Select.Option>
                 );
@@ -90,7 +97,7 @@ const Document = ({ title }) => {
           </ButtonDownLoadWrapper>
         </div>
         {/* <img src={documentiImg} alt="" className="document" /> */}
-        {!selected && (
+        {!selected || editing ? (
           <CreatefromWrapper>
             {selected === null && (
               <Createfrom
@@ -99,26 +106,38 @@ const Document = ({ title }) => {
                 setSelected={setSelected}
               />
             )}
+            {editing && (
+              <FormInputData
+                selected={selected}
+                setSelected={setSelected}
+                setEditing={setEditing}
+                getDataDocument={getDataDocument}
+              />
+            )}
             {selected === "" && (
               <NothingContent>
                 Please search or upload a document
               </NothingContent>
             )}
           </CreatefromWrapper>
+        ) : (
+          <div />
         )}
-        {selected && (
+        {selected && !editing ? (
           <object
-            data={`https://coe.unopixel.io/media/${selected?.url}`}
+            data={`https://api.coe.bmte.vn/media/${selected?.url}`}
             type="application/pdf"
             height="800px"
             width="800px"
           >
             <iframe
-              src={`https://docs.google.com/viewer?url=https://coe.unopixel.io/media/${selected?.url}&embedded=true`}
+              src={`https://docs.google.com/viewer?url=https://api.coe.bmte.vn/media/${selected?.url}&embedded=true`}
               height="800px"
               width="800px"
             />
           </object>
+        ) : (
+          <div />
         )}
       </div>
       {/* <FormInputData selected={selected} /> */}

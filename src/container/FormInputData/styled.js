@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Input } from "antd";
 import Dragger from "antd/lib/upload/Dragger";
 import styled from "styled-components";
 
@@ -70,5 +70,28 @@ export const UploadWrapper = styled.div`
 export const TitleUpdateDoc = styled.div`
   font-size: 20px;
   margin-top: 50px;
+  font-weight: 500;
+`;
+export const CeckName = styled.span``;
+export const SelectName = styled.span`
+  color: tomato;
+  font-weight: 500;
+`;
+export const InputDelete = styled(Input)`
+  margin-top: 12px;
+`;
+export const ConfirmWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 16px;
+`;
+export const DeleteButton = styled(Button)`
+  background-color: #74b9ff;
+  width: 200px;
+  font-weight: 500;
+`;
+export const CancelButton = styled(Button)`
+  width: 200px;
   font-weight: 500;
 `;

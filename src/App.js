@@ -23,7 +23,7 @@ const RootRouter = function () {
   const dispatch = useDispatch();
   var coeSocket = null;
   const AUTH_TOKEN = token;
-  const COE_WS_URL = "wss://coe.unopixel.io/ws/data/AnT/";
+  const COE_WS_URL = "wss://api.coe.bmte.vn/ws/data/AnT/";
   const SUB_PROTOCOL = ["Token", AUTH_TOKEN];
 
   function wsConnectionCOE(url, options, ws_message) {

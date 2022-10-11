@@ -1,79 +1,45 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
-import { InboxOutlined, UploadOutlined } from "@ant-design/icons";
-import { Button, DatePicker, Input, message, Row, Upload } from "antd";
+import { InboxOutlined } from "@ant-design/icons";
+import { Input, message, Row } from "antd";
 import {
-  ButtonSave,
-  ButtonUpdate,
+  CancelButton,
+  CeckName,
+  ConfirmWrapper,
+  DeleteButton,
   DraggerFile,
   FormWrapper,
+  InputDelete,
+  SelectName,
   Title,
   TitleUpdateDoc,
   UploadWrapper,
 } from "./styled";
-import { linkApi } from "../../common/ngok";
 import { useEffect } from "react";
-import moment from "moment";
-import editIcon from "../../assets/icon/edit-text.png";
 import deleteIcon from "../../assets/icon/delete.png";
 import TextArea from "antd/lib/input/TextArea";
 import { ButtonCustom } from "../document/styled";
+import ModalNormal from "../../components/common/modal";
+import { sendDelete } from "../../api/axios";
 
-const FormInputData = ({ selected }) => {
+const FormInputData = ({
+  selected,
+  setSelected,
+  setEditing,
+  getDataDocument,
+}) => {
+  console.log("setSelectedsetSelected", selected);
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
-  console.log("useruseruser", user);
-  const [updating, setUpdating] = useState(false);
-  const [hospital, setHospital] = useState(null);
-  const [yearPicker, setyearPicker] = useState("");
 
+  const [isShow, setIsShow] = useState(false);
   const [fileList, setFileList] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [docName, setDocName] = useState("");
   const [docNote, setDocNote] = useState("");
 
-  const getDataAwarded = async () => {
-    const myHeaders = new Headers({
-      Authorization: "Token " + user?.token,
-      "Content-Type": "application/x-www-form-urlencoded",
-    });
-    fetch(`${linkApi}/dm/data/hospital?code=61`, {
-      method: "GET",
-      headers: myHeaders,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setHospital(data?.hospital);
-      })
-      .finally(() => {});
-  };
-
-  const postData = async () => {
-    const myHeaders = new Headers({
-      Authorization: "Token " + user?.token,
-      "Content-Type": "application/x-www-form-urlencoded",
-    });
-    fetch(`${linkApi}/dm/data/hospital?code=61`, {
-      method: "POST",
-      headers: myHeaders,
-      body: new URLSearchParams({
-        last_awarded_year: moment(yearPicker).format("YYYY"),
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setHospital(data?.hospital);
-        message.success(`Updated successfully.`);
-      })
-      .finally(() => {
-        setUpdating(false);
-      });
-  };
-
-  useEffect(() => {
-    getDataAwarded();
-  }, []);
+  const [deleteCheck, setDeleteCheck] = useState("");
 
   useEffect(() => {
     setDocName(selected?.name);
@@ -85,77 +51,74 @@ const FormInputData = ({ selected }) => {
     ]);
   }, [selected]);
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     var myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      "Token c2692a2ab2eaf4d285a78d9cd3d67e108aeb2280"
-    );
+    myHeaders.append("Authorization", "Token " + user?.token);
     myHeaders.append(
       "Cookie",
       "csrftoken=iBZFVxTK55EuqJtf8E8fQsPM7FPB9T9fvcwZd0p84fHQooETm1i99ycSF1NITwZn"
     );
 
     var formdata = new FormData();
-    formdata.append("docfile", fileList[0]);
+    // formdata.append("docfile", fileList[0]);
     formdata.append("docname", docName);
     formdata.append("docnote", docNote);
+    formdata.append("is_public", "True");
 
     var requestOptions = {
-      method: "UPDATE",
+      method: "PATCH",
       headers: myHeaders,
       body: formdata,
       redirect: "follow",
     };
 
-    fetch("https://coe.unopixel.io/dm/data/upload", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
+    fetch(
+      `https://api.coe.bmte.vn/dm/data/docs?id=${selected?.id}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) =>
+        getDataDocument((res) => {
+          console.log("resultresultresult", result);
+          if (result?.status === "successful") {
+            message.success(`Edit successfully.`);
+            setSelected({
+              ...selected,
+              name: docName,
+              note: docNote,
+            });
+            setEditing(false);
+          }
+        })
+      )
+      .catch((error) => message.warning(`Edit Error.`));
   };
 
-  const props = {
-    onRemove: (file) => {
-      const index = fileList.indexOf(file);
-      const newFileList = fileList.slice();
-      newFileList.splice(index, 1);
-      setFileList(newFileList);
-    },
-    beforeUpload: (file) => {
-      setFileList([file]);
-      return false;
-    },
-    fileList,
+  const handleDelete = async () => {
+    try {
+      const response = await sendDelete(`/dm/data/docs?id=${selected?.id}`);
+      if (response) {
+        getDataDocument((res) => {
+          message.success(`Delete successfully.`);
+          setEditing(false);
+          setSelected("");
+        });
+      }
+    } catch (error) {
+      message.success(`Delete error.`);
+      setEditing(false);
+      setSelected("");
+    }
+  };
+
+  const props = {};
+  const cancelModal = () => {
+    setIsShow(false);
+    setDeleteCheck("");
   };
 
   return (
     <FormWrapper>
-      <div className="Awarded ">
-        Last Awarded Year:
-        <span className="green">
-          {" "}
-          {updating ? (
-            <DatePicker
-              picker="year"
-              defaultValue={moment(hospital?.last_awarded_year)}
-              onChange={(e) => setyearPicker(e)}
-            />
-          ) : (
-            hospital?.last_awarded_year || ""
-          )}
-        </span>
-        <ButtonUpdate>
-          {!updating ? (
-            <img src={editIcon} alt="" onClick={() => setUpdating(!updating)} />
-          ) : (
-            <span onClick={postData}>Update</span>
-          )}
-        </ButtonUpdate>
-      </div>
-      <div className="Awarded ">
-        Re-evaluation Year:
-        <span className="blue"> {hospital?.next_recheck_year || ""}</span>
-      </div>
       {selected && (
         <>
           <TitleUpdateDoc>Update Document</TitleUpdateDoc>
@@ -180,13 +143,14 @@ const FormInputData = ({ selected }) => {
             style={{ width: 300 }}
             maxCount={2}
             value={fileList}
+            disabled={true}
             {...props}
           >
             <p className="ant-upload-drag-icon">
               <InboxOutlined />
             </p>
             <p className="ant-upload-text">
-              Click or drag file to this area to upload
+              {/* Click or drag file to this area to upload */}
             </p>
           </DraggerFile>
 
@@ -202,16 +166,42 @@ const FormInputData = ({ selected }) => {
               </ButtonCustom>
               <ButtonCustom
                 type="primary"
-                onClick={handleUpload}
+                onClick={() => {
+                  setEditing(false);
+                }}
                 loading={uploading}
               >
                 {"Cancel"}
               </ButtonCustom>
             </Row>
-            <img src={deleteIcon} alt="" />
+            <img src={deleteIcon} alt="" onClick={() => setIsShow(true)} />
           </UploadWrapper>
         </>
       )}
+      <ModalNormal
+        visible={isShow}
+        setVisible={setIsShow}
+        onCancel={cancelModal}
+        title="Delete document"
+      >
+        <CeckName>
+          Please enter that name <SelectName>{selected?.name}</SelectName> to
+          confirm the deletion:
+        </CeckName>
+        <InputDelete
+          value={deleteCheck}
+          onChange={(e) => setDeleteCheck(e?.target?.value)}
+        />
+        <ConfirmWrapper>
+          <DeleteButton
+            disabled={deleteCheck !== selected?.name}
+            onClick={handleDelete}
+          >
+            Confirm
+          </DeleteButton>
+          <CancelButton onClick={cancelModal}>Cancel</CancelButton>
+        </ConfirmWrapper>
+      </ModalNormal>
     </FormWrapper>
   );
 };

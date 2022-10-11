@@ -11,13 +11,6 @@ const ModalWrapper = styled(Modal)`
     align-items: center;
     padding: 0 0 0 1.563rem;
   }
-  .ant-modal-content {
-    position: ${(props) => (props?.isBottom ? "fixed" : "unset")};
-    width: ${(props) => (props?.isBottom ? "100vw" : "unset")};
-    height: ${(props) => (props?.isBottom ? "90vh" : "unset")};
-    left: ${(props) => (props?.isBottom ? "0" : "unset")};
-    bottom: ${(props) => (props?.isBottom ? "0" : "unset")};
-  }
 
   .ant-modal-close {
     height: 3.125rem;
