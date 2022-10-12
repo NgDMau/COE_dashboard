@@ -6,7 +6,9 @@ import { useState } from "react";
 import { linkApi } from "../../common/ngok";
 
 const RowData = React.memo(() => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
 
   const [isLoading, setIsLoading] = useState(false);
   const [rowData, setRowData] = useState([]);

@@ -15,13 +15,15 @@ import UserManager from "./pages/users";
 import StyleGlobal from "./styles";
 
 const RootRouter = function () {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
   const token = useSelector((state) => state?.auth?.token);
   console.log("useruseruser", user);
   const dispatch = useDispatch();
   var coeSocket = null;
   const AUTH_TOKEN = token;
-  const COE_WS_URL = "wss://coe.unopixel.io/ws/data/AnT/";
+  const COE_WS_URL = "wss://api.coe.bmte.vn/ws/data/AnT/";
   const SUB_PROTOCOL = ["Token", AUTH_TOKEN];
 
   function wsConnectionCOE(url, options, ws_message) {

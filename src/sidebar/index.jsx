@@ -21,7 +21,9 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
 
   const { confirm } = Modal;
   const showConfirm = () => {

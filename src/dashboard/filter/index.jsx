@@ -37,7 +37,9 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
     useSelector((state) => state?.data?.dashboardData) || null;
   const currentQuarter =
     useSelector((state) => state?.data?.currentQuarter) || null;
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
   const citiesData = useSelector((state) => state.data.citiesData);
   const hostPitals = useSelector((state) => state.data.hostPitals);
   const [isLoading, setIsLoading] = useState(false);

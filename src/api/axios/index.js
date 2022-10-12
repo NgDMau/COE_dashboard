@@ -1,7 +1,5 @@
 import axios from "axios";
 import { linkApi } from "../../common/ngok";
-
-const user = JSON.parse(localStorage.getItem("user"));
 const axiosInstance = axios.create({
   baseURL: linkApi,
   headers: {
@@ -11,9 +9,12 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
+    const token = localStorage.getItem("token")
+      ? JSON.parse(localStorage.getItem("token"))
+      : null;
     const configTemp = { ...config };
     if (configTemp.headers) {
-      configTemp.headers.Authorization = `Token ${user?.token}`;
+      configTemp.headers.Authorization = `Token ${token}`;
     }
     return configTemp;
   },
