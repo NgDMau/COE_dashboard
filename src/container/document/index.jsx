@@ -9,22 +9,35 @@ import {
   SelectWrapperDoc,
 } from "./styled";
 import download from "../../assets/icon/download.gif";
-import { Select, Tooltip } from "antd";
+import { message, Select, Tooltip } from "antd";
 import { useState } from "react";
 import { linkApi } from "../../common/ngok";
 import { useTranslation } from "react-i18next";
 import editIcon from "../../assets/icon/edit-text.png";
-import { sendGet } from "../../api/axios";
+import { sendDelete, sendGet } from "../../api/axios";
 import { FileAddOutlined } from "@ant-design/icons";
 import ListHospital from "../../components/document/listHospital/ListHospital";
 import Createfrom from "../../components/document/CreateForm/CreateFrom";
 import FormInputData from "../FormInputData/FormInputData";
-
+import deleteIcon from "../../assets/icon/delete.png";
+import ModalNormal from "../../components/common/modal";
+import {
+  CancelButton,
+  CeckName,
+  ConfirmWrapper,
+  DeleteButton,
+  InputDelete,
+  SelectName,
+} from "../FormInputData/styled";
 const Document = ({ title }) => {
   const { t } = useTranslation();
   const [ListDoc, setListDoc] = useState([]);
   const [selected, setSelected] = useState("");
   const [editing, setEditing] = useState(false);
+
+  const [isShow, setIsShow] = useState(false);
+  const [deleteCheck, setDeleteCheck] = useState("");
+
   const downLoadPdf = () => {
     if (!selected) {
       return;
@@ -40,6 +53,30 @@ const Document = ({ title }) => {
         callback(response?.docs[response?.docs?.length - 1]);
       }
     } catch (error) {}
+  };
+
+  const cancelModal = () => {
+    setIsShow(false);
+    setDeleteCheck("");
+  };
+
+  const handleDelete = async () => {
+    try {
+      const response = await sendDelete(`/dm/data/docs?id=${selected?.id}`);
+      if (response) {
+        getDataDocument((res) => {
+          message.success(`Delete successfully.`);
+          setEditing(false);
+          setSelected("");
+        });
+      }
+    } catch (error) {
+      message.success(`Delete error.`);
+      setEditing(false);
+      setSelected("");
+    } finally {
+      setIsShow(false);
+    }
   };
 
   useEffect(() => {
@@ -72,6 +109,15 @@ const Document = ({ title }) => {
                         onClick={(e) => {
                           setTimeout(() => {
                             setEditing(true);
+                          }, 0);
+                        }}
+                      />
+                      <img
+                        src={deleteIcon}
+                        alt=""
+                        onClick={(e) => {
+                          setTimeout(() => {
+                            setIsShow(true);
                           }, 0);
                         }}
                       />
@@ -142,6 +188,30 @@ const Document = ({ title }) => {
       </div>
       {/* <FormInputData selected={selected} /> */}
       <ListHospital />
+      <ModalNormal
+        visible={isShow}
+        setVisible={setIsShow}
+        onCancel={cancelModal}
+        title="Delete document"
+      >
+        <CeckName>
+          Please enter that name <SelectName>{selected?.name}</SelectName> to
+          confirm the deletion:
+        </CeckName>
+        <InputDelete
+          value={deleteCheck}
+          onChange={(e) => setDeleteCheck(e?.target?.value)}
+        />
+        <ConfirmWrapper>
+          <DeleteButton
+            disabled={deleteCheck !== selected?.name}
+            onClick={handleDelete}
+          >
+            Confirm
+          </DeleteButton>
+          <CancelButton onClick={cancelModal}>Cancel</CancelButton>
+        </ConfirmWrapper>
+      </ModalNormal>
     </DocumentWrapper>
   );
 };

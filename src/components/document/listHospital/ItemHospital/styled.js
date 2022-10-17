@@ -38,9 +38,11 @@ export const InputName = styled(Input)`
   width: 180px;
 `;
 export const ButtonSave = styled(Button)`
+  background-color: #74b9ff;
   margin-left: 12px;
   :hover {
     border-color: green;
+    background-color: #74b9ff;
     color: green;
   }
 `;
