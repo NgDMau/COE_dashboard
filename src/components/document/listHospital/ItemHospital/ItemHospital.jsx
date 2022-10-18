@@ -1,7 +1,7 @@
-import { Button, Input } from "antd";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import getImagePath from "../../../../helpers/image";
+import { showConfirm } from "../../../../helpers/modal-confirm";
 import {
   ButtonCancel,
   ButtonSave,
@@ -14,7 +14,7 @@ import {
   NotUpdateWrapper,
 } from "./styled";
 
-const ItemHospital = React.memo(({ item, onUpdate }) => {
+const ItemHospital = React.memo(({ item, onUpdate, onDelete }) => {
   const [isUpdate, setIsUpdate] = useState(false);
   const [valueYear, setValueYear] = useState(item?.last_awarded_year || "");
   const [valueName, setValuename] = useState(item?.name || "");
@@ -45,7 +45,18 @@ const ItemHospital = React.memo(({ item, onUpdate }) => {
               alt=""
               onClick={() => setIsUpdate(true)}
             />
-            <ImageItem src={getImagePath("delete.png")} alt="" />
+            <ImageItem
+              src={getImagePath("delete.png")}
+              alt=""
+              onClick={() => {
+                showConfirm({
+                  title: "Do you want to delete " + item?.name + " ?",
+                  onOk: () => {
+                    onDelete();
+                  },
+                });
+              }}
+            />
           </ButtonWrapper>
         </NotUpdateWrapper>
       ) : (

@@ -40,7 +40,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
   const dispath = useDispatch();
   const location = useLocation();
   const patch = location?.pathname || "/dashboard";
-
+  console.log("location?.pathnamelocation?.pathname", location?.pathname);
   const ObstetricsData = [
     {
       criteria: t("obstetricsData.obstetricsKS_1"),
@@ -177,7 +177,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
           setScreen={setScreen}
         />
       </div>
-      {patch === SCREEN_DEFAULT[1] && (
+      {patch === SCREEN_DEFAULT[1] || patch === "/" ? (
         <div>
           {!hospitalSelected && (
             <ChartWrapper>
@@ -217,6 +217,8 @@ const AppContainer = ({ screen, title, setScreen }) => {
             </>
           ) : null}
         </div>
+      ) : (
+        <div />
       )}
 
       {patch === SCREEN_DEFAULT[2] && <SurveyLink />}

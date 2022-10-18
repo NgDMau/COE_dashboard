@@ -58,21 +58,23 @@ const ListHospital = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setHospital([
-          data?.hospital,
-          data?.hospital,
-          data?.hospital,
-          data?.hospital,
-          data?.hospital,
-          data?.hospital,
-          data?.hospital,
-        ]);
+        const arrUpdate = [];
+        for (let i = 0; i < hospital.length; i++) {
+          arrUpdate.push(data?.hospital);
+        }
+        setHospital(arrUpdate);
         message.success(`Updated successfully.`);
       })
       .catch(() => {
         message.warning(`Updated error.`);
       })
       .finally(() => {});
+  };
+
+  const onDelete = () => {
+    const newList = [...hospital];
+    newList.pop();
+    setHospital(newList);
   };
 
   return (
@@ -99,7 +101,7 @@ const ListHospital = () => {
         </Tooltip>
       </SelectWrapper>
       {hospital?.map((element) => (
-        <ItemHospital item={element} onUpdate={onUpdate} />
+        <ItemHospital item={element} onUpdate={onUpdate} onDelete={onDelete} />
       ))}
     </ListHospitalWrapper>
   );
