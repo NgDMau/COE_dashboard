@@ -43,6 +43,7 @@ export const TableChartWrapper = styled.div`
       border-right: 1px solid #000;
       text-align: center;
       font-weight: 500;
+      font-size: 12px;
     }
   }
 `;

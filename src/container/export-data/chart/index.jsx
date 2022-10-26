@@ -3,8 +3,9 @@ import HeaderExport from "../header";
 import { ChartExportWrapper } from "./styled";
 import { useSelector } from "react-redux";
 import { LinePoint } from "../../../components/common/line-chart/LinePoint";
+import TableChart from "./table-chart";
 
-const ChartExport = ({ elementST, elementSM, criteria }) => {
+const ChartExport = ({ elementST, elementSM, criteria, index }) => {
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
   return (
     <ChartExportWrapper>
@@ -17,7 +18,7 @@ const ChartExport = ({ elementST, elementSM, criteria }) => {
           time={dashboardData?.time}
         />
       </div>
-      {/* <TableChart /> */}
+      <TableChart />
     </ChartExportWrapper>
   );
 };
