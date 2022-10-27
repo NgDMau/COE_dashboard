@@ -6,6 +6,7 @@ import close from "../../../assets/born/close.png";
 import accept from "../../../assets/born/accept.png";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { TitleContainer } from "../chart/styled";
 
 const TableExport = () => {
   const { t } = useTranslation();
@@ -65,7 +66,6 @@ const TableExport = () => {
       ) || false
     );
   }, [currentQuarter, dashboardData]);
-  console.log("dashboardData?.SK", currentQuarter, dashboardData);
 
   return (
     <TableExportWrapper>

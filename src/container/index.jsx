@@ -40,7 +40,6 @@ const AppContainer = ({ screen, title, setScreen }) => {
   const dispath = useDispatch();
   const location = useLocation();
   const patch = location?.pathname || "/dashboard";
-  console.log("location?.pathnamelocation?.pathname", location?.pathname);
   const ObstetricsData = [
     {
       criteria: t("obstetricsData.obstetricsKS_1"),

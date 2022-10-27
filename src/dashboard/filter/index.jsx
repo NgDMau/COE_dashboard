@@ -52,17 +52,20 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
     );
   }, [hospitalSelected, citiesData]);
   const exportPdfData = () => {
-    var element = document.getElementById("exportDagta");
+    const element = document.getElementById("exportDagta");
+    const element2 = document.getElementById("exportDagta2");
+    console.log("objectobjectobject,", element);
     const opt = {
       margin: 1,
-      image: { type: "jpeg", quality: 0.98 },
+      image: { type: "jpeg", quality: 1 },
       filename: "KQKS_Q2_2022.pdf",
       html2canvas: { scale: 1 },
       jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
       pagebreak: { mode: ["legacy"] },
     };
-    html2pdf().set(opt);
-    html2pdf(element).save("KQKS_Q2_2022.pdf");
+    // html2pdf().set(opt);
+    html2pdf().set(opt).from(element).save("KQKS_KN_Q2_2022.pdf");
+    html2pdf().set(opt).from(element2).save("KQKS_KS_Q2_2022.pdf");
   };
 
   const getCities = async () => {

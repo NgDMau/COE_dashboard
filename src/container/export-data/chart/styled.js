@@ -11,3 +11,16 @@ export const ChartExportWrapper = styled.div`
     padding: 10px;
   }
 `;
+export const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  img {
+    width: 32px;
+    height: auto;
+    margin-right: 8px;
+    fill: blue;
+  }
+  font-weight: bold;
+  font-size: 16px;
+`;
