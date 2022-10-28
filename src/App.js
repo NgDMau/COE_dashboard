@@ -30,15 +30,15 @@ const RootRouter = function () {
     console.log("Connecting...");
     coeSocket = new WebSocket(url, options);
 
-    coeSocket.onopen = function (e) {
-      if (ws_message == "reload") {
-        coeSocket.send(
-          JSON.stringify({
-            message: ws_message,
-          })
-        );
-      }
-    };
+    // coeSocket.onopen = function (e) {
+    //   if (ws_message == "reload") {
+    //     coeSocket.send(
+    //       JSON.stringify({
+    //         message: ws_message,
+    //       })
+    //     );
+    //   }
+    // };
 
     coeSocket.onmessage = function (e) {
       const data = JSON.parse(e.data);
@@ -52,13 +52,25 @@ const RootRouter = function () {
         dispatch(storeSetDashboardData(message));
       }
     };
+
+
+    coeSocket.onclose = function(e) {
+      if (coeSocket.readyState == 3) {
+          coeSocket = null
+          setTimeout(function() {
+              wsConnectionCOE(url, options, 'reload')
+          }, 5000)
+      }
+    };
   }
 
   useEffect(() => {
     if (token) {
-      wsConnectionCOE(COE_WS_URL, SUB_PROTOCOL);
+      wsConnectionCOE(COE_WS_URL);
     }
   }, [token]);
+
+  // wsConnectionCOE(COE_WS_URL);
 
   return (
     <div>
