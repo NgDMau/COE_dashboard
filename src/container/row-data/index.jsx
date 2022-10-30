@@ -5,8 +5,12 @@ import { Spin, Table } from "antd";
 import { useState } from "react";
 import { linkApi } from "../../common/ngok";
 import { useSelector } from "react-redux";
+import { Excel } from "antd-table-saveas-excel";
+import { ButtonDownLoadWrapper } from "../document/styled";
+import { useTranslation } from "react-i18next";
 
 const RowData = React.memo(() => {
+  const { t } = useTranslation();
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
@@ -61,7 +65,7 @@ const RowData = React.memo(() => {
     );
   }, [rowData]);
 
-  const colums = [
+  const columns = [
     {
       title: "Tỉnh",
       dataIndex: "hosp_province",
@@ -442,14 +446,26 @@ const RowData = React.memo(() => {
     //   key: "action",
     // },
   ];
-
+  const handleClick = () => {
+    const excel = new Excel();
+    excel
+      .addSheet("test")
+      .addColumns(columns)
+      .addDataSource(rowData, {
+        str2Percent: true,
+      })
+      .saveAs("Excel.xlsx");
+  };
   return (
     <RowDataWrapper>
       <div>
+        <ButtonDownLoadWrapper onClick={handleClick} disabled={false}>
+          <span>{t("document.download")}</span>
+        </ButtonDownLoadWrapper>
         {arr ? (
           <Table
             className="table-row-data"
-            columns={colums}
+            columns={columns}
             dataSource={rowData}
             loading={isLoading}
             key={(recod) => recod.hosp_hospname}

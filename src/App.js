@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./App.css";
 import Dashboard from "./dashboard/index";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { Suspense } from "react";
 import LoginPage from "./pages/login";
 import AppsPage from "./pages/apps";
@@ -11,13 +11,13 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { storeSetDashboardData } from "./store/data-reducer";
 import { PersistGate } from "redux-persist/integration/react";
-import UserManager from "./pages/users";
 import StyleGlobal from "./styles";
 
 const RootRouter = function () {
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
+  const navigate = useNavigate();
   const token = useSelector((state) => state?.auth?.token);
   console.log("useruseruser", user);
   const dispatch = useDispatch();
@@ -57,6 +57,8 @@ const RootRouter = function () {
   useEffect(() => {
     if (token) {
       wsConnectionCOE(COE_WS_URL, SUB_PROTOCOL);
+    } else {
+      navigate("/login");
     }
   }, [token]);
 

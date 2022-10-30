@@ -13,7 +13,7 @@ export const ButtonDownLoadWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 6px 10px;
-  cursor: ${(props) => (props?.disabled ? "pointer" : "no-drop")} !important;
+  cursor: ${(props) => (props?.disabled ? "no-drop" : "pointer")} !important;
   font-weight: bold;
   color: ${(props) => !props?.disabled && "gray"};
   /* background-color: ${(props) => (!props?.disabled ? "gray" : "unset")}; */
