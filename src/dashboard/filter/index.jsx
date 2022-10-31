@@ -57,15 +57,15 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
     console.log("objectobjectobject,", element);
     const opt = {
       margin: 1,
-      image: { type: "jpeg", quality: 1 },
+      image: { type: "jpeg", quality: 0.98 },
       filename: "KQKS_Q2_2022.pdf",
       html2canvas: { scale: 1 },
       jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
       pagebreak: { mode: ["legacy"] },
     };
-    // html2pdf().set(opt);
-    html2pdf().set(opt).from(element).save("KQKS_KN_Q2_2022.pdf");
-    html2pdf().set(opt).from(element2).save("KQKS_KS_Q2_2022.pdf");
+    html2pdf().set(opt);
+    html2pdf().from(element).save("KQKS_KN_Q2_2022.pdf");
+    html2pdf().from(element2).save("KQKS_KS_Q2_2022.pdf");
   };
 
   const getCities = async () => {
