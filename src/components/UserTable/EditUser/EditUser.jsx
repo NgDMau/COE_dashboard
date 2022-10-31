@@ -1,5 +1,6 @@
-import { Input } from "antd";
-import React from "react";
+import { Input, Radio } from "antd";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { Title } from "../../../container/FormInputData/styled";
 import {
   ButtonCancel,
@@ -8,29 +9,111 @@ import {
   EditUserWrapper,
 } from "../styled";
 
-const EditUser = ({ setIsOpen }) => {
+const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
+  const [isSupperUser, setIsSupperUser] = useState(false);
+  const [useName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    // console.log(111111111111);
+    // if (modalData === true) {
+    //   setIsSupperUser(false);
+    //   setUserName("");
+    //   setEmail("");
+    //   setPassword("");
+    //   return;
+    // }
+    if (modalData && modalData !== false && modalData?.isEdit) {
+      setIsSupperUser(modalData?.is_superuser || false);
+      setUserName(modalData?.username || "");
+      setEmail(modalData?.email || "");
+    } else {
+      setIsSupperUser(false);
+      setUserName("");
+      setEmail("");
+      setPassword("");
+    }
+  }, [modalData]);
+
   return (
     <EditUserWrapper>
       <div>
-        <Title>Manager</Title>
-        <Input placeholder="Manager Name" />
+        <Title>Quyền tài khoản</Title>
+        <Radio
+          checked={isSupperUser}
+          onChange={(e) => setIsSupperUser(e?.target?.checked)}
+        >
+          superuser
+        </Radio>
+        <Radio
+          checked={!isSupperUser}
+          onChange={(e) => setIsSupperUser(!e?.target?.checked)}
+        >
+          staff
+        </Radio>
       </div>
       <div>
-        <Title>Role</Title>
-        <Input placeholder="Role" />
+        <Title>Tên tài khoản</Title>
+        <Input
+          placeholder="Tên tài khoản"
+          value={useName}
+          onChange={(e) => setUserName(e?.target?.value)}
+        />
       </div>
       <div>
-        <Title>Hospital</Title>
-        <Input placeholder="Hospital Name" />
+        <Title>Email</Title>
+        <Input
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e?.target?.value)}
+        />
       </div>
-      <div>
-        <Title>Address</Title>
-        <Input placeholder="Address Name" />
-      </div>
+      {!modalData?.isEdit && (
+        <div>
+          <Title>Mật khẩu</Title>
+          <Input
+            placeholder="Mật khẩu"
+            value={password}
+            type="password"
+            onChange={(e) => setPassword(e?.target?.value)}
+          />
+        </div>
+      )}
 
       <ButtonWrapper>
         <ButtonCancel onClick={() => setIsOpen(false)}>Cancel</ButtonCancel>
-        <ButtonSave onClick={() => setIsOpen(false)}>Save</ButtonSave>
+        <ButtonSave
+          onClick={() => {
+            if (modalData?.isEdit) {
+              updateUser({
+                password: modalData?.password,
+                username: useName,
+                email: email,
+                user_id: modalData?.id,
+                callback: () => {
+                  setIsOpen(false);
+                },
+              });
+            } else {
+              createUser({
+                password: password,
+                username: useName,
+                email: email,
+                role: isSupperUser ? "admin" : null,
+                callback: () => {
+                  setIsSupperUser(false);
+                  setUserName("");
+                  setEmail("");
+                  setPassword("");
+                  setIsOpen(false);
+                },
+              });
+            }
+          }}
+        >
+          Save
+        </ButtonSave>
       </ButtonWrapper>
     </EditUserWrapper>
   );
