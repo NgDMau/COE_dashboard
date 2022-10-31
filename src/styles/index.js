@@ -4,7 +4,6 @@ const StyleGlobal = createGlobalStyle`
   html,
   body, html {
       /* font-family: Roboto, "Segoe UI"; */
-      
   }
   .confirmCustom {
       position: absolute;
