@@ -8,6 +8,7 @@ const ModalNormal = ({
   children,
   maskClosable = false,
   title = "Modal",
+  afterClose,
   ...props
 }) => {
   return (
@@ -16,10 +17,11 @@ const ModalNormal = ({
       maskClosable={maskClosable}
       maskTransitionName=""
       className={className}
-      visible={visible}
+      open={visible}
       onOk={() => setVisible((prev) => !prev)}
+      afterClose={afterClose}
       onCancel={() => {
-        setVisible((prev) => !prev);
+        setVisible(false);
         if (onCancel) onCancel();
       }}
       footer={[]}

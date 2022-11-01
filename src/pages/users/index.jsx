@@ -6,7 +6,7 @@ const UserManager = () => {
   return (
     <UserManagerWrapper>
       <LeftContainer>
-        <TitleManagerUser>Manager User</TitleManagerUser>
+        <TitleManagerUser>Quản trị người dùng</TitleManagerUser>
         <UserTable />
       </LeftContainer>
     </UserManagerWrapper>

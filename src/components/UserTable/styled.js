@@ -72,3 +72,7 @@ export const ButtonSave = styled(Button)`
   height: 40px;
   background-color: #bdc3c7;
 `;
+export const BtnAddUser = styled(Button)`
+  background-color: #bdc3c7;
+  align-items: right;
+`;
