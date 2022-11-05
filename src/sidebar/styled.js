@@ -1,17 +1,18 @@
 import styled from "styled-components";
+import { rem } from "../helpers/rem/px-to-rem";
 
 export const ButtonLogout = styled.div`
   cursor: pointer;
   width: 100%;
-  padding-left: 40px;
-  margin-bottom: 30px;
+  padding-left: ${rem(40)};
+  margin-bottom: ${rem(30)};
   font-size: 16px;
   display: flex;
   align-items: center;
   img {
-    width: 22px;
+    width: ${rem(22)};
     height: auto;
-    margin-right: 6px;
+    margin-right: ${rem(6)};
   }
   :hover {
     color: #1890ff;
@@ -19,7 +20,7 @@ export const ButtonLogout = styled.div`
 `;
 export const SiderbarWrapper = styled.div`
   background-color: white;
-  width: 220px;
+  width: ${rem(222)};
   display: flex;
   height: 100%;
   align-items: center;
@@ -37,8 +38,8 @@ export const SiderbarWrapper = styled.div`
   }
   .logo {
     width: 100%;
-    height: 100px;
-    padding-bottom: 20px;
+    height: ${rem(100)};
+    padding-bottom: ${rem(20)};
     position: sticky;
     top: 0;
     z-index: 100;
@@ -48,16 +49,16 @@ export const SiderbarWrapper = styled.div`
     align-items: center;
     justify-content: center;
     img {
-      width: 100px;
+      width: ${rem(100)};
       height: auto;
-      padding: 10px;
+      padding: ${rem(10)};
     }
   }
   .title {
     border-top: 1px solid #dfe6e9;
     padding: 0.5em;
     width: 100%;
-    font-size: 22px;
+    font-size: ${rem(22)};
     cursor: pointer;
   }
   .title:hover {
@@ -69,8 +70,8 @@ export const SiderbarWrapper = styled.div`
     }
   }
   img {
-    width: 16px;
-    height: 16px;
+    width: ${rem(16)};
+    height: ${rem(16)};
   }
   .report {
     width: 100%;

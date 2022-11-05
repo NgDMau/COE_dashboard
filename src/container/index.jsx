@@ -24,6 +24,7 @@ import { storeSetLanguage } from "../store/auth-reducer";
 import { storeSetDashboardData } from "../store/data-reducer";
 import {
   Buttonanguage,
+  ChartContainerWrapper,
   ChartWrapper,
   ContainerWrapper,
   IConLanguage,
@@ -180,7 +181,24 @@ const AppContainer = ({ screen, title, setScreen }) => {
         <div>
           {!hospitalSelected && (
             <ChartWrapper>
-              <RadaChart data={[70, 70, 70, 70, 70, 70]} />
+              <ChartContainerWrapper>
+                <RadaChart
+                  data2={[70, 70, 70, 70, 70, 70]}
+                  title={t("chart.vaginalDelievery")}
+                />
+              </ChartContainerWrapper>
+              <ChartContainerWrapper>
+                <RadaChart
+                  data2={[70, 70, 70, 70, 70, 70]}
+                  title={t("chart.CSection")}
+                />
+              </ChartContainerWrapper>
+              <ChartContainerWrapper>
+                <RadaChart
+                  data2={[70, 70, 70, 70, 70, 70]}
+                  title={t("chart.pediatric")}
+                />
+              </ChartContainerWrapper>
               <VietNamChart />
             </ChartWrapper>
           )}
@@ -192,8 +210,16 @@ const AppContainer = ({ screen, title, setScreen }) => {
           {hospitalSelected && !isLoading ? (
             <>
               <ChartWrapper>
-                <RadaChart data={dataRadarST} isNomal />
-                <RadaChart data={dataRadarSM} />
+                <ChartContainerWrapper>
+                  <RadaChart
+                    data2={dataRadarST}
+                    isNomal
+                    title={t("chart.vaginalDelievery")}
+                  />
+                </ChartContainerWrapper>
+                <ChartContainerWrapper>
+                  <RadaChart data2={dataRadarSM} title={t("chart.CSection")} />
+                </ChartContainerWrapper>
               </ChartWrapper>
               {isAllNaNK && <HeaderScreen value={value} setValue={setValue} />}
               <div className="content-chart">

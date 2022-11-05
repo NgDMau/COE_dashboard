@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { rem } from "../../helpers/rem/px-to-rem";
 
 export const ButtonSelectCity = styled.div`
   display: flex;
@@ -9,8 +10,8 @@ export const ButtonSelectCity = styled.div`
     align-items: center;
   }
   img {
-    width: 30px;
-    height: 30px;
+    width: ${rem(30)};
+    height: ${rem(30)};
   }
 `;
 
@@ -26,17 +27,17 @@ export const LinkHeader = styled.div`
 export const SurveyLinkWrapper = styled.div`
   width: 90%;
   background-size: cover;
-  padding: 20px;
-  margin: 20px;
-  font-size: 20px;
+  padding: ${rem(20)};
+  margin: ${rem(20)};
+  font-size: ${rem(20)};
   .search-input {
-    margin-bottom: 20px;
+    margin-bottom: ${rem(20)};
   }
   .container {
     display: flex;
     .city-link {
       width: 20%;
-      font-size: 14px;
+      font-size: ${rem(14)};
       .link-container {
         display: flex;
         align-items: center;
@@ -75,11 +76,11 @@ export const SurveyLinkWrapper = styled.div`
         align-items: center;
         justify-content: center;
         width: 100%;
-        margin-top: 100px;
+        margin-top: ${rem(100)};
       }
     }
   }
   .select-hostpital {
-    width: 200px;
+    width: ${rem(200)};
   }
 `;

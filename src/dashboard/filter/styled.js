@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { rem } from "../../helpers/rem/px-to-rem";
 
 export const FilterWrapper = styled.div`
   width: 100%;
@@ -8,13 +9,13 @@ export const FilterWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
+  height: ${rem(60)};
   .back {
-    margin-right: 20px;
+    margin-right: ${rem(20)};
     cursor: pointer;
     height: fit-content;
     font-size: 500;
-    padding: 4px 12px;
+    padding: ${rem(4)} ${rem(12)};
     background-color: #54a0ff;
     border-radius: 5px;
     color: white;
@@ -35,7 +36,7 @@ export const FilterWrapper = styled.div`
     }
     .select-city {
       margin-left: 1em;
-      width: 200px;
+      width: ${rem(200)};
     }
     .hostpital {
       margin-left: 2em;
@@ -45,7 +46,7 @@ export const FilterWrapper = styled.div`
       width: 400px;
     }
     .datePicker {
-      margin-left: 40px;
+      margin-left: ${rem(40)};
     }
   }
   .fil-other {
@@ -53,17 +54,17 @@ export const FilterWrapper = styled.div`
     display: flex;
     align-items: center;
     .input-n {
-      width: 110px;
+      width: ${rem(110)};
       border-radius: 2;
       margin-right: 1em;
     }
     .a-style {
       background-color: white;
-      height: 30px;
+      height: ${rem(30)};
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 60px;
+      width: ${rem(60)};
       border-radius: 4px;
     }
     .information {
@@ -71,7 +72,7 @@ export const FilterWrapper = styled.div`
       margin-left: 0.5em;
     }
     .select-information {
-      width: 708px;
+      width: ${rem(708)};
     }
   }
   .export {
@@ -87,6 +88,6 @@ export const FilterWrapper = styled.div`
   box-shadow: 0 1px 2px -1px gray;
   .select-quarter {
     margin-left: 1em;
-    width: 100px;
+    width: ${rem(100)};
   }
 `;

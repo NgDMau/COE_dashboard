@@ -70,7 +70,8 @@
     "CSection": "Sinh mổ",
     "caesareanRate": "Mức đạt sinh mổ",
     "normalRate": "Mức đạt sinh thường",
-    "receivedTitle": "Đạt danh hiệu BV xuất sắc 2022"
+    "receivedTitle": "Đạt danh hiệu BV xuất sắc 2022",
+    "pediatric": "Khoa Nhi"
   },
   "born": {
     "criteria": "Tiêu chí",
@@ -114,8 +115,8 @@
     "score": "Điểm số"
   },
   "app": {
-    "breastfeeding": "Bệnh viện thực hành nuôi con bằng sữa mẹ",
+    "breastfeeding": "Bệnh viện thực hành nuôi con bằng sữa mẹ Xuất sắc",
     "breastMilkBank": "Ngân hàng sữa mẹ",
-    "nationalMinorities": "Chương trình mục tiêu Quốc gia về Dân Tộc thiểu số"
+    "nationalMinorities": "Chương trình mục tiêu Quốc gia Dân tộc thiểu số"
   }
 }
