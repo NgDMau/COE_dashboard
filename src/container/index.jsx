@@ -35,12 +35,14 @@ import { useMemo } from "react";
 import { sendGet, sendPost } from "../api/axios";
 import UserManager from "./../pages/users/index";
 import { useLocation } from "react-router-dom";
+import { showConfirm } from "../helpers/modal-confirm";
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const { t } = useTranslation();
   const dispath = useDispatch();
   const location = useLocation();
   const patch = location?.pathname || "/dashboard";
+  const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
   const ObstetricsData = [
     {
       criteria: t("obstetricsData.obstetricsKS_1"),
@@ -93,6 +95,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
   ];
 
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
+  console.log("@dashboardDatadashboardData", dashboardData);
   const hospitalSelected = useSelector(
     (state) => state?.data?.hospitalSelected
   );
@@ -120,37 +123,78 @@ const AppContainer = ({ screen, title, setScreen }) => {
     }
   }, [hospitalSelected]);
 
+  const checkValue = (dashboardDataProps, elementProps) => {
+    if (!dashboardDataProps) {
+      return 0;
+    }
+    if (
+      dashboardDataProps[currentQuarter] === "N/A" ||
+      !dashboardDataProps[currentQuarter]
+    ) {
+      return 0;
+    }
+    return value;
+  };
+
   const dataRadarSM = useMemo(() => {
-    // if (!dashboardData) {
-    return [86, 86, 100, 100, 100, 100];
-    // }
-    // const data = [1, 2, 3, 4, 5, 6]?.map((element) =>
-    //   value === 1
-    //     ? dashboardData?.SK[element]?.values?.SM[7]
-    //     : dashboardData?.NK[element]?.values?.SM[7]
-    // );
-    // return data || null;
-  }, [dashboardData, value]);
+    if (!dashboardData) {
+      return null;
+    }
+    const data =
+      [1, 2, 3, 4, 5, 6]?.map((element) => {
+        if (value === 1 && !dashboardData?.SK[element]?.values?.SM) {
+          return 0;
+        }
+        if (value === 2 && !dashboardData?.NK[element]?.values?.SM) {
+          return 0;
+        }
+        console.log(
+          "dashboardData?.SK[element]?.values?.SM[currentQuarter]dashboardData?.SK[element]?.values?.SM[currentQuarter]0",
+          dashboardData?.SK[element]?.values?.SM,
+          dashboardData?.NK[element]?.values?.SM,
+          value
+        );
+        return value === 1
+          ? checkValue(dashboardData?.SK[element]?.values?.SM) || 0
+          : checkValue(dashboardData?.NK[element]?.values?.SM) || 0;
+      }) || [];
+    return data || null;
+  }, [dashboardData, value, currentQuarter]);
 
   const dataRadarST = useMemo(() => {
-    return [100, 100, 100, 100, 96, 100];
-  }, [dashboardData, value]);
+    if (!dashboardData) {
+      return null;
+    }
+    const data =
+      [1, 2, 3, 4, 5, 6]?.map((element) => {
+        if (value === 1 && !dashboardData?.SK[element]?.values?.ST) {
+          return null;
+        }
+        if (value === 2 && !dashboardData?.NK[element]?.values?.ST) {
+          return null;
+        }
+        return value === 1
+          ? checkValue(dashboardData?.SK[element]?.values?.ST) || 0
+          : checkValue(dashboardData?.NK[element]?.values?.ST) || 0;
+      }) || [];
+    return data || null;
+  }, [dashboardData, value, currentQuarter]);
 
   const isAllNaNK = useMemo(() => {
     if (!dashboardData?.SK) {
       return false;
     }
     let sum = 0;
-    [100, 100, 100, 100, 96, 100].forEach((element) => {
+    [1, 2, 3, 4, 5, 6]?.forEach((element) => {
       if (
-        dashboardData?.SK[element]?.values?.SM?.find(
+        dashboardData?.NK[element]?.values?.SM?.find(
           (findElement) => findElement !== "N/A"
         )
       ) {
         sum++;
       }
       if (
-        dashboardData?.SK[element]?.values?.ST?.find(
+        dashboardData?.NK[element]?.values?.ST?.find(
           (findElement) => findElement !== "N/A"
         )
       ) {
@@ -161,7 +205,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
       return true;
     }
     return false;
-  }, [dashboardData, value]);
+  }, [dashboardData, value, currentQuarter]);
 
   return (
     <ContainerWrapper>
@@ -210,18 +254,39 @@ const AppContainer = ({ screen, title, setScreen }) => {
           {hospitalSelected && !isLoading ? (
             <>
               <ChartWrapper>
-                <ChartContainerWrapper>
-                  <RadaChart
-                    data2={dataRadarST}
-                    isNomal
-                    title={t("chart.vaginalDelievery")}
-                  />
-                </ChartContainerWrapper>
-                <ChartContainerWrapper>
-                  <RadaChart data2={dataRadarSM} title={t("chart.CSection")} />
-                </ChartContainerWrapper>
+                {dataRadarST && (
+                  <ChartContainerWrapper>
+                    <RadaChart
+                      data2={dataRadarST}
+                      isNomal
+                      title={t("chart.vaginalDelievery")}
+                    />
+                  </ChartContainerWrapper>
+                )}
+                {dataRadarSM && (
+                  <ChartContainerWrapper>
+                    <RadaChart
+                      data2={dataRadarSM}
+                      title={t("chart.CSection")}
+                    />
+                  </ChartContainerWrapper>
+                )}
               </ChartWrapper>
-              {isAllNaNK && <HeaderScreen value={value} setValue={setValue} />}
+              {
+                <HeaderScreen
+                  value={value}
+                  setValue={(e) => {
+                    if (!isAllNaNK) {
+                      showConfirm({
+                        title: "Khoa Nhi không có dữ liệu",
+                        hiddenCancel: true,
+                      });
+                      return;
+                    }
+                    setValue(e);
+                  }}
+                />
+              }
               <div className="content-chart">
                 {/* <h2>{value}</h2> */}
                 {value === 1 && (
@@ -230,7 +295,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
                     dataList={dashboardData?.SK}
                   />
                 )}
-                {value === 2 && isAllNaNK ? (
+                {value === 2 ? (
                   <BornComponent
                     data={ChildData}
                     dataList={dashboardData?.NK}

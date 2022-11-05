@@ -6,8 +6,6 @@ import { Radar } from "@ant-design/plots";
 
 const RadaChart = ({ data2, isNomal, title }) => {
   const { t } = useTranslation();
-
-  console.log("dataaa2", data2);
   const labelsData = [
     t("obstetricsData.radar_1"),
     t("obstetricsData.radar_2"),
