@@ -12,13 +12,14 @@ import menuIcon from "../assets/icon/menu.png";
 import backIcon from "../assets/icon/back.png";
 import logoutIcon from "../assets/icon/logout.png";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { storeSetToken } from "../store/auth-reducer";
 import { SCREEN_DEFAULT } from "../common/ngok";
 import { useTranslation } from "react-i18next";
 import { Layout, Menu, Modal } from "antd";
 import { useState } from "react";
+import { storeSetCollapse } from "../store/dashboard-reducer";
 
 const { Sider } = Layout;
 
@@ -30,7 +31,10 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
     ? JSON.parse(localStorage.getItem("user"))
     : null;
 
-  const [isCollapse, setIsCollapse] = useState(false);
+  const isCollapse = useSelector((state) => state.dashboard.isCollapse);
+  const setIsCollapse = (isOpen) => {
+    dispatch(storeSetCollapse(isOpen));
+  };
 
   const { confirm } = Modal;
   const showConfirm = () => {

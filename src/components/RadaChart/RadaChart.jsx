@@ -12,7 +12,7 @@ const RadaChart = ({ data2, isNomal, title }) => {
     t("obstetricsData.radar_3"),
     t("obstetricsData.radar_4"),
     t("obstetricsData.radar_5"),
-    t("obstetricsData.radar_62"),
+    t("obstetricsData.radar_6"),
   ];
   const data =
     data2?.map((element, index) => {

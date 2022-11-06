@@ -2,6 +2,7 @@ import { combineReducers } from "@reduxjs/toolkit";
 import persistReducer from "redux-persist/es/persistReducer";
 import localStorage from "redux-persist/es/storage";
 import authReducer from "./auth-reducer";
+import dashboardReducer from "./dashboard-reducer";
 import dataReducer from "./data-reducer";
 import documentReducer from "./document-reducer";
 
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   data: persistReducer(dataPersistConfig, dataReducer),
   auth: persistReducer(authPersistConfig, authReducer),
   document: documentReducer,
+  dashboard: dashboardReducer,
 });
 
 export default rootReducer;

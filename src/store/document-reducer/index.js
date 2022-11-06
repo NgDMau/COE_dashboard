@@ -4,7 +4,7 @@ const initialState = {
   tab: 1,
 };
 
-const authSlice = createSlice({
+const documentSlice = createSlice({
   name: "document",
   initialState,
   reducers: {
@@ -14,6 +14,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { storeSetTab } = authSlice.actions;
+export const { storeSetTab } = documentSlice.actions;
 
-export default authSlice.reducer;
+export default documentSlice.reducer;

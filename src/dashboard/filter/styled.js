@@ -36,14 +36,14 @@ export const FilterWrapper = styled.div`
     }
     .select-city {
       margin-left: 1em;
-      width: ${rem(200)};
+      width: ${rem(160)};
     }
     .hostpital {
       margin-left: 2em;
     }
     .select-hostpital {
       margin-left: 1em;
-      width: 400px;
+      width: ${rem(250)};
     }
     .datePicker {
       margin-left: ${rem(40)};
@@ -79,7 +79,7 @@ export const FilterWrapper = styled.div`
     cursor: pointer;
     border: 1px solid #dfe6e9;
     border-radius: 4px;
-    padding: 4px 16px;
+    padding: 4px 8px;
     background-color: #ccffdd;
     :hover {
       border: 1px solid #00b894;

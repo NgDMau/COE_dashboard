@@ -42,6 +42,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
   const location = useLocation();
   const patch = location?.pathname || "/dashboard";
   const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
+  const isCollapse = useSelector((state) => state.dashboard.isCollapse);
   const ObstetricsData = [
     {
       criteria: t("obstetricsData.obstetricsKS_1"),
@@ -208,7 +209,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
   }, [dashboardData, value, currentQuarter]);
 
   return (
-    <ContainerWrapper>
+    <ContainerWrapper isCollapse={isCollapse}>
       <div className="header">
         <PathComponent screen={screen} setScreen={setScreen} />
         <FilterComponent

@@ -88,9 +88,10 @@ export const ContainerWrapper = styled.div`
     }
   }
   .content-chart {
-    width: 70vw;
+    width: ${(props) =>
+      props?.isCollapse ? "calc(100vw - 80px)" : "calc(100vw - 200px)"};
     padding-top: 1em;
-    margin-left: ${rem(20)};
+    margin-left: ${rem(10)};
     margin-top: ${rem(20)};
     background-color: white;
     border-radius: 5px;
