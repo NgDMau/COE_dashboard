@@ -35,6 +35,7 @@ import {
   PathWrapper,
   SpinWrapper,
 } from "./styled";
+import PairRadarChart from "../components/RadaChart/PairRadarChart";
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const { t } = useTranslation();
@@ -227,17 +228,13 @@ const AppContainer = ({ screen, title, setScreen }) => {
           {!hospitalSelected && (
             <ChartWrapper>
               <ChartContainerWrapper>
-                <RadaChart
-                  data2={[70, 70, 70, 70, 70, 70]}
-                  title={t("chart.vaginalDelievery")}
+                <PairRadarChart
+                  data2={[60, 80, 50, 90, 95, 75]}
+                  data1={[70, 75, 80, 85, 60, 65]}
+                  title="Tiêu chí về Sản khoa"
                 />
               </ChartContainerWrapper>
-              <ChartContainerWrapper>
-                <RadaChart
-                  data2={[70, 70, 70, 70, 70, 70]}
-                  title={t("chart.CSection")}
-                />
-              </ChartContainerWrapper>
+
               <ChartContainerWrapper>
                 <RadaChart
                   data2={[70, 70, 70, 70, 70, 70]}
