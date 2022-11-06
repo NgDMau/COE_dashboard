@@ -106,9 +106,9 @@ const ExportData = () => {
               );
             })}
 
-            {/* <div className="page html2pdf__page-break">
-            <RankExport />
-          </div> */}
+            <div className="page html2pdf__page-break">
+              <RankExport />
+            </div>
           </div>
         ) : (
           <SpinWrapper>
@@ -142,9 +142,9 @@ const ExportData = () => {
               );
             })}
 
-            {/* <div className="page html2pdf__page-break">
-            <RankExport />
-          </div> */}
+            <div className="page html2pdf__page-break">
+              <RankExport />
+            </div>
           </div>
         )}
       </ExportWrapper>

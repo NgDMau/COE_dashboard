@@ -95,7 +95,6 @@ const AppContainer = ({ screen, title, setScreen }) => {
   ];
 
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
-  console.log("@dashboardDatadashboardData", dashboardData);
   const hospitalSelected = useSelector(
     (state) => state?.data?.hospitalSelected
   );
@@ -133,7 +132,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
     ) {
       return 0;
     }
-    return value;
+    return dashboardDataProps[currentQuarter];
   };
 
   const dataRadarSM = useMemo(() => {
@@ -148,19 +147,14 @@ const AppContainer = ({ screen, title, setScreen }) => {
         if (value === 2 && !dashboardData?.NK[element]?.values?.SM) {
           return 0;
         }
-        console.log(
-          "dashboardData?.SK[element]?.values?.SM[currentQuarter]dashboardData?.SK[element]?.values?.SM[currentQuarter]0",
-          dashboardData?.SK[element]?.values?.SM,
-          dashboardData?.NK[element]?.values?.SM,
-          value
-        );
+
         return value === 1
           ? checkValue(dashboardData?.SK[element]?.values?.SM) || 0
           : checkValue(dashboardData?.NK[element]?.values?.SM) || 0;
       }) || [];
     return data || null;
   }, [dashboardData, value, currentQuarter]);
-
+  console.log("dataRadarSMdataRadarSM", dataRadarSM);
   const dataRadarST = useMemo(() => {
     if (!dashboardData) {
       return null;

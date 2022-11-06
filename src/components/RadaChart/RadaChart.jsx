@@ -90,14 +90,11 @@ const RadaChart = ({ data2, isNomal, title }) => {
       },
     },
 
-    area: { color: ["rgba(254, 166, 40, 1)", "'rgb(45, 153, 255,0.24)"] },
+    area: { color: ["rgba(254, 166, 40, 1)", "rgb(45, 153, 255,0.24)"] },
     point: {
       size: 6,
       stroke: "red",
       shape: "circle",
-      backgroundColor: "red",
-      pointBackgroundColor: "red",
-
       color: (datum) => {
         return isNomal ? "#FEA628" : "#5A6882";
       },
