@@ -104,7 +104,9 @@
     "conclusionContent": "Đạt nếu tất cả các tiêu chí trên đều đạt"
   },
   "document": {
-    "download": "Tải xuống"
+    "download": "Tải xuống",
+    "awardedHospitals": "Bệnh viện được trao giải thưởng",
+    "document": "Tài liệu"
   },
   "exportData": {
     "indexHospitals": "Chỉ số của các bệnh viện trong tỉnh/thành phố",

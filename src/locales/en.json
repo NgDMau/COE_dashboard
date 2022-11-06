@@ -104,7 +104,8 @@
     "conclusionContent": "“Pass” if all criteria are “Pass” "
   },
   "document": {
-    "download": "Download"
+    "download": "Download",
+    "awardedHospitals": "Code awarded hospitals"
   },
   "exportData": {
     "indexHospitals": "Index of hospitals in the province/city",

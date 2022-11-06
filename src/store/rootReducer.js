@@ -3,6 +3,7 @@ import persistReducer from "redux-persist/es/persistReducer";
 import localStorage from "redux-persist/es/storage";
 import authReducer from "./auth-reducer";
 import dataReducer from "./data-reducer";
+import documentReducer from "./document-reducer";
 
 export const authPersistConfig = {
   key: "auth",
@@ -19,6 +20,7 @@ export const dataPersistConfig = {
 const rootReducer = combineReducers({
   data: persistReducer(dataPersistConfig, dataReducer),
   auth: persistReducer(authPersistConfig, authReducer),
+  document: documentReducer,
 });
 
 export default rootReducer;
