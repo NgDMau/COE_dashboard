@@ -94,7 +94,8 @@
   "development": "Project in development",
   "dashBoard": {
     "obstetricDept": "Obstetric Dept.",
-    "pediatricDept": "Pediatric Dept."
+    "pediatricDept": "Pediatric Dept.",
+    "pediatricNodata": "Pediatric no data"
   },
   "export": {
     "content": "Content",
@@ -114,7 +115,9 @@
     "hospitalRatings": "Hospital ratings based on results",
     "quarterReport": "Quarter-report: ",
     "hospital": "Hospital",
-    "score": "Score"
+    "score": "Score",
+    "obstetric": "Obstetric",
+    "pediatric": "Pediatric"
   },
   "app": {
     "breastfeeding": "Centers of Excellence for Breastfeeding",

@@ -1,16 +1,24 @@
 import styled from "styled-components";
 import { rem } from "../helpers/rem/px-to-rem";
 
+export const MenuIconWrapper = styled.img`
+  position: ${(props) => (props?.collapse ? "unset" : "absolute")};
+  width: ${rem(24)} !important;
+  height: 24px !important;
+  z-index: 2;
+  left: ${rem(20)};
+  bottom: ${rem(10)};
+`;
 export const ButtonLogout = styled.div`
   cursor: pointer;
   width: 100%;
-  padding-left: ${rem(40)};
+  padding-left: ${(props) => (props?.collapse ? rem(20) : rem(40))};
   margin-bottom: ${rem(30)};
   font-size: 16px;
   display: flex;
   align-items: center;
   img {
-    width: ${rem(22)};
+    width: ${rem(25)};
     height: auto;
     margin-right: ${rem(6)};
   }
@@ -18,9 +26,11 @@ export const ButtonLogout = styled.div`
     color: #1890ff;
   }
 `;
+
 export const SiderbarWrapper = styled.div`
   background-color: white;
-  width: ${rem(222)};
+  width: ${(props) => (props?.collapse ? rem(60) : rem(222))};
+  transition: all 0.2s linear;
   display: flex;
   height: 100%;
   align-items: center;
@@ -33,6 +43,9 @@ export const SiderbarWrapper = styled.div`
   overflow-x: hidden;
   display: flex;
   justify-content: space-between;
+  .ant-menu-item {
+    width: fit-content;
+  }
   .ant-layout-sider {
     background-color: white;
   }
@@ -48,7 +61,8 @@ export const SiderbarWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    img {
+    .img-logo {
+      display: ${(props) => (props?.collapse ? "none" : "unset")};
       width: ${rem(100)};
       height: auto;
       padding: ${rem(10)};

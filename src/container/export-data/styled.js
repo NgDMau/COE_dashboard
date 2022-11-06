@@ -17,3 +17,8 @@ export const ExportWrapper = styled.div`
     /* box-shadow: 3px 3px 3px 3px #dcdde1; */
   }
 `;
+export const ObstetricTitle = styled.div`
+  font-weight: 500;
+  font-size: 12px;
+  color: #00a8ff;
+`;

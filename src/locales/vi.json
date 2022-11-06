@@ -94,7 +94,8 @@
   "development": "Dự án đang phát triển",
   "dashBoard": {
     "obstetricDept": "TC Khoa sản",
-    "pediatricDept": "TC Khoa nhi"
+    "pediatricDept": "TC Khoa nhi",
+    "pediatricNodata": "Khoa Nhi không có dữ liệu"
   },
   "export": {
     "content": "Nội dung",
@@ -115,7 +116,9 @@
     "hospitalRatings": "Xếp hạng bệnh viện dựa trên kết quả",
     "quarterReport": "Báo cáo quý: ",
     "hospital": "Bệnh viện",
-    "score": "Điểm số"
+    "score": "Điểm số",
+    "obstetric": "Khoa sản",
+    "pediatric": "Khoa nhi"
   },
   "app": {
     "breastfeeding": "Bệnh viện thực hành nuôi con bằng sữa mẹ Xuất sắc",

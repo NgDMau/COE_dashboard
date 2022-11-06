@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 
 import Document from "./document";
-import { Dropdown, Menu, Segmented, Spin } from "antd";
-
 import i18next from "i18next";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { Dropdown, Menu, Segmented, Spin } from "antd";
 
 import RowData from "./row-data";
 import RadaChart from "../components/RadaChart/RadaChart";
@@ -15,11 +16,14 @@ import ExportData from "./export-data";
 import iconVietnam from "../assets/icon/vietnam.png";
 import VietNamChart from "../components/VietNamChart/VietNamChart";
 import BornComponent from "./born";
-import FormInputData from "./FormInputData/FormInputData";
 import FilterComponent from "../dashboard/filter";
 import iconUnitedStates from "../assets/icon/united-states.png";
+import UserManager from "./../pages/users/index";
 
-import { linkApi, SCREEN_DEFAULT } from "../common/ngok";
+import { sendGet } from "../api/axios";
+import { showConfirm } from "../helpers/modal-confirm";
+import { EDepartment } from "../common/const";
+import { SCREEN_DEFAULT } from "../common/ngok";
 import { storeSetLanguage } from "../store/auth-reducer";
 import { storeSetDashboardData } from "../store/data-reducer";
 import {
@@ -31,11 +35,6 @@ import {
   PathWrapper,
   SpinWrapper,
 } from "./styled";
-import { useMemo } from "react";
-import { sendGet, sendPost } from "../api/axios";
-import UserManager from "./../pages/users/index";
-import { useLocation } from "react-router-dom";
-import { showConfirm } from "../helpers/modal-confirm";
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const { t } = useTranslation();
@@ -99,7 +98,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
     (state) => state?.data?.hospitalSelected
   );
 
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(EDepartment.OBSTETRIC);
   const [isLoading, setIsLoading] = useState(false);
 
   const getDataDashboard = async (selectedCode) => {
@@ -119,6 +118,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
   useEffect(() => {
     if (hospitalSelected) {
       getDataDashboard(hospitalSelected?.code);
+      setValue(EDepartment.OBSTETRIC);
     }
   }, [hospitalSelected]);
 
@@ -141,20 +141,26 @@ const AppContainer = ({ screen, title, setScreen }) => {
     }
     const data =
       [1, 2, 3, 4, 5, 6]?.map((element) => {
-        if (value === 1 && !dashboardData?.SK[element]?.values?.SM) {
+        if (
+          value === EDepartment.OBSTETRIC &&
+          !dashboardData?.SK[element]?.values?.SM
+        ) {
           return 0;
         }
-        if (value === 2 && !dashboardData?.NK[element]?.values?.SM) {
+        if (
+          value === EDepartment.PEDIATRIC &&
+          !dashboardData?.NK[element]?.values?.SM
+        ) {
           return 0;
         }
 
-        return value === 1
+        return value === EDepartment.OBSTETRIC
           ? checkValue(dashboardData?.SK[element]?.values?.SM) || 0
           : checkValue(dashboardData?.NK[element]?.values?.SM) || 0;
       }) || [];
     return data || null;
   }, [dashboardData, value, currentQuarter]);
-  console.log("dataRadarSMdataRadarSM", dataRadarSM);
+
   const dataRadarST = useMemo(() => {
     if (!dashboardData) {
       return null;
@@ -272,8 +278,8 @@ const AppContainer = ({ screen, title, setScreen }) => {
                   setValue={(e) => {
                     if (!isAllNaNK) {
                       showConfirm({
-                        title: "Khoa Nhi không có dữ liệu",
-                        hiddenCancel: true,
+                        title: t("dashBoard.pediatricNodata"),
+                        hideCancel: true,
                       });
                       return;
                     }
@@ -283,13 +289,13 @@ const AppContainer = ({ screen, title, setScreen }) => {
               }
               <div className="content-chart">
                 {/* <h2>{value}</h2> */}
-                {value === 1 && (
+                {value === EDepartment.OBSTETRIC && (
                   <BornComponent
                     data={ObstetricsData}
                     dataList={dashboardData?.SK}
                   />
                 )}
-                {value === 2 ? (
+                {value === EDepartment.PEDIATRIC ? (
                   <BornComponent
                     data={ChildData}
                     dataList={dashboardData?.NK}
@@ -390,8 +396,8 @@ function HeaderScreen({ value, setValue }) {
     <div className="segmented">
       <Segmented
         options={[
-          { label: t("dashBoard.obstetricDept"), value: 1 },
-          { label: t("dashBoard.pediatricDept"), value: 2 },
+          { label: t("dashBoard.obstetricDept"), value: EDepartment.OBSTETRIC },
+          { label: t("dashBoard.pediatricDept"), value: EDepartment.PEDIATRIC },
         ]}
         value={value}
         onChange={setValue}
