@@ -1,22 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useMemo, useState } from "react";
-import { Button, Spin, Tooltip } from "antd";
-import {
-  ButtonSelectCity,
-  CityWrapper,
-  LinkHeader,
-  SurveyLinkWrapper,
-} from "./styled";
+import React, { useState } from "react";
+import { Button, Spin } from "antd";
+import { CityWrapper, LinkHeader, SurveyLinkWrapper } from "./styled";
 
-import Input from "antd/lib/input/Input";
 import ChartLink from "./chart";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import buttonCity from "../../assets/icon/button-city.png";
-import { toNomal } from "../../helpers/to-nomal";
 import { linkApi } from "../../common/ngok";
-import { listCity } from "./faleData";
 import { useTranslation } from "react-i18next";
 
 const SurveyLink = () => {
@@ -28,7 +19,6 @@ const SurveyLink = () => {
     (state) => state?.data?.hospitalSelected
   );
   const citySelected = useSelector((state) => state.data.citySelected);
-  const citiesData = useSelector((state) => state.data.citiesData);
   const [dataTableChart, setDatableChart] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 

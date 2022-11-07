@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import ChartExport from "./chart";
 import RankExport from "./rank";
-import { ExportWrapper } from "./styled";
+import { ExportWrapper, ObstetricTitle } from "./styled";
 import TableExport from "./table";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -84,6 +84,7 @@ const ExportData = () => {
         {dataList ? (
           <div>
             <div className="page html2pdf__page-break">
+              <ObstetricTitle>{t("exportData.obstetric")}</ObstetricTitle>
               <TableExport />
             </div>
             {ALL_DATA.map((element, index) => {
@@ -95,6 +96,7 @@ const ExportData = () => {
               // }
               return (
                 <div className="page html2pdf__page-break">
+                  <ObstetricTitle>{t("exportData.obstetric")}</ObstetricTitle>
                   <ChartExport
                     criteria={element.criteria}
                     elementST={dataList[index + 1]?.values?.ST}
@@ -106,9 +108,10 @@ const ExportData = () => {
               );
             })}
 
-            {/* <div className="page html2pdf__page-break">
-            <RankExport />
-          </div> */}
+            <div className="page html2pdf__page-break">
+              <ObstetricTitle>{t("exportData.obstetric")}</ObstetricTitle>
+              <RankExport />
+            </div>
           </div>
         ) : (
           <SpinWrapper>
@@ -120,6 +123,7 @@ const ExportData = () => {
         {dataList && (
           <div>
             <div className="page html2pdf__page-break">
+              <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle>
               <TableExport />
             </div>
             {ALL_DATA.map((element, index) => {
@@ -131,6 +135,7 @@ const ExportData = () => {
               }
               return (
                 <div className="page html2pdf__page-break">
+                  <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle>
                   <ChartExport
                     criteria={element.criteria}
                     elementST={dataList[index + 1]?.values?.ST}
@@ -142,9 +147,10 @@ const ExportData = () => {
               );
             })}
 
-            {/* <div className="page html2pdf__page-break">
-            <RankExport />
-          </div> */}
+            <div className="page html2pdf__page-break">
+              <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle>
+              <RankExport />
+            </div>
           </div>
         )}
       </ExportWrapper>

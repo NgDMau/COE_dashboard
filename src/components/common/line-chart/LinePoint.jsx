@@ -12,6 +12,7 @@ import {
 import { Line } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 ChartJS.register(
   CategoryScale,
@@ -51,7 +52,7 @@ export const options = {
   },
 };
 
-export function LinePoint({ dataST, dataSM, time }) {
+export function LinePoint({ dataST, dataSM, time, hiddenCaesarean }) {
   const { t } = useTranslation();
   const labels = Array.from({ length: 8 }, (_, i) => {
     return time ? time[i] : "";
@@ -97,6 +98,11 @@ export function LinePoint({ dataST, dataSM, time }) {
       },
     ],
   };
+
+  if (hiddenCaesarean) {
+    data.datasets.pop();
+    data.datasets.pop();
+  }
 
   return <Line options={options} data={data} />;
 }

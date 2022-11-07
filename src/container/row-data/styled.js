@@ -1,18 +1,19 @@
 import styled from "styled-components";
+import { rem } from "../../helpers/rem/px-to-rem";
 
 export const RowDataWrapper = styled.div`
   background-size: cover;
   width: 96%;
   height: 85%;
   overflow: auto;
-  padding: 20px;
-  margin: 20px;
-  font-size: 20px;
+  padding: ${rem(20)};
+  margin: ${rem(20)};
+  font-size: ${rem(20)};
   .table-row-data {
     .ant-pagination-options {
       display: none;
     }
-    margin-right: 20px;
+    margin-right: ${rem(20)};
     .ant-table-pagination.ant-pagination {
       width: 100%;
       display: flex;

@@ -27,20 +27,20 @@
     "obstetricsKN_5": "During your hospital stay, did the medical staffs give you advice and guidance on breastfeeding?",
     "obstetricsKN_6": "Did doctors and nurses in the hospital counsel you to use formula milk for babies under 24 months? (except for cases specifically prescribed by doctors)",
     "obstetricsKN_7": "Did you see any forms of advert/marketing of formula milk for babies aged under 24 months, feeding bottles and artificial pacifiers in the hospital?",
-    "obstetricsPassKS_1": "“Pass” if more than 80% of vaginal cases and 50% of C-section cases answered “skin to skin contact was implemented immediately”",
-    "obstetricsPassKS_2": "“Pass” if more than 80% of vaginal cases and 50% of C-section cases answered “More than 90 minutes”",
+    "obstetricsPassKS_1": "“Pass” if more than 80% of vaginal cases and 50% of Caesarean cases answered “skin to skin contact was implemented immediately”",
+    "obstetricsPassKS_2": "“Pass” if more than 80% of vaginal cases and 50% of Caesarean cases answered “More than 90 minutes”",
     "obstetricsPassKS_3": "“Pass” if more than 95% of vaginal cases answered that their child was returned to stay with them immediately after birth. ",
-    "obstetricsPassKS_4": "“Pass” if more than 80% of vaginal cases and 50% of C-section breastfeed within 60 minutes after birth.",
-    "obstetricsPassKS_5": "“Pass” if more than 90% of vaginal cases and C-section cases only breastfeed the baby during hospital stay.",
-    "obstetricsPassKS_6": "“Pass” if more than 80% of vaginal cases and C-section cases received breastfeeding counseling during hospital stay.",
-    "obstetricsPassKS_7": "“Pass” if 100% among vaginal cases and C-section cases “Didn’t receive formula milk counseling from health worker” (except as correctly prescribed by doctors)",
-    "obstetricsPassKS_8": "“Pass” if 100% among vaginal cases and C-section cases “Didn’t see any forms of formula milk substitutes in the hospital”",
+    "obstetricsPassKS_4": "“Pass” if more than 80% of vaginal cases and 50% of Caesarean breastfeed within 60 minutes after birth.",
+    "obstetricsPassKS_5": "“Pass” if more than 90% of vaginal cases and Caesarean cases only breastfeed the baby during hospital stay.",
+    "obstetricsPassKS_6": "“Pass” if more than 80% of vaginal cases and Caesarean cases received breastfeeding counseling during hospital stay.",
+    "obstetricsPassKS_7": "“Pass” if 100% among vaginal cases and Caesarean cases “Didn’t receive formula milk counseling from health worker” (except as correctly prescribed by doctors)",
+    "obstetricsPassKS_8": "“Pass” if 100% among vaginal cases and Caesarean cases “Didn’t see any forms of formula milk substitutes in the hospital”",
     "radar_1": "Prolonged skin to skin contact",
     "radar_2": "Early initial breastfeeding",
     "radar_3": "Exclusive breastfeeding during hospital stay",
     "radar_4": "Breastfeeding counseling",
     "radar_5": "Code compliance",
-    "radar_6": "Early initial breastfeeding"
+    "radar_6": "Formula milk consultation"
   },
   "screen": {
     "surveyResults": "Statistics",
@@ -67,17 +67,19 @@
     "under": "Under",
     "above": "Above",
     "vaginalDelievery": "Vaginal Delievery",
-    "CSection": "C-Section",
+    "CSection": "Caesarean",
     "caesareanRate": "Caesarean section rate",
     "normalRate": "Normal fertility rate",
-    "receivedTitle": "Received the title of excellent BV 2022"
+    "receivedTitle": "Received the title of excellent BV 2022",
+    "pediatric": "Pediatric",
+    "surveyStatistics": "Thống kê khảo sát"
   },
   "born": {
     "criteria": "Criteria",
     "chart": "Charts",
     "complete": "Complete",
     "vaginalDelivery": "Vaginal Delievery",
-    "Csection": "C-section",
+    "Csection": "Caesarean",
     "postpartumMother": "Postpartum Mother",
     "motherYoung": "Bà mẹ/ người CS trẻ",
     "parameter": "Parameter"
@@ -86,13 +88,14 @@
     "search": "Search...",
     "notParticipate": "Not participate",
     "underMonth": "Mothers with children under 1 month old",
-    "sectionMothers": "C-section mothers",
+    "sectionMothers": "Caesarean mothers",
     "normalMother": "Normal birth mother"
   },
   "development": "Project in development",
   "dashBoard": {
     "obstetricDept": "Obstetric Dept.",
-    "pediatricDept": "Pediatric Dept."
+    "pediatricDept": "Pediatric Dept.",
+    "pediatricNodata": "Pediatric no data"
   },
   "export": {
     "content": "Content",
@@ -102,7 +105,8 @@
     "conclusionContent": "“Pass” if all criteria are “Pass” "
   },
   "document": {
-    "download": "Download"
+    "download": "Download",
+    "awardedHospitals": "Code awarded hospitals"
   },
   "exportData": {
     "indexHospitals": "Index of hospitals in the province/city",
@@ -111,11 +115,13 @@
     "hospitalRatings": "Hospital ratings based on results",
     "quarterReport": "Quarter-report: ",
     "hospital": "Hospital",
-    "score": "Score"
+    "score": "Score",
+    "obstetric": "Obstetric",
+    "pediatric": "Pediatric"
   },
   "app": {
     "breastfeeding": "Centers of Excellence for Breastfeeding",
     "breastMilkBank": "Human Milk Bank",
-    "nationalMinorities": "National Target Program on Ethnic Minorities"
+    "nationalMinorities": "National Targeted Program for Ethnic Minorities"
   }
 }

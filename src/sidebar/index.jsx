@@ -1,19 +1,25 @@
 import React, { useEffect } from "react";
 import { listFormReport } from "../dashboard/report-form/fakeData";
-import { ButtonLogout, SiderbarWrapper } from "./styled";
+import { ButtonLogout, MenuIconWrapper, SiderbarWrapper } from "./styled";
+
 import logo from "../assets/brand/cbimage.png";
-import overview from "../assets/icon/overview.svg";
 import link from "../assets/icon/link.svg";
+import overview from "../assets/icon/overview.svg";
 import document from "../assets/icon/document.svg";
 import database from "../assets/icon/database.png";
-import logoutIcon from "../assets/icon/logout.png";
 import userIcon from "../assets/icon/user.png";
-import { Layout, Menu, Modal } from "antd";
+import menuIcon from "../assets/icon/menu.png";
+import backIcon from "../assets/icon/back.png";
+import logoutIcon from "../assets/icon/logout.png";
+
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
 import { storeSetToken } from "../store/auth-reducer";
 import { SCREEN_DEFAULT } from "../common/ngok";
+import { useTranslation } from "react-i18next";
+import { Layout, Menu, Modal } from "antd";
+import { useState } from "react";
+import { storeSetCollapse } from "../store/dashboard-reducer";
 
 const { Sider } = Layout;
 
@@ -24,6 +30,11 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
+
+  const isCollapse = useSelector((state) => state.dashboard.isCollapse);
+  const setIsCollapse = (isOpen) => {
+    dispatch(storeSetCollapse(isOpen));
+  };
 
   const { confirm } = Modal;
   const showConfirm = () => {
@@ -51,16 +62,23 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
     setTitle(listFormReport[0]);
   }, [setTitle]);
   return (
-    <SiderbarWrapper>
+    <SiderbarWrapper collapse={isCollapse}>
       <div>
         <div className="logo">
-          <img src={logo} alt="" />
+          <img className="img-logo" src={logo} alt="" />
+          <MenuIconWrapper
+            src={isCollapse ? menuIcon : backIcon}
+            alt=""
+            onClick={() => setIsCollapse(!isCollapse)}
+            collapse={isCollapse}
+          />
         </div>
 
         <Sider
           className="site-layout-background"
           collapsedWidth="0"
           collapsed={false}
+          width="100%"
         >
           <Menu
             mode="inline"
@@ -86,14 +104,14 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
             items={items2.map((element, index) => ({
               key: String(index + 1),
               icon: <img src={icons[index]} alt="" />,
-              label: element,
+              label: isCollapse ? "" : element,
             }))}
           />
         </Sider>
       </div>
-      <ButtonLogout onClick={logout}>
+      <ButtonLogout onClick={logout} collapse={isCollapse}>
         <img src={logoutIcon} alt="" />
-        <span>{t("screen.logout")}</span>
+        <span>{!isCollapse && t("screen.logout")}</span>
       </ButtonLogout>
     </SiderbarWrapper>
   );

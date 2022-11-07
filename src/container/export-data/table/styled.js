@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { rem } from "../../../helpers/rem/px-to-rem";
 
 export const TableExportWrapper = styled.div`
   .quarter {
@@ -6,7 +7,7 @@ export const TableExportWrapper = styled.div`
     font-weight: 700;
     font-size: 20px;
     width: 100%;
-    margin: 8px 0;
+    margin: ${rem(8)} 0;
     text-align: end;
   }
   .header-table {
@@ -17,19 +18,19 @@ export const TableExportWrapper = styled.div`
     font-weight: 600;
     .content {
       width: 35%;
-      padding: 10px;
+      padding: ${rem(10)};
       text-align: center;
       border-right: 1px solid #000;
     }
     .criteria {
       width: 50%;
-      padding: 10px;
+      padding: ${rem(10)};
       text-align: center;
       border-right: 1px solid #000;
     }
     .achieve {
       width: 15%;
-      padding: 10px;
+      padding: ${rem(10)};
       text-align: center;
     }
   }
@@ -42,18 +43,18 @@ export const TableExportWrapper = styled.div`
     font-weight: 600;
     .content {
       width: 35%;
-      padding: 6px;
+      padding: ${rem(6)};
       border-right: 1px solid #000;
     }
     .criteria {
       width: 50%;
-      padding: 6px;
+      padding: ${rem(6)};
       border-right: 1px solid #000;
       font-style: italic;
     }
     .achieve {
       width: 15%;
-      padding: 6px;
+      padding: ${rem(6)};
       display: flex;
       align-items: center;
       justify-content: center;
@@ -68,7 +69,7 @@ export const TableExportWrapper = styled.div`
     font-weight: 600;
     .content {
       width: 35%;
-      padding: 10px;
+      padding: ${rem(10)};
       border-right: 1px solid #000;
       display: flex;
       align-items: center;
@@ -76,13 +77,13 @@ export const TableExportWrapper = styled.div`
     }
     .criteria {
       width: 50%;
-      padding: 10px;
+      padding: ${rem(10)};
       border-right: 1px solid #000;
       font-style: italic;
     }
     .achieve {
       width: 15%;
-      padding: 10px;
+      padding: ${rem(10)};
       display: flex;
       align-items: center;
       justify-content: center;

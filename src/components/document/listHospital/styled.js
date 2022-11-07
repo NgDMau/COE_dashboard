@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const ListHospitalWrapper = styled.div`
   margin-top: 20px;
+  margin-left: 20px;
 `;
 export const TitleListHospital = styled.div`
   font-weight: 500;

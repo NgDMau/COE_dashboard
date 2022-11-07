@@ -1,7 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./App.css";
 import Dashboard from "./dashboard/index";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import { Suspense } from "react";
 import LoginPage from "./pages/login";
 import AppsPage from "./pages/apps";
@@ -17,6 +23,7 @@ const RootRouter = function () {
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
+  const location = useLocation();
   const navigate = useNavigate();
   const token = useSelector((state) => state?.auth?.token);
   console.log("useruseruser", user);
@@ -68,12 +75,13 @@ const RootRouter = function () {
     if (token) {
       wsConnectionCOE(COE_WS_URL, SUB_PROTOCOL);
     } else {
+      if (location?.pathname === "/") {
+        return;
+      }
       navigate("/login");
     }
   }, [token]);
-
-  // wsConnectionCOE(COE_WS_URL);
-
+  console.log("locationlocation", location);
   return (
     <div>
       <Suspense>

@@ -12,7 +12,7 @@ const Report = () => {
       <div className="header">
         <div className="filter">
           <div>
-            <span>Tỉnh/ Thành phố: </span>
+            <span>Tỉnh/Thành phố: </span>
             <Select
               labelInValue={listCity[1]}
               className="select-city"
