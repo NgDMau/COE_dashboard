@@ -79,16 +79,12 @@ const RootRouter = function () {
         return;
       }
       navigate("/login");
->>>>>>> 3d56f85850dfd97ff26a94c958d6cad764ebfd4c
     }
   }, [token]);
-<<<<<<< HEAD
 
   // wsConnectionCOE(COE_WS_URL);
-
-=======
   console.log("locationlocation", location);
->>>>>>> cb8a8fece7a22e302b1f78d20310fda5c34f62c7
+
   return (
     <div>
       <Suspense>
