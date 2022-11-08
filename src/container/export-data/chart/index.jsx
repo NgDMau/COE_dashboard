@@ -18,7 +18,7 @@ const ChartExport = ({ elementST, elementSM, criteria, index }) => {
           time={dashboardData?.time}
         />
       </div>
-      <TableChart />
+      {/* <TableChart /> */}
     </ChartExportWrapper>
   );
 };
