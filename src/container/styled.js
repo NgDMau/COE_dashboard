@@ -1,17 +1,25 @@
-import { Button } from 'antd';
-import styled from 'styled-components';
+import { Button } from "antd";
+import styled from "styled-components";
+import { rem } from "../helpers/rem/px-to-rem";
 
+export const ChartContainerWrapper = styled.div`
+  border: 1px solid #ecf0f1;
+  padding: 12px;
+  margin-bottom: 20px;
+`;
 export const SpinWrapper = styled.div`
   width: 70vw;
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: ${rem(100)};
 `;
 export const ChartWrapper = styled.div`
-  width: 70vw;
+  width: 80vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: ${rem(100)};
+  align-items: center;
 `;
 
 export const PathWrapper = styled.div`
@@ -21,7 +29,7 @@ export const PathWrapper = styled.div`
   justify-content: space-between;
   background-color: white;
   border-bottom: 0.5px solid #dfe6e9;
-  padding: 10px;
+  padding: ${rem(10)};
   font-size: 18px;
   span {
     cursor: pointer;
@@ -31,16 +39,16 @@ export const PathWrapper = styled.div`
   }
 `;
 export const IConLanguage = styled.img`
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
+  width: ${rem(20)};
+  height: ${rem(20)};
+  margin-right: ${rem(8)};
 `;
 export const Buttonanguage = styled(Button)`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 85px;
+  width: ${rem(85)};
 `;
 
 export const ContainerWrapper = styled.div`
@@ -54,21 +62,21 @@ export const ContainerWrapper = styled.div`
   }
   width: 100%;
   .Widgets-container {
-    margin-top: 20px;
+    margin-top: ${rem(20)};
     display: flex;
     width: 70vw;
-    margin-left: 20px;
+    margin-left: ${rem(20)};
     justify-content: space-between;
   }
   .segmented {
     width: 70vw;
-    margin-left: 20px;
-    margin-top: 20px;
+    margin-left: ${rem(20)};
+    margin-top: ${rem(20)};
     font-weight: 500;
     display: flex;
     justify-content: space-between;
     .select-quarter {
-      width: 160px;
+      width: ${rem(160)};
     }
     .ant-segmented {
       /* border-radius: 10px; */
@@ -80,15 +88,16 @@ export const ContainerWrapper = styled.div`
     }
   }
   .content-chart {
-    width: 70vw;
+    width: ${(props) =>
+      props?.isCollapse ? "calc(100vw - 80px)" : "calc(100vw - 200px)"};
     padding-top: 1em;
-    margin-left: 20px;
-    margin-top: 20px;
+    margin-left: ${rem(10)};
+    margin-top: ${rem(20)};
     background-color: white;
     border-radius: 5px;
     h2 {
-      margin-left: 20px;
-      margin-top: 10px;
+      margin-left: ${rem(20)};
+      margin-top: ${rem(20)};
     }
   }
 `;

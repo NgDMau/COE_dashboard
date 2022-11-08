@@ -89,7 +89,13 @@ const LoginPage = () => {
                 disabled={isLoading}
                 className="input"
                 placeholder={t("common.username")}
-                onChange={(e) => setUserName(e?.target?.value)}
+                onChange={(e) => {
+                  if (e.key === "Enter") {
+                    login();
+                    return;
+                  }
+                  setUserName(e?.target?.value);
+                }}
                 prefix={
                   <UserOutlined style={{ color: "green" }} size="large" />
                 }
@@ -99,7 +105,14 @@ const LoginPage = () => {
                 className="input"
                 type="password"
                 placeholder={t("common.password")}
-                onChange={(e) => setPassword(e?.target?.value)}
+                onChange={(e) => {
+                  if (e.key === "Enter") {
+                    console.log(e.key);
+                    login();
+                    return;
+                  }
+                  setPassword(e?.target?.value);
+                }}
                 prefix={
                   <LockOutlined style={{ color: "green" }} size="large" />
                 }

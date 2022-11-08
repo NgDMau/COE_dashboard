@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 
-import { DatePicker } from "antd";
+import { DatePicker, Segmented } from "antd";
 import { Select, Spin } from "antd";
 
 import html2pdf from "html2pdf.js";
@@ -22,6 +22,7 @@ import {
 } from "../../store/data-reducer";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
+import { storeSetTab } from "../../store/document-reducer";
 
 const FilterComponent = ({ disabled, screen, setScreen }) => {
   const { RangePicker } = DatePicker;
@@ -30,6 +31,10 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const patch = location?.pathname || "/dashboard";
+
+  const user = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
   const hospitalSelected = useSelector(
     (state) => state?.data?.hospitalSelected
   );
@@ -37,11 +42,11 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
     useSelector((state) => state?.data?.dashboardData) || null;
   const currentQuarter =
     useSelector((state) => state?.data?.currentQuarter) || null;
-  const user = localStorage.getItem("user")
-    ? JSON.parse(localStorage.getItem("user"))
-    : null;
   const citiesData = useSelector((state) => state.data.citiesData);
   const hostPitals = useSelector((state) => state.data.hostPitals);
+
+  const tabDocument = useSelector((state) => state.document.tab);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const defaultCity = useMemo(() => {
@@ -103,9 +108,7 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
   };
 
   useEffect(() => {
-    // if (citiesData?.length === 0) {
     getCities();
-    // }
   }, []);
 
   return (
@@ -188,17 +191,20 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
             )}
           </div>
         ) : null}
-        {patch === SCREEN_DEFAULT[3] && <RangePicker className="datePicker" />}
-        {/* {screen === 4 && (
-          <ButtonDownload onClick={() => {}}>
-            <span>Last Awarded Year: 15/9/2020</span>
-          </ButtonDownload>
+        {/* {patch === SCREEN_DEFAULT[3] && <RangePicker className="datePicker" />} */}
+        {patch === SCREEN_DEFAULT[4] && (
+          <Segmented
+            options={[
+              { label: t("document.document"), value: 1 },
+              { label: t("document.awardedHospitals"), value: 2 },
+            ]}
+            value={tabDocument}
+            onChange={(e) => {
+              dispatch(storeSetTab(e));
+            }}
+            size="large"
+          />
         )}
-        {screen === 4 && (
-          <ButtonDownload onClick={() => {}}>
-            <span>Next Re-evaluation Year: 15/9/2020</span>
-          </ButtonDownload>
-        )} */}
       </div>
 
       {patch === SCREEN_DEFAULT[1] && dashboardData ? (

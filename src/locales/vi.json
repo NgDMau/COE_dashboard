@@ -40,7 +40,7 @@
     "radar_3": "Bú mẹ hoàn toàn trong thời gian ở viện",
     "radar_4": "Tư vấn nuôi con bằng sữa mẹ",
     "radar_5": "Tuân thủ Nghị định 100",
-    "radar_6": "Tư vấn nuôi con bằng sữa mẹ"
+    "radar_6": "Tư vấn sữa công thức"
   },
   "screen": {
     "surveyResults": "Kết quả khảo sát",
@@ -58,9 +58,9 @@
   },
   "filter": {
     "back": "Quay lại",
-    "city": "Tỉnh/ Thành phố: ",
+    "city": "Tỉnh/Thành phố: ",
     "hospital": "Bệnh viện: ",
-    "generateReport": "Xem báo cáo",
+    "generateReport": "Báo cáo",
     "exportReport": "Xuất báo cáo"
   },
   "chart": {
@@ -70,7 +70,9 @@
     "CSection": "Sinh mổ",
     "caesareanRate": "Mức đạt sinh mổ",
     "normalRate": "Mức đạt sinh thường",
-    "receivedTitle": "Đạt danh hiệu BV xuất sắc 2022"
+    "receivedTitle": "Đạt danh hiệu BV xuất sắc 2022",
+    "pediatric": "Khoa Nhi",
+    "surveyStatistics": "Thống kê khảo sát"
   },
   "born": {
     "criteria": "Tiêu chí",
@@ -92,7 +94,8 @@
   "development": "Dự án đang phát triển",
   "dashBoard": {
     "obstetricDept": "TC Khoa sản",
-    "pediatricDept": "TC Khoa nhi"
+    "pediatricDept": "TC Khoa nhi",
+    "pediatricNodata": "Khoa Nhi không có dữ liệu"
   },
   "export": {
     "content": "Nội dung",
@@ -102,7 +105,9 @@
     "conclusionContent": "Đạt nếu tất cả các tiêu chí trên đều đạt"
   },
   "document": {
-    "download": "Tải xuống"
+    "download": "Tải xuống",
+    "awardedHospitals": "Bệnh viện được trao giải thưởng",
+    "document": "Tài liệu"
   },
   "exportData": {
     "indexHospitals": "Chỉ số của các bệnh viện trong tỉnh/thành phố",
@@ -111,11 +116,13 @@
     "hospitalRatings": "Xếp hạng bệnh viện dựa trên kết quả",
     "quarterReport": "Báo cáo quý: ",
     "hospital": "Bệnh viện",
-    "score": "Điểm số"
+    "score": "Điểm số",
+    "obstetric": "Khoa sản",
+    "pediatric": "Khoa nhi"
   },
   "app": {
-    "breastfeeding": "Bệnh viện thực hành nuôi con bằng sữa mẹ",
+    "breastfeeding": "Bệnh viện thực hành nuôi con bằng sữa mẹ Xuất sắc",
     "breastMilkBank": "Ngân hàng sữa mẹ",
-    "nationalMinorities": "Chương trình mục tiêu Quốc gia về Dân Tộc thiểu số"
+    "nationalMinorities": "Chương trình mục tiêu Quốc gia Dân tộc thiểu số"
   }
 }

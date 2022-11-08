@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 
 import Document from "./document";
-import { Dropdown, Menu, Segmented, Spin } from "antd";
-
 import i18next from "i18next";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { Dropdown, Menu, Segmented, Spin } from "antd";
 
 import RowData from "./row-data";
 import RadaChart from "../components/RadaChart/RadaChart";
@@ -15,31 +16,34 @@ import ExportData from "./export-data";
 import iconVietnam from "../assets/icon/vietnam.png";
 import VietNamChart from "../components/VietNamChart/VietNamChart";
 import BornComponent from "./born";
-import FormInputData from "./FormInputData/FormInputData";
 import FilterComponent from "../dashboard/filter";
 import iconUnitedStates from "../assets/icon/united-states.png";
+import UserManager from "./../pages/users/index";
 
-import { linkApi, SCREEN_DEFAULT } from "../common/ngok";
+import { sendGet } from "../api/axios";
+import { showConfirm } from "../helpers/modal-confirm";
+import { EDepartment } from "../common/const";
+import { SCREEN_DEFAULT } from "../common/ngok";
 import { storeSetLanguage } from "../store/auth-reducer";
 import { storeSetDashboardData } from "../store/data-reducer";
 import {
   Buttonanguage,
+  ChartContainerWrapper,
   ChartWrapper,
   ContainerWrapper,
   IConLanguage,
   PathWrapper,
   SpinWrapper,
 } from "./styled";
-import { useMemo } from "react";
-import { sendGet, sendPost } from "../api/axios";
-import UserManager from "./../pages/users/index";
-import { useLocation } from "react-router-dom";
+import PairRadarChart from "../components/RadaChart/PairRadarChart";
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const { t } = useTranslation();
   const dispath = useDispatch();
   const location = useLocation();
   const patch = location?.pathname || "/dashboard";
+  const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
+  const isCollapse = useSelector((state) => state.dashboard.isCollapse);
   const ObstetricsData = [
     {
       criteria: t("obstetricsData.obstetricsKS_1"),
@@ -96,7 +100,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
     (state) => state?.data?.hospitalSelected
   );
 
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(EDepartment.OBSTETRIC);
   const [isLoading, setIsLoading] = useState(false);
 
   const getDataDashboard = async (selectedCode) => {
@@ -116,40 +120,83 @@ const AppContainer = ({ screen, title, setScreen }) => {
   useEffect(() => {
     if (hospitalSelected) {
       getDataDashboard(hospitalSelected?.code);
+      setValue(EDepartment.OBSTETRIC);
     }
   }, [hospitalSelected]);
 
+  const checkValue = (dashboardDataProps, elementProps) => {
+    if (!dashboardDataProps) {
+      return 0;
+    }
+    if (
+      dashboardDataProps[currentQuarter] === "N/A" ||
+      !dashboardDataProps[currentQuarter]
+    ) {
+      return 0;
+    }
+    return dashboardDataProps[currentQuarter];
+  };
+
   const dataRadarSM = useMemo(() => {
-    // if (!dashboardData) {
-    return [86, 86, 100, 100, 100, 100];
-    // }
-    // const data = [1, 2, 3, 4, 5, 6]?.map((element) =>
-    //   value === 1
-    //     ? dashboardData?.SK[element]?.values?.SM[7]
-    //     : dashboardData?.NK[element]?.values?.SM[7]
-    // );
-    // return data || null;
-  }, [dashboardData, value]);
+    if (!dashboardData) {
+      return null;
+    }
+    const data =
+      [1, 2, 3, 4, 5, 6]?.map((element) => {
+        if (
+          value === EDepartment.OBSTETRIC &&
+          !dashboardData?.SK[element]?.values?.SM
+        ) {
+          return 0;
+        }
+        if (
+          value === EDepartment.PEDIATRIC &&
+          !dashboardData?.NK[element]?.values?.SM
+        ) {
+          return 0;
+        }
+
+        return value === EDepartment.OBSTETRIC
+          ? checkValue(dashboardData?.SK[element]?.values?.SM) || 0
+          : checkValue(dashboardData?.NK[element]?.values?.SM) || 0;
+      }) || [];
+    return data || null;
+  }, [dashboardData, value, currentQuarter]);
 
   const dataRadarST = useMemo(() => {
-    return [100, 100, 100, 100, 96, 100];
-  }, [dashboardData, value]);
+    if (!dashboardData) {
+      return null;
+    }
+    const data =
+      [1, 2, 3, 4, 5, 6]?.map((element) => {
+        if (value === 1 && !dashboardData?.SK[element]?.values?.ST) {
+          return null;
+        }
+        if (value === 2 && !dashboardData?.NK[element]?.values?.ST) {
+          return null;
+        }
+        return value === 1
+          ? checkValue(dashboardData?.SK[element]?.values?.ST) || 0
+          : checkValue(dashboardData?.NK[element]?.values?.ST) || 0;
+      }) || [];
+    return data || null;
+  }, [dashboardData, value, currentQuarter]);
 
   const isAllNaNK = useMemo(() => {
     if (!dashboardData?.SK) {
       return false;
     }
     let sum = 0;
-    [100, 100, 100, 100, 96, 100].forEach((element) => {
+    [1, 2, 3, 4, 5, 6]?.forEach((element) => {
       if (
-        dashboardData?.SK[element]?.values?.SM?.find(
+        dashboardData?.NK[element]?.values?.SM?.find(
           (findElement) => findElement !== "N/A"
         )
       ) {
         sum++;
       }
       if (
-        dashboardData?.SK[element]?.values?.ST?.find(
+        dashboardData?.NK[element]?.values?.ST?.find(
           (findElement) => findElement !== "N/A"
         )
       ) {
@@ -160,10 +207,10 @@ const AppContainer = ({ screen, title, setScreen }) => {
       return true;
     }
     return false;
-  }, [dashboardData, value]);
+  }, [dashboardData, value, currentQuarter]);
 
   return (
-    <ContainerWrapper>
+    <ContainerWrapper isCollapse={isCollapse}>
       <div className="header">
         <PathComponent screen={screen} setScreen={setScreen} />
         <FilterComponent
@@ -180,7 +227,20 @@ const AppContainer = ({ screen, title, setScreen }) => {
         <div>
           {!hospitalSelected && (
             <ChartWrapper>
-              <RadaChart data={[70, 70, 70, 70, 70, 70]} />
+              <ChartContainerWrapper>
+                <PairRadarChart
+                  data2={[60, 80, 50, 90, 95, 75]}
+                  data1={[70, 75, 80, 85, 60, 65]}
+                  title="Tiêu chí về Sản khoa"
+                />
+              </ChartContainerWrapper>
+
+              <ChartContainerWrapper>
+                <RadaChart
+                  data2={[70, 70, 70, 70, 70, 70]}
+                  title={t("chart.pediatric")}
+                />
+              </ChartContainerWrapper>
               <VietNamChart />
             </ChartWrapper>
           )}
@@ -192,19 +252,48 @@ const AppContainer = ({ screen, title, setScreen }) => {
           {hospitalSelected && !isLoading ? (
             <>
               <ChartWrapper>
-                <RadaChart data={dataRadarST} isNomal />
-                <RadaChart data={dataRadarSM} />
+                {dataRadarST && (
+                  <ChartContainerWrapper>
+                    <RadaChart
+                      data2={dataRadarST}
+                      isNomal
+                      title={t("chart.vaginalDelievery")}
+                    />
+                  </ChartContainerWrapper>
+                )}
+                {dataRadarSM && (
+                  <ChartContainerWrapper>
+                    <RadaChart
+                      data2={dataRadarSM}
+                      title={t("chart.CSection")}
+                    />
+                  </ChartContainerWrapper>
+                )}
               </ChartWrapper>
-              {isAllNaNK && <HeaderScreen value={value} setValue={setValue} />}
+              {
+                <HeaderScreen
+                  value={value}
+                  setValue={(e) => {
+                    if (!isAllNaNK) {
+                      showConfirm({
+                        title: t("dashBoard.pediatricNodata"),
+                        hideCancel: true,
+                      });
+                      return;
+                    }
+                    setValue(e);
+                  }}
+                />
+              }
               <div className="content-chart">
                 {/* <h2>{value}</h2> */}
-                {value === 1 && (
+                {value === EDepartment.OBSTETRIC && (
                   <BornComponent
                     data={ObstetricsData}
                     dataList={dashboardData?.SK}
                   />
                 )}
-                {value === 2 && isAllNaNK ? (
+                {value === EDepartment.PEDIATRIC ? (
                   <BornComponent
                     data={ChildData}
                     dataList={dashboardData?.NK}
@@ -305,8 +394,8 @@ function HeaderScreen({ value, setValue }) {
     <div className="segmented">
       <Segmented
         options={[
-          { label: t("dashBoard.obstetricDept"), value: 1 },
-          { label: t("dashBoard.pediatricDept"), value: 2 },
+          { label: t("dashBoard.obstetricDept"), value: EDepartment.OBSTETRIC },
+          { label: t("dashBoard.pediatricDept"), value: EDepartment.PEDIATRIC },
         ]}
         value={value}
         onChange={setValue}

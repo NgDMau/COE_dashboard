@@ -29,8 +29,12 @@ import {
   InputDelete,
   SelectName,
 } from "../FormInputData/styled";
+import { useSelector } from "react-redux";
 const Document = ({ title }) => {
   const { t } = useTranslation();
+
+  const tabDocument = useSelector((state) => state.document.tab);
+
   const [ListDoc, setListDoc] = useState([]);
   const [selected, setSelected] = useState("");
   const [editing, setEditing] = useState(false);
@@ -85,109 +89,111 @@ const Document = ({ title }) => {
 
   return (
     <DocumentWrapper>
-      <div className="document-container">
-        <div className="document-header">
-          <SelectWrapperDoc>
-            <Select
-              className="select-document"
-              value={selected?.name}
-              onChange={(e) => {
-                setSelected(ListDoc[Number(e)]);
-                setEditing(false);
-              }}
-            >
-              {ListDoc?.map((element, index) => {
-                return (
-                  <Select.Option key={String(index)}>
-                    <SelectWrapper>
-                      <div>
-                        {index + 1}. {element?.name}
-                      </div>
-                      <img
-                        src={editIcon}
-                        alt=""
-                        onClick={(e) => {
-                          setTimeout(() => {
-                            setEditing(true);
-                          }, 0);
-                        }}
-                      />
-                      <img
-                        src={deleteIcon}
-                        alt=""
-                        onClick={(e) => {
-                          setTimeout(() => {
-                            setIsShow(true);
-                          }, 0);
-                        }}
-                      />
-                    </SelectWrapper>
-                  </Select.Option>
-                );
-              })}
-            </Select>
-            <Tooltip placement="right" title="Upload a document">
-              <FileAddOutlined
-                onClick={() => setSelected(null)}
-                style={{
-                  fontSize: "25px",
-                  marginLeft: "8px",
-                  cursor: "pointer",
+      {tabDocument === 1 ? (
+        <div className="document-container">
+          <div className="document-header">
+            <SelectWrapperDoc>
+              <Select
+                className="select-document"
+                value={selected?.name}
+                onChange={(e) => {
+                  setSelected(ListDoc[Number(e)]);
+                  setEditing(false);
                 }}
-              />
-            </Tooltip>
-          </SelectWrapperDoc>
-          <ButtonDownLoadWrapper onClick={downLoadPdf} disabled={!!selected}>
-            <img src={download} alt="" />
-            <span>{t("document.download")}</span>
-          </ButtonDownLoadWrapper>
-        </div>
-        {/* <img src={documentiImg} alt="" className="document" /> */}
-        {!selected || editing ? (
-          <CreatefromWrapper>
-            {selected === null && (
-              <Createfrom
-                selected={selected}
-                getDataDocument={getDataDocument}
-                setSelected={setSelected}
-              />
-            )}
-            {editing && (
-              <FormInputData
-                selected={selected}
-                setSelected={setSelected}
-                setEditing={setEditing}
-                getDataDocument={getDataDocument}
-              />
-            )}
-            {selected === "" && (
-              <NothingContent>
-                Please search or upload a document
-              </NothingContent>
-            )}
-          </CreatefromWrapper>
-        ) : (
-          <div />
-        )}
-        {selected && !editing ? (
-          <object
-            data={`https://api.coe.bmte.vn/media/${selected?.url}`}
-            type="application/pdf"
-            height="800px"
-            width="800px"
-          >
-            <iframe
-              src={`https://docs.google.com/viewer?url=https://api.coe.bmte.vn/media/${selected?.url}&embedded=true`}
+              >
+                {ListDoc?.map((element, index) => {
+                  return (
+                    <Select.Option key={String(index)}>
+                      <SelectWrapper>
+                        <div>
+                          {index + 1}. {element?.name}
+                        </div>
+                        <img
+                          src={editIcon}
+                          alt=""
+                          onClick={(e) => {
+                            setTimeout(() => {
+                              setEditing(true);
+                            }, 0);
+                          }}
+                        />
+                        <img
+                          src={deleteIcon}
+                          alt=""
+                          onClick={(e) => {
+                            setTimeout(() => {
+                              setIsShow(true);
+                            }, 0);
+                          }}
+                        />
+                      </SelectWrapper>
+                    </Select.Option>
+                  );
+                })}
+              </Select>
+              <Tooltip placement="right" title="Upload a document">
+                <FileAddOutlined
+                  onClick={() => setSelected(null)}
+                  style={{
+                    fontSize: "25px",
+                    marginLeft: "8px",
+                    cursor: "pointer",
+                  }}
+                />
+              </Tooltip>
+            </SelectWrapperDoc>
+            <ButtonDownLoadWrapper onClick={downLoadPdf} disabled={!!selected}>
+              <img src={download} alt="" />
+              <span>{t("document.download")}</span>
+            </ButtonDownLoadWrapper>
+          </div>
+          {/* <img src={documentiImg} alt="" className="document" /> */}
+          {!selected || editing ? (
+            <CreatefromWrapper>
+              {selected === null && (
+                <Createfrom
+                  selected={selected}
+                  getDataDocument={getDataDocument}
+                  setSelected={setSelected}
+                />
+              )}
+              {editing && (
+                <FormInputData
+                  selected={selected}
+                  setSelected={setSelected}
+                  setEditing={setEditing}
+                  getDataDocument={getDataDocument}
+                />
+              )}
+              {selected === "" && (
+                <NothingContent>
+                  Please search or upload a document
+                </NothingContent>
+              )}
+            </CreatefromWrapper>
+          ) : (
+            <div />
+          )}
+          {selected && !editing ? (
+            <object
+              data={`https://api.coe.bmte.vn/media/${selected?.url}`}
+              type="application/pdf"
               height="800px"
               width="800px"
-            />
-          </object>
-        ) : (
-          <div />
-        )}
-      </div>
-      {/* <FormInputData selected={selected} /> */}
-      <ListHospital />
+            >
+              <iframe
+                src={`https://docs.google.com/viewer?url=https://api.coe.bmte.vn/media/${selected?.url}&embedded=true`}
+                height="800px"
+                width="800px"
+              />
+            </object>
+          ) : (
+            <div />
+          )}
+        </div>
+      ) : (
+        <ListHospital />
+      )}
       <ModalNormal
         visible={isShow}
         setVisible={setIsShow}

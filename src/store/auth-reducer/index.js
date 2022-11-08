@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   token: null,
-  language: "en",
+  language: "vi",
 };
 
 const authSlice = createSlice({

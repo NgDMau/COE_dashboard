@@ -1,25 +1,36 @@
 import styled from "styled-components";
+import { rem } from "../helpers/rem/px-to-rem";
 
+export const MenuIconWrapper = styled.img`
+  position: ${(props) => (props?.collapse ? "unset" : "absolute")};
+  width: ${rem(24)} !important;
+  height: 24px !important;
+  z-index: 2;
+  left: ${rem(20)};
+  bottom: ${rem(10)};
+`;
 export const ButtonLogout = styled.div`
   cursor: pointer;
   width: 100%;
-  padding-left: 40px;
-  margin-bottom: 30px;
+  padding-left: ${(props) => (props?.collapse ? rem(20) : rem(40))};
+  margin-bottom: ${rem(30)};
   font-size: 16px;
   display: flex;
   align-items: center;
   img {
-    width: 22px;
+    width: ${rem(25)};
     height: auto;
-    margin-right: 6px;
+    margin-right: ${rem(6)};
   }
   :hover {
     color: #1890ff;
   }
 `;
+
 export const SiderbarWrapper = styled.div`
   background-color: white;
-  width: 220px;
+  width: ${(props) => (props?.collapse ? rem(60) : rem(222))};
+  transition: all 0.2s linear;
   display: flex;
   height: 100%;
   align-items: center;
@@ -32,13 +43,16 @@ export const SiderbarWrapper = styled.div`
   overflow-x: hidden;
   display: flex;
   justify-content: space-between;
+  .ant-menu-item {
+    width: fit-content;
+  }
   .ant-layout-sider {
     background-color: white;
   }
   .logo {
     width: 100%;
-    height: 100px;
-    padding-bottom: 20px;
+    height: ${rem(100)};
+    padding-bottom: ${rem(20)};
     position: sticky;
     top: 0;
     z-index: 100;
@@ -47,17 +61,18 @@ export const SiderbarWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    img {
-      width: 100px;
+    .img-logo {
+      display: ${(props) => (props?.collapse ? "none" : "unset")};
+      width: ${rem(100)};
       height: auto;
-      padding: 10px;
+      padding: ${rem(10)};
     }
   }
   .title {
     border-top: 1px solid #dfe6e9;
     padding: 0.5em;
     width: 100%;
-    font-size: 22px;
+    font-size: ${rem(22)};
     cursor: pointer;
   }
   .title:hover {
@@ -69,8 +84,8 @@ export const SiderbarWrapper = styled.div`
     }
   }
   img {
-    width: 16px;
-    height: 16px;
+    width: ${rem(16)};
+    height: ${rem(16)};
   }
   .report {
     width: 100%;

@@ -6,7 +6,7 @@ import { ChartLinkWrapper } from "./styled";
 const ChartLink = ({ dataTableChart, selected }) => {
   const { t } = useTranslation();
   const options = {
-    title: `Survey statistics - ${selected?.name}`,
+    title: `${t("chart.surveyStatistics")} - ${selected?.name}`,
     chartArea: { width: "65%" },
     isStacked: true,
     // hAxis: {

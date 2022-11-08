@@ -16,6 +16,7 @@ function RowComponent({ obstetric, index, elementST, elementSM, evaluation }) {
       <div className="chart">
         <div className="container-chart">
           <LinePoint
+            hiddenCaesarean={index === 6}
             dataST={elementST}
             dataSM={elementSM}
             time={dashboardData?.time}
