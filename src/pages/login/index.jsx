@@ -75,6 +75,19 @@ const LoginPage = () => {
     dispatch(storeSethospitalSelected(null));
   }, []);
 
+  useEffect(() => {
+    const listener = (event) => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        login();
+        event.preventDefault();
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, [userName, password]);
+
   return (
     <LoginWrapper>
       <MenuLanguage />
