@@ -122,6 +122,9 @@
   "app": {
     "breastfeeding": "Centers of Excellence for Breastfeeding",
     "breastMilkBank": "Human Milk Bank",
-    "nationalMinorities": "National Targeted Program for Ethnic Minorities"
+    "nationalMinorities": "National Targeted Program for Ethnic Minorities",
+    "copyright": "Copyright by Ministry of Health",
+    "supportBuild": "Support build by",
+    "image": "Image"
   }
 }

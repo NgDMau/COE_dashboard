@@ -123,6 +123,9 @@
   "app": {
     "breastfeeding": "Bệnh viện thực hành nuôi con bằng sữa mẹ Xuất sắc",
     "breastMilkBank": "Ngân hàng sữa mẹ",
-    "nationalMinorities": "Chương trình mục tiêu Quốc gia Dân tộc thiểu số"
+    "nationalMinorities": "Chương trình mục tiêu Quốc gia Dân tộc thiểu số",
+    "copyright": "Bản quyền thuộc Bộ Y tế",
+    "supportBuild": "Hỗ trợ xây dựng bởi",
+    "image": "Ảnh"
   }
 }
