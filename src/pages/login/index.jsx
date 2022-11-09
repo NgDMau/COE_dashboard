@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 import Input from "antd/lib/input/Input";
 import { Button } from "antd/lib/radio";
-import { LoginWrapper } from "./styled";
+import { LeftContent, LoginWrapper, RightContent } from "./styled";
 import { UserOutlined, LockOutlined, LoadingOutlined } from "@ant-design/icons";
 
 import logo from "../../assets/brand/cbimage.png";
@@ -20,6 +20,8 @@ import {
   storeSetHostpitalData,
   storeSethospitalSelected,
 } from "../../store/data-reducer";
+
+import background1 from "../../assets/brand/img_1.JPG";
 
 const LoginPage = () => {
   const { t } = useTranslation();
@@ -58,10 +60,10 @@ const LoginPage = () => {
           localStorage.setItem("token", JSON.stringify(data?.user?.token));
           navigate("/dashboard");
         } else {
-          setError("Wrong username or password");
+          setError(t("login.errorPassword"));
         }
       })
-      .catch(() => setError("Wrong username or password"))
+      .catch(() => setError(t("login.errorPassword")))
       .finally(() => setIsLoading(false));
   };
 
@@ -76,6 +78,7 @@ const LoginPage = () => {
   return (
     <LoginWrapper>
       <MenuLanguage />
+      {/* 
       {isLogin ? (
         <div className="login-form">
           <span>{t("common.login")}</span>
@@ -193,7 +196,61 @@ const LoginPage = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
+      <LeftContent imgBg={background1}></LeftContent>
+      <RightContent>
+        <div className="login">
+          <h1>{t("common.welcome")}</h1>
+          <Input
+            disabled={isLoading}
+            className="input"
+            placeholder={t("common.username")}
+            onChange={(e) => {
+              if (e.key === "Enter") {
+                login();
+                return;
+              }
+              setUserName(e?.target?.value);
+            }}
+          />
+          <Input
+            disabled={isLoading}
+            className="input"
+            type="password"
+            placeholder={t("common.password")}
+            onChange={(e) => {
+              if (e.key === "Enter") {
+                console.log(e.key);
+                login();
+                return;
+              }
+              setPassword(e?.target?.value);
+            }}
+          />
+          <div className="error">{error}</div>
+
+          <Button
+            type="primary"
+            className="btn-login"
+            onClick={login}
+            disabled={isLoading}
+          >
+            {isLoading ? <LoadingOutlined /> : t("common.login")}
+          </Button>
+          <Button
+            type="primary"
+            className="btn-login btn-signUp"
+            onClick={() => {
+              if (!isLoading) {
+                setIsLogin(!isLogin);
+              }
+            }}
+            disabled={isLoading}
+          >
+            {isLoading ? <LoadingOutlined /> : t("common.signUp")}
+          </Button>
+        </div>
+      </RightContent>
     </LoginWrapper>
   );
 };

@@ -127,5 +127,8 @@
     "copyright": "Bản quyền thuộc Bộ Y tế",
     "supportBuild": "Hỗ trợ xây dựng bởi",
     "image": "Ảnh"
+  },
+  "login": {
+    "errorPassword": "Tên người dùng hoặc mật khẩu sai"
   }
 }

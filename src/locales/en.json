@@ -126,5 +126,8 @@
     "copyright": "Copyright by Ministry of Health",
     "supportBuild": "Support build by",
     "image": "Image"
+  },
+  "login": {
+    "errorPassword": "Wrong username or password"
   }
 }
