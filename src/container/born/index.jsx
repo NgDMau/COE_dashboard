@@ -45,7 +45,7 @@ function RowComponent({
         </div>
       )} */}
       <div className="w-10 border-none">
-        {elementData?.TB >= 80 && <img alt="" src={accept} />}
+        {elementData?.result === "passed" && <img alt="" src={accept} />}
       </div>
     </div>
   );

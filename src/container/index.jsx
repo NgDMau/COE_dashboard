@@ -36,10 +36,8 @@ const AppContainer = ({ screen, title, setScreen }) => {
   const dispath = useDispatch();
   const location = useLocation();
   const patch = location?.pathname || "/dashboard";
-  const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
   const isCollapse = useSelector((state) => state.dashboard.isCollapse);
 
-  const dashboardData = useSelector((state) => state?.data?.dashboardData);
   const hospitalSelected = useSelector(
     (state) => state?.data?.hospitalSelected
   );
@@ -61,31 +59,30 @@ const AppContainer = ({ screen, title, setScreen }) => {
       setIsLoading(false);
     }
   };
+
+  const getOverView = async () => {
+    try {
+      setIsLoading(true);
+      const response = await sendGet(
+        `/dm/data/evaluation/overview?hospital=61`
+      );
+      if (response) {
+        // dispath(storeSetDashboardData(response));
+        console.log("responseeee", response);
+      }
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (hospitalSelected) {
       getDataDashboard(hospitalSelected?.code);
       setValue(EDepartment.OBSTETRIC);
+      // getOverView();
     }
   }, [hospitalSelected]);
-
-  const checkValue = (dashboardDataProps, elementProps) => {
-    if (!dashboardDataProps) {
-      return 0;
-    }
-    if (
-      dashboardDataProps[currentQuarter] === "N/A" ||
-      !dashboardDataProps[currentQuarter]
-    ) {
-      return 0;
-    }
-    return dashboardDataProps[currentQuarter];
-  };
-
-  const dataRadarSM = useMemo(() => {
-    if (!dashboardData) {
-      return null;
-    }
-  }, [dashboardData, value, currentQuarter]);
 
   return (
     <ContainerWrapper isCollapse={isCollapse}>

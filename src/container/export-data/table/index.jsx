@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { TitleContainer } from "../chart/styled";
 
-const TableExport = () => {
+const TableExport = ({ department, listData }) => {
   const { t } = useTranslation();
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
   const currentQuarter =
@@ -58,7 +58,20 @@ const TableExport = () => {
   ];
 
   const checkSuccess = useMemo(() => {
+    if (!dashboardData) {
+      return null;
+    }
+    const arr = listData?.map(
+      (element, index) =>
+        dashboardData[currentQuarter]?.data[department][index + 1]?.values
+          ?.result || null
+    );
+    const find = arr?.find((element) => !element && element !== "passed");
+    if (find) {
+      return false;
+    }
     return true;
+    // return true;
     // return (
     //   [1, 2, 3, 4, 5, 6, 7, 8]?.find(
     //     (_, index) =>
@@ -66,7 +79,7 @@ const TableExport = () => {
     //       "failed"
     //   ) || false
     // );
-  }, [currentQuarter, dashboardData]);
+  }, [listData, department, dashboardData, currentQuarter]);
 
   return (
     <TableExportWrapper>
@@ -86,9 +99,8 @@ const TableExport = () => {
           </div>
           <div className="criteria">{dataElement.criteria}</div>
           <div className="achieve">
-            {dashboardData[currentQuarter]?.data?.SK[index + 1]?.values?.TB > 80 && (
-              <img alt="" src={accept} />
-            )}
+            {dashboardData[currentQuarter]?.data?.SK[index + 1]?.values
+              ?.result === "passed" && <img alt="" src={accept} />}
           </div>
         </div>
       ))}
