@@ -49,7 +49,7 @@ const Createfrom = ({ selected, getDataDocument, setSelected }) => {
       redirect: "follow",
     };
 
-    fetch("https://api.coe.bmte.vn/dm/data/docs", requestOptions)
+    fetch("https://dev.api.coe.bmte.vn/dm/data/docs", requestOptions)
       .then((response) => response.text())
       .then((result) =>
         getDataDocument((res) => {

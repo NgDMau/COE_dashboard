@@ -58,20 +58,21 @@ const TableExport = () => {
   ];
 
   const checkSuccess = useMemo(() => {
-    return (
-      [1, 2, 3, 4, 5, 6, 7, 8]?.find(
-        (_, index) =>
-          dashboardData?.SK[index + 1]?.values?.evaluation[currentQuarter] ===
-          "failed"
-      ) || false
-    );
+    return true;
+    // return (
+    //   [1, 2, 3, 4, 5, 6, 7, 8]?.find(
+    //     (_, index) =>
+    //       dashboardData?.SK[index + 1]?.values?.evaluation[currentQuarter] ===
+    //       "failed"
+    //   ) || false
+    // );
   }, [currentQuarter, dashboardData]);
 
   return (
     <TableExportWrapper>
       <HeaderExport />
       <div className="quarter">
-        Quarter {dashboardData?.time[currentQuarter]}
+        Quarter {dashboardData[currentQuarter]?.time}
       </div>
       <div className="header-table">
         <div className="content">{t("export.content")}</div>
@@ -85,9 +86,9 @@ const TableExport = () => {
           </div>
           <div className="criteria">{dataElement.criteria}</div>
           <div className="achieve">
-            {dashboardData?.SK[index + 1]?.values?.evaluation[
-              currentQuarter
-            ] === "passed" && <img alt="" src={accept} />}
+            {dashboardData[currentQuarter]?.data?.SK[index + 1]?.values?.TB > 80 && (
+              <img alt="" src={accept} />
+            )}
           </div>
         </div>
       ))}

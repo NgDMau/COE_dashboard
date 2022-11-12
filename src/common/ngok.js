@@ -1,4 +1,4 @@
-export const linkApi = "https://api.coe.bmte.vn";
+export const linkApi = "https://dev.api.coe.bmte.vn";
 export const SCREEN_DEFAULT = {
   1: "/dashboard",
   2: "/survey_urls",

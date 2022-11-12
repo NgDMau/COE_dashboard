@@ -21,19 +21,6 @@ const RadaChart = ({ data2, isNomal, title }) => {
         score: element,
       };
     }) || [];
-  // label: isNomal ? t("born.vaginalDelivery") : t("born.Csection"),
-  // backgroundColor: isNomal
-  //   ? "rgba(255, 99, 132, 0.5)"
-  //   : "rgba(34, 202, 236, .2)",
-  // borderColor: isNomal ? "rgb(255, 99, 132)" : "rgba(34, 202, 236, 1)",
-  // pointBackgroundColor: isNomal
-  //   ? "rgb(255, 99, 132)"
-  //   : "rgba(34, 202, 236, 1)",
-  // poingBorderColor: "#fff",
-  // pointHoverBackgroundColor: "#fff",
-  // pointHoverBorderColor: isNomal
-  //   ? "rgb(255, 99, 132)"
-  //   : "rgba(34, 202, 236, 1)",
 
   const config = {
     data,
