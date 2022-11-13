@@ -117,7 +117,9 @@
     "hospital": "Hospital",
     "score": "Score",
     "obstetric": "Obstetric",
-    "pediatric": "Pediatric"
+    "pediatric": "Pediatric",
+    "withVaginalDelivery": "With a normal birth",
+    "withCSection": "With cesarean section"
   },
   "app": {
     "breastfeeding": "Centers of Excellence for Breastfeeding",

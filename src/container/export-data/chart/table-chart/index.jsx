@@ -16,7 +16,7 @@ const TableChart = ({ index, criteria, department }) => {
     });
     return response || [];
   }, [dashboardData]);
-  console.log("timeLinetimeLinetimeLine", timeLine);
+
   const listData = useMemo(() => {
     const dataST = tableData?.map((element) => {
       return {
@@ -66,50 +66,52 @@ const TableChart = ({ index, criteria, department }) => {
           </div>
         ))}
       </div>
-      {["với sinh thường", "với sinh mổ"].map((element, indexBorn) => {
-        const dataTable = indexBorn === 1 ? listData?.ST : listData?.SM;
-        return (
-          <div key={String(indexBorn)}>
-            <div className="header-chart margin-top-2">
-              <div className="criteria title-content">
-                {criteria} {element}
-              </div>
-              <div className="quarter" />
-              <div className="quarter" />
-              <div className="quarter" />
-              <div className="quarter" />
-              <div className="quarter" />
-              <div className="quarter" />
-              <div className="quarter" />
-              <div className="quarter border-right-none" />
-            </div>
-            {dataTable?.map((hospital, indexSub) => (
-              <div
-                className="header-chart border-top-none"
-                key={String(indexSub)}
-              >
-                <div className="criteria padding-left-30">
-                  {hospital.hospital_name}
+      {[t("exportData.withVaginalDelivery"), t("exportData.withCSection")].map(
+        (element, indexBorn) => {
+          const dataTable = indexBorn === 1 ? listData?.ST : listData?.SM;
+          return (
+            <div key={String(indexBorn)}>
+              <div className="header-chart margin-top-2">
+                <div className="criteria title-content">
+                  {criteria} {element}
                 </div>
-                {hospital?.hospital_data?.map(
-                  (dataHostPital, indexDataHostpital) => (
-                    <div
-                      key={String(indexDataHostpital)}
-                      className={`quarter ${
-                        indexDataHostpital === 7 && "border-right-none"
-                      } ${checkWarning(dataHostPital) && "warning"}`}
-                    >
-                      {dataHostPital?.number === "N/A"
-                        ? ""
-                        : dataHostPital?.number}
-                    </div>
-                  )
-                )}
+                <div className="quarter" />
+                <div className="quarter" />
+                <div className="quarter" />
+                <div className="quarter" />
+                <div className="quarter" />
+                <div className="quarter" />
+                <div className="quarter" />
+                <div className="quarter border-right-none" />
               </div>
-            ))}
-          </div>
-        );
-      })}
+              {dataTable?.map((hospital, indexSub) => (
+                <div
+                  className="header-chart border-top-none"
+                  key={String(indexSub)}
+                >
+                  <div className="criteria padding-left-30">
+                    {hospital.hospital_name}
+                  </div>
+                  {hospital?.hospital_data?.map(
+                    (dataHostPital, indexDataHostpital) => (
+                      <div
+                        key={String(indexDataHostpital)}
+                        className={`quarter ${
+                          indexDataHostpital === 7 && "border-right-none"
+                        } ${checkWarning(dataHostPital) && "warning"}`}
+                      >
+                        {dataHostPital?.number === "N/A"
+                          ? ""
+                          : dataHostPital?.number}
+                      </div>
+                    )
+                  )}
+                </div>
+              ))}
+            </div>
+          );
+        }
+      )}
     </TableChartWrapper>
   );
 };

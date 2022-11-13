@@ -76,7 +76,7 @@ const ExportData = () => {
 
   const checkFullNa = (arr) => {
     const find = arr?.find((findElement) => findElement !== "N/A");
-    if (!find) {
+    if (!find && find !== 0) {
       return false;
     }
     return true;
@@ -161,10 +161,10 @@ const ExportData = () => {
               );
             })}
 
-            {/* <div className="page html2pdf__page-break">
+            <div className="page html2pdf__page-break">
               <ObstetricTitle>{t("exportData.obstetric")}</ObstetricTitle>
               <RankExport />
-            </div> */}
+            </div>
           </div>
         ) : (
           <SpinWrapper>
@@ -180,12 +180,13 @@ const ExportData = () => {
               <TableExport department="NK" />
             </div>
             {ChildData.map((element, index) => {
-              // if (
-              //   !checkFullNa(dataList[index + 1]?.values?.ST) ||
-              //   !checkFullNa(dataList[index + 1]?.values?.SM)
-              // ) {
-              //   return <div />;
-              // }
+              if (
+                !checkFullNa(lineChartNK?.ST[index]) &&
+                !checkFullNa(lineChartNK?.SM[index])
+              ) {
+                return <div />;
+              }
+
               return (
                 <div className="page html2pdf__page-break">
                   <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle>

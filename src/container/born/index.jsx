@@ -56,6 +56,7 @@ const BornComponent = ({ data, isGeneral, dataList, department }) => {
   const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
 
   const timeLine = useMemo(() => {
+    console.log("dataListdataListdataList", dataList);
     if (!dataList) {
       return null;
     }

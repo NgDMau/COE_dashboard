@@ -14,7 +14,7 @@ const TableExport = ({ department, listData }) => {
   const currentQuarter =
     useSelector((state) => state?.data?.currentQuarter) || null;
 
-  const dataExport = [
+  const dataExportSK = [
     {
       content: t("obstetricsData.obstetricsKS_1"),
       criteria: t("obstetricsData.obstetricsPassKS_1"),
@@ -56,6 +56,45 @@ const TableExport = ({ department, listData }) => {
       achieve: true,
     },
   ];
+  const dataExportNK = [
+    {
+      content: t("obstetricsData.obstetricsKN_1"),
+      criteria: t("obstetricsData.obstetricsPassKS_1"),
+      achieve: true,
+    },
+    {
+      content: t("obstetricsData.obstetricsKN_2"),
+      criteria: t("obstetricsData.obstetricsPassKS_2"),
+      achieve: true,
+    },
+    {
+      content: t("obstetricsData.obstetricsKN_3"),
+      criteria: t("obstetricsData.obstetricsPassKS_3"),
+      achieve: true,
+    },
+    {
+      content: t("obstetricsData.obstetricsKN_4"),
+      criteria: t("obstetricsData.obstetricsPassKS_4"),
+      achieve: true,
+    },
+    {
+      content: t("obstetricsData.obstetricsKN_5"),
+      criteria: t("obstetricsData.obstetricsPassKS_5"),
+      achieve: true,
+    },
+    {
+      content: t("obstetricsData.obstetricsKN_6"),
+      criteria: t("obstetricsData.obstetricsPassKS_6"),
+      achieve: true,
+    },
+    {
+      content: t("obstetricsData.obstetricsKN_7"),
+      criteria: t("obstetricsData.obstetricsPassKS_7"),
+      achieve: true,
+    },
+  ];
+
+  const dataExport = department === "SK" ? dataExportSK : dataExportNK;
 
   const checkSuccess = useMemo(() => {
     if (!dashboardData) {

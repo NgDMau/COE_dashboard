@@ -16,6 +16,7 @@ const ChartExport = ({ elementST, elementSM, criteria, index, department }) => {
           dataST={elementST}
           dataSM={elementSM}
           time={dashboardData?.time}
+          hiddenCaesarean={index === 6}
         />
       </div>
       <TableChart index={index} criteria={criteria} department={department} />

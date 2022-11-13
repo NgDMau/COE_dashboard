@@ -118,7 +118,9 @@
     "hospital": "Bệnh viện",
     "score": "Điểm số",
     "obstetric": "Khoa sản",
-    "pediatric": "Khoa nhi"
+    "pediatric": "Khoa nhi",
+    "withVaginalDelivery": "Với sinh thường",
+    "withCSection": "Với sinh mổ"
   },
   "app": {
     "breastfeeding": "Bệnh viện thực hành nuôi con bằng sữa mẹ Xuất sắc",

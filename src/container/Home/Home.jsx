@@ -20,6 +20,7 @@ const Home = ({ isLoading, value, setValue }) => {
     (state) => state?.data?.hospitalSelected
   );
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
+
   const isAllNaNK = useMemo(() => {
     return true;
   }, []);

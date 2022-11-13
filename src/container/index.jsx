@@ -54,10 +54,11 @@ const AppContainer = ({ screen, title, setScreen }) => {
       const response = await sendGet(
         `/dm/data/evaluation?hospital=${selectedCode}`
       );
-      if (response) {
+      if (response[0]) {
         dispath(storeSetDashboardData(response));
       }
     } catch (error) {
+      dispath(storeSetDashboardData(null));
     } finally {
       setIsLoading(false);
     }
@@ -71,7 +72,6 @@ const AppContainer = ({ screen, title, setScreen }) => {
       );
       if (response?.status === "successful") {
         dispath(storeSetTableData(response?.data));
-        console.log("responseeee", response);
       }
     } catch (error) {
     } finally {
