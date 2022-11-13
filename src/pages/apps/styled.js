@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import background from "../../assets/brand/bg-app.jpg";
+import background1 from "../../assets/brand/img_1.JPG";
+import background2 from "../../assets/brand/img_2.jpg";
+
 export const AppsWrapper = styled.div`
   height: 100vh;
   width: 100vw;
@@ -12,38 +15,107 @@ export const AppsWrapper = styled.div`
     position: absolute;
     top: 20px;
     left: 20px;
+    img {
+      width: 80px;
+      height: 80px;
+    }
   }
-  .content {
-    padding: 40px 60px 80px 60px;
+  .item {
+    width: 33vw;
+    height: 33vw;
+    padding: 10px;
+    font-size: 30px;
+    box-shadow: 1px 2px 2px 1px #dfe6e9;
+    line-height: 35px;
+    font-weight: bold;
+    cursor: pointer;
     display: flex;
-    background-color: white;
-    border-radius: 10px;
-    border: 1px solid #b2bec3;
-    box-shadow: 3px 3px 3px 3px #dfe6e9;
-    background: rgba(51, 170, 51, 0.007);
-    .item {
-      width: 250px;
-      height: 250px;
-      margin: 30px;
-      padding: 40px 30px 40px 30px;
-      font-size: 30px;
-      box-shadow: 1px 2px 2px 1px #dfe6e9;
-      border-radius: 20px;
-      line-height: 35px;
-      font-weight: 500;
-      cursor: pointer;
+    align-items: flex-end;
+    text-align: center;
+    color: #ffffff;
+    justify-content: center;
+  }
+  .title {
+    height: 10vw;
+    width: 329px;
+    text-align: center;
+  }
+  .blue {
+    background-image: url(${background1});
+    background-size: cover;
+    :hover {
+      .hover-image-1 {
+        visibility: visible;
+      }
     }
-    .blue {
-      background-color: #aed7ff;
+  }
+  .yellow {
+    background-image: url(${background2});
+    background-size: cover;
+    margin: 0 4px;
+    :hover {
+      .hover-image-2 {
+        visibility: visible;
+      }
     }
-    .yellow {
-      background-color: #ecb846;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  }
+  .green {
+    background-image: url(${background1});
+    background-size: cover;
+    :hover {
+      .hover-image-3 {
+        visibility: visible;
+      }
     }
-    .green {
-      background-color: #81f681;
+  }
+  .hover-image-1 {
+    visibility: hidden;
+    background-color: #000;
+    width: 33vw;
+    height: 33vw;
+    position: absolute;
+    margin-bottom: -10px;
+    opacity: 0.3;
+    z-index: 2;
+  }
+  .hover-image-2 {
+    visibility: hidden;
+    background-color: #000;
+    width: 33vw;
+    height: 33vw;
+    position: absolute;
+    margin-bottom: -10px;
+    opacity: 0.3;
+    z-index: 2;
+  }
+  .hover-image-3 {
+    visibility: hidden;
+    background-color: #000;
+    width: 33vw;
+    height: 33vw;
+    position: absolute;
+    margin-bottom: -10px;
+    opacity: 0.3;
+    z-index: 2;
+  }
+  .footer {
+    width: 100vw;
+    height: 60px;
+    background-color: #ecf0f1;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    img {
+      width: auto;
+      height: 40px;
+      margin-right: 60px;
+      margin-left: 12px;
+    }
+    div:first-child {
+      margin-right: 60px;
     }
   }
 `;

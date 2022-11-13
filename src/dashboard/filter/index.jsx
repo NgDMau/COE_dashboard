@@ -174,17 +174,19 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
         )}
         {!disabled || screen === 2 ? (
           <div>
-            {dashboardData?.time?.length > 0 && (
+            {dashboardData?.length > 0 && (
               <Select
-                defaultValue={dashboardData?.time[currentQuarter]}
+                defaultValue={dashboardData[currentQuarter]?.time}
                 className="select-quarter"
                 onChange={(e) => {
                   dispatch(storeSetCurrentQuarter(e));
                 }}
               >
-                {dashboardData?.time?.map((element, index) => {
+                {dashboardData?.map((element, index) => {
                   return (
-                    <Select.Option key={String(index)}>{element}</Select.Option>
+                    <Select.Option key={String(index)}>
+                      {element?.time}
+                    </Select.Option>
                   );
                 })}
               </Select>

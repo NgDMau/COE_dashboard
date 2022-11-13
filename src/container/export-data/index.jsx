@@ -13,7 +13,7 @@ const ExportData = () => {
 
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
 
-  const ALL_DATA = [
+  const ObstetricsData = [
     {
       criteria: t("obstetricsData.obstetricsKS_1"),
     },
@@ -32,6 +32,15 @@ const ExportData = () => {
     {
       criteria: t("obstetricsData.obstetricsKS_6"),
     },
+    {
+      criteria: t("obstetricsData.obstetricsKS_7"),
+    },
+    {
+      criteria: t("obstetricsData.obstetricsKS_8"),
+    },
+  ];
+
+  const ChildData = [
     {
       criteria: t("obstetricsData.obstetricsKN_1"),
     },
@@ -55,54 +64,98 @@ const ExportData = () => {
     },
   ];
 
-  const dataList = useMemo(() => {
+  const timeLine = useMemo(() => {
     if (!dashboardData) {
       return null;
     }
-    const dataAll = {
-      ...dashboardData?.SK,
-      8: dashboardData?.NK[1],
-      9: dashboardData?.NK[2],
-      10: dashboardData?.NK[3],
-      11: dashboardData?.NK[4],
-      12: dashboardData?.NK[5],
-      13: dashboardData?.NK[6],
-    };
-    return dataAll;
+    const response = dashboardData?.map((element) => {
+      return element?.time;
+    });
+    return response || [];
   }, [dashboardData]);
+
   const checkFullNa = (arr) => {
     const find = arr?.find((findElement) => findElement !== "N/A");
-    if (!find) {
+    if (!find && find !== 0) {
       return false;
     }
     return true;
   };
 
+  const lineChartSK = useMemo(() => {
+    if (!dashboardData) {
+      return null;
+    }
+    const responseST = ObstetricsData?.map((element, index) => {
+      return dashboardData?.map((dataElement) => {
+        const point = dataElement?.data?.SK[index + 1]?.values?.ST || 0;
+        return point === "N/A" ? 0 : point;
+      });
+    });
+    const responseSM = ObstetricsData?.map((element, index) => {
+      return dashboardData?.map((dataElement) => {
+        const point = dataElement?.data?.SK[index + 1]?.values?.SM || 0;
+        return point === "N/A" ? 0 : point;
+      });
+    });
+    return (
+      {
+        SM: responseSM,
+        ST: responseST,
+      } || []
+    );
+  }, [ObstetricsData, dashboardData]);
+
+  const lineChartNK = useMemo(() => {
+    if (!dashboardData) {
+      return null;
+    }
+    const responseST = ObstetricsData?.map((element, index) => {
+      return dashboardData?.map((dataElement) => {
+        const point = dataElement?.data?.NK[index + 1]?.values?.ST || 0;
+        return point === "N/A" ? 0 : point;
+      });
+    });
+    const responseSM = ObstetricsData?.map((element, index) => {
+      return dashboardData?.map((dataElement) => {
+        const point = dataElement?.data?.NK[index + 1]?.values?.SM || 0;
+        return point === "N/A" ? 0 : point;
+      });
+    });
+    return (
+      {
+        SM: responseSM,
+        ST: responseST,
+      } || []
+    );
+  }, [ObstetricsData, dashboardData]);
+
   return (
     <>
       <ExportWrapper id="exportDagta">
-        {dataList ? (
+        {lineChartSK ? (
           <div>
             <div className="page html2pdf__page-break">
               <ObstetricTitle>{t("exportData.obstetric")}</ObstetricTitle>
-              <TableExport />
+              <TableExport department="SK" />
             </div>
-            {ALL_DATA.map((element, index) => {
-              // if (
-              //   !checkFullNa(dataList[index + 1]?.values?.ST) ||
-              //   !checkFullNa(dataList[index + 1]?.values?.SM)
-              // ) {
-              //   return <div />;
-              // }
+            {ObstetricsData.map((element, index) => {
+              if (
+                !checkFullNa(lineChartSK?.ST[index]) &&
+                !checkFullNa(lineChartSK?.SM[index])
+              ) {
+                return <div />;
+              }
               return (
                 <div className="page html2pdf__page-break">
                   <ObstetricTitle>{t("exportData.obstetric")}</ObstetricTitle>
                   <ChartExport
                     criteria={element.criteria}
-                    elementST={dataList[index + 1]?.values?.ST}
-                    elementSM={dataList[index + 1]?.values?.SM}
-                    evaluation={dataList[index + 1]?.values?.evaluation}
+                    elementST={lineChartSK?.ST[index]}
+                    elementSM={lineChartSK?.SM[index]}
+                    evaluation={timeLine}
                     index={index}
+                    department="SK"
                   />
                 </div>
               );
@@ -120,35 +173,37 @@ const ExportData = () => {
         )}
       </ExportWrapper>
       <ExportWrapper id="exportDagta2">
-        {dataList && (
+        {lineChartNK && (
           <div>
             <div className="page html2pdf__page-break">
               <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle>
-              <TableExport />
+              <TableExport department="NK" />
             </div>
-            {ALL_DATA.map((element, index) => {
+            {ChildData.map((element, index) => {
               if (
-                !checkFullNa(dataList[index + 1]?.values?.ST) ||
-                !checkFullNa(dataList[index + 1]?.values?.SM)
+                !checkFullNa(lineChartNK?.ST[index]) &&
+                !checkFullNa(lineChartNK?.SM[index])
               ) {
                 return <div />;
               }
+
               return (
                 <div className="page html2pdf__page-break">
                   <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle>
                   <ChartExport
                     criteria={element.criteria}
-                    elementST={dataList[index + 1]?.values?.ST}
-                    elementSM={dataList[index + 1]?.values?.SM}
-                    evaluation={dataList[index + 1]?.values?.evaluation}
+                    elementST={lineChartNK?.ST[index]}
+                    elementSM={lineChartNK?.SM[index]}
+                    evaluation={timeLine}
                     index={index}
+                    department="NK"
                   />
                 </div>
               );
             })}
 
             <div className="page html2pdf__page-break">
-              <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle>
+              {/* <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle> */}
               <RankExport />
             </div>
           </div>

@@ -40,7 +40,7 @@
     "radar_3": "Bú mẹ hoàn toàn trong thời gian ở viện",
     "radar_4": "Tư vấn nuôi con bằng sữa mẹ",
     "radar_5": "Tuân thủ Nghị định 100",
-    "radar_6": "Tư vấn sữa công thức"
+    "radar_6": "Tư vấn nuôi con bằng sữa mẹ"
   },
   "screen": {
     "surveyResults": "Kết quả khảo sát",
@@ -118,11 +118,19 @@
     "hospital": "Bệnh viện",
     "score": "Điểm số",
     "obstetric": "Khoa sản",
-    "pediatric": "Khoa nhi"
+    "pediatric": "Khoa nhi",
+    "withVaginalDelivery": "Với sinh thường",
+    "withCSection": "Với sinh mổ"
   },
   "app": {
     "breastfeeding": "Bệnh viện thực hành nuôi con bằng sữa mẹ Xuất sắc",
     "breastMilkBank": "Ngân hàng sữa mẹ",
-    "nationalMinorities": "Chương trình mục tiêu Quốc gia Dân tộc thiểu số"
+    "nationalMinorities": "Chương trình mục tiêu Quốc gia Dân tộc thiểu số",
+    "copyright": "Bản quyền thuộc Bộ Y tế",
+    "supportBuild": "Hỗ trợ xây dựng bởi",
+    "image": "Ảnh"
+  },
+  "login": {
+    "errorPassword": "Tên người dùng hoặc mật khẩu sai"
   }
 }

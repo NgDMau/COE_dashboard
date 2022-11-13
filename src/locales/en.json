@@ -40,7 +40,7 @@
     "radar_3": "Exclusive breastfeeding during hospital stay",
     "radar_4": "Breastfeeding counseling",
     "radar_5": "Code compliance",
-    "radar_6": "Formula milk consultation"
+    "radar_6": "Breastfeeding advice"
   },
   "screen": {
     "surveyResults": "Statistics",
@@ -117,11 +117,19 @@
     "hospital": "Hospital",
     "score": "Score",
     "obstetric": "Obstetric",
-    "pediatric": "Pediatric"
+    "pediatric": "Pediatric",
+    "withVaginalDelivery": "With a normal birth",
+    "withCSection": "With cesarean section"
   },
   "app": {
     "breastfeeding": "Centers of Excellence for Breastfeeding",
     "breastMilkBank": "Human Milk Bank",
-    "nationalMinorities": "National Targeted Program for Ethnic Minorities"
+    "nationalMinorities": "National Targeted Program for Ethnic Minorities",
+    "copyright": "Copyright by Ministry of Health",
+    "supportBuild": "Support build by",
+    "image": "Image"
+  },
+  "login": {
+    "errorPassword": "Wrong username or password"
   }
 }
