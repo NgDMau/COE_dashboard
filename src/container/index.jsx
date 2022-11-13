@@ -21,7 +21,10 @@ import { sendGet } from "../api/axios";
 import { EDepartment } from "../common/const";
 import { SCREEN_DEFAULT } from "../common/ngok";
 import { storeSetLanguage } from "../store/auth-reducer";
-import { storeSetDashboardData } from "../store/data-reducer";
+import {
+  storeSetDashboardData,
+  storeSetTableData,
+} from "../store/data-reducer";
 import {
   Buttonanguage,
   ContainerWrapper,
@@ -60,14 +63,14 @@ const AppContainer = ({ screen, title, setScreen }) => {
     }
   };
 
-  const getOverView = async () => {
+  const getOverView = async (selectedCode) => {
     try {
       setIsLoading(true);
       const response = await sendGet(
-        `/dm/data/evaluation/overview?hospital=61`
+        `/dm/data/evaluation/overview?hospital=${selectedCode}`
       );
-      if (response) {
-        // dispath(storeSetDashboardData(response));
+      if (response?.status === "successful") {
+        dispath(storeSetTableData(response?.data));
         console.log("responseeee", response);
       }
     } catch (error) {
@@ -80,7 +83,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
     if (hospitalSelected) {
       getDataDashboard(hospitalSelected?.code);
       setValue(EDepartment.OBSTETRIC);
-      // getOverView();
+      getOverView(hospitalSelected?.code);
     }
   }, [hospitalSelected]);
 

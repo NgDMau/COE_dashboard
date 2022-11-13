@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { LinePoint } from "../../../components/common/line-chart/LinePoint";
 import TableChart from "./table-chart";
 
-const ChartExport = ({ elementST, elementSM, criteria, index }) => {
+const ChartExport = ({ elementST, elementSM, criteria, index, department }) => {
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
   return (
     <ChartExportWrapper>
@@ -18,7 +18,7 @@ const ChartExport = ({ elementST, elementSM, criteria, index }) => {
           time={dashboardData?.time}
         />
       </div>
-      <TableChart />
+      <TableChart index={index} criteria={criteria} department={department} />
     </ChartExportWrapper>
   );
 };

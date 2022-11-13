@@ -71,14 +71,6 @@ const TableExport = ({ department, listData }) => {
       return false;
     }
     return true;
-    // return true;
-    // return (
-    //   [1, 2, 3, 4, 5, 6, 7, 8]?.find(
-    //     (_, index) =>
-    //       dashboardData?.SK[index + 1]?.values?.evaluation[currentQuarter] ===
-    //       "failed"
-    //   ) || false
-    // );
   }, [listData, department, dashboardData, currentQuarter]);
 
   return (
@@ -99,7 +91,7 @@ const TableExport = ({ department, listData }) => {
           </div>
           <div className="criteria">{dataElement.criteria}</div>
           <div className="achieve">
-            {dashboardData[currentQuarter]?.data?.SK[index + 1]?.values
+            {dashboardData[currentQuarter]?.data[department][index + 1]?.values
               ?.result === "passed" && <img alt="" src={accept} />}
           </div>
         </div>

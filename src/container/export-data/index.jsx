@@ -137,7 +137,7 @@ const ExportData = () => {
           <div>
             <div className="page html2pdf__page-break">
               <ObstetricTitle>{t("exportData.obstetric")}</ObstetricTitle>
-              <TableExport />
+              <TableExport department="SK" />
             </div>
             {ObstetricsData.map((element, index) => {
               if (
@@ -155,6 +155,7 @@ const ExportData = () => {
                     elementSM={lineChartSK?.SM[index]}
                     evaluation={timeLine}
                     index={index}
+                    department="SK"
                   />
                 </div>
               );
@@ -176,7 +177,7 @@ const ExportData = () => {
           <div>
             <div className="page html2pdf__page-break">
               <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle>
-              <TableExport />
+              <TableExport department="NK" />
             </div>
             {ChildData.map((element, index) => {
               // if (
@@ -194,6 +195,7 @@ const ExportData = () => {
                     elementSM={lineChartNK?.SM[index]}
                     evaluation={timeLine}
                     index={index}
+                    department="NK"
                   />
                 </div>
               );
