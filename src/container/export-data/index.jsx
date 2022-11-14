@@ -161,10 +161,10 @@ const ExportData = () => {
               );
             })}
 
-            <div className="page html2pdf__page-break">
+            {/* <div className="page html2pdf__page-break">
               <ObstetricTitle>{t("exportData.obstetric")}</ObstetricTitle>
               <RankExport />
-            </div>
+            </div> */}
           </div>
         ) : (
           <SpinWrapper>
@@ -202,10 +202,10 @@ const ExportData = () => {
               );
             })}
 
-            <div className="page html2pdf__page-break">
-              {/* <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle> */}
+            {/* <div className="page html2pdf__page-break">
+              <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle>
               <RankExport />
-            </div>
+            </div> */}
           </div>
         )}
       </ExportWrapper>
