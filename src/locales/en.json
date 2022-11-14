@@ -22,7 +22,7 @@
     "obstetricsKS_8": "Code compliance regarding no formula milk substitutes marketing in health facility",
     "obstetricsKN_1": "Was the baby incubated in the Kangaroo position (≥20 hours/day, intermittent ≤ 30 minutes/time)?",
     "obstetricsKN_2": "Were you allowed to stay with your baby or visit your baby at least once a day while s/he was quarantined in the Neonatal Resuscitation unit?",
-    "obstetricsKN_3": "During the hospital stay, what did your baby eat?",
+    "obstetricsKN_3": "Feeding the baby with a bottle",
     "obstetricsKN_4": "How did your baby have breast milk?",
     "obstetricsKN_5": "During your hospital stay, did the medical staffs give you advice and guidance on breastfeeding?",
     "obstetricsKN_6": "Did doctors and nurses in the hospital counsel you to use formula milk for babies under 24 months? (except for cases specifically prescribed by doctors)",
@@ -35,12 +35,19 @@
     "obstetricsPassKS_6": "“Pass” if more than 80% of vaginal cases and Caesarean cases received breastfeeding counseling during hospital stay.",
     "obstetricsPassKS_7": "“Pass” if 100% among vaginal cases and Caesarean cases “Didn’t receive formula milk counseling from health worker” (except as correctly prescribed by doctors)",
     "obstetricsPassKS_8": "“Pass” if 100% among vaginal cases and Caesarean cases “Didn’t see any forms of formula milk substitutes in the hospital”",
+    "obstetricsPassNK_1": "“Satisfactory” if more than 80% of mothers with preterm infants < 37 weeks, <2,000g answer “Yes”",
+    "obstetricsPassNK_2": "“Satisfactory” if over 90% of mothers are not isolated or are allowed to visit their children at least once a day during the time the child is isolated in the Neonatal Resuscitation Unit",
+    "obstetricsPassNK_3": "“Satisfactory” if more than 80% of infants are exclusively breastfed or fed other forms of breast milk (eating expressed mother's milk, breast milk banks, etc.)",
+    "obstetricsPassNK_4": "“Satisfactory” if less than 20% of babies are fed breast milk from a bottle",
+    "obstetricsPassNK_5": "“Satisfactory” above 80% of mothers answered “Yes”",
+    "obstetricsPassNK_6": "“Satisfactory” if 100% of interviewed mothers/caregivers answered “No” (except for cases specified as prescribed).",
+    "obstetricsPassNK_7": "“Satisfactory” if 100% of interviewed mothers/caregivers answered “No”",
     "radar_1": "Prolonged skin to skin contact",
     "radar_2": "Early initial breastfeeding",
     "radar_3": "Exclusive breastfeeding during hospital stay",
     "radar_4": "Breastfeeding counseling",
     "radar_5": "Code compliance",
-    "radar_6": "Formula milk consultation"
+    "radar_6": "Breastfeeding advice"
   },
   "screen": {
     "surveyResults": "Statistics",
@@ -117,11 +124,19 @@
     "hospital": "Hospital",
     "score": "Score",
     "obstetric": "Obstetric",
-    "pediatric": "Pediatric"
+    "pediatric": "Pediatric",
+    "withVaginalDelivery": "With a normal birth",
+    "withCSection": "With cesarean section"
   },
   "app": {
     "breastfeeding": "Centers of Excellence for Breastfeeding",
     "breastMilkBank": "Human Milk Bank",
-    "nationalMinorities": "National Targeted Program for Ethnic Minorities"
+    "nationalMinorities": "National Targeted Program for Ethnic Minorities",
+    "copyright": "Copyright by Ministry of Health",
+    "supportBuild": "Support build by",
+    "image": "Image"
+  },
+  "login": {
+    "errorPassword": "Wrong username or password"
   }
 }

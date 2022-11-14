@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,11 +8,11 @@ import {
   Title,
   Tooltip,
   Legend,
-} from "chart.js";
-import { Line } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
-import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+import { faker } from '@faker-js/faker';
+import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
 ChartJS.register(
   CategoryScale,
@@ -28,7 +28,7 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: "bottom",
+      position: 'bottom',
     },
     title: {
       display: true,
@@ -36,10 +36,11 @@ export const options = {
   },
   scales: {
     y: {
-      type: "linear",
+      type: 'linear',
       display: true,
-      position: "right",
+      position: 'right',
       min: -0,
+      max: 100,
       // grid: {
       //   display: false,
       // },
@@ -52,57 +53,101 @@ export const options = {
   },
 };
 
-export function LinePoint({ dataST, dataSM, time, hiddenCaesarean }) {
+export function LinePoint({
+  dataST,
+  dataSM,
+  time,
+  hiddenCaesarean,
+  department,
+  passLevelST,
+  passLevelSM,
+}) {
   const { t } = useTranslation();
   const labels = Array.from({ length: 8 }, (_, i) => {
-    return time ? time[i] : "";
+    return time ? time[i] : '';
   });
-  const data = {
+
+  const rateCaesarean = passLevelSM === null ? passLevelSM : passLevelSM || 75;
+  const rateNormal = passLevelST === null ? passLevelST : passLevelST || 70;
+
+  const dataSK = {
     labels,
     datasets: [
       {
-        label: t("chart.vaginalDelievery"),
+        label: t('chart.vaginalDelievery'),
         data: dataST || [],
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-        pointStyle: "circle",
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        pointStyle: 'circle',
         pointRadius: 6,
         pointHoverRadius: 10,
       },
       {
-        label: t("chart.CSection"),
+        label: t('chart.CSection'),
         data: dataSM || [],
-        borderColor: "#0984e3",
-        backgroundColor: "rgb(9, 132, 227,0.5)",
-        pointStyle: "circle",
+        borderColor: '#0984e3',
+        backgroundColor: 'rgb(9, 132, 227,0.5)',
+        pointStyle: 'circle',
         pointRadius: 6,
         pointHoverRadius: 10,
       },
       {
-        label: t("chart.caesareanRate"),
+        label: t('chart.caesareanRate'),
         fill: false,
-        backgroundColor: "red",
-        borderColor: "red",
+        backgroundColor: 'red',
+        borderColor: 'red',
         borderDash: [5, 5],
-        data: labels.map(() => faker.datatype.number({ min: 75, max: 75 })),
-        pointStyle: "hidden",
+        data: labels.map(() =>
+          faker.datatype.number({ min: rateCaesarean, max: rateCaesarean })
+        ),
+        pointStyle: 'hidden',
       },
       {
-        label: t("chart.normalRate"),
+        label: t('chart.normalRate'),
         fill: false,
-        backgroundColor: "#0984e3",
-        borderColor: "#0984e3",
+        backgroundColor: '#0984e3',
+        borderColor: '#0984e3',
         borderDash: [5, 5],
-        data: labels.map(() => faker.datatype.number({ min: 70, max: 70 })),
-        pointStyle: "hidden",
+        data: labels.map(() =>
+          faker.datatype.number({ min: rateNormal, max: rateNormal })
+        ),
+        pointStyle: 'hidden',
       },
     ],
   };
 
   if (hiddenCaesarean) {
-    data.datasets.pop();
-    data.datasets.pop();
+    dataSK.datasets.pop();
+    dataSK.datasets.pop();
   }
 
-  return <Line options={options} data={data} />;
+  const dataNK = {
+    labels,
+    datasets: [
+      {
+        label: 'Chỉ số',
+        data: dataST || [],
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        pointStyle: 'circle',
+        pointRadius: 6,
+        pointHoverRadius: 10,
+      },
+      {
+        label: 'Mức đạt',
+        fill: false,
+        backgroundColor: 'red',
+        borderColor: 'red',
+        borderDash: [5, 5],
+        data: labels.map(() =>
+          faker.datatype.number({ min: rateNormal, max: rateNormal })
+        ),
+        pointStyle: 'hidden',
+      },
+    ],
+  };
+
+  return (
+    <Line options={options} data={department === 'NK' ? dataNK : dataSK} />
+  );
 }

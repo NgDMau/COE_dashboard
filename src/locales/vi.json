@@ -22,7 +22,7 @@
     "obstetricsKS_8": "Bệnh viện quảng cáo tiếp thị sữa bột sữa công thức cho trẻ dưới 24 tháng tuổi, bình bú, vú ngậm nhân tạo",
     "obstetricsKN_1": "Thực hiện Kangaroo",
     "obstetricsKN_2": "Không cách ly mẹ con",
-    "obstetricsKN_3": "Phương thức nuôi dưỡng",
+    "obstetricsKN_3": "Cho trẻ ăn sữa bằng bình bú",
     "obstetricsKN_4": "Trẻ ăn sữa mẹ bằng cách nào?",
     "obstetricsKN_5": "NVYT tư vấn và hướng dẫn NCBSM",
     "obstetricsKN_6": "NVYT tư vấn dùng sữa bột/sữa công thức",
@@ -35,12 +35,19 @@
     "obstetricsPassKS_6": "“Đạt” nếu trên 80% bà mẹ sinh thườngvà sinh mổ được cán bộ y tế tại bệnh viện hướng dẫn về cách cho con bú.",
     "obstetricsPassKS_7": "“Đạt” nếu 100% bà mẹ cả sinh thường và sinh mổ trả lời “Không” nhận được tư vấn sử dụng sữa công thức từ CBYT (trừ các trường hợp được chỉ định)",
     "obstetricsPassKS_8": "“Đạt” nếu 100% bà mẹ cả sinh thường và sinh mổ phản hồi “Không” thấy trong bệnh viện có bất kỳ hình thức quảng cáo, tiếp thị sữa công thức.",
+    "obstetricsPassNK_1": "“Đạt yêu cầu” nếu trên 80% bà mẹ có trẻ non tháng < 37 tuần, <2.000g trả lời “Có”",
+    "obstetricsPassNK_2": "“Đạt yêu cầu” nếu trên 90% bà mẹ không bị cách ly hoặc được thăm con ít nhất 1 lần/ngày trong thời gian trẻ bị cách ly tại Đơn vị hồi sức sơ sinh ",
+    "obstetricsPassNK_3": "“Đạt yêu cầu” nếu trên 80% trẻ bú mẹ hoàn toàn hoặc ăn sữa mẹ bằng cách hình thức khác (ăn sữa của mẹ đẻ vắt ra, Ngân hàng sữa mẹ…) trong thời gian nằm viện",
+    "obstetricsPassNK_4": "“Đạt yêu cầu” nếu ít hơn 20% trẻ ăn sữa mẹ bằng bình bú",
+    "obstetricsPassNK_5": "“Đạt yêu cầu” nêu trên 80% bà mẹ trả lời “Có”",
+    "obstetricsPassNK_6": "“Đạt yêu cầu” nếu 100% bà mẹ/người chăm sóc trẻ được phỏng vấn trả lời “Không” (đã loại trừ trường hợp được chỉ định theo qui định).",
+    "obstetricsPassNK_7": "“Đạt yêu cầu” nếu 100% bà mẹ/người chăm sóc trẻ được phỏng vấn trả lời “Không”",
     "radar_1": "Da kề da đủ 90 phút",
     "radar_2": "Bú sớm sau sinh",
     "radar_3": "Bú mẹ hoàn toàn trong thời gian ở viện",
     "radar_4": "Tư vấn nuôi con bằng sữa mẹ",
     "radar_5": "Tuân thủ Nghị định 100",
-    "radar_6": "Tư vấn sữa công thức"
+    "radar_6": "Tư vấn nuôi con bằng sữa mẹ"
   },
   "screen": {
     "surveyResults": "Kết quả khảo sát",
@@ -101,7 +108,7 @@
     "content": "Nội dung",
     "criteria": "Tiêu chí",
     "Assessment": "Đánh giá (Đạt)",
-    "conclusion": "kết luận",
+    "conclusion": "Kết luận",
     "conclusionContent": "Đạt nếu tất cả các tiêu chí trên đều đạt"
   },
   "document": {
@@ -118,11 +125,19 @@
     "hospital": "Bệnh viện",
     "score": "Điểm số",
     "obstetric": "Khoa sản",
-    "pediatric": "Khoa nhi"
+    "pediatric": "Khoa nhi",
+    "withVaginalDelivery": "Với sinh thường",
+    "withCSection": "Với sinh mổ"
   },
   "app": {
     "breastfeeding": "Bệnh viện thực hành nuôi con bằng sữa mẹ Xuất sắc",
     "breastMilkBank": "Ngân hàng sữa mẹ",
-    "nationalMinorities": "Chương trình mục tiêu Quốc gia Dân tộc thiểu số"
+    "nationalMinorities": "Chương trình mục tiêu Quốc gia Dân tộc thiểu số",
+    "copyright": "Bản quyền thuộc Bộ Y tế",
+    "supportBuild": "Hỗ trợ xây dựng bởi",
+    "image": "Ảnh"
+  },
+  "login": {
+    "errorPassword": "Tên người dùng hoặc mật khẩu sai"
   }
 }

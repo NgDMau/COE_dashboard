@@ -46,7 +46,7 @@ const Document = ({ title }) => {
     if (!selected) {
       return;
     }
-    window.open(`https://api.coe.bmte.vn/media/${selected?.url}`);
+    window.open(`https://dev.api.coe.bmte.vn/media/${selected?.url}`);
   };
 
   const getDataDocument = async (callback) => {
@@ -176,13 +176,13 @@ const Document = ({ title }) => {
           )}
           {selected && !editing ? (
             <object
-              data={`https://api.coe.bmte.vn/media/${selected?.url}`}
+              data={`https://dev.api.coe.bmte.vn/media/${selected?.url}`}
               type="application/pdf"
               height="800px"
               width="800px"
             >
               <iframe
-                src={`https://docs.google.com/viewer?url=https://api.coe.bmte.vn/media/${selected?.url}&embedded=true`}
+                src={`https://docs.google.com/viewer?url=https://dev.api.coe.bmte.vn/media/${selected?.url}&embedded=true`}
                 height="800px"
                 width="800px"
               />

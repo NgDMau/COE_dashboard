@@ -16,7 +16,7 @@ const HeaderExport = () => {
     <HeaderExportWrapper>
       <div className="title">{t("exportData.title")}</div>
       <div className="last-update">
-        {t("exportData.updateTo")} {dashboardData?.time[currentQuarter]}
+        {t("exportData.updateTo")} {dashboardData[currentQuarter]?.time}
       </div>
       <div className="hospital">{hospitalSelected?.name}</div>
     </HeaderExportWrapper>

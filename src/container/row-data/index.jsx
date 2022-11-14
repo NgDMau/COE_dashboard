@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { Excel } from "antd-table-saveas-excel";
 import { ButtonDownLoadWrapper } from "../document/styled";
 import { useTranslation } from "react-i18next";
+import { sendPost } from "../../api/axios";
 
 const RowData = React.memo(() => {
   const { t } = useTranslation();
@@ -15,11 +16,22 @@ const RowData = React.memo(() => {
     ? JSON.parse(localStorage.getItem("user"))
     : null;
   const citiesData = useSelector((state) => state.data.citiesData);
+  const citySelected = useSelector((state) => state.data.citySelected);
+  const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
+  const dashboardData = useSelector((state) => state?.data?.dashboardData);
 
   const [isLoading, setIsLoading] = useState(false);
   const [rowData, setRowData] = useState([]);
   const [numEntries, setNumEntries] = useState({});
-  console.log("numEntriesnumEntriesnumEntries", numEntries);
+
+  const time = useMemo(() => {
+    const timeString = dashboardData[currentQuarter]?.time.split("/");
+    return {
+      quarter: timeString[0][1],
+      year: timeString[1],
+    };
+  }, [currentQuarter, dashboardData]);
+  console.log("timeeee", time);
   const getDataRow = async (page) => {
     if (isLoading) {
       return;
@@ -446,15 +458,21 @@ const RowData = React.memo(() => {
     //   key: "action",
     // },
   ];
-  const handleClick = () => {
-    const excel = new Excel();
-    excel
-      .addSheet("test")
-      .addColumns(columns)
-      .addDataSource(rowData, {
-        str2Percent: true,
-      })
-      .saveAs("Excel.xlsx");
+  const handleClick = async () => {
+    try {
+      const response = await sendPost(
+        "/dm/data/raw/export_province_quarter_report",
+        {
+          year: Number(time.year),
+          quarter: Number(time.quarter),
+          province: citySelected?.code,
+        }
+      );
+      console.log("responseresponse");
+      if (response?.status === "OK") {
+        window.open(`${linkApi}/${response?.data?.url}`);
+      }
+    } catch (error) {}
   };
   return (
     <RowDataWrapper>

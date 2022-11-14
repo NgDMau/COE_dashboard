@@ -1,12 +1,56 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { dataTableExport } from "./fakeData";
-import { TableChartWrapper } from "./styled";
+import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { TableChartWrapper } from './styled';
 
-const TableChart = () => {
+const TableChart = ({ index, criteria, department }) => {
+  const tableData = useSelector((state) => state?.data?.tableData);
+  const dashboardData = useSelector((state) => state?.data?.dashboardData);
+
+  const timeLine = useMemo(() => {
+    if (!dashboardData) {
+      return null;
+    }
+    const response = dashboardData?.map((element) => {
+      return element?.time?.slice(0, 3) + element?.time?.slice(5);
+    });
+    return response || [];
+  }, [dashboardData]);
+
+  const listData = useMemo(() => {
+    const dataST = tableData?.map((element) => {
+      return {
+        ...element,
+        hospital_data: JSON.parse(element?.hospital_data)?.map((subElement) => {
+          return {
+            number: subElement?.data[department][index + 1]?.values?.ST || 0,
+            result:
+              subElement?.data[department][index + 1]?.values?.result || '',
+          };
+        }),
+      };
+    });
+    const dataSM = tableData?.map((element) => {
+      return {
+        ...element,
+        hospital_data: JSON.parse(element?.hospital_data)?.map((subElement) => {
+          return {
+            number: subElement?.data[department][index + 1]?.values?.SM || 0,
+            result:
+              subElement?.data[department][index + 1]?.values?.result || '',
+          };
+        }),
+      };
+    });
+    return {
+      ST: dataST,
+      SM: dataSM,
+    };
+  }, [tableData, index, department]);
+
   const { t } = useTranslation();
   const checkWarning = (data) => {
-    if (Number(data) < 80) {
+    if (data?.result !== 'passed') {
       return true;
     }
     return false;
@@ -14,96 +58,60 @@ const TableChart = () => {
 
   return (
     <TableChartWrapper>
-      <div className="header-chart background-color">
-        <div className="criteria">{t("exportData.indexHospitals")}</div>
-        <div className="quarter">Q1/20</div>
-        <div className="quarter">Q1/20</div>
-        <div className="quarter">Q1/20</div>
-        <div className="quarter">Q1/20</div>
-        <div className="quarter">Q1/20</div>
-        <div className="quarter">Q1/20</div>
-        <div className="quarter">Q1/20</div>
-        <div className="quarter border-right-none">Q1/20</div>
-      </div>
-      {dataTableExport.map((element, index) => (
-        <div key={String(index)}>
-          <div className="header-chart margin-top-2">
-            <div className="criteria title-content">{element.content}</div>
-            <div className="quarter" />
-            <div className="quarter" />
-            <div className="quarter" />
-            <div className="quarter" />
-            <div className="quarter" />
-            <div className="quarter" />
-            <div className="quarter" />
-            <div className="quarter border-right-none" />
+      <div className='header-chart background-color'>
+        <div className='criteria'>{t('exportData.indexHospitals')}</div>
+        {timeLine?.map((element, indexTime) => (
+          <div className={`quarter ${indexTime === 7 && 'border-right-none'}`}>
+            {element}
           </div>
-          {element.hospitals.map((hospital, indexSub) => (
-            <div
-              className="header-chart border-top-none"
-              key={String(indexSub)}
-            >
-              <div className="criteria padding-left-30">{hospital.name}</div>
-              <div
-                className={`quarter ${
-                  checkWarning(hospital.q1_20) && "warning"
-                }`}
-              >
-                {hospital.q1_20}
+        ))}
+      </div>
+      {[t('exportData.withCSection'), t('exportData.withVaginalDelivery')].map(
+        (element, indexBorn) => {
+          const dataTable = indexBorn === 1 ? listData?.ST : listData?.SM;
+          return (
+            <div key={String(indexBorn)}>
+              <div className='header-chart margin-top-2'>
+                <div className='criteria title-content'>
+                  {criteria?.criteria} {element}
+                </div>
+                <div className='quarter' />
+                <div className='quarter' />
+                <div className='quarter' />
+                <div className='quarter' />
+                <div className='quarter' />
+                <div className='quarter' />
+                <div className='quarter' />
+                <div className='quarter border-right-none' />
               </div>
-              <div
-                className={`quarter ${
-                  checkWarning(hospital.q2_20) && "warning"
-                }`}
-              >
-                {hospital.q2_20}
-              </div>
-              <div
-                className={`quarter ${
-                  checkWarning(hospital.q3_20) && "warning"
-                }`}
-              >
-                {hospital.q3_20}
-              </div>
-              <div
-                className={`quarter ${
-                  checkWarning(hospital.q4_20) && "warning"
-                }`}
-              >
-                {hospital.q4_20}
-              </div>
-              <div
-                className={`quarter ${
-                  checkWarning(hospital.q1_21) && "warning"
-                }`}
-              >
-                {hospital.q1_21}
-              </div>
-              <div
-                className={`quarter ${
-                  checkWarning(hospital.q2_21) && "warning"
-                }`}
-              >
-                {hospital.q2_21}
-              </div>
-              <div
-                className={`quarter ${
-                  checkWarning(hospital.q3_21) && "warning"
-                }`}
-              >
-                {hospital.q3_21}
-              </div>
-              <div
-                className={`quarter border-right-none ${
-                  checkWarning(hospital.q4_21) && "warning"
-                }`}
-              >
-                {hospital.q4_21}
-              </div>
+              {dataTable?.map((hospital, indexSub) => (
+                <div
+                  className='header-chart border-top-none'
+                  key={String(indexSub)}
+                >
+                  <div className='criteria padding-left-30'>
+                    {hospital.hospital_name}
+                  </div>
+                  {hospital?.hospital_data?.map(
+                    (dataHostPital, indexDataHostpital) => (
+                      <div
+                        key={String(indexDataHostpital)}
+                        className={`quarter ${
+                          indexDataHostpital === 7 && 'border-right-none'
+                        } ${checkWarning(dataHostPital) && 'warning'}`}
+                      >
+                        {dataHostPital?.number === 'N/A'
+                          ? ''
+                          : dataHostPital?.number}
+                      </div>
+                    )
+                  )}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      ))}
+          );
+        }
+      )}
     </TableChartWrapper>
   );
 };

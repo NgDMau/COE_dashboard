@@ -73,7 +73,7 @@ const FormInputData = ({
     };
 
     fetch(
-      `https://api.coe.bmte.vn/dm/data/docs?id=${selected?.id}`,
+      `https://dev.api.coe.bmte.vn/dm/data/docs?id=${selected?.id}`,
       requestOptions
     )
       .then((response) => response.json())

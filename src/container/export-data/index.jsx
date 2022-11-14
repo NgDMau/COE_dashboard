@@ -1,156 +1,241 @@
-import React, { useMemo } from "react";
-import ChartExport from "./chart";
-import RankExport from "./rank";
-import { ExportWrapper, ObstetricTitle } from "./styled";
-import TableExport from "./table";
-import { useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
-import { SpinWrapper } from "../styled";
-import { Spin } from "antd";
+import React, { useMemo } from 'react';
+import ChartExport from './chart';
+import RankExport from './rank';
+import { ExportWrapper, ObstetricTitle } from './styled';
+import TableExport from './table';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { SpinWrapper } from '../styled';
+import { Spin } from 'antd';
 
 const ExportData = () => {
   const { t } = useTranslation();
 
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
 
-  const ALL_DATA = [
+  const ObstetricsData = [
     {
-      criteria: t("obstetricsData.obstetricsKS_1"),
+      criteria: t('obstetricsData.obstetricsKS_1'),
+      STRate: 80,
+      SMRate: 50,
     },
     {
-      criteria: t("obstetricsData.obstetricsKS_2"),
+      criteria: t('obstetricsData.obstetricsKS_2'),
+      STRate: 80,
+      SMRate: 50,
     },
     {
-      criteria: t("obstetricsData.obstetricsKS_3"),
+      criteria: t('obstetricsData.obstetricsKS_3'),
+      STRate: 95,
+      SMRate: null,
     },
     {
-      criteria: t("obstetricsData.obstetricsKS_4"),
+      criteria: t('obstetricsData.obstetricsKS_4'),
+      STRate: 80,
+      SMRate: 50,
     },
     {
-      criteria: t("obstetricsData.obstetricsKS_5"),
+      criteria: t('obstetricsData.obstetricsKS_5'),
+      STRate: 90,
+      SMRate: 90,
     },
     {
-      criteria: t("obstetricsData.obstetricsKS_6"),
+      criteria: t('obstetricsData.obstetricsKS_6'),
+      STRate: 80,
+      SMRate: 80,
     },
     {
-      criteria: t("obstetricsData.obstetricsKN_1"),
+      criteria: t('obstetricsData.obstetricsKS_7'),
+      STRate: 100,
+      SMRate: 100,
     },
     {
-      criteria: t("obstetricsData.obstetricsKN_2"),
-    },
-    {
-      criteria: t("obstetricsData.obstetricsKN_3"),
-    },
-    {
-      criteria: t("obstetricsData.obstetricsKN_4"),
-    },
-    {
-      criteria: t("obstetricsData.obstetricsKN_5"),
-    },
-    {
-      criteria: t("obstetricsData.obstetricsKN_6"),
-    },
-    {
-      criteria: t("obstetricsData.obstetricsKN_7"),
+      criteria: t('obstetricsData.obstetricsKS_8'),
+      STRate: 100,
+      SMRate: 100,
     },
   ];
 
-  const dataList = useMemo(() => {
+  const ChildData = [
+    {
+      criteria: t('obstetricsData.obstetricsKN_1'),
+      STRate: 80,
+      SMRate: 50,
+    },
+    {
+      criteria: t('obstetricsData.obstetricsKN_2'),
+      STRate: 80,
+      SMRate: 50,
+    },
+    {
+      criteria: t('obstetricsData.obstetricsKN_3'),
+      STRate: 95,
+      SMRate: null,
+    },
+    {
+      criteria: t('obstetricsData.obstetricsKN_4'),
+      STRate: 80,
+      SMRate: 50,
+    },
+    {
+      criteria: t('obstetricsData.obstetricsKN_5'),
+      STRate: 90,
+      SMRate: 50,
+    },
+    {
+      criteria: t('obstetricsData.obstetricsKN_6'),
+      STRate: 80,
+      SMRate: 100,
+    },
+    {
+      criteria: t('obstetricsData.obstetricsKN_7'),
+      STRate: 100,
+      SMRate: 100,
+    },
+  ];
+
+  const timeLine = useMemo(() => {
     if (!dashboardData) {
       return null;
     }
-    const dataAll = {
-      ...dashboardData?.SK,
-      8: dashboardData?.NK[1],
-      9: dashboardData?.NK[2],
-      10: dashboardData?.NK[3],
-      11: dashboardData?.NK[4],
-      12: dashboardData?.NK[5],
-      13: dashboardData?.NK[6],
-    };
-    return dataAll;
+    const response = dashboardData?.map((element) => {
+      return element?.time;
+    });
+    return response || [];
   }, [dashboardData]);
+
   const checkFullNa = (arr) => {
-    const find = arr?.find((findElement) => findElement !== "N/A");
-    if (!find) {
+    const find = arr?.find((findElement) => findElement !== 'N/A');
+    if (!find && find !== 0) {
       return false;
     }
     return true;
   };
 
+  const lineChartSK = useMemo(() => {
+    if (!dashboardData) {
+      return null;
+    }
+    const responseST = ObstetricsData?.map((element, index) => {
+      return dashboardData?.map((dataElement) => {
+        const point = dataElement?.data?.SK[index + 1]?.values?.ST || 0;
+        return point === 'N/A' ? 0 : point;
+      });
+    });
+    const responseSM = ObstetricsData?.map((element, index) => {
+      return dashboardData?.map((dataElement) => {
+        const point = dataElement?.data?.SK[index + 1]?.values?.SM || 0;
+        return point === 'N/A' ? 0 : point;
+      });
+    });
+    return (
+      {
+        SM: responseSM,
+        ST: responseST,
+      } || []
+    );
+  }, [ObstetricsData, dashboardData]);
+
+  const lineChartNK = useMemo(() => {
+    if (!dashboardData) {
+      return null;
+    }
+    const responseST = ObstetricsData?.map((element, index) => {
+      return dashboardData?.map((dataElement) => {
+        const point = dataElement?.data?.NK[index + 1]?.values?.ST || 0;
+        return point === 'N/A' ? 0 : point;
+      });
+    });
+    const responseSM = ObstetricsData?.map((element, index) => {
+      return dashboardData?.map((dataElement) => {
+        const point = dataElement?.data?.NK[index + 1]?.values?.SM || 0;
+        return point === 'N/A' ? 0 : point;
+      });
+    });
+    return (
+      {
+        SM: responseSM,
+        ST: responseST,
+      } || []
+    );
+  }, [ObstetricsData, dashboardData]);
+
   return (
     <>
-      <ExportWrapper id="exportDagta">
-        {dataList ? (
+      <ExportWrapper id='exportDagta'>
+        {lineChartSK ? (
           <div>
-            <div className="page html2pdf__page-break">
-              <ObstetricTitle>{t("exportData.obstetric")}</ObstetricTitle>
-              <TableExport />
+            <div className='page html2pdf__page-break'>
+              <ObstetricTitle>{t('exportData.obstetric')}</ObstetricTitle>
+              <TableExport department='SK' />
             </div>
-            {ALL_DATA.map((element, index) => {
-              // if (
-              //   !checkFullNa(dataList[index + 1]?.values?.ST) ||
-              //   !checkFullNa(dataList[index + 1]?.values?.SM)
-              // ) {
-              //   return <div />;
-              // }
-              return (
-                <div className="page html2pdf__page-break">
-                  <ObstetricTitle>{t("exportData.obstetric")}</ObstetricTitle>
-                  <ChartExport
-                    criteria={element.criteria}
-                    elementST={dataList[index + 1]?.values?.ST}
-                    elementSM={dataList[index + 1]?.values?.SM}
-                    evaluation={dataList[index + 1]?.values?.evaluation}
-                    index={index}
-                  />
-                </div>
-              );
-            })}
-
-            <div className="page html2pdf__page-break">
-              <ObstetricTitle>{t("exportData.obstetric")}</ObstetricTitle>
-              <RankExport />
-            </div>
-          </div>
-        ) : (
-          <SpinWrapper>
-            <Spin size="large" />
-          </SpinWrapper>
-        )}
-      </ExportWrapper>
-      <ExportWrapper id="exportDagta2">
-        {dataList && (
-          <div>
-            <div className="page html2pdf__page-break">
-              <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle>
-              <TableExport />
-            </div>
-            {ALL_DATA.map((element, index) => {
+            {ObstetricsData.map((element, index) => {
               if (
-                !checkFullNa(dataList[index + 1]?.values?.ST) ||
-                !checkFullNa(dataList[index + 1]?.values?.SM)
+                !checkFullNa(lineChartSK?.ST[index]) &&
+                !checkFullNa(lineChartSK?.SM[index])
               ) {
                 return <div />;
               }
               return (
-                <div className="page html2pdf__page-break">
-                  <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle>
+                <div className='page html2pdf__page-break'>
+                  <ObstetricTitle>{t('exportData.obstetric')}</ObstetricTitle>
                   <ChartExport
-                    criteria={element.criteria}
-                    elementST={dataList[index + 1]?.values?.ST}
-                    elementSM={dataList[index + 1]?.values?.SM}
-                    evaluation={dataList[index + 1]?.values?.evaluation}
+                    criteria={element}
+                    elementST={lineChartSK?.ST[index]}
+                    elementSM={lineChartSK?.SM[index]}
+                    evaluation={timeLine}
                     index={index}
+                    department='SK'
                   />
                 </div>
               );
             })}
 
-            <div className="page html2pdf__page-break">
+            {/* <div className="page html2pdf__page-break">
+              <ObstetricTitle>{t("exportData.obstetric")}</ObstetricTitle>
+              <RankExport />
+            </div> */}
+          </div>
+        ) : (
+          <SpinWrapper>
+            <Spin size='large' />
+          </SpinWrapper>
+        )}
+      </ExportWrapper>
+      <ExportWrapper id='exportDagta2'>
+        {lineChartNK && (
+          <div>
+            <div className='page html2pdf__page-break'>
+              <ObstetricTitle>{t('exportData.pediatric')}</ObstetricTitle>
+              <TableExport department='NK' />
+            </div>
+            {ChildData.map((element, index) => {
+              if (
+                !checkFullNa(lineChartNK?.ST[index]) &&
+                !checkFullNa(lineChartNK?.SM[index])
+              ) {
+                return <div />;
+              }
+
+              return (
+                <div className='page html2pdf__page-break'>
+                  <ObstetricTitle>{t('exportData.pediatric')}</ObstetricTitle>
+                  <ChartExport
+                    criteria={element}
+                    elementST={lineChartNK?.ST[index]}
+                    elementSM={lineChartNK?.SM[index]}
+                    evaluation={timeLine}
+                    index={index}
+                    department='NK'
+                  />
+                </div>
+              );
+            })}
+
+            {/* <div className="page html2pdf__page-break">
               <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle>
               <RankExport />
-            </div>
+            </div> */}
           </div>
         )}
       </ExportWrapper>

@@ -6,14 +6,72 @@ export const DropdownLanguage = styled(Dropdown)`
   top: 20px;
   right: 20px;
 `;
+export const LeftContent = styled.div`
+  background-image: ${(props) =>
+    props?.imgBg ? `url(${props?.imgBg})` : "unset"};
+  width: 55vw;
+  height: 100vh;
+  background-size: cover;
+`;
+export const RightContent = styled.div`
+  background-color: white;
+  width: 45vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  .login {
+    h1 {
+      text-align: center;
+    }
+    .input {
+      height: 50px;
+      margin-top: 20px;
+      background-color: #ecf0f1;
+      input {
+        background-color: #ecf0f1;
+      }
+      box-shadow: none;
+      border-radius: 8px;
+
+      :hover {
+        background-color: #e7e7e7;
+      }
+    }
+    .btn-login {
+      margin-top: 20px;
+      height: 50px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background-color: #2e3192;
+      font-weight: bold;
+      color: white;
+      ::before {
+        display: none;
+      }
+    }
+    .btn-signUp {
+      background-color: white;
+      border: 1px solid #2e3192;
+      color: #2e3192;
+    }
+    .error {
+      color: tomato;
+    }
+  }
+`;
 export const LoginWrapper = styled.div`
   height: 100vh;
   width: 100vw;
   background-image: url(${background});
   background-size: cover;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   .login-form {
     background-color: white;
     padding: 10px;
