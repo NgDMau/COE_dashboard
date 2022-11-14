@@ -59,22 +59,32 @@ const ExportData = () => {
   const ChildData = [
     {
       criteria: t('obstetricsData.obstetricsKN_1'),
+      STRate: 80,
+      SMRate: 50,
     },
     {
       criteria: t('obstetricsData.obstetricsKN_2'),
+      STRate: 80,
+      SMRate: 50,
     },
     {
       criteria: t('obstetricsData.obstetricsKN_3'),
+      STRate: 95,
+      SMRate: null,
     },
     {
       criteria: t('obstetricsData.obstetricsKN_4'),
+      STRate: 80,
+      SMRate: 50,
     },
     {
       criteria: t('obstetricsData.obstetricsKN_5'),
+      STRate: 90,
+      SMRate: 50,
     },
     {
       criteria: t('obstetricsData.obstetricsKN_6'),
-      STRate: 100,
+      STRate: 80,
       SMRate: 100,
     },
     {
