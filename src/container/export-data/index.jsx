@@ -1,12 +1,12 @@
-import React, { useMemo } from "react";
-import ChartExport from "./chart";
-import RankExport from "./rank";
-import { ExportWrapper, ObstetricTitle } from "./styled";
-import TableExport from "./table";
-import { useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
-import { SpinWrapper } from "../styled";
-import { Spin } from "antd";
+import React, { useMemo } from 'react';
+import ChartExport from './chart';
+import RankExport from './rank';
+import { ExportWrapper, ObstetricTitle } from './styled';
+import TableExport from './table';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { SpinWrapper } from '../styled';
+import { Spin } from 'antd';
 
 const ExportData = () => {
   const { t } = useTranslation();
@@ -15,52 +15,82 @@ const ExportData = () => {
 
   const ObstetricsData = [
     {
-      criteria: t("obstetricsData.obstetricsKS_1"),
+      criteria: t('obstetricsData.obstetricsKS_1'),
+      STRate: 80,
+      SMRate: 50,
     },
     {
-      criteria: t("obstetricsData.obstetricsKS_2"),
+      criteria: t('obstetricsData.obstetricsKS_2'),
+      STRate: 80,
+      SMRate: 50,
     },
     {
-      criteria: t("obstetricsData.obstetricsKS_3"),
+      criteria: t('obstetricsData.obstetricsKS_3'),
+      STRate: 95,
+      SMRate: null,
     },
     {
-      criteria: t("obstetricsData.obstetricsKS_4"),
+      criteria: t('obstetricsData.obstetricsKS_4'),
+      STRate: 80,
+      SMRate: 50,
     },
     {
-      criteria: t("obstetricsData.obstetricsKS_5"),
+      criteria: t('obstetricsData.obstetricsKS_5'),
+      STRate: 90,
+      SMRate: 90,
     },
     {
-      criteria: t("obstetricsData.obstetricsKS_6"),
+      criteria: t('obstetricsData.obstetricsKS_6'),
+      STRate: 80,
+      SMRate: 80,
     },
     {
-      criteria: t("obstetricsData.obstetricsKS_7"),
+      criteria: t('obstetricsData.obstetricsKS_7'),
+      STRate: 100,
+      SMRate: 100,
     },
     {
-      criteria: t("obstetricsData.obstetricsKS_8"),
+      criteria: t('obstetricsData.obstetricsKS_8'),
+      STRate: 100,
+      SMRate: 100,
     },
   ];
 
   const ChildData = [
     {
-      criteria: t("obstetricsData.obstetricsKN_1"),
+      criteria: t('obstetricsData.obstetricsKN_1'),
+      STRate: 80,
+      SMRate: 50,
     },
     {
-      criteria: t("obstetricsData.obstetricsKN_2"),
+      criteria: t('obstetricsData.obstetricsKN_2'),
+      STRate: 80,
+      SMRate: 50,
     },
     {
-      criteria: t("obstetricsData.obstetricsKN_3"),
+      criteria: t('obstetricsData.obstetricsKN_3'),
+      STRate: 95,
+      SMRate: null,
     },
     {
-      criteria: t("obstetricsData.obstetricsKN_4"),
+      criteria: t('obstetricsData.obstetricsKN_4'),
+      STRate: 80,
+      SMRate: 50,
     },
     {
-      criteria: t("obstetricsData.obstetricsKN_5"),
+      criteria: t('obstetricsData.obstetricsKN_5'),
+      STRate: 90,
+      SMRate: 50,
     },
     {
-      criteria: t("obstetricsData.obstetricsKN_6"),
+      criteria: t('obstetricsData.obstetricsKN_6'),
+      STRate: 80,
+      SMRate: 100,
     },
     {
-      criteria: t("obstetricsData.obstetricsKN_7"),
+      criteria: t('obstetricsData.obstetricsKN_7'),
+      STRate: 100,
+      SMRate: 100,
     },
   ];
 
@@ -75,7 +105,7 @@ const ExportData = () => {
   }, [dashboardData]);
 
   const checkFullNa = (arr) => {
-    const find = arr?.find((findElement) => findElement !== "N/A");
+    const find = arr?.find((findElement) => findElement !== 'N/A');
     if (!find && find !== 0) {
       return false;
     }
@@ -89,13 +119,13 @@ const ExportData = () => {
     const responseST = ObstetricsData?.map((element, index) => {
       return dashboardData?.map((dataElement) => {
         const point = dataElement?.data?.SK[index + 1]?.values?.ST || 0;
-        return point === "N/A" ? 0 : point;
+        return point === 'N/A' ? 0 : point;
       });
     });
     const responseSM = ObstetricsData?.map((element, index) => {
       return dashboardData?.map((dataElement) => {
         const point = dataElement?.data?.SK[index + 1]?.values?.SM || 0;
-        return point === "N/A" ? 0 : point;
+        return point === 'N/A' ? 0 : point;
       });
     });
     return (
@@ -113,13 +143,13 @@ const ExportData = () => {
     const responseST = ObstetricsData?.map((element, index) => {
       return dashboardData?.map((dataElement) => {
         const point = dataElement?.data?.NK[index + 1]?.values?.ST || 0;
-        return point === "N/A" ? 0 : point;
+        return point === 'N/A' ? 0 : point;
       });
     });
     const responseSM = ObstetricsData?.map((element, index) => {
       return dashboardData?.map((dataElement) => {
         const point = dataElement?.data?.NK[index + 1]?.values?.SM || 0;
-        return point === "N/A" ? 0 : point;
+        return point === 'N/A' ? 0 : point;
       });
     });
     return (
@@ -132,12 +162,12 @@ const ExportData = () => {
 
   return (
     <>
-      <ExportWrapper id="exportDagta">
+      <ExportWrapper id='exportDagta'>
         {lineChartSK ? (
           <div>
-            <div className="page html2pdf__page-break">
-              <ObstetricTitle>{t("exportData.obstetric")}</ObstetricTitle>
-              <TableExport department="SK" />
+            <div className='page html2pdf__page-break'>
+              <ObstetricTitle>{t('exportData.obstetric')}</ObstetricTitle>
+              <TableExport department='SK' />
             </div>
             {ObstetricsData.map((element, index) => {
               if (
@@ -147,15 +177,15 @@ const ExportData = () => {
                 return <div />;
               }
               return (
-                <div className="page html2pdf__page-break">
-                  <ObstetricTitle>{t("exportData.obstetric")}</ObstetricTitle>
+                <div className='page html2pdf__page-break'>
+                  <ObstetricTitle>{t('exportData.obstetric')}</ObstetricTitle>
                   <ChartExport
-                    criteria={element.criteria}
+                    criteria={element}
                     elementST={lineChartSK?.ST[index]}
                     elementSM={lineChartSK?.SM[index]}
                     evaluation={timeLine}
                     index={index}
-                    department="SK"
+                    department='SK'
                   />
                 </div>
               );
@@ -168,16 +198,16 @@ const ExportData = () => {
           </div>
         ) : (
           <SpinWrapper>
-            <Spin size="large" />
+            <Spin size='large' />
           </SpinWrapper>
         )}
       </ExportWrapper>
-      <ExportWrapper id="exportDagta2">
+      <ExportWrapper id='exportDagta2'>
         {lineChartNK && (
           <div>
-            <div className="page html2pdf__page-break">
-              <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle>
-              <TableExport department="NK" />
+            <div className='page html2pdf__page-break'>
+              <ObstetricTitle>{t('exportData.pediatric')}</ObstetricTitle>
+              <TableExport department='NK' />
             </div>
             {ChildData.map((element, index) => {
               if (
@@ -188,15 +218,15 @@ const ExportData = () => {
               }
 
               return (
-                <div className="page html2pdf__page-break">
-                  <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle>
+                <div className='page html2pdf__page-break'>
+                  <ObstetricTitle>{t('exportData.pediatric')}</ObstetricTitle>
                   <ChartExport
-                    criteria={element.criteria}
+                    criteria={element}
                     elementST={lineChartNK?.ST[index]}
                     elementSM={lineChartNK?.SM[index]}
                     evaluation={timeLine}
                     index={index}
-                    department="NK"
+                    department='NK'
                   />
                 </div>
               );

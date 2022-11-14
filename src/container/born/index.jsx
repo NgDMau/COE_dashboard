@@ -14,7 +14,7 @@ function RowComponent({
   timeLine,
   department,
 }) {
-  console.log('elementDataelementDataelementData', elementData);
+
   return (
     <div className='row' key={obstetric.criteria}>
       <div className='stt'>{index + 1}</div>
@@ -22,10 +22,13 @@ function RowComponent({
       <div className='chart'>
         <div className='container-chart'>
           <LinePoint
-            hiddenCaesarean={index === 6}
+            hiddenCaesarean={department === 'NK'}
             dataST={elementST}
             dataSM={elementSM}
             time={timeLine}
+            department={index >= 6 ? 'NK' : department}
+            passLevelST={obstetric.STRate}
+            passLevelSM={obstetric.SMRate}
           />
         </div>
       </div>
@@ -36,7 +39,7 @@ function RowComponent({
             {elementData?.ST !== 'N/A' ? '%' : ''}
           </div>
           <div className='w-10'>
-            {elementData?.ST || '0'}
+            {elementData?.SM || '0'}
             {elementData?.SM !== 'N/A' ? '%' : ''}
           </div>
         </>
