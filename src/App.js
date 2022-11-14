@@ -73,7 +73,7 @@ const RootRouter = function () {
 
   useEffect(() => {
     if (token) {
-      wsConnectionCOE(COE_WS_URL, SUB_PROTOCOL);
+      wsConnectionCOE(COE_WS_URL);
     } else {
       if (location?.pathname === "/") {
         return;
