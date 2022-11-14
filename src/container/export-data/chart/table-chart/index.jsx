@@ -73,7 +73,7 @@ const TableChart = ({ index, criteria, department }) => {
             <div key={String(indexBorn)}>
               <div className="header-chart margin-top-2">
                 <div className="criteria title-content">
-                  {criteria} {element}
+                  {criteria?.criteria} {element}
                 </div>
                 <div className="quarter" />
                 <div className="quarter" />
