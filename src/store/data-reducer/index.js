@@ -4,7 +4,7 @@ import { rowData } from "../../container/row-data/fakeData";
 const initialState = {
   listRowData: rowData,
   dashboardData: null,
-  currentQuarter: 7,
+  currentQuarter: 0,
   citiesData: [],
   hostPitals: [],
   hospitalSelected: null,

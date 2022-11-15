@@ -24,6 +24,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { storeSetTab } from "../../store/document-reducer";
 import Loading from "../../components/common/Loading/Loading";
+import moment from "moment";
 
 const FilterComponent = ({ disabled, screen }) => {
   const { t } = useTranslation();
@@ -41,7 +42,7 @@ const FilterComponent = ({ disabled, screen }) => {
   const dashboardData =
     useSelector((state) => state?.data?.dashboardData) || null;
   const currentQuarter =
-    useSelector((state) => state?.data?.currentQuarter) || null;
+    useSelector((state) => state?.data?.currentQuarter) || 0;
   const citiesData = useSelector((state) => state.data.citiesData);
   const hostPitals = useSelector((state) => state.data.hostPitals);
 
@@ -121,10 +122,31 @@ const FilterComponent = ({ disabled, screen }) => {
       });
   };
 
+  const getQuarter = (d) => {
+    const quan = Math.floor(moment(d).month() / 3) + 1;
+    return `Q${quan}/${moment(d).year()}`;
+  };
+
+  const listQuater = useMemo(() => {
+    const arr = [];
+    [-1, 0, 1, 2, 3, 4, 5, 6].forEach((element, index) => {
+      if (index === 0) {
+        arr.push(moment(new Date()));
+      } else {
+        const month = moment(arr[element]).subtract(3, "months");
+        arr.push(month);
+      }
+    });
+    const newQuater = arr.map((element) => {
+      return getQuarter(element);
+    });
+    return newQuater;
+  }, [moment]);
+
   useEffect(() => {
     getCities();
   }, []);
-
+  console.log("currentQuartercurrentQuartercurrentQuarter", currentQuarter);
   return (
     <FilterWrapper>
       {isLoadingScreen && <Loading />}
@@ -187,21 +209,19 @@ const FilterComponent = ({ disabled, screen }) => {
             )}
           </Select>
         )}
-        {!disabled || screen === 2 ? (
+        {!disabled || screen === 2 || !hospitalSelected ? (
           <div>
-            {dashboardData?.length > 0 && (
+            {listQuater?.length > 0 && (
               <Select
-                defaultValue={dashboardData[currentQuarter]?.time}
+                defaultValue={listQuater[currentQuarter]}
                 className="select-quarter"
                 onChange={(e) => {
-                  dispatch(storeSetCurrentQuarter(e));
+                  dispatch(storeSetCurrentQuarter(7 - e));
                 }}
               >
-                {dashboardData?.map((element, index) => {
+                {listQuater?.map((element, index) => {
                   return (
-                    <Select.Option key={String(index)}>
-                      {element?.time}
-                    </Select.Option>
+                    <Select.Option key={String(index)}>{element}</Select.Option>
                   );
                 })}
               </Select>
