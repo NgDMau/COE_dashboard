@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 
-import { DatePicker, Segmented } from "antd";
+import { Alert, DatePicker, Segmented } from "antd";
 import { Select, Spin } from "antd";
 
 import html2pdf from "html2pdf.js";
@@ -23,9 +23,10 @@ import {
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { storeSetTab } from "../../store/document-reducer";
+import Loading from "../../components/common/Loading/Loading";
+import moment from "moment";
 
-const FilterComponent = ({ disabled, screen, setScreen }) => {
-  const { RangePicker } = DatePicker;
+const FilterComponent = ({ disabled, screen }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -41,13 +42,14 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
   const dashboardData =
     useSelector((state) => state?.data?.dashboardData) || null;
   const currentQuarter =
-    useSelector((state) => state?.data?.currentQuarter) || null;
+    useSelector((state) => state?.data?.currentQuarter) || 0;
   const citiesData = useSelector((state) => state.data.citiesData);
   const hostPitals = useSelector((state) => state.data.hostPitals);
 
   const tabDocument = useSelector((state) => state.document.tab);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingScreen, setIsLoadingScreen] = useState(false);
 
   const defaultCity = useMemo(() => {
     return (
@@ -56,21 +58,34 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
       )?.name || ""
     );
   }, [hospitalSelected, citiesData]);
-  const exportPdfData = () => {
-    const element = document.getElementById("exportDagta");
-    const element2 = document.getElementById("exportDagta2");
-    console.log("objectobjectobject,", element);
-    const opt = {
-      margin: 1,
-      image: { type: "jpeg", quality: 0.98 },
-      filename: "KQKS_Q2_2022.pdf",
-      html2canvas: { scale: 1 },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-      pagebreak: { mode: ["legacy"] },
-    };
-    html2pdf().set(opt);
-    html2pdf().from(element).save("KQKS_KN_Q2_2022.pdf");
-    html2pdf().from(element2).save("KQKS_KS_Q2_2022.pdf");
+  const exportPdfData = async () => {
+    setIsLoadingScreen(true);
+    try {
+      setTimeout(() => {
+        const element = document.getElementById("exportDagta");
+        const element2 = document.getElementById("exportDagta2");
+        const opt = {
+          margin: 1,
+          image: { type: "jpeg", quality: 0.98 },
+          filename: "KQKS_Q2_2022.pdf",
+          html2canvas: { scale: 1 },
+          jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+          pagebreak: { mode: ["legacy"] },
+        };
+        html2pdf().set(opt);
+        html2pdf().from(element).save("KQKS_KN_Q2_2022.pdf");
+        html2pdf()
+          .from(element2)
+          .save("KQKS_KS_Q2_2022.pdf")
+          .then(() => {
+            setTimeout(() => {
+              setIsLoadingScreen(false);
+            }, 500);
+          });
+      }, 0);
+    } catch (error) {
+    } finally {
+    }
   };
 
   const getCities = async () => {
@@ -107,12 +122,34 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
       });
   };
 
+  const getQuarter = (d) => {
+    const quan = Math.floor(moment(d).month() / 3) + 1;
+    return `Q${quan}/${moment(d).year()}`;
+  };
+
+  const listQuater = useMemo(() => {
+    const arr = [];
+    [-1, 0, 1, 2, 3, 4, 5, 6].forEach((element, index) => {
+      if (index === 0) {
+        arr.push(moment(new Date()));
+      } else {
+        const month = moment(arr[element]).subtract(3, "months");
+        arr.push(month);
+      }
+    });
+    const newQuater = arr.map((element) => {
+      return getQuarter(element);
+    });
+    return newQuater;
+  }, [moment]);
+
   useEffect(() => {
     getCities();
   }, []);
-
+  console.log("currentQuartercurrentQuartercurrentQuarter", currentQuarter);
   return (
     <FilterWrapper>
+      {isLoadingScreen && <Loading />}
       <div className="adress">
         {patch === SCREEN_DEFAULT[6] && (
           <div
@@ -172,21 +209,19 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
             )}
           </Select>
         )}
-        {!disabled || screen === 2 ? (
+        {!disabled || screen === 2 || !hospitalSelected ? (
           <div>
-            {dashboardData?.length > 0 && (
+            {listQuater?.length > 0 && (
               <Select
-                defaultValue={dashboardData[currentQuarter]?.time}
+                defaultValue={listQuater[currentQuarter]}
                 className="select-quarter"
                 onChange={(e) => {
-                  dispatch(storeSetCurrentQuarter(e));
+                  dispatch(storeSetCurrentQuarter(7 - e));
                 }}
               >
-                {dashboardData?.map((element, index) => {
+                {listQuater?.map((element, index) => {
                   return (
-                    <Select.Option key={String(index)}>
-                      {element?.time}
-                    </Select.Option>
+                    <Select.Option key={String(index)}>{element}</Select.Option>
                   );
                 })}
               </Select>
