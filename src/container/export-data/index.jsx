@@ -51,8 +51,8 @@ const ExportData = () => {
     },
     {
       criteria: t('obstetricsData.obstetricsKS_8'),
-      STRate: 100,
-      SMRate: 100,
+      STRate: 0,
+      SMRate: 0,
     },
   ];
 
@@ -89,8 +89,8 @@ const ExportData = () => {
     },
     {
       criteria: t('obstetricsData.obstetricsKN_7'),
-      STRate: 100,
-      SMRate: 100,
+      STRate: 0,
+      SMRate: 0,
     },
   ];
 
