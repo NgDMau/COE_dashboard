@@ -33,9 +33,9 @@ const RootRouter = function () {
   const COE_WS_URL = "wss://api.coe.bmte.vn/ws/data/AnT/";
   const SUB_PROTOCOL = ["Token", AUTH_TOKEN];
 
-  function wsConnectionCOE(url, options, ws_message) {
+  function wsConnectionCOE(url) {
     console.log("Connecting...");
-    coeSocket = new WebSocket(url, options);
+    coeSocket = new WebSocket(url);
 
     // coeSocket.onopen = function (e) {
     //   if (ws_message == "reload") {
@@ -65,7 +65,7 @@ const RootRouter = function () {
       if (coeSocket.readyState == 3) {
           coeSocket = null
           setTimeout(function() {
-              wsConnectionCOE(url, options, 'reload')
+              wsConnectionCOE(url)
           }, 5000)
       }
     };
@@ -73,7 +73,11 @@ const RootRouter = function () {
 
   useEffect(() => {
     if (token) {
+<<<<<<< HEAD
       wsConnectionCOE(COE_WS_URL, SUB_PROTOCOL);
+=======
+      wsConnectionCOE(COE_WS_URL);
+>>>>>>> 600adee32c31919741a8e03c4f623a843e542d66
     } else {
       if (location?.pathname === "/") {
         return;
@@ -84,7 +88,10 @@ const RootRouter = function () {
 
   // wsConnectionCOE(COE_WS_URL);
   console.log("locationlocation", location);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 600adee32c31919741a8e03c4f623a843e542d66
   return (
     <div>
       <Suspense>

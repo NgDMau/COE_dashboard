@@ -63,8 +63,8 @@ const Home = ({ isLoading, value, setValue }) => {
     },
     {
       criteria: t('obstetricsData.obstetricsKS_8'),
-      STRate: 100,
-      SMRate: 100,
+      STRate: 0,
+      SMRate: 0,
     },
   ];
 
@@ -101,8 +101,8 @@ const Home = ({ isLoading, value, setValue }) => {
     },
     {
       criteria: t('obstetricsData.obstetricsKN_7'),
-      STRate: 100,
-      SMRate: 100,
+      STRate: 0,
+      SMRate: 0,
     },
   ];
 
