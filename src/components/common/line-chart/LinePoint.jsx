@@ -68,7 +68,7 @@ export function LinePoint({
   });
 
   const rateCaesarean = passLevelSM === null ? passLevelSM : passLevelSM || 75;
-  const rateNormal = passLevelST === null ? passLevelST : passLevelST || 70;
+  const rateNormal = passLevelST === null ? passLevelST : passLevelST || 0;
 
   const dataSK = {
     labels,
