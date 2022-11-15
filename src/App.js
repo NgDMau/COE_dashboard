@@ -84,10 +84,10 @@ const RootRouter = function () {
 
   // wsConnectionCOE(COE_WS_URL);
   console.log("locationlocation", location);
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
-=======
->>>>>>> 600adee32c31919741a8e03c4f623a843e542d66
+//=======
+//>>>>>>> 600adee32c31919741a8e03c4f623a843e542d66
   return (
     <div>
       <Suspense>
