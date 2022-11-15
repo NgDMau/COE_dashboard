@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 
-import { DatePicker, Segmented } from "antd";
+import { Alert, DatePicker, Segmented } from "antd";
 import { Select, Spin } from "antd";
 
 import html2pdf from "html2pdf.js";
@@ -23,9 +23,9 @@ import {
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { storeSetTab } from "../../store/document-reducer";
+import Loading from "../../components/common/Loading/Loading";
 
-const FilterComponent = ({ disabled, screen, setScreen }) => {
-  const { RangePicker } = DatePicker;
+const FilterComponent = ({ disabled, screen }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -48,6 +48,7 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
   const tabDocument = useSelector((state) => state.document.tab);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingScreen, setIsLoadingScreen] = useState(false);
 
   const defaultCity = useMemo(() => {
     return (
@@ -56,21 +57,34 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
       )?.name || ""
     );
   }, [hospitalSelected, citiesData]);
-  const exportPdfData = () => {
-    const element = document.getElementById("exportDagta");
-    const element2 = document.getElementById("exportDagta2");
-    console.log("objectobjectobject,", element);
-    const opt = {
-      margin: 1,
-      image: { type: "jpeg", quality: 0.98 },
-      filename: "KQKS_Q2_2022.pdf",
-      html2canvas: { scale: 1 },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-      pagebreak: { mode: ["legacy"] },
-    };
-    html2pdf().set(opt);
-    html2pdf().from(element).save("KQKS_KN_Q2_2022.pdf");
-    html2pdf().from(element2).save("KQKS_KS_Q2_2022.pdf");
+  const exportPdfData = async () => {
+    setIsLoadingScreen(true);
+    try {
+      setTimeout(() => {
+        const element = document.getElementById("exportDagta");
+        const element2 = document.getElementById("exportDagta2");
+        const opt = {
+          margin: 1,
+          image: { type: "jpeg", quality: 0.98 },
+          filename: "KQKS_Q2_2022.pdf",
+          html2canvas: { scale: 1 },
+          jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+          pagebreak: { mode: ["legacy"] },
+        };
+        html2pdf().set(opt);
+        html2pdf().from(element).save("KQKS_KN_Q2_2022.pdf");
+        html2pdf()
+          .from(element2)
+          .save("KQKS_KS_Q2_2022.pdf")
+          .then(() => {
+            setTimeout(() => {
+              setIsLoadingScreen(false);
+            }, 500);
+          });
+      }, 0);
+    } catch (error) {
+    } finally {
+    }
   };
 
   const getCities = async () => {
@@ -113,6 +127,7 @@ const FilterComponent = ({ disabled, screen, setScreen }) => {
 
   return (
     <FilterWrapper>
+      {isLoadingScreen && <Loading />}
       <div className="adress">
         {patch === SCREEN_DEFAULT[6] && (
           <div
