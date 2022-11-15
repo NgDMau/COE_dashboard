@@ -61,12 +61,12 @@ const AppContainer = ({ screen, title, setScreen }) => {
       dispath(storeSetDashboardData(null));
     } finally {
       setIsLoading(false);
+      getOverView(hospitalSelected?.code);
     }
   };
 
   const getOverView = async (selectedCode) => {
     try {
-      setIsLoading(true);
       const response = await sendGet(
         `/dm/data/evaluation/overview?hospital=${selectedCode}`
       );
@@ -75,7 +75,6 @@ const AppContainer = ({ screen, title, setScreen }) => {
       }
     } catch (error) {
     } finally {
-      setIsLoading(false);
     }
   };
 
@@ -83,7 +82,6 @@ const AppContainer = ({ screen, title, setScreen }) => {
     if (hospitalSelected) {
       getDataDashboard(hospitalSelected?.code);
       setValue(EDepartment.OBSTETRIC);
-      getOverView(hospitalSelected?.code);
     }
   }, [hospitalSelected]);
 
