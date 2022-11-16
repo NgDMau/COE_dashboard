@@ -9,7 +9,7 @@ const initialState = {
   hostPitals: [],
   hospitalSelected: null,
   citySelected: null,
-  tableData: [],
+  tableData: null,
 };
 
 const dataSlice = createSlice({

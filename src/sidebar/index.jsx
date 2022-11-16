@@ -82,7 +82,7 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
         >
           <Menu
             mode="inline"
-            defaultSelectedKeys={[screen]}
+            defaultSelectedKeys={[`${screen}`]}
             onSelect={(e) => {
               console.log(
                 "SCREEN_DEFAULT[e]SCREEN_DEFAULT[e]",

@@ -73,10 +73,10 @@ const FilterComponent = ({ disabled, screen }) => {
           pagebreak: { mode: ["legacy"] },
         };
         html2pdf().set(opt);
-        html2pdf().from(element).save("KQKS_KN_Q2_2022.pdf");
+        html2pdf().from(element).save("KQKS_SK_Q2_2022.pdf");
         html2pdf()
           .from(element2)
-          .save("KQKS_KS_Q2_2022.pdf")
+          .save("KQKS_NK_Q2_2022.pdf")
           .then(() => {
             setTimeout(() => {
               setIsLoadingScreen(false);
