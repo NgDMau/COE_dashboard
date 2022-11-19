@@ -85,8 +85,8 @@ const BornComponent = ({ data, isGeneral, dataList, department }) => {
     }
     const response = data?.map((element, index) => {
       return dataList?.map((dataElement) => {
-        const point = dataElement?.data[department][index + 1]?.values?.ST || 0;
-        return point === 'N/A' ? 0 : point;
+        const point = dataElement?.data[department][index + 1]?.values?.ST;
+        return point === 'N/A' ? null : point;
       });
     });
     return response || [];
@@ -98,8 +98,8 @@ const BornComponent = ({ data, isGeneral, dataList, department }) => {
     }
     const response = data?.map((element, index) => {
       return dataList?.map((dataElement) => {
-        const point = dataElement?.data[department][index + 1]?.values?.SM || 0;
-        return point === 'N/A' ? 0 : point;
+        const point = dataElement?.data[department][index + 1]?.values?.SM;
+        return point === 'N/A' ? null : point;
       });
     });
     return response || [];
