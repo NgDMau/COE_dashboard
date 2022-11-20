@@ -186,7 +186,7 @@ export function LinePoint({
       },
       {
         label: t("chart.CSection"),
-        data: [],
+        data: dataSMFormat?.format || [],
         borderColor: "#0984e3",
         backgroundColor: "rgb(9, 132, 227,0.5)",
         pointStyle: "circle",
@@ -213,18 +213,8 @@ export function LinePoint({
           faker.datatype.number({ min: rateCaesarean, max: rateCaesarean })
         ),
         pointStyle: "hidden",
-        pointRadius: (element) => {
-          const checked = dataSTFormat?.listNull.find(
-            (elementFind) => elementFind === element?.index
-          );
-          return checked ? 0 : 6;
-        },
-        pointHoverRadius: (element) => {
-          const checked = dataSTFormat?.listNull.find(
-            (elementFind) => elementFind === element?.index
-          );
-          return checked ? 0 : 6;
-        },
+        pointRadius: 0,
+        pointHoverRadius: 0,
       },
       {
         label: t("chart.normalRate"),
@@ -252,12 +242,22 @@ export function LinePoint({
     datasets: [
       {
         label: "Chỉ số",
-        data: dataST || [],
+        data: dataSTFormat?.format || [],
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
         pointStyle: "circle",
-        pointRadius: 6,
-        pointHoverRadius: 10,
+        pointRadius: (element) => {
+          const checked = dataSTFormat?.listNull.find(
+            (elementFind) => elementFind === element?.index
+          );
+          return checked ? 0 : 6;
+        },
+        pointHoverRadius: (element) => {
+          const checked = dataSTFormat?.listNull.find(
+            (elementFind) => elementFind === element?.index
+          );
+          return checked ? 0 : 6;
+        },
       },
       {
         label: "Mức đạt",
@@ -269,6 +269,8 @@ export function LinePoint({
           faker.datatype.number({ min: rateNormal, max: rateNormal })
         ),
         pointStyle: "hidden",
+        pointRadius: 0,
+        pointHoverRadius: 0,
       },
     ],
   };
