@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,11 +8,12 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
-import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import { faker } from "@faker-js/faker";
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import { useMemo } from "react";
 
 ChartJS.register(
   CategoryScale,
@@ -28,7 +29,7 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'bottom',
+      position: "bottom",
     },
     title: {
       display: true,
@@ -36,9 +37,9 @@ export const options = {
   },
   scales: {
     y: {
-      type: 'linear',
+      type: "linear",
       display: true,
-      position: 'right',
+      position: "right",
       min: -0,
       max: 100,
       // grid: {
@@ -64,8 +65,99 @@ export function LinePoint({
 }) {
   const { t } = useTranslation();
   const labels = Array.from({ length: 8 }, (_, i) => {
-    return time ? time[i] : '';
+    return time ? time[i] : "";
   });
+
+  function difference(a, b) {
+    return Math.abs(a - b);
+  }
+
+  function findMin(a, b) {
+    if (a > b) {
+      return b;
+    }
+    return a;
+  }
+
+  const dataSMFormat = useMemo(() => {
+    let sum = 0;
+    const listNull = [];
+    const format = dataSM.map((element, index) => {
+      if (element !== null) {
+        sum++;
+      }
+      if (sum !== 0 && element === null) {
+        let space = 0;
+        let nextData = [];
+        let leftData = null;
+        let min = 0;
+        let max = [];
+        for (let i = 0; i < dataSM?.length; i++) {
+          if (index > i && dataSM[i] !== null) {
+            leftData = dataSM[i];
+            min = i;
+          }
+          if (index < i && dataSM[i] !== null) {
+            nextData.push(dataSM[i]);
+            max.push(i);
+          }
+          if (dataSM[i] === null) {
+            space += 1;
+          }
+        }
+        if (nextData?.length > 0 && space !== 0 && leftData !== null) {
+          const TU =
+            (difference(leftData, nextData[0]) * (index - min)) /
+            (max[0] - min);
+          listNull.push(index);
+          return TU + findMin(leftData, nextData[0]);
+        }
+      }
+      return element;
+    });
+    return {
+      format,
+      listNull,
+    };
+  }, [dataSM]);
+
+  const dataSTFormat = useMemo(() => {
+    let sum = 0;
+    const listNull = [];
+    const format = dataST.map((element, index) => {
+      if (element !== null) {
+        sum++;
+      }
+      if (sum !== 0 && element === null) {
+        let nextData = [];
+        let leftData = null;
+        let min = 0;
+        let max = [];
+        for (let i = 0; i < dataST?.length; i++) {
+          if (index > i && dataST[i] !== null) {
+            leftData = dataST[i];
+            min = i;
+          }
+          if (index < i && dataST[i] !== null) {
+            nextData.push(dataST[i]);
+            max.push(i);
+          }
+        }
+        if (nextData?.length > 0 && leftData !== null) {
+          const TU =
+            (difference(leftData, nextData[0]) * (index - min)) /
+            (max[0] - min);
+          listNull.push(index);
+          return TU + findMin(leftData, nextData[0]);
+        }
+      }
+      return element;
+    });
+    return {
+      format,
+      listNull,
+    };
+  }, [dataST]);
 
   const rateCaesarean = passLevelSM === null ? passLevelSM : passLevelSM || 75;
   const rateNormal = passLevelST === null ? passLevelST : passLevelST || 0;
@@ -74,44 +166,68 @@ export function LinePoint({
     labels,
     datasets: [
       {
-        label: t('chart.vaginalDelievery'),
-        data: dataST || [],
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        pointStyle: 'circle',
-        pointRadius: 6,
-        pointHoverRadius: 10,
+        label: t("chart.vaginalDelievery"),
+        data: dataSTFormat?.format || [],
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        pointStyle: "circle",
+        pointRadius: (element) => {
+          const checked = dataSTFormat?.listNull.find(
+            (elementFind) => elementFind === element?.index
+          );
+          return checked ? 0 : 6;
+        },
+        pointHoverRadius: (element) => {
+          const checked = dataSTFormat?.listNull.find(
+            (elementFind) => elementFind === element?.index
+          );
+          return checked ? 0 : 6;
+        },
       },
       {
-        label: t('chart.CSection'),
-        data: dataSM || [],
-        borderColor: '#0984e3',
-        backgroundColor: 'rgb(9, 132, 227,0.5)',
-        pointStyle: 'circle',
-        pointRadius: 6,
-        pointHoverRadius: 10,
+        label: t("chart.CSection"),
+        data: dataSMFormat?.format || [],
+        borderColor: "#0984e3",
+        backgroundColor: "rgb(9, 132, 227,0.5)",
+        pointStyle: "circle",
+        pointRadius: (element) => {
+          const checked = dataSMFormat?.listNull.find(
+            (elementFind) => elementFind === element?.index
+          );
+          return checked ? 0 : 6;
+        },
+        pointHoverRadius: (element) => {
+          const checked = dataSMFormat?.listNull.find(
+            (elementFind) => elementFind === element?.index
+          );
+          return checked ? 0 : 6;
+        },
       },
       {
-        label: t('chart.caesareanRate'),
+        label: t("chart.caesareanRate"),
         fill: false,
-        backgroundColor: 'red',
-        borderColor: 'red',
+        backgroundColor: "red",
+        borderColor: "red",
         borderDash: [5, 5],
         data: labels.map(() =>
           faker.datatype.number({ min: rateCaesarean, max: rateCaesarean })
         ),
-        pointStyle: 'hidden',
+        pointStyle: "hidden",
+        pointRadius: 0,
+        pointHoverRadius: 0,
       },
       {
-        label: t('chart.normalRate'),
+        label: t("chart.normalRate"),
         fill: false,
-        backgroundColor: '#0984e3',
-        borderColor: '#0984e3',
+        backgroundColor: "#0984e3",
+        borderColor: "#0984e3",
         borderDash: [5, 5],
         data: labels.map(() =>
           faker.datatype.number({ min: rateNormal, max: rateNormal })
         ),
-        pointStyle: 'hidden',
+        pointStyle: "hidden",
+        pointRadius: 0,
+        pointHoverRadius: 0,
       },
     ],
   };
@@ -125,29 +241,41 @@ export function LinePoint({
     labels,
     datasets: [
       {
-        label: 'Chỉ số',
-        data: dataST || [],
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        pointStyle: 'circle',
-        pointRadius: 6,
-        pointHoverRadius: 10,
+        label: "Chỉ số",
+        data: dataSTFormat?.format || [],
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        pointStyle: "circle",
+        pointRadius: (element) => {
+          const checked = dataSTFormat?.listNull.find(
+            (elementFind) => elementFind === element?.index
+          );
+          return checked ? 0 : 6;
+        },
+        pointHoverRadius: (element) => {
+          const checked = dataSTFormat?.listNull.find(
+            (elementFind) => elementFind === element?.index
+          );
+          return checked ? 0 : 6;
+        },
       },
       {
-        label: 'Mức đạt',
+        label: "Mức đạt",
         fill: false,
-        backgroundColor: 'red',
-        borderColor: 'red',
+        backgroundColor: "red",
+        borderColor: "red",
         borderDash: [5, 5],
         data: labels.map(() =>
           faker.datatype.number({ min: rateNormal, max: rateNormal })
         ),
-        pointStyle: 'hidden',
+        pointStyle: "hidden",
+        pointRadius: 0,
+        pointHoverRadius: 0,
       },
     ],
   };
 
   return (
-    <Line options={options} data={department === 'NK' ? dataNK : dataSK} />
+    <Line options={options} data={department === "NK" ? dataNK : dataSK} />
   );
 }
