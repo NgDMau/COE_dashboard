@@ -212,7 +212,7 @@ const FilterComponent = ({ disabled, screen }) => {
           <div>
             {listQuater?.length > 0 && (
               <Select
-                defaultValue={listQuater[currentQuarter]}
+                defaultValue={listQuater[7 - currentQuarter]}
                 className="select-quarter"
                 onChange={(e) => {
                   dispatch(storeSetCurrentQuarter(7 - e));

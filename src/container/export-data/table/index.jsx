@@ -11,8 +11,7 @@ import { TitleContainer } from "../chart/styled";
 const TableExport = ({ department, listData }) => {
   const { t } = useTranslation();
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
-  const currentQuarter =
-    useSelector((state) => state?.data?.currentQuarter) || null;
+  const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
 
   const dataExportSK = [
     {
@@ -111,12 +110,15 @@ const TableExport = ({ department, listData }) => {
     }
     return true;
   }, [listData, department, dashboardData, currentQuarter]);
-
+  console.log(
+    "dashboardData[currentQuarter]?.timedashboardData[currentQuarter]?.time",
+    dashboardData[currentQuarter]?.time
+  );
   return (
     <TableExportWrapper>
       <HeaderExport />
       <div className="quarter">
-        Quarter {dashboardData[currentQuarter]?.time}
+        {t("exportData.quarter")} {dashboardData[currentQuarter]?.time}
       </div>
       <div className="header-table">
         <div className="content">{t("export.content")}</div>
