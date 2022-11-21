@@ -168,8 +168,8 @@ export function LinePoint({
       {
         label: t("chart.vaginalDelievery"),
         data: dataSTFormat?.format || [],
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderColor: "#0984e3",
+        backgroundColor: "rgb(9, 132, 227,0.5)",
         pointStyle: "circle",
         pointRadius: (element) => {
           const checked = dataSTFormat?.listNull.find(
@@ -187,8 +187,8 @@ export function LinePoint({
       {
         label: t("chart.CSection"),
         data: dataSMFormat?.format || [],
-        borderColor: "#0984e3",
-        backgroundColor: "rgb(9, 132, 227,0.5)",
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
         pointStyle: "circle",
         pointRadius: (element) => {
           const checked = dataSMFormat?.listNull.find(
@@ -204,19 +204,6 @@ export function LinePoint({
         },
       },
       {
-        label: t("chart.caesareanRate"),
-        fill: false,
-        backgroundColor: "red",
-        borderColor: "red",
-        borderDash: [5, 5],
-        data: labels.map(() =>
-          faker.datatype.number({ min: rateCaesarean, max: rateCaesarean })
-        ),
-        pointStyle: "hidden",
-        pointRadius: 0,
-        pointHoverRadius: 0,
-      },
-      {
         label: t("chart.normalRate"),
         fill: false,
         backgroundColor: "#0984e3",
@@ -224,6 +211,19 @@ export function LinePoint({
         borderDash: [5, 5],
         data: labels.map(() =>
           faker.datatype.number({ min: rateNormal, max: rateNormal })
+        ),
+        pointStyle: "hidden",
+        pointRadius: 0,
+        pointHoverRadius: 0,
+      },
+      {
+        label: t("chart.caesareanRate"),
+        fill: false,
+        backgroundColor: "red",
+        borderColor: "red",
+        borderDash: [5, 5],
+        data: labels.map(() =>
+          faker.datatype.number({ min: rateCaesarean, max: rateCaesarean })
         ),
         pointStyle: "hidden",
         pointRadius: 0,

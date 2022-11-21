@@ -18,11 +18,9 @@ import {
 
 const ListHospital = () => {
   const [hospital, setHospital] = useState(null);
-  console.log("hospitalhospital", hospital);
   const token = useSelector((state) => state?.auth?.token);
   const getDataAwarded = async () => {
     const response = await sendGet("/dm/data/hospital?code=61");
-    console.log("resssponse", response);
     if (response?.status === "successful") {
       setHospital([
         response?.hospital,
@@ -41,10 +39,6 @@ const ListHospital = () => {
   }, []);
 
   const onUpdate = async (year, name) => {
-    // const response = await sendPost("/dm/data/hospital?code=61", {
-    //   last_awarded_year: moment(year).format("YYYY"),
-    // });
-    // console.log("response", response);
     const myHeaders = new Headers({
       Authorization: "Token " + token,
       "Content-Type": "application/x-www-form-urlencoded",

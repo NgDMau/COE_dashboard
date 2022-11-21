@@ -31,7 +31,6 @@ const RowData = React.memo(() => {
       year: timeString[1],
     };
   }, [currentQuarter, dashboardData]);
-  console.log("timeeee", time);
   const getDataRow = async (page) => {
     if (isLoading) {
       return;
@@ -48,7 +47,6 @@ const RowData = React.memo(() => {
       .then((response) => response.json())
       .then((data) => {
         if (data?.status === "successful") {
-          console.log("data?.datadata?.data", data?.data);
           setRowData(data?.data?.object_list);
           setNumEntries({
             total: data?.data?.num_entries,
@@ -468,7 +466,6 @@ const RowData = React.memo(() => {
           province: citySelected?.code,
         }
       );
-      console.log("responseresponse");
       if (response?.status === "OK") {
         window.open(`${linkApi}/${response?.data?.url}`);
       }

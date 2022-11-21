@@ -84,10 +84,6 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
             mode="inline"
             defaultSelectedKeys={[`${screen}`]}
             onSelect={(e) => {
-              console.log(
-                "SCREEN_DEFAULT[e]SCREEN_DEFAULT[e]",
-                SCREEN_DEFAULT[e.key]
-              );
               if (Number(e.key) === 4 && user?.is_superuser === "False") {
                 showConfirm();
               }
@@ -99,7 +95,6 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
               setScreen(Number(e.key));
               navigate(`${SCREEN_DEFAULT[e.key]}`);
               setTitle(items2[Number(e.key) - 1]);
-              console.log(e);
             }}
             items={items2.map((element, index) => ({
               key: String(index + 1),

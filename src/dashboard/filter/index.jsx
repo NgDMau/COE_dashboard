@@ -146,7 +146,6 @@ const FilterComponent = ({ disabled, screen }) => {
   useEffect(() => {
     getCities();
   }, []);
-  console.log("currentQuartercurrentQuartercurrentQuarter", currentQuarter);
   return (
     <FilterWrapper>
       {isLoadingScreen && <Loading />}

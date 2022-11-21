@@ -7,7 +7,6 @@ import TableChart from './table-chart';
 
 const ChartExport = ({ elementST, elementSM, criteria, index, department }) => {
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
-  console.log('dashboardDatadashboardDatadashboardData', dashboardData);
   return (
     <ChartExportWrapper>
       <HeaderExport />

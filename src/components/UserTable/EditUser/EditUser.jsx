@@ -16,14 +16,6 @@ const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    // console.log(111111111111);
-    // if (modalData === true) {
-    //   setIsSupperUser(false);
-    //   setUserName("");
-    //   setEmail("");
-    //   setPassword("");
-    //   return;
-    // }
     if (modalData && modalData !== false && modalData?.isEdit) {
       setIsSupperUser(modalData?.is_superuser || false);
       setUserName(modalData?.username || "");

@@ -101,7 +101,7 @@ const UserTable = () => {
         onRow={(record, rowIndex) => {
           return {
             onClick: (event) => {
-              console.log(record);
+              // console.log(record);
             }, // click row
           };
         }}
