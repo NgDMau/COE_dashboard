@@ -113,7 +113,22 @@
   },
   "document": {
     "download": "Download",
-    "awardedHospitals": "Code awarded hospitals"
+    "awardedHospitals": "Code awarded hospitals",
+    "document": "Document",
+    "deleteDocument": "Delete document",
+    "updateDocument": "Update document",
+    "documentName": "Document Name",
+    "documentNote": "Document Note",
+    "uploadCertification": "Upload Certification (if available)",
+    "uploading": "Uploading",
+    "save": "Save",
+    "cancel": "Cancel",
+    "enterName": "Please enter that name",
+    "toConfirm": "to confirm the deletion:",
+    "confirm": "Confirm",
+    "createDocument": "Create Document",
+    "clickDrag": "Click or drag file to this area to upload",
+    "searchOrUpload": "Please search or upload a document"
   },
   "exportData": {
     "indexHospitals": "Index of hospitals in the province/city",

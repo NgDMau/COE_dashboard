@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import {
   ButtonDownLoadWrapper,
   CreatefromWrapper,
@@ -7,20 +7,20 @@ import {
   NothingContent,
   SelectWrapper,
   SelectWrapperDoc,
-} from "./styled";
-import download from "../../assets/icon/download.gif";
-import { message, Select, Tooltip } from "antd";
-import { useState } from "react";
-import { linkApi } from "../../common/ngok";
-import { useTranslation } from "react-i18next";
-import editIcon from "../../assets/icon/edit-text.png";
-import { sendDelete, sendGet } from "../../api/axios";
-import { FileAddOutlined } from "@ant-design/icons";
-import ListHospital from "../../components/document/listHospital/ListHospital";
-import Createfrom from "../../components/document/CreateForm/CreateFrom";
-import FormInputData from "../FormInputData/FormInputData";
-import deleteIcon from "../../assets/icon/delete.png";
-import ModalNormal from "../../components/common/modal";
+} from './styled';
+import download from '../../assets/icon/download.gif';
+import { message, Select, Tooltip } from 'antd';
+import { useState } from 'react';
+import { linkApi } from '../../common/ngok';
+import { useTranslation } from 'react-i18next';
+import editIcon from '../../assets/icon/edit-text.png';
+import { sendDelete, sendGet } from '../../api/axios';
+import { FileAddOutlined } from '@ant-design/icons';
+import ListHospital from '../../components/document/listHospital/ListHospital';
+import Createfrom from '../../components/document/CreateForm/CreateFrom';
+import FormInputData from '../FormInputData/FormInputData';
+import deleteIcon from '../../assets/icon/delete.png';
+import ModalNormal from '../../components/common/modal';
 import {
   CancelButton,
   CeckName,
@@ -28,19 +28,19 @@ import {
   DeleteButton,
   InputDelete,
   SelectName,
-} from "../FormInputData/styled";
-import { useSelector } from "react-redux";
+} from '../FormInputData/styled';
+import { useSelector } from 'react-redux';
 const Document = ({ title }) => {
   const { t } = useTranslation();
 
   const tabDocument = useSelector((state) => state.document.tab);
 
   const [ListDoc, setListDoc] = useState([]);
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState('');
   const [editing, setEditing] = useState(false);
 
   const [isShow, setIsShow] = useState(false);
-  const [deleteCheck, setDeleteCheck] = useState("");
+  const [deleteCheck, setDeleteCheck] = useState('');
 
   const downLoadPdf = () => {
     if (!selected) {
@@ -51,7 +51,7 @@ const Document = ({ title }) => {
 
   const getDataDocument = async (callback) => {
     try {
-      const response = await sendGet("/dm/data/docs");
+      const response = await sendGet('/dm/data/docs');
       setListDoc(response?.docs);
       if (callback) {
         callback(response?.docs[response?.docs?.length - 1]);
@@ -61,7 +61,7 @@ const Document = ({ title }) => {
 
   const cancelModal = () => {
     setIsShow(false);
-    setDeleteCheck("");
+    setDeleteCheck('');
   };
 
   const handleDelete = async () => {
@@ -71,13 +71,13 @@ const Document = ({ title }) => {
         getDataDocument((res) => {
           message.success(`Delete successfully.`);
           setEditing(false);
-          setSelected("");
+          setSelected('');
         });
       }
     } catch (error) {
       message.success(`Delete error.`);
       setEditing(false);
-      setSelected("");
+      setSelected('');
     } finally {
       setIsShow(false);
     }
@@ -90,11 +90,11 @@ const Document = ({ title }) => {
   return (
     <DocumentWrapper>
       {tabDocument === 1 ? (
-        <div className="document-container">
-          <div className="document-header">
+        <div className='document-container'>
+          <div className='document-header'>
             <SelectWrapperDoc>
               <Select
-                className="select-document"
+                className='select-document'
                 value={selected?.name}
                 onChange={(e) => {
                   setSelected(ListDoc[Number(e)]);
@@ -110,7 +110,7 @@ const Document = ({ title }) => {
                         </div>
                         <img
                           src={editIcon}
-                          alt=""
+                          alt=''
                           onClick={(e) => {
                             setTimeout(() => {
                               setEditing(true);
@@ -119,7 +119,7 @@ const Document = ({ title }) => {
                         />
                         <img
                           src={deleteIcon}
-                          alt=""
+                          alt=''
                           onClick={(e) => {
                             setTimeout(() => {
                               setIsShow(true);
@@ -131,20 +131,20 @@ const Document = ({ title }) => {
                   );
                 })}
               </Select>
-              <Tooltip placement="right" title="Upload a document">
+              <Tooltip placement='right' title='Upload a document'>
                 <FileAddOutlined
                   onClick={() => setSelected(null)}
                   style={{
-                    fontSize: "25px",
-                    marginLeft: "8px",
-                    cursor: "pointer",
+                    fontSize: '25px',
+                    marginLeft: '8px',
+                    cursor: 'pointer',
                   }}
                 />
               </Tooltip>
             </SelectWrapperDoc>
             <ButtonDownLoadWrapper onClick={downLoadPdf} disabled={!!selected}>
-              <img src={download} alt="" />
-              <span>{t("document.download")}</span>
+              <img src={download} alt='' />
+              <span>{t('document.download')}</span>
             </ButtonDownLoadWrapper>
           </div>
           {/* <img src={documentiImg} alt="" className="document" /> */}
@@ -165,10 +165,8 @@ const Document = ({ title }) => {
                   getDataDocument={getDataDocument}
                 />
               )}
-              {selected === "" && (
-                <NothingContent>
-                  Please search or upload a document
-                </NothingContent>
+              {selected === '' && (
+                <NothingContent>{t('document.searchOrUpload')}</NothingContent>
               )}
             </CreatefromWrapper>
           ) : (
@@ -177,14 +175,14 @@ const Document = ({ title }) => {
           {selected && !editing ? (
             <object
               data={`https://dev.api.coe.bmte.vn/media/${selected?.url}`}
-              type="application/pdf"
-              height="800px"
-              width="800px"
+              type='application/pdf'
+              height='800px'
+              width='800px'
             >
               <iframe
                 src={`https://docs.google.com/viewer?url=https://dev.api.coe.bmte.vn/media/${selected?.url}&embedded=true`}
-                height="800px"
-                width="800px"
+                height='800px'
+                width='800px'
               />
             </object>
           ) : (
@@ -198,11 +196,11 @@ const Document = ({ title }) => {
         visible={isShow}
         setVisible={setIsShow}
         onCancel={cancelModal}
-        title="Delete document"
+        title={t('document.deleteDocument')}
       >
         <CeckName>
-          Please enter that name <SelectName>{selected?.name}</SelectName> to
-          confirm the deletion:
+          {t('document.enterName')} <SelectName>{selected?.name}</SelectName>{' '}
+          {t('document.toConfirm')}
         </CeckName>
         <InputDelete
           value={deleteCheck}
@@ -213,9 +211,11 @@ const Document = ({ title }) => {
             disabled={deleteCheck !== selected?.name}
             onClick={handleDelete}
           >
-            Confirm
+            {t('document.confirm')}
           </DeleteButton>
-          <CancelButton onClick={cancelModal}>Cancel</CancelButton>
+          <CancelButton onClick={cancelModal}>
+            {t('document.cancel')}
+          </CancelButton>
         </ConfirmWrapper>
       </ModalNormal>
     </DocumentWrapper>

@@ -1,7 +1,7 @@
-import { Button, Input } from "antd";
-import Dragger from "antd/lib/upload/Dragger";
-import styled from "styled-components";
-import { rem } from "../../helpers/rem/px-to-rem";
+import { Button, Input } from 'antd';
+import Dragger from 'antd/lib/upload/Dragger';
+import styled from 'styled-components';
+import { rem } from '../../helpers/rem/px-to-rem';
 
 export const DraggerFile = styled(Dragger)`
   width: 400;
@@ -61,7 +61,8 @@ export const UploadWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: ${rem(16)} img {
+  margin-top: ${rem(16)};
+  img {
     cursor: pointer;
     width: ${rem(28)};
     height: ${rem(28)};

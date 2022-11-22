@@ -114,7 +114,21 @@
   "document": {
     "download": "Tải xuống",
     "awardedHospitals": "Bệnh viện được trao giải thưởng",
-    "document": "Tài liệu"
+    "document": "Tài liệu",
+    "deleteDocument": "Xóa tài liệu",
+    "updateDocument": "Cập nhật tài liệu",
+    "documentName": "Tên tài liệu",
+    "documentNote": "Ghi chú tài liệu",
+    "uploadCertification": "Tải lên Chứng nhận (nếu có)",
+    "uploading": "Đang cập nhật",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "enterName": "Nhập tên",
+    "toConfirm": "để xác nhận việc xóa:",
+    "confirm": "Xác nhận",
+    "createDocument": "Tạo mới tài liệu",
+    "clickDrag": "Nhấp hoặc kéo tệp để tải lên",
+    "searchOrUpload": "Vui lòng tìm kiếm hoặc tải lên một tài liệu"
   },
   "exportData": {
     "indexHospitals": "Chỉ số của các bệnh viện trong tỉnh/thành phố",
