@@ -1,6 +1,6 @@
-import { Button } from "antd";
-import styled from "styled-components";
-import { rem } from "../helpers/rem/px-to-rem";
+import { Button } from 'antd';
+import styled from 'styled-components';
+import { rem } from '../helpers/rem/px-to-rem';
 
 export const ChartContainerWrapper = styled.div`
   border: 1px solid #ecf0f1;
@@ -89,7 +89,9 @@ export const ContainerWrapper = styled.div`
   }
   .content-chart {
     width: ${(props) =>
-      props?.isCollapse ? "calc(100vw - 80px)" : "calc(100vw - 200px)"};
+      props?.isCollapse
+        ? `calc(100vw - ${rem(85)})`
+        : `calc(100vw - ${rem(230)})`};
     padding-top: 1em;
     margin-left: ${rem(10)};
     margin-top: ${rem(20)};
