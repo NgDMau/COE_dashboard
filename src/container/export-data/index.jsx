@@ -143,14 +143,14 @@ const ExportData = () => {
     }
     const responseST = ObstetricsData?.map((element, index) => {
       return dashboardData?.map((dataElement) => {
-        const point = dataElement?.data?.NK[index + 1]?.values?.ST || 0;
-        return point === "N/A" ? 0 : point;
+        const point = dataElement?.data?.NK[index + 1]?.values?.ST;
+        return point === "N/A" ? null : point;
       });
     });
     const responseSM = ObstetricsData?.map((element, index) => {
       return dashboardData?.map((dataElement) => {
-        const point = dataElement?.data?.NK[index + 1]?.values?.SM || 0;
-        return point === "N/A" ? 0 : point;
+        const point = dataElement?.data?.NK[index + 1]?.values?.SM;
+        return point === "N/A" ? null : point;
       });
     });
     return (
