@@ -40,7 +40,6 @@ const PairRadarChart = ({ data1, data2, isNomal, title }) => {
         ) || []
     );
   }, [data1, data2]);
-  console.log("dataaaa", data);
   const config = {
     data,
     fill: "red",

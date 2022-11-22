@@ -88,7 +88,6 @@ export const useUserAdmin = () => {
       const response = await sendDelete("/user/delete", {
         user_id,
       });
-      console.log("responseresponseresponseresponse", response);
       if (response?.status === "successful") {
         getListUser();
         showConfirm({

@@ -26,12 +26,9 @@ const RootRouter = function () {
   const location = useLocation();
   const navigate = useNavigate();
   const token = useSelector((state) => state?.auth?.token);
-  console.log("useruseruser", user);
   const dispatch = useDispatch();
   var coeSocket = null;
-  const AUTH_TOKEN = token;
   const COE_WS_URL = "wss://api.coe.bmte.vn/ws/data/AnT/";
-  const SUB_PROTOCOL = ["Token", AUTH_TOKEN];
 
   function wsConnectionCOE(url) {
     console.log("Connecting...");

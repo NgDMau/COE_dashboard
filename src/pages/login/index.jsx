@@ -233,7 +233,6 @@ const LoginPage = () => {
             placeholder={t("common.password")}
             onChange={(e) => {
               if (e.key === "Enter") {
-                console.log(e.key);
                 login();
                 return;
               }

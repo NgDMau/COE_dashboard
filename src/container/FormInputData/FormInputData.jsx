@@ -28,7 +28,6 @@ const FormInputData = ({
   setEditing,
   getDataDocument,
 }) => {
-  console.log("setSelectedsetSelected", selected);
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
@@ -79,7 +78,6 @@ const FormInputData = ({
       .then((response) => response.json())
       .then((result) =>
         getDataDocument((res) => {
-          console.log("resultresultresult", result);
           if (result?.status === "successful") {
             message.success(`Edit successfully.`);
             setSelected({
