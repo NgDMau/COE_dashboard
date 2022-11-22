@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from "react";
-import { InboxOutlined } from "@ant-design/icons";
-import { Input, message, Row } from "antd";
+import React, { useState } from 'react';
+import { InboxOutlined } from '@ant-design/icons';
+import { Input, message, Row } from 'antd';
 import {
   CancelButton,
   CeckName,
@@ -14,13 +14,14 @@ import {
   Title,
   TitleUpdateDoc,
   UploadWrapper,
-} from "./styled";
-import { useEffect } from "react";
-import deleteIcon from "../../assets/icon/delete.png";
-import TextArea from "antd/lib/input/TextArea";
-import { ButtonCustom } from "../document/styled";
-import ModalNormal from "../../components/common/modal";
-import { sendDelete } from "../../api/axios";
+} from './styled';
+import { useEffect } from 'react';
+import deleteIcon from '../../assets/icon/delete.png';
+import TextArea from 'antd/lib/input/TextArea';
+import { ButtonCustom } from '../document/styled';
+import ModalNormal from '../../components/common/modal';
+import { sendDelete } from '../../api/axios';
+import { useTranslation } from 'react-i18next';
 
 const FormInputData = ({
   selected,
@@ -28,17 +29,18 @@ const FormInputData = ({
   setEditing,
   getDataDocument,
 }) => {
-  const user = localStorage.getItem("user")
-    ? JSON.parse(localStorage.getItem("user"))
+  const { t } = useTranslation();
+  const user = localStorage.getItem('user')
+    ? JSON.parse(localStorage.getItem('user'))
     : null;
 
   const [isShow, setIsShow] = useState(false);
   const [fileList, setFileList] = useState([]);
   const [uploading, setUploading] = useState(false);
-  const [docName, setDocName] = useState("");
-  const [docNote, setDocNote] = useState("");
+  const [docName, setDocName] = useState('');
+  const [docNote, setDocNote] = useState('');
 
-  const [deleteCheck, setDeleteCheck] = useState("");
+  const [deleteCheck, setDeleteCheck] = useState('');
 
   useEffect(() => {
     setDocName(selected?.name);
@@ -52,23 +54,23 @@ const FormInputData = ({
 
   const handleUpload = async () => {
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Token " + user?.token);
+    myHeaders.append('Authorization', 'Token ' + user?.token);
     myHeaders.append(
-      "Cookie",
-      "csrftoken=iBZFVxTK55EuqJtf8E8fQsPM7FPB9T9fvcwZd0p84fHQooETm1i99ycSF1NITwZn"
+      'Cookie',
+      'csrftoken=iBZFVxTK55EuqJtf8E8fQsPM7FPB9T9fvcwZd0p84fHQooETm1i99ycSF1NITwZn'
     );
 
     var formdata = new FormData();
     // formdata.append("docfile", fileList[0]);
-    formdata.append("docname", docName);
-    formdata.append("docnote", docNote);
-    formdata.append("is_public", "True");
+    formdata.append('docname', docName);
+    formdata.append('docnote', docNote);
+    formdata.append('is_public', 'True');
 
     var requestOptions = {
-      method: "PATCH",
+      method: 'PATCH',
       headers: myHeaders,
       body: formdata,
-      redirect: "follow",
+      redirect: 'follow',
     };
 
     fetch(
@@ -78,7 +80,7 @@ const FormInputData = ({
       .then((response) => response.json())
       .then((result) =>
         getDataDocument((res) => {
-          if (result?.status === "successful") {
+          if (result?.status === 'successful') {
             message.success(`Edit successfully.`);
             setSelected({
               ...selected,
@@ -99,43 +101,43 @@ const FormInputData = ({
         getDataDocument((res) => {
           message.success(`Delete successfully.`);
           setEditing(false);
-          setSelected("");
+          setSelected('');
         });
       }
     } catch (error) {
       message.success(`Delete error.`);
       setEditing(false);
-      setSelected("");
+      setSelected('');
     }
   };
 
   const props = {};
   const cancelModal = () => {
     setIsShow(false);
-    setDeleteCheck("");
+    setDeleteCheck('');
   };
 
   return (
     <FormWrapper>
       {selected && (
         <>
-          <TitleUpdateDoc>Update Document</TitleUpdateDoc>
+          <TitleUpdateDoc>{t('document.updateDocument')}</TitleUpdateDoc>
 
-          <Title>Document Name</Title>
+          <Title>{t('document.updateDocument')}</Title>
           <Input
-            placeholder="Document Name"
+            placeholder={t('document.documentName')}
             value={docName}
             onChange={(e) => setDocName(e?.target?.value)}
           />
 
-          <Title>Document Note</Title>
+          <Title>{t('document.documentNote')}</Title>
           <TextArea
-            placeholder="Document Note"
+            placeholder={t('document.documentNote')}
             value={docNote}
             onChange={(e) => setDocNote(e?.target?.value)}
           />
 
-          <Title>Upload Certification (if available)</Title>
+          <Title>{t('document.uploadCertification')}</Title>
           <DraggerFile
             height={130}
             style={{ width: 300 }}
@@ -144,10 +146,10 @@ const FormInputData = ({
             disabled={true}
             {...props}
           >
-            <p className="ant-upload-drag-icon">
+            <p className='ant-upload-drag-icon'>
               <InboxOutlined />
             </p>
-            <p className="ant-upload-text">
+            <p className='ant-upload-text'>
               {/* Click or drag file to this area to upload */}
             </p>
           </DraggerFile>
@@ -155,24 +157,24 @@ const FormInputData = ({
           <UploadWrapper>
             <Row>
               <ButtonCustom
-                type="primary"
+                type='primary'
                 onClick={handleUpload}
                 disabled={fileList.length === 0 || !docName || !docNote}
                 loading={uploading}
               >
-                {uploading ? "Uploading" : "Save"}
+                {uploading ? t('document.uploading') : t('document.save')}
               </ButtonCustom>
               <ButtonCustom
-                type="primary"
+                type='primary'
                 onClick={() => {
                   setEditing(false);
                 }}
                 loading={uploading}
               >
-                {"Cancel"}
+                {t('document.cancel')}
               </ButtonCustom>
             </Row>
-            <img src={deleteIcon} alt="" onClick={() => setIsShow(true)} />
+            <img src={deleteIcon} alt='' onClick={() => setIsShow(true)} />
           </UploadWrapper>
         </>
       )}
@@ -180,11 +182,11 @@ const FormInputData = ({
         visible={isShow}
         setVisible={setIsShow}
         onCancel={cancelModal}
-        title="Delete document"
+        title={t('document.deleteDocument')}
       >
         <CeckName>
-          Please enter that name <SelectName>{selected?.name}</SelectName> to
-          confirm the deletion:
+          {t('document.enterName')} <SelectName>{selected?.name}</SelectName>{' '}
+          {t('document.toConfirm')}
         </CeckName>
         <InputDelete
           value={deleteCheck}
@@ -195,9 +197,11 @@ const FormInputData = ({
             disabled={deleteCheck !== selected?.name}
             onClick={handleDelete}
           >
-            Confirm
+            {t('document.confirm')}
           </DeleteButton>
-          <CancelButton onClick={cancelModal}>Cancel</CancelButton>
+          <CancelButton onClick={cancelModal}>
+            {t('document.cancel')}
+          </CancelButton>
         </ConfirmWrapper>
       </ModalNormal>
     </FormWrapper>
