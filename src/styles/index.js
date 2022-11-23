@@ -5,6 +5,11 @@ const StyleGlobal = createGlobalStyle`
   body, html {
       /* font-family: Roboto, "Segoe UI"; */
   }
+  .alert-comfirm-modal {
+      .ant-btn-default {
+        display: none;
+      }
+    }
   .confirmCustom {
       position: absolute;
       left: -50%;
