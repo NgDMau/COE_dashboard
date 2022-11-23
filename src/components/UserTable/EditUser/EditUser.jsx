@@ -2,6 +2,7 @@ import { Input, Radio } from "antd";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Title } from "../../../container/FormInputData/styled";
+import { showConfirm } from "../../../helpers/modal-confirm";
 import {
   ButtonCancel,
   ButtonSave,
@@ -20,6 +21,7 @@ const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
       setIsSupperUser(modalData?.is_superuser || false);
       setUserName(modalData?.username || "");
       setEmail(modalData?.email || "");
+      setPassword("");
     } else {
       setIsSupperUser(false);
       setUserName("");
@@ -34,12 +36,14 @@ const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
         <Title>Quyền tài khoản</Title>
         <Radio
           checked={isSupperUser}
+          disabled={modalData?.isEdit}
           onChange={(e) => setIsSupperUser(e?.target?.checked)}
         >
           superuser
         </Radio>
         <Radio
           checked={!isSupperUser}
+          disabled={modalData?.isEdit}
           onChange={(e) => setIsSupperUser(!e?.target?.checked)}
         >
           staff
@@ -50,6 +54,7 @@ const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
         <Input
           placeholder="Tên tài khoản"
           value={useName}
+          disabled={modalData?.isEdit}
           onChange={(e) => setUserName(e?.target?.value)}
         />
       </div>
@@ -58,28 +63,35 @@ const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
         <Input
           placeholder="Email"
           value={email}
+          disabled={modalData?.isEdit}
           onChange={(e) => setEmail(e?.target?.value)}
         />
       </div>
-      {!modalData?.isEdit && (
-        <div>
-          <Title>Mật khẩu</Title>
-          <Input
-            placeholder="Mật khẩu"
-            value={password}
-            type="password"
-            onChange={(e) => setPassword(e?.target?.value)}
-          />
-        </div>
-      )}
+
+      <div>
+        <Title>Mật khẩu</Title>
+        <Input
+          placeholder="Mật khẩu"
+          value={password}
+          // type="password"
+          onChange={(e) => setPassword(e?.target?.value)}
+        />
+      </div>
 
       <ButtonWrapper>
         <ButtonCancel onClick={() => setIsOpen(false)}>Cancel</ButtonCancel>
         <ButtonSave
           onClick={() => {
             if (modalData?.isEdit) {
+              if (!password) {
+                showConfirm({
+                  title: "Vui lòng nhập mật khẩu mới !",
+                  hideCancel: true,
+                });
+                return;
+              }
               updateUser({
-                password: modalData?.password,
+                password: password,
                 username: useName,
                 email: email,
                 user_id: modalData?.id,

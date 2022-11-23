@@ -99,21 +99,21 @@ const TableExport = ({ department, listData }) => {
     if (!dashboardData) {
       return null;
     }
-    const arr = listData?.map(
-      (element, index) =>
+    const arr = dataExport?.map((element, index) => {
+      if (index >= dataExport?.length - 2) {
+        return "passed";
+      }
+      return (
         dashboardData[currentQuarter]?.data[department][index + 1]?.values
           ?.result || null
-    );
-    const find = arr?.find((element) => !element && element !== "passed");
+      );
+    });
+    const find = arr?.find((element) => !element || element !== "passed");
     if (find) {
       return false;
     }
     return true;
-  }, [listData, department, dashboardData, currentQuarter]);
-  console.log(
-    "dashboardData[currentQuarter]?.timedashboardData[currentQuarter]?.time",
-    dashboardData[currentQuarter]?.time
-  );
+  }, [dataExport, department, dashboardData, currentQuarter]);
   return (
     <TableExportWrapper>
       <HeaderExport />
@@ -133,7 +133,11 @@ const TableExport = ({ department, listData }) => {
           <div className="criteria">{dataElement.criteria}</div>
           <div className="achieve">
             {dashboardData[currentQuarter]?.data[department][index + 1]?.values
-              ?.result === "passed" && <img alt="" src={accept} />}
+              ?.result === "passed" || index >= dataExport?.length - 2 ? (
+              <img alt="" src={accept} />
+            ) : (
+              <div />
+            )}
           </div>
         </div>
       ))}
@@ -141,7 +145,7 @@ const TableExport = ({ department, listData }) => {
         <div className="content">{t("export.conclusion")}</div>
         <div className="criteria">{t("export.conclusionContent")}</div>
         <div className="achieve">
-          {!checkSuccess && <img alt="" src={accept} />}
+          {checkSuccess && <img alt="" src={accept} />}
         </div>
       </div>
     </TableExportWrapper>
