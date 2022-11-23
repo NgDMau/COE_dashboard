@@ -164,12 +164,12 @@ const ExportData = () => {
   const checkNotData = () => {
     const checked =
       ChildData?.filter(
-        (element, index) => !!checkFullNa(lineChartNK?.SM[index])
+        (element, index) => !!checkFullNa(lineChartNK?.ST[index])
       ) || [];
+    console.log("checkedcheckedcheckedcheckedchecked", lineChartNK?.ST);
     if (checked?.length > 0) return true;
     return false;
   };
-  console.log("checkNotDatacheckNotDatacheckNotData", checkNotData());
 
   if (!tableData) {
     return (

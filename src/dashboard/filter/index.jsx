@@ -1,17 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
-import { useMemo } from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import React from "react";
+import { useMemo } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 
-import { Alert, DatePicker, Segmented } from 'antd';
-import { Select, Spin } from 'antd';
+import { Alert, DatePicker, Segmented } from "antd";
+import { Select, Spin } from "antd";
 
-import html2pdf from 'html2pdf.js';
+import html2pdf from "html2pdf.js";
 
-import { useSelector, useDispatch } from 'react-redux';
-import { FilterWrapper } from './styled';
-import { linkApi, SCREEN_DEFAULT } from '../../common/ngok';
+import { useSelector, useDispatch } from "react-redux";
+import { FilterWrapper } from "./styled";
+import { linkApi, SCREEN_DEFAULT } from "../../common/ngok";
 
 import {
   storeSetCitiesData,
@@ -19,22 +19,22 @@ import {
   storeSetHostpitalData,
   storeSethospitalSelected,
   storeSetCitySelected,
-} from '../../store/data-reducer';
-import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { storeSetTab } from '../../store/document-reducer';
-import Loading from '../../components/common/Loading/Loading';
-import moment from 'moment';
+} from "../../store/data-reducer";
+import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate } from "react-router-dom";
+import { storeSetTab } from "../../store/document-reducer";
+import Loading from "../../components/common/Loading/Loading";
+import moment from "moment";
 
 const FilterComponent = ({ disabled, screen }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const patch = location?.pathname || '/dashboard';
+  const patch = location?.pathname || "/dashboard";
 
-  const user = localStorage.getItem('user')
-    ? JSON.parse(localStorage.getItem('user'))
+  const user = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
     : null;
   const hospitalSelected = useSelector(
     (state) => state?.data?.hospitalSelected
@@ -55,46 +55,49 @@ const FilterComponent = ({ disabled, screen }) => {
     return (
       citiesData?.find(
         (element) => element?.id === hospitalSelected?.province_id
-      )?.name || ''
+      )?.name || ""
     );
   }, [hospitalSelected, citiesData]);
   const exportPdfData = async () => {
     setIsLoadingScreen(true);
-    try {
-      setTimeout(() => {
-        const element = document.getElementById('exportDagta');
-        const element2 = document.getElementById('exportDagta2');
-        const opt = {
-          margin: 1,
-          image: { type: 'jpeg', quality: 0.98 },
-          filename: 'KQKS_Q2_2022.pdf',
-          html2canvas: { scale: 1 },
-          jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-          pagebreak: { mode: ['legacy'] },
-        };
-        html2pdf().set(opt);
-        html2pdf().from(element).save('KQKS_SK_Q2_2022.pdf');
-        html2pdf()
-          .from(element2)
-          .save('KQKS_NK_Q2_2022.pdf')
-          .then(() => {
-            setTimeout(() => {
-              setIsLoadingScreen(false);
-            }, 500);
-          });
-      }, 0);
-    } catch (error) {
-    } finally {
-    }
+    setTimeout(() => {
+      const element = document.getElementById("exportDagta");
+      const element2 = document.getElementById("exportDagta2");
+      const opt = {
+        margin: 1,
+        image: { type: "jpeg", quality: 0.98 },
+        filename: "KQKS_Q2_2022.pdf",
+        html2canvas: { scale: 1 },
+        jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+        pagebreak: { mode: ["legacy"] },
+      };
+      html2pdf().set(opt);
+      html2pdf()
+        .from(element)
+        .save("KQKS_SK_Q2_2022.pdf")
+        .then(() => {
+          setTimeout(() => {
+            setIsLoadingScreen(false);
+          }, 500);
+        });
+      html2pdf()
+        .from(element2)
+        .save("KQKS_NK_Q2_2022.pdf")
+        // .then(() => {
+        //   setTimeout(() => {
+        //     setIsLoadingScreen(false);
+        //   }, 500);
+        // });
+    }, 0);
   };
 
   const getCities = async () => {
     const myHeaders = new Headers({
-      Authorization: 'Token ' + user?.token,
-      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: "Token " + user?.token,
+      "Content-Type": "application/x-www-form-urlencoded",
     });
     fetch(`${linkApi}/dm/data/province?info=all`, {
-      method: 'POST',
+      method: "POST",
       headers: myHeaders,
     })
       .then((response) => response.json())
@@ -106,11 +109,11 @@ const FilterComponent = ({ disabled, screen }) => {
   const getHostPital = async (code) => {
     setIsLoading(true);
     const myHeaders = new Headers({
-      Authorization: 'Token ' + user?.token,
-      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: "Token " + user?.token,
+      "Content-Type": "application/x-www-form-urlencoded",
     });
     fetch(`${linkApi}/dm/data/province?code=${code}&info=hospitals`, {
-      method: 'POST',
+      method: "POST",
       headers: myHeaders,
     })
       .then((response) => response.json())
@@ -133,7 +136,7 @@ const FilterComponent = ({ disabled, screen }) => {
       if (index === 0) {
         arr.push(moment(new Date()));
       } else {
-        const month = moment(arr[element]).subtract(3, 'months');
+        const month = moment(arr[element]).subtract(3, "months");
         arr.push(month);
       }
     });
@@ -149,20 +152,20 @@ const FilterComponent = ({ disabled, screen }) => {
   return (
     <FilterWrapper>
       {isLoadingScreen && <Loading />}
-      <div className='adress'>
+      <div className="adress">
         {patch === SCREEN_DEFAULT[6] && (
           <div
-            className='back'
+            className="back"
             onClick={() => navigate(`${SCREEN_DEFAULT[1]}`)}
           >
-            {t('filter.back')}
+            {t("filter.back")}
           </div>
         )}
-        {!disabled && <span>{t('filter.city')}</span>}
+        {!disabled && <span>{t("filter.city")}</span>}
         {!disabled || patch === SCREEN_DEFAULT[2] ? (
           <Select
-            defaultValue={defaultCity || ''}
-            className='select-city'
+            defaultValue={defaultCity || ""}
+            className="select-city"
             onChange={(e) => {
               getHostPital(citiesData[e].code);
               dispatch(storeSetHostpitalData([]));
@@ -181,11 +184,11 @@ const FilterComponent = ({ disabled, screen }) => {
         ) : (
           <div />
         )}
-        {!disabled && <span className='hostpital'>{t('filter.hospital')}</span>}
+        {!disabled && <span className="hostpital">{t("filter.hospital")}</span>}
         {!disabled && (
           <Select
-            defaultValue={hospitalSelected?.name || ''}
-            className='select-hostpital'
+            defaultValue={hospitalSelected?.name || ""}
+            className="select-hostpital"
             onChange={(e) => {
               dispatch(storeSethospitalSelected(hostPitals[e]));
             }}
@@ -213,7 +216,7 @@ const FilterComponent = ({ disabled, screen }) => {
             {listQuater?.length > 0 && (
               <Select
                 defaultValue={listQuater[7 - currentQuarter]}
-                className='select-quarter'
+                className="select-quarter"
                 onChange={(e) => {
                   dispatch(storeSetCurrentQuarter(7 - e));
                 }}
@@ -231,30 +234,30 @@ const FilterComponent = ({ disabled, screen }) => {
         {patch === SCREEN_DEFAULT[4] && (
           <Segmented
             options={[
-              { label: t('document.document'), value: 1 },
-              { label: t('document.awardedHospitals'), value: 2 },
+              { label: t("document.document"), value: 1 },
+              { label: t("document.awardedHospitals"), value: 2 },
             ]}
             value={tabDocument}
             onChange={(e) => {
               dispatch(storeSetTab(e));
             }}
-            size='large'
+            size="large"
           />
         )}
       </div>
 
-      {(patch === SCREEN_DEFAULT[1] || patch === '/') && dashboardData ? (
+      {(patch === SCREEN_DEFAULT[1] || patch === "/") && dashboardData ? (
         <div
-          className='export'
+          className="export"
           onClick={() => navigate(`${SCREEN_DEFAULT[6]}`)}
         >
-          {t('filter.generateReport')}
+          {t("filter.generateReport")}
         </div>
       ) : null}
 
       {patch === SCREEN_DEFAULT[6] && (
-        <div className='export' onClick={exportPdfData}>
-          {t('filter.exportReport')}
+        <div className="export" onClick={exportPdfData}>
+          {t("filter.exportReport")}
         </div>
       )}
     </FilterWrapper>
