@@ -13,8 +13,8 @@ function RowComponent({
   elementSM,
   timeLine,
   department,
+  data,
 }) {
-
   return (
     <div className='row' key={obstetric.criteria}>
       <div className='stt'>{index + 1}</div>
@@ -50,7 +50,12 @@ function RowComponent({
         </div>
       )}
       <div className='w-10 border-none'>
-        {elementData?.result === 'passed' && <img alt='' src={accept} />}
+        {elementData?.result === 'passed' ||
+        (index >= data?.length - 2 && elementData?.ST !== "N/A") ? (
+          <img alt='' src={accept} />
+        ) : (
+          <div />
+        )}
       </div>
     </div>
   );
@@ -139,6 +144,7 @@ const BornComponent = ({ data, isGeneral, dataList, department }) => {
               elementST={lineChartDataST[index]}
               timeLine={timeLine}
               department={department}
+              data={data}
             />
           </div>
         ))}
