@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const RadarWrapper = styled.div`
-  width: 650px;
+  width: 700px;
 `;
 export const TitleChart = styled.div`
   font-weight: 500;
