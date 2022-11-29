@@ -58,7 +58,8 @@
     "regulations": "Documents",
     "exportReport": "Export Report",
     "inputForm": "Input Data",
-    "logout": "Logout"
+    "logout": "Logout",
+    "userManager": "User Manager"
   },
   "setting": {
     "setting": "Setting",
@@ -104,7 +105,7 @@
     "obstetricDept": "Obstetric Dept.",
     "pediatricDept": "Pediatric Dept.",
     "pediatricNodata": "Pediatric no data",
-    "provincialReport":"Provincial report"
+    "provincialReport": "Provincial report"
   },
   "export": {
     "content": "Content",
@@ -130,7 +131,8 @@
     "confirm": "Confirm",
     "createDocument": "Create Document",
     "clickDrag": "Click or drag file to this area to upload",
-    "searchOrUpload": "Please search or upload a document"
+    "searchOrUpload": "Please search or upload a document",
+    "decisionInstruction": "Decision/instruction"
   },
   "exportData": {
     "indexHospitals": "Index of hospitals in the province/city",

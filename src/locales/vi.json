@@ -58,7 +58,8 @@
     "regulations": "Tài liệu tham khảo",
     "exportReport": "Xuất báo cáo",
     "inputForm": "Nhập dữ liệu",
-    "logout": "Đăng xuất"
+    "logout": "Đăng xuất",
+    "userManager": "Quản lý người dùng"
   },
   "setting": {
     "setting": "Cài đặt",
@@ -104,7 +105,7 @@
     "obstetricDept": "TC Khoa sản",
     "pediatricDept": "TC Khoa nhi",
     "pediatricNodata": "Khoa Nhi không có dữ liệu",
-    "provincialReport":"Provincial report"
+    "provincialReport": "Provincial report"
   },
   "export": {
     "content": "Nội dung",
@@ -115,7 +116,7 @@
   },
   "document": {
     "download": "Tải xuống",
-    "awardedHospitals": "Bệnh viện được trao giải thưởng",
+    "awardedHospitals": "Danh sách bệnh viện đã được trao danh hiệu",
     "document": "Tài liệu",
     "deleteDocument": "Xóa tài liệu",
     "updateDocument": "Cập nhật tài liệu",
@@ -130,7 +131,8 @@
     "confirm": "Xác nhận",
     "createDocument": "Tạo mới tài liệu",
     "clickDrag": "Nhấp hoặc kéo tệp để tải lên",
-    "searchOrUpload": "Vui lòng tìm kiếm hoặc tải lên một tài liệu"
+    "searchOrUpload": "Vui lòng tìm kiếm hoặc tải lên một tài liệu",
+    "decisionInstruction": "Quyết định/hướng dẫn"
   },
   "exportData": {
     "indexHospitals": "Chỉ số của các bệnh viện trong tỉnh/thành phố",

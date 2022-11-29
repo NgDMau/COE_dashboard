@@ -156,7 +156,7 @@ const FilterComponent = ({ disabled, screen }) => {
           </div>
         )}
         {!disabled && <span>{t("filter.city")}</span>}
-        {!disabled || patch === SCREEN_DEFAULT[2] ? (
+        {!disabled ? (
           <Select
             defaultValue={defaultCity || t("common.none")}
             className="select-city"
@@ -230,7 +230,7 @@ const FilterComponent = ({ disabled, screen }) => {
         {patch === SCREEN_DEFAULT[4] && (
           <Segmented
             options={[
-              { label: t("document.document"), value: 1 },
+              { label: t("document.decisionInstruction"), value: 1 },
               { label: t("document.awardedHospitals"), value: 2 },
             ]}
             value={tabDocument}

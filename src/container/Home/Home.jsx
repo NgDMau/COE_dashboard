@@ -185,41 +185,45 @@ const Home = ({ isLoading, value, setValue }) => {
 
   return (
     <div>
-      {!hospitalSelected && !citySelected ? (
-        <ChartWrapper>
-          <ChartContainerWrapper>
-            <PairRadarChart
-              data2={[60, 80, 50, 90, 95, 75]}
-              data1={[70, 75, 80, 85, 60, 65]}
-              title="Tiêu chí về Sản khoa"
-            />
-          </ChartContainerWrapper>
+      {!hospitalSelected && (
+        <>
+          {!citySelected && !isLoading ? (
+            <ChartWrapper>
+              <ChartContainerWrapper>
+                <PairRadarChart
+                  data2={[60, 80, 50, 90, 95, 75]}
+                  data1={[70, 75, 80, 85, 60, 65]}
+                  title="Tiêu chí về Sản khoa"
+                />
+              </ChartContainerWrapper>
 
-          <ChartContainerWrapper>
-            <RadaChart
-              data2={[70, 70, 70, 70, 70, 70]}
-              title={t("chart.pediatric")}
-            />
-          </ChartContainerWrapper>
-          <VietNamChart />
-        </ChartWrapper>
-      ) : (
-        <ChartWrapper>
-          <ChartContainerWrapper>
-            <PairRadarChart
-              data2={[23, 79, 87, 98, 78, 65]}
-              data1={[34, 56, 87, 54, 43, 43]}
-              title="Tiêu chí về Sản khoa"
-            />
-          </ChartContainerWrapper>
+              <ChartContainerWrapper>
+                <RadaChart
+                  data2={[70, 70, 70, 70, 70, 70]}
+                  title={t("chart.pediatric")}
+                />
+              </ChartContainerWrapper>
+              <VietNamChart />
+            </ChartWrapper>
+          ) : (
+            <ChartWrapper>
+              <ChartContainerWrapper>
+                <PairRadarChart
+                  data2={[23, 79, 87, 98, 78, 65]}
+                  data1={[34, 56, 87, 54, 43, 43]}
+                  title="Tiêu chí về Sản khoa"
+                />
+              </ChartContainerWrapper>
 
-          <ChartContainerWrapper>
-            <RadaChart
-              data2={[34, 56, 87, 54, 43, 43]}
-              title={t("chart.pediatric")}
-            />
-          </ChartContainerWrapper>
-        </ChartWrapper>
+              <ChartContainerWrapper>
+                <RadaChart
+                  data2={[34, 56, 87, 54, 43, 43]}
+                  title={t("chart.pediatric")}
+                />
+              </ChartContainerWrapper>
+            </ChartWrapper>
+          )}
+        </>
       )}
 
       {isLoading && (

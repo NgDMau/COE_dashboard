@@ -48,7 +48,7 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
     t("screen.surveyLink"),
     t("screen.rowData"),
     t("screen.regulations"),
-    "User Manager",
+    t("screen.userManager"),
   ];
   const icons = [overview, link, database, document, userIcon];
 

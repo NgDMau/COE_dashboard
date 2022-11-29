@@ -31,9 +31,7 @@ import {
   IConLanguage,
   PathWrapper,
 } from "./styled";
-import PairRadarChart from "../components/RadaChart/PairRadarChart";
 import Home from "./Home/Home";
-import { showConfirm } from "../helpers/modal-confirm";
 
 const AppContainer = ({ screen, title, setScreen }) => {
   const dispath = useDispatch();

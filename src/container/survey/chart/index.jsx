@@ -13,6 +13,7 @@ const ChartLink = ({ dataTableChart, selected }) => {
     //   minValue: 0,
     //   maxValue: 300,
     // },
+    bar: { groupWidth: 40 },
     vAxis: {
       viewWindow: {
         max: 300,
@@ -30,7 +31,6 @@ const ChartLink = ({ dataTableChart, selected }) => {
         data={dataTableChart}
         options={options}
       />
-      <div className="certificate">{t("chart.receivedTitle")}</div>
     </ChartLinkWrapper>
   );
 };

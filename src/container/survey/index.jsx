@@ -41,6 +41,7 @@ const SurveyLink = () => {
           t("surveyLink.underMonth"),
           t("surveyLink.sectionMothers"),
           t("surveyLink.normalMother"),
+          { role: "style" },
         ]);
         dataClone.forEach((element) => {
           const item = [];
@@ -48,6 +49,7 @@ const SurveyLink = () => {
           item.push(element.no_ST);
           item.push(element.no_SM);
           item.push(element.no_D1TT);
+          item.push("stroke-width: 4");
           chartData.push(item);
         });
         setDatableChart(chartData || []);
@@ -58,7 +60,7 @@ const SurveyLink = () => {
   useEffect(() => {
     getDataDashboard(citySelected?.code);
   }, [citySelected]);
-
+  console.log("dataTableChartdataTableChartdataTableChart", dataTableChart);
   return (
     <SurveyLinkWrapper>
       <div className="container">
@@ -86,7 +88,7 @@ const SurveyLink = () => {
                 <div className="chart">
                   <ChartLink
                     dataTableChart={dataTableChart}
-                    selected={hospitalSelected}
+                    selected={citySelected}
                   />
                 </div>
               )}
