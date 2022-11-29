@@ -9,7 +9,8 @@
     "vietNam": "Tiếng Việt",
     "engLish": "English",
     "welcome": "Welcome",
-    "retypePassword": "retype password"
+    "retypePassword": "retype password",
+    "none": "None"
   },
   "obstetricsData": {
     "obstetricsKS_1": "Skin to skin contact",
@@ -102,7 +103,8 @@
   "dashBoard": {
     "obstetricDept": "Obstetric Dept.",
     "pediatricDept": "Pediatric Dept.",
-    "pediatricNodata": "Pediatric no data"
+    "pediatricNodata": "Pediatric no data",
+    "provincialReport":"Provincial report"
   },
   "export": {
     "content": "Content",

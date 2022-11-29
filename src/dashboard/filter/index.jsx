@@ -10,7 +10,7 @@ import { Select, Spin } from "antd";
 import html2pdf from "html2pdf.js";
 
 import { useSelector, useDispatch } from "react-redux";
-import { FilterWrapper } from "./styled";
+import { BtnExportCity, FilterWrapper } from "./styled";
 import { linkApi, SCREEN_DEFAULT } from "../../common/ngok";
 
 import {
@@ -39,18 +39,19 @@ const FilterComponent = ({ disabled, screen }) => {
   const hospitalSelected = useSelector(
     (state) => state?.data?.hospitalSelected
   );
+  const citySelected = useSelector((state) => state.data.citySelected);
+
   const dashboardData =
     useSelector((state) => state?.data?.dashboardData) || null;
   const currentQuarter =
     useSelector((state) => state?.data?.currentQuarter) || 0;
   const citiesData = useSelector((state) => state.data.citiesData);
   const hostPitals = useSelector((state) => state.data.hostPitals);
-
   const tabDocument = useSelector((state) => state.document.tab);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingScreen, setIsLoadingScreen] = useState(false);
-
+  console.log("hostPitalshostPitalshostPitals", hostPitals);
   const defaultCity = useMemo(() => {
     return (
       citiesData?.find(
@@ -80,14 +81,7 @@ const FilterComponent = ({ disabled, screen }) => {
             setIsLoadingScreen(false);
           }, 500);
         });
-      html2pdf()
-        .from(element2)
-        .save("KQKS_NK_Q2_2022.pdf")
-        // .then(() => {
-        //   setTimeout(() => {
-        //     setIsLoadingScreen(false);
-        //   }, 500);
-        // });
+      html2pdf().from(element2).save("KQKS_NK_Q2_2022.pdf");
     }, 0);
   };
 
@@ -164,11 +158,12 @@ const FilterComponent = ({ disabled, screen }) => {
         {!disabled && <span>{t("filter.city")}</span>}
         {!disabled || patch === SCREEN_DEFAULT[2] ? (
           <Select
-            defaultValue={defaultCity || ""}
+            defaultValue={defaultCity || t("common.none")}
             className="select-city"
             onChange={(e) => {
               getHostPital(citiesData[e].code);
               dispatch(storeSetHostpitalData([]));
+              dispatch(storeSethospitalSelected(null));
               dispatch(storeSetCitySelected(citiesData[e]));
             }}
             disabled={disabled && screen !== 2}
@@ -187,7 +182,8 @@ const FilterComponent = ({ disabled, screen }) => {
         {!disabled && <span className="hostpital">{t("filter.hospital")}</span>}
         {!disabled && (
           <Select
-            defaultValue={hospitalSelected?.name || ""}
+            defaultValue={hospitalSelected?.name || t("common.none")}
+            value={hospitalSelected?.name || t("common.none")}
             className="select-hostpital"
             onChange={(e) => {
               dispatch(storeSethospitalSelected(hostPitals[e]));
@@ -246,13 +242,23 @@ const FilterComponent = ({ disabled, screen }) => {
         )}
       </div>
 
-      {(patch === SCREEN_DEFAULT[1] || patch === "/") && dashboardData ? (
+      {(patch === SCREEN_DEFAULT[1] || patch === "/") &&
+      hospitalSelected &&
+      dashboardData ? (
         <div
           className="export"
           onClick={() => navigate(`${SCREEN_DEFAULT[6]}`)}
         >
           {t("filter.generateReport")}
         </div>
+      ) : null}
+      {(patch === SCREEN_DEFAULT[1] || patch === "/") &&
+      !hospitalSelected &&
+      citySelected &&
+      dashboardData ? (
+        <BtnExportCity onClick={() => null}>
+          {t("dashBoard.provincialReport")}
+        </BtnExportCity>
       ) : null}
 
       {patch === SCREEN_DEFAULT[6] && (

@@ -9,7 +9,8 @@
     "vietNam": "Tiếng Việt",
     "engLish": "English",
     "welcome": "Chào mừng",
-    "retypePassword": "Nhập lại mật khẩu"
+    "retypePassword": "Nhập lại mật khẩu",
+    "none": "Trống"
   },
   "obstetricsData": {
     "obstetricsKS_1": "Thực hiện da kề da",
@@ -102,7 +103,8 @@
   "dashBoard": {
     "obstetricDept": "TC Khoa sản",
     "pediatricDept": "TC Khoa nhi",
-    "pediatricNodata": "Khoa Nhi không có dữ liệu"
+    "pediatricNodata": "Khoa Nhi không có dữ liệu",
+    "provincialReport":"Provincial report"
   },
   "export": {
     "content": "Nội dung",
