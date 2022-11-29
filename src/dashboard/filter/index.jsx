@@ -166,7 +166,7 @@ const FilterComponent = ({ disabled, screen }) => {
               dispatch(storeSethospitalSelected(null));
               dispatch(storeSetCitySelected(citiesData[e]));
             }}
-            disabled={disabled && screen !== 2}
+            // disabled={disabled && screen !== 2}
           >
             {citiesData?.map((element, index) => {
               return (

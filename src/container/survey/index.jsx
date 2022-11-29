@@ -60,7 +60,7 @@ const SurveyLink = () => {
   useEffect(() => {
     getDataDashboard(citySelected?.code);
   }, [citySelected]);
-  console.log("dataTableChartdataTableChartdataTableChart", dataTableChart);
+
   return (
     <SurveyLinkWrapper>
       <div className="container">
