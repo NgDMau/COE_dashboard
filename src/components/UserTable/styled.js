@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Select } from "antd";
 import styled from "styled-components";
 
 export const UserTableWrapper = styled.div`
@@ -75,4 +75,7 @@ export const ButtonSave = styled(Button)`
 export const BtnAddUser = styled(Button)`
   background-color: #bdc3c7;
   align-items: right;
+`;
+export const SelectedCity = styled(Select)`
+  width: 100%;
 `;

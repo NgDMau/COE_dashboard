@@ -1,7 +1,7 @@
-import { Button, Input } from 'antd';
-import Dragger from 'antd/lib/upload/Dragger';
-import styled from 'styled-components';
-import { rem } from '../../helpers/rem/px-to-rem';
+import { Button, Input } from "antd";
+import Dragger from "antd/lib/upload/Dragger";
+import styled from "styled-components";
+import { rem } from "../../helpers/rem/px-to-rem";
 
 export const DraggerFile = styled(Dragger)`
   width: 400;
@@ -13,6 +13,7 @@ export const ButtonSave = styled(Button)`
 `;
 export const Title = styled.div`
   margin-top: 1.5em;
+  font-weight: 500;
   margin-bottom: ${rem(8)};
 `;
 export const ButtonUpdate = styled.div`

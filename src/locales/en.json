@@ -158,5 +158,18 @@
   },
   "login": {
     "errorPassword": "Wrong username or password"
+  },
+  "userManagement": {
+    "permission": "Permission",
+    "superuser": "Admin",
+    "staff": "Staff",
+    "city": "City",
+    "nameCity": "City name",
+    "userName": "User name",
+    "email": "Email",
+    "password": "Password",
+    "cancel": "Cancel",
+    "inputNewPassword": "Please enter a new password!",
+    "save": "Save"
   }
 }

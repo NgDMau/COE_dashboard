@@ -158,5 +158,18 @@
   },
   "login": {
     "errorPassword": "Tên người dùng hoặc mật khẩu sai"
+  },
+  "userManagement": {
+    "permission": "Quyền tài khoản",
+    "superuser": "Người quản lý tài khoản",
+    "staff": "Nhân viên",
+    "city": "Tỉnh/Thành phố",
+    "nameCity": "Tên Tỉnh/Thành phố",
+    "userName": "Tên tài khoản",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "cancel": "Hủy",
+    "inputNewPassword": "Vui lòng nhập mật khẩu mới !",
+    "save": "Lưu"
   }
 }
