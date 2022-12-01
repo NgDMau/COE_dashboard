@@ -1,19 +1,20 @@
-import React from 'react';
+import React from "react";
 // import { Radar } from "react-chartjs-2";
-import { useTranslation } from 'react-i18next';
-import { RadarWrapper, TitleChart } from './styled';
-import { Radar } from '@ant-design/plots';
+import { useTranslation } from "react-i18next";
+import { RadarWrapper, TitleChart } from "./styled";
+import { Radar } from "@ant-design/plots";
 
-const RadaChart = ({ data2, isNormal, title }) => {
+const RadaChart = ({ data2, isNormal, title, lables }) => {
   const { t } = useTranslation();
-  const labelsData = [
-    t('obstetricsData.radar_1'),
-    t('obstetricsData.radar_2'),
-    t('obstetricsData.radar_3'),
-    t('obstetricsData.radar_4'),
-    t('obstetricsData.radar_5'),
-    t('obstetricsData.radar_6'),
+  const labelsData = lables || [
+    t("obstetricsData.radar_1"),
+    t("obstetricsData.radar_2"),
+    t("obstetricsData.radar_3"),
+    t("obstetricsData.radar_4"),
+    t("obstetricsData.radar_5"),
+    t("obstetricsData.radar_6"),
   ];
+
   const data =
     data2?.map((element, index) => {
       return {
@@ -24,18 +25,18 @@ const RadaChart = ({ data2, isNormal, title }) => {
 
   const config = {
     data,
-    fill: 'red',
-    xField: 'item',
+    fill: "red",
+    xField: "item",
 
-    yField: 'score',
+    yField: "score",
 
-    seriesField: 'type',
+    seriesField: "type",
 
     legend: false,
 
     meta: {
       score: {
-        alias: 'score',
+        alias: "score",
 
         min: 0,
 
@@ -53,7 +54,7 @@ const RadaChart = ({ data2, isNormal, title }) => {
         line: {
           style: {
             lineDash: null,
-            stroke: '#CFD8DC',
+            stroke: "#CFD8DC",
           },
         },
       },
@@ -65,31 +66,31 @@ const RadaChart = ({ data2, isNormal, title }) => {
 
       grid: {
         line: {
-          type: 'line',
+          type: "line",
 
           style: {
             lineDash: null,
 
-            stroke: '#CFD8DC',
+            stroke: "#CFD8DC",
           },
         },
       },
     },
 
-    area: { color: ['rgba(254, 166, 40, 1)', 'rgb(45, 153, 255,0.24)'] },
+    area: { color: ["rgba(254, 166, 40, 1)", "rgb(45, 153, 255,0.24)"] },
     point: {
       size: 6,
-      stroke: 'red',
-      shape: 'circle',
+      stroke: "red",
+      shape: "circle",
       color: (datum) => {
-        return isNormal ? '#FEA628' : '#5A6882';
+        return isNormal ? "#FEA628" : "#5A6882";
       },
     },
 
     lineStyle: (x) => {
       return {
-        stroke: isNormal ? '#FEA628' : '#5A6882',
-        shadowColor: '#FEA628',
+        stroke: isNormal ? "#FEA628" : "#5A6882",
+        shadowColor: "#FEA628",
         lineWidth: 3,
       };
     },

@@ -1,6 +1,16 @@
 import styled from "styled-components";
 import { rem } from "../../helpers/rem/px-to-rem";
 
+export const BtnExportCity = styled.div`
+  cursor: pointer;
+  border: 1px solid rgba(254, 166, 40, 0.5);
+  border-radius: 4px;
+  padding: 4px 8px;
+  background-color: rgba(254, 166, 40, 0.5);
+  :hover {
+    border: 1px solid rgba(254, 166, 40, 1);
+  }
+`;
 export const FilterWrapper = styled.div`
   width: 100%;
   background-color: white;

@@ -1,114 +1,36 @@
-import { Spin } from 'antd';
-import React from 'react';
-import { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { HeaderScreen } from '..';
-import { EDepartment } from '../../common/const';
-import PairRadarChart from '../../components/RadaChart/PairRadarChart';
-import RadaChart from '../../components/RadaChart/RadaChart';
-import VietNamChart from '../../components/VietNamChart/VietNamChart';
-import { showConfirm } from '../../helpers/modal-confirm';
-import BornComponent from '../born';
-import { ChartContainerWrapper, ChartWrapper, SpinWrapper } from '../styled';
+import { Spin } from "antd";
+import React from "react";
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { HeaderScreen } from "..";
+import { EDepartment } from "../../common/const";
+import PairRadarChart from "../../components/RadaChart/PairRadarChart";
+import RadaChart from "../../components/RadaChart/RadaChart";
+import VietNamChart from "../../components/VietNamChart/VietNamChart";
+import { showConfirm } from "../../helpers/modal-confirm";
+import { useLableData } from "../../hooks/useLableData";
+import BornComponent from "../born";
+import { ChartContainerWrapper, ChartWrapper, SpinWrapper } from "../styled";
 
 const Home = ({ isLoading, value, setValue }) => {
   const { t } = useTranslation();
   const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
-
+  const citySelected = useSelector((state) => state.data.citySelected);
   const hospitalSelected = useSelector(
     (state) => state?.data?.hospitalSelected
   );
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
 
+  const { ObstetricsData, ChildData, labelsNK } = useLableData();
+
   const isAllNaNK = useMemo(() => {
     return true;
   }, []);
 
-  const ObstetricsData = [
-    {
-      criteria: t('obstetricsData.obstetricsKS_1'),
-      STRate: 80,
-      SMRate: 50,
-    },
-    {
-      criteria: t('obstetricsData.obstetricsKS_2'),
-      STRate: 80,
-      SMRate: 50,
-    },
-    {
-      criteria: t('obstetricsData.obstetricsKS_3'),
-      STRate: 95,
-      SMRate: null,
-    },
-    {
-      criteria: t('obstetricsData.obstetricsKS_4'),
-      STRate: 80,
-      SMRate: 50,
-    },
-    {
-      criteria: t('obstetricsData.obstetricsKS_5'),
-      STRate: 90,
-      SMRate: 90,
-    },
-    {
-      criteria: t('obstetricsData.obstetricsKS_6'),
-      STRate: 80,
-      SMRate: 80,
-    },
-    {
-      criteria: t('obstetricsData.obstetricsKS_7'),
-      STRate: 0,
-      SMRate: 0,
-    },
-    {
-      criteria: t('obstetricsData.obstetricsKS_8'),
-      STRate: 0,
-      SMRate: 0,
-    },
-  ];
-
-  const ChildData = [
-    {
-      criteria: t('obstetricsData.obstetricsKN_1'),
-      STRate: 80,
-      SMRate: 50,
-    },
-    {
-      criteria: t('obstetricsData.obstetricsKN_2'),
-      STRate: 80,
-      SMRate: 50,
-    },
-    {
-      criteria: t('obstetricsData.obstetricsKN_3'),
-      STRate: 95,
-      SMRate: null,
-    },
-    {
-      criteria: t('obstetricsData.obstetricsKN_4'),
-      STRate: 80,
-      SMRate: 50,
-    },
-    {
-      criteria: t('obstetricsData.obstetricsKN_5'),
-      STRate: 90,
-      SMRate: 50,
-    },
-    {
-      criteria: t('obstetricsData.obstetricsKN_6'),
-      STRate: 0,
-      SMRate: 0,
-    },
-    {
-      criteria: t('obstetricsData.obstetricsKN_7'),
-      STRate: 0,
-      SMRate: 0,
-    },
-  ];
-
   const checkValue = (dashboardDataProps) => {
     if (!dashboardDataProps) return 0;
-    if (dashboardDataProps === 'N/A' || !dashboardDataProps) return 0;
+    if (dashboardDataProps === "N/A" || !dashboardDataProps) return 0;
     return dashboardDataProps;
   };
 
@@ -125,14 +47,20 @@ const Home = ({ isLoading, value, setValue }) => {
         if (element === 5) {
           const sevenData =
             value === 1
-              ? checkValue(dashboardData[currentQuarter]?.data?.SK[7]?.values?.ST) || 0
-              : checkValue(dashboardData[currentQuarter]?.data?.NK[6]?.values?.ST) ||
-                0;
+              ? checkValue(
+                  dashboardData[currentQuarter]?.data?.SK[7]?.values?.ST
+                ) || 0
+              : checkValue(
+                  dashboardData[currentQuarter]?.data?.NK[6]?.values?.ST
+                ) || 0;
           const eightData =
             value === 1
-              ? checkValue(dashboardData[currentQuarter]?.data?.SK[8]?.values?.ST) || 0
-              : checkValue(dashboardData[currentQuarter]?.data?.NK[7]?.values?.ST) ||
-                0;
+              ? checkValue(
+                  dashboardData[currentQuarter]?.data?.SK[8]?.values?.ST
+                ) || 0
+              : checkValue(
+                  dashboardData[currentQuarter]?.data?.NK[7]?.values?.ST
+                ) || 0;
           return (sevenData + eightData) / 2;
         }
         return value === 1
@@ -180,27 +108,49 @@ const Home = ({ isLoading, value, setValue }) => {
   return (
     <div>
       {!hospitalSelected && (
-        <ChartWrapper>
-          <ChartContainerWrapper>
-            <PairRadarChart
-              data2={[60, 80, 50, 90, 95, 75]}
-              data1={[70, 75, 80, 85, 60, 65]}
-              title='Tiêu chí về Sản khoa'
-            />
-          </ChartContainerWrapper>
+        <>
+          {!citySelected && !isLoading ? (
+            <ChartWrapper>
+              <ChartContainerWrapper>
+                <PairRadarChart
+                  data2={[60, 80, 50, 90, 95, 75]}
+                  data1={[70, 75, 80, 85, 60, 65]}
+                  title="Tiêu chí về Sản khoa"
+                />
+              </ChartContainerWrapper>
 
-          <ChartContainerWrapper>
-            <RadaChart
-              data2={[70, 70, 70, 70, 70, 70]}
-              title={t('chart.pediatric')}
-            />
-          </ChartContainerWrapper>
-          <VietNamChart />
-        </ChartWrapper>
+              <ChartContainerWrapper>
+                <RadaChart
+                  data2={[70, 70, 70, 70, 70, 70]}
+                  title={t("chart.pediatric")}
+                />
+              </ChartContainerWrapper>
+              <VietNamChart />
+            </ChartWrapper>
+          ) : (
+            <ChartWrapper>
+              <ChartContainerWrapper>
+                <PairRadarChart
+                  data2={[23, 79, 87, 98, 78, 65]}
+                  data1={[34, 56, 87, 54, 43, 43]}
+                  title="Tiêu chí về Sản khoa"
+                />
+              </ChartContainerWrapper>
+
+              <ChartContainerWrapper>
+                <RadaChart
+                  data2={[34, 56, 87, 54, 43, 43]}
+                  title={t("chart.pediatric")}
+                />
+              </ChartContainerWrapper>
+            </ChartWrapper>
+          )}
+        </>
       )}
+
       {isLoading && (
         <SpinWrapper>
-          <Spin size='large' />
+          <Spin size="large" />
         </SpinWrapper>
       )}
       {hospitalSelected && !isLoading ? (
@@ -213,15 +163,19 @@ const Home = ({ isLoading, value, setValue }) => {
                   isNormal
                   title={
                     value === EDepartment.OBSTETRIC
-                      ? t('chart.vaginalDelievery')
-                      : ''
+                      ? t("chart.vaginalDelievery")
+                      : ""
                   }
                 />
               </ChartContainerWrapper>
             )}
             {dataRadarSM && value === EDepartment.OBSTETRIC ? (
               <ChartContainerWrapper>
-                <RadaChart data2={dataRadarSM} title={t('chart.CSection')} />
+                <RadaChart
+                  data2={dataRadarSM}
+                  title={t("chart.CSection")}
+                  lables={labelsNK}
+                />
               </ChartContainerWrapper>
             ) : (
               <div />
@@ -233,7 +187,7 @@ const Home = ({ isLoading, value, setValue }) => {
               setValue={(e) => {
                 if (!isAllNaNK) {
                   showConfirm({
-                    title: t('dashBoard.pediatricNodata'),
+                    title: t("dashBoard.pediatricNodata"),
                     hideCancel: true,
                   });
                   return;
@@ -242,19 +196,19 @@ const Home = ({ isLoading, value, setValue }) => {
               }}
             />
           }
-          <div className='content-chart'>
+          <div className="content-chart">
             {value === EDepartment.OBSTETRIC && (
               <BornComponent
                 data={ObstetricsData}
                 dataList={dashboardData}
-                department='SK'
+                department="SK"
               />
             )}
             {value === EDepartment.PEDIATRIC ? (
               <BornComponent
                 data={ChildData}
                 dataList={dashboardData}
-                department='NK'
+                department="NK"
               />
             ) : (
               <div />

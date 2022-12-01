@@ -1,6 +1,8 @@
-import { Input, Radio } from "antd";
+import { Input, Radio, Select } from "antd";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { Title } from "../../../container/FormInputData/styled";
 import { showConfirm } from "../../../helpers/modal-confirm";
 import {
@@ -8,13 +10,17 @@ import {
   ButtonSave,
   ButtonWrapper,
   EditUserWrapper,
+  SelectedCity,
 } from "../styled";
 
 const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
+  const { t } = useTranslation();
+  const citiesData = useSelector((state) => state.data.citiesData);
   const [isSupperUser, setIsSupperUser] = useState(false);
   const [useName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [city, setCity] = useState("");
 
   useEffect(() => {
     if (modalData && modalData !== false && modalData?.isEdit) {
@@ -33,35 +39,53 @@ const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
   return (
     <EditUserWrapper>
       <div>
-        <Title>Quyền tài khoản</Title>
+        <Title>{t("userManagement.permission")}</Title>
         <Radio
           checked={isSupperUser}
           disabled={modalData?.isEdit}
           onChange={(e) => setIsSupperUser(e?.target?.checked)}
         >
-          superuser
+          {t("userManagement.superuser")}
         </Radio>
         <Radio
           checked={!isSupperUser}
           disabled={modalData?.isEdit}
           onChange={(e) => setIsSupperUser(!e?.target?.checked)}
         >
-          staff
+          {t("userManagement.staff")}
         </Radio>
       </div>
       <div>
-        <Title>Tên tài khoản</Title>
+        <Title>{t("userManagement.city")}</Title>
+        <SelectedCity
+          defaultValue={t("common.none")}
+          onChange={(e) => {
+            setCity(citiesData[e]);
+          }}
+          disabled={modalData?.isEdit}
+        >
+          {citiesData?.map((element, index) => {
+            return (
+              <Select.Option key={String(index)}>
+                {index + 1}. {element?.name}
+              </Select.Option>
+            );
+          })}
+        </SelectedCity>
+      </div>
+      <div>
+        <Title>{t("userManagement.userName")}</Title>
         <Input
-          placeholder="Tên tài khoản"
+          placeholder={t("userManagement.userName")}
           value={useName}
           disabled={modalData?.isEdit}
           onChange={(e) => setUserName(e?.target?.value)}
         />
       </div>
       <div>
-        <Title>Email</Title>
+        <Title>{t("userManagement.email")}</Title>
         <Input
-          placeholder="Email"
+          placeholder={t("userManagement.email")}
           value={email}
           disabled={modalData?.isEdit}
           onChange={(e) => setEmail(e?.target?.value)}
@@ -69,9 +93,9 @@ const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
       </div>
 
       <div>
-        <Title>Mật khẩu</Title>
+        <Title>{t("userManagement.password")}</Title>
         <Input
-          placeholder="Mật khẩu"
+          placeholder={t("userManagement.password")}
           value={password}
           // type="password"
           onChange={(e) => setPassword(e?.target?.value)}
@@ -79,13 +103,15 @@ const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
       </div>
 
       <ButtonWrapper>
-        <ButtonCancel onClick={() => setIsOpen(false)}>Cancel</ButtonCancel>
+        <ButtonCancel onClick={() => setIsOpen(false)}>
+          {t("userManagement.cancel")}
+        </ButtonCancel>
         <ButtonSave
           onClick={() => {
             if (modalData?.isEdit) {
               if (!password) {
                 showConfirm({
-                  title: "Vui lòng nhập mật khẩu mới !",
+                  title: t("userManagement.inputNewPassword"),
                   hideCancel: true,
                 });
                 return;
@@ -116,7 +142,7 @@ const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
             }
           }}
         >
-          Save
+          {t("userManagement.save")}
         </ButtonSave>
       </ButtonWrapper>
     </EditUserWrapper>

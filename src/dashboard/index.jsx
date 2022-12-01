@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import AppContainer from "../container";
 import AppSidebar from "../sidebar";
 import { DashboardWrapper } from "./styled";
