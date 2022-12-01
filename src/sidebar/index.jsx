@@ -20,6 +20,8 @@ import { useTranslation } from "react-i18next";
 import { Layout, Menu, Modal } from "antd";
 import { useState } from "react";
 import { storeSetCollapse } from "../store/dashboard-reducer";
+import storage from "redux-persist/lib/storage";
+import { storeSetCitiesData, storeSetCitySelected, storeSethospitalSelected, storeSetHostpitalData } from "../store/data-reducer";
 
 const { Sider } = Layout;
 
@@ -55,6 +57,10 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
   const logout = () => {
     localStorage.removeItem("user");
     dispatch(storeSetToken(null));
+    dispatch(storeSetCitiesData([]));
+    dispatch(storeSetHostpitalData([]));
+    dispatch(storeSethospitalSelected(null));
+    dispatch(storeSetCitySelected(null));
     navigate("/apps");
   };
 

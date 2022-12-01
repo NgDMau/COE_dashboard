@@ -116,7 +116,7 @@ const PairRadarChart = ({ data1, data2, isNomal, title }) => {
   return (
     <RadarWrapper>
       <TitleChart>{title}</TitleChart>
-      <Radar {...config} />;
+      <Radar {...config} />
     </RadarWrapper>
   );
 };

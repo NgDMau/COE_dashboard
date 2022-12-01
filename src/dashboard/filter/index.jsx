@@ -51,13 +51,8 @@ const FilterComponent = ({ disabled, screen }) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingScreen, setIsLoadingScreen] = useState(false);
-  console.log("hostPitalshostPitalshostPitals", hostPitals);
   const defaultCity = useMemo(() => {
-    return (
-      citiesData?.find(
-        (element) => element?.id === hospitalSelected?.province_id
-      )?.name || ""
-    );
+    return citySelected?.name || "";
   }, [hospitalSelected, citiesData]);
   const exportPdfData = async () => {
     setIsLoadingScreen(true);

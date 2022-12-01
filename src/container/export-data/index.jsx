@@ -166,7 +166,6 @@ const ExportData = () => {
       ChildData?.filter(
         (element, index) => !!checkFullNa(lineChartNK?.ST[index])
       ) || [];
-    console.log("checkedcheckedcheckedcheckedchecked", lineChartNK?.ST);
     if (checked?.length > 0) return true;
     return false;
   };

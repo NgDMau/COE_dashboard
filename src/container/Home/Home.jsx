@@ -7,11 +7,11 @@ import { HeaderScreen } from "..";
 import { EDepartment } from "../../common/const";
 import PairRadarChart from "../../components/RadaChart/PairRadarChart";
 import RadaChart from "../../components/RadaChart/RadaChart";
-import VietNamChart from "../../components/VietNamChart/VietNamChart";
 import { showConfirm } from "../../helpers/modal-confirm";
 import { useLableData } from "../../hooks/useLableData";
 import BornComponent from "../born";
 import { ChartContainerWrapper, ChartWrapper, SpinWrapper } from "../styled";
+import Country from "./country/Country";
 
 const Home = ({ isLoading, value, setValue }) => {
   const { t } = useTranslation();
@@ -104,29 +104,12 @@ const Home = ({ isLoading, value, setValue }) => {
       }) || [];
     return data || null;
   }, [dashboardData, value, currentQuarter]);
-
   return (
     <div>
       {!hospitalSelected && (
         <>
           {!citySelected && !isLoading ? (
-            <ChartWrapper>
-              <ChartContainerWrapper>
-                <PairRadarChart
-                  data2={[60, 80, 50, 90, 95, 75]}
-                  data1={[70, 75, 80, 85, 60, 65]}
-                  title="Tiêu chí về Sản khoa"
-                />
-              </ChartContainerWrapper>
-
-              <ChartContainerWrapper>
-                <RadaChart
-                  data2={[70, 70, 70, 70, 70, 70]}
-                  title={t("chart.pediatric")}
-                />
-              </ChartContainerWrapper>
-              <VietNamChart />
-            </ChartWrapper>
+            <Country />
           ) : (
             <ChartWrapper>
               <ChartContainerWrapper>
@@ -136,7 +119,6 @@ const Home = ({ isLoading, value, setValue }) => {
                   title="Tiêu chí về Sản khoa"
                 />
               </ChartContainerWrapper>
-
               <ChartContainerWrapper>
                 <RadaChart
                   data2={[34, 56, 87, 54, 43, 43]}
