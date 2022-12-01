@@ -98,7 +98,12 @@ const AppContainer = ({ screen, title, setScreen }) => {
         />
       </div>
       {patch === SCREEN_DEFAULT[1] || patch === "/" ? (
-        <Home isLoading={isLoading} value={value} setValue={setValue} />
+        <Home
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+          value={value}
+          setValue={setValue}
+        />
       ) : (
         <div />
       )}

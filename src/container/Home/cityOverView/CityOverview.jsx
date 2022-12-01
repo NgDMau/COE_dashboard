@@ -1,24 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-
 import { sendGet } from "../../../api/axios";
+import PairRadarChart from "../../../components/RadaChart/PairRadarChart";
+import RadaChart from "../../../components/RadaChart/RadaChart";
+import { storeSetCityOverviewData } from "../../../store/data-reducer";
 import { ChartContainerWrapper, ChartWrapper } from "../../styled";
 
-import RadaChart from "../../../components/RadaChart/RadaChart";
-import VietNamChart from "../../../components/VietNamChart/VietNamChart";
-import PairRadarChart from "../../../components/RadaChart/PairRadarChart";
-import { storeSetCountryOverviewData } from "../../../store/data-reducer";
-import { useMemo } from "react";
-
-const Country = () => {
+const CityOverview = ({ setIsLoading }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const overviewCountry = useSelector((state) => state.data.overviewCountry);
+  const citySelected = useSelector((state) => state.data.citySelected);
   const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
-  const hospitalSelected = useSelector(
-    (state) => state?.data?.hospitalSelected
-  );
+  const overviewCity = useSelector((state) => state.data.overviewCity);
 
   const checkValue = (dashboardDataProps) => {
     if (!dashboardDataProps) return 0;
@@ -28,43 +22,45 @@ const Country = () => {
 
   const getOverviewCountry = async () => {
     try {
+      setIsLoading(false);
       const response = await sendGet(`/dm/data/country/overview`);
       if (response) {
-        dispatch(storeSetCountryOverviewData(response));
+        dispatch(storeSetCityOverviewData(response));
       }
     } catch (error) {
     } finally {
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    if (!hospitalSelected) {
+    if (citySelected) {
       getOverviewCountry();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hospitalSelected]);
+  }, [citySelected]);
 
   const dataRadarSK = useMemo(() => {
-    if (!overviewCountry) {
+    if (!overviewCity) {
       return null;
     }
     const dataST =
       [1, 2, 3, 4, 5, 6]?.map((element) => {
-        if (!overviewCountry[currentQuarter]?.data?.SK) return null;
+        if (!overviewCity[currentQuarter]?.data?.SK) return null;
 
         return (
           checkValue(
-            overviewCountry[currentQuarter]?.data?.SK[element]?.values?.ST
+            overviewCity[currentQuarter]?.data?.SK[element]?.values?.ST
           ) || 0
         );
       }) || [];
     const dataSM =
       [1, 2, 3, 4, 5, 6]?.map((element) => {
-        if (!overviewCountry[currentQuarter]?.data?.SK) return null;
+        if (!overviewCity[currentQuarter]?.data?.SK) return null;
 
         return (
           checkValue(
-            overviewCountry[currentQuarter]?.data?.SK[element]?.values?.SM
+            overviewCity[currentQuarter]?.data?.SK[element]?.values?.SM
           ) || 0
         );
       }) || [];
@@ -72,24 +68,24 @@ const Country = () => {
       ST: dataST,
       SM: dataSM,
     };
-  }, [overviewCountry, currentQuarter]);
+  }, [overviewCity, currentQuarter]);
   const dataRadarNK = useMemo(() => {
-    if (!overviewCountry) {
+    if (!overviewCity) {
       return null;
     }
     const dataST =
       [1, 2, 3, 4, 5, 6]?.map((element) => {
-        if (!overviewCountry[currentQuarter]?.data?.NK) return null;
+        if (!overviewCity[currentQuarter]?.data?.NK) return null;
 
         return (
           checkValue(
-            overviewCountry[currentQuarter]?.data?.NK[element]?.values?.ST
+            overviewCity[currentQuarter]?.data?.NK[element]?.values?.ST
           ) || 0
         );
       }) || [];
     return dataST;
-  }, [overviewCountry, currentQuarter]);
-
+  }, [overviewCity, currentQuarter]);
+  console.log("11111", 111);
   return (
     <ChartWrapper>
       <ChartContainerWrapper>
@@ -103,9 +99,8 @@ const Country = () => {
       <ChartContainerWrapper>
         <RadaChart data2={dataRadarNK} title={t("chart.pediatric")} />
       </ChartContainerWrapper>
-      <VietNamChart />
     </ChartWrapper>
   );
 };
 
-export default Country;
+export default CityOverview;

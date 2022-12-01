@@ -5,7 +5,7 @@ import { RadarWrapper, TitleChart } from "./styled";
 import { Radar } from "@ant-design/plots";
 import { useState } from "react";
 
-const PairRadarChart = ({ data1, data2, isNomal, title }) => {
+const PairRadarChart = React.memo(({ data1, data2, isNomal, title }) => {
   const { t } = useTranslation();
   const [data, setData] = useState([]);
   const labelsData = [
@@ -119,6 +119,6 @@ const PairRadarChart = ({ data1, data2, isNomal, title }) => {
       <Radar {...config} />
     </RadarWrapper>
   );
-};
+});
 
 export default PairRadarChart;
