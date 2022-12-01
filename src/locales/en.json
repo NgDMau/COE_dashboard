@@ -171,5 +171,8 @@
     "cancel": "Cancel",
     "inputNewPassword": "Please enter a new password!",
     "save": "Save"
+  },
+  "overview": {
+    "criteriaObstetrics": "Criteria for Obstetrics"
   }
 }

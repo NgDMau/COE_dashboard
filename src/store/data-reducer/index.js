@@ -10,6 +10,7 @@ const initialState = {
   hospitalSelected: null,
   citySelected: null,
   tableData: null,
+  overviewCountry: null,
 };
 
 const dataSlice = createSlice({
@@ -40,6 +41,9 @@ const dataSlice = createSlice({
     storeSetTableData: (state, { payload }) => {
       state.tableData = payload;
     },
+    storeSetCountryOverviewData: (state, { payload }) => {
+      state.overviewCountry = payload;
+    },
   },
 });
 
@@ -52,6 +56,7 @@ export const {
   storeSethospitalSelected,
   storeSetCitySelected,
   storeSetTableData,
+  storeSetCountryOverviewData,
 } = dataSlice.actions;
 
 export default dataSlice.reducer;

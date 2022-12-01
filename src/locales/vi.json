@@ -177,5 +177,8 @@
     "cancel": "Hủy",
     "inputNewPassword": "Vui lòng nhập mật khẩu mới !",
     "save": "Lưu"
+  },
+  "overview": {
+    "criteriaObstetrics": "Tiêu chí về Sản khoa"
   }
 }
