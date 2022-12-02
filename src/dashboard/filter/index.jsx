@@ -92,7 +92,12 @@ const FilterComponent = ({ disabled, screen }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        dispatch(storeSetCitiesData(data?.provinces || []));
+        const reDataCity = data?.provinces;
+        reDataCity.unshift({
+          name: t("common.none"),
+          code: -1,
+        });
+        dispatch(storeSetCitiesData(reDataCity || []));
       });
   };
 
@@ -108,7 +113,12 @@ const FilterComponent = ({ disabled, screen }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        dispatch(storeSetHostpitalData(data?.hospitals || []));
+        const reDataCity = data?.hospitals;
+        reDataCity.unshift({
+          name: t("common.none"),
+          code: -1,
+        });
+        dispatch(storeSetHostpitalData(reDataCity || []));
       })
       .finally(() => {
         setIsLoading(false);

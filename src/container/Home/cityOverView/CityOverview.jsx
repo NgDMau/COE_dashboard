@@ -20,10 +20,12 @@ const CityOverview = ({ setIsLoading }) => {
     return dashboardDataProps;
   };
 
-  const getOverviewCountry = async () => {
+  const getOverviewCity = async (code) => {
     try {
       setIsLoading(false);
-      const response = await sendGet(`/dm/data/country/overview`);
+      const response = await sendGet(
+        `/dm/data/province/overview?province_code=${code}`
+      );
       if (response) {
         dispatch(storeSetCityOverviewData(response));
       }
@@ -35,7 +37,7 @@ const CityOverview = ({ setIsLoading }) => {
 
   useEffect(() => {
     if (citySelected) {
-      getOverviewCountry();
+      getOverviewCity(citySelected.code);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [citySelected]);

@@ -38,11 +38,11 @@ const CountryOverview = ({ setIsLoading }) => {
   };
 
   useEffect(() => {
-    if (!citySelected) {
+    if (!citySelected || citySelected?.code === -1) {
       getOverviewCountry();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [citySelected]);
 
   const dataRadarSK = useMemo(() => {
     if (!overviewCountry) {
