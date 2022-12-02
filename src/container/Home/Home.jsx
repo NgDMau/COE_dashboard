@@ -1,19 +1,19 @@
-import React from "react";
-import { Spin } from "antd";
-import { useMemo } from "react";
-import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { Spin } from 'antd';
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
-import { HeaderScreen } from "..";
-import { EDepartment } from "../../common/const";
-import { showConfirm } from "../../helpers/modal-confirm";
-import { useLableData } from "../../hooks/useLableData";
-import { ChartContainerWrapper, ChartWrapper, SpinWrapper } from "../styled";
+import { HeaderScreen } from '..';
+import { EDepartment } from '../../common/const';
+import { showConfirm } from '../../helpers/modal-confirm';
+import { useLableData } from '../../hooks/useLableData';
+import { ChartContainerWrapper, ChartWrapper, SpinWrapper } from '../styled';
 
-import CountryOverview from "./countryOverview/CountryOverview";
-import BornComponent from "../born";
-import CityOverview from "./cityOverView/CityOverview";
-import RadaChart from "../../components/RadaChart/RadaChart";
+import CountryOverview from './countryOverview/CountryOverview';
+import BornComponent from '../born';
+import CityOverview from './cityOverView/CityOverview';
+import RadaChart from '../../components/RadaChart/RadaChart';
 
 const Home = ({ isLoading, value, setValue, setIsLoading }) => {
   const { t } = useTranslation();
@@ -32,7 +32,7 @@ const Home = ({ isLoading, value, setValue, setIsLoading }) => {
 
   const checkValue = (dashboardDataProps) => {
     if (!dashboardDataProps) return 0;
-    if (dashboardDataProps === "N/A" || !dashboardDataProps) return 0;
+    if (dashboardDataProps === 'N/A' || !dashboardDataProps) return 0;
     return dashboardDataProps;
   };
 
@@ -110,7 +110,7 @@ const Home = ({ isLoading, value, setValue, setIsLoading }) => {
     <div>
       {!hospitalSelected && (
         <>
-          {!citySelected && !isLoading ? (
+          {!citySelected ? (
             <CountryOverview setIsLoading={setIsLoading} />
           ) : (
             <CityOverview setIsLoading={setIsLoading} />
@@ -120,7 +120,7 @@ const Home = ({ isLoading, value, setValue, setIsLoading }) => {
 
       {isLoading && (
         <SpinWrapper>
-          <Spin size="large" />
+          <Spin size='large' />
         </SpinWrapper>
       )}
       {hospitalSelected && !isLoading ? (
@@ -133,8 +133,8 @@ const Home = ({ isLoading, value, setValue, setIsLoading }) => {
                   isNormal
                   title={
                     value === EDepartment.OBSTETRIC
-                      ? t("chart.vaginalDelievery")
-                      : ""
+                      ? t('chart.vaginalDelievery')
+                      : ''
                   }
                 />
               </ChartContainerWrapper>
@@ -143,7 +143,7 @@ const Home = ({ isLoading, value, setValue, setIsLoading }) => {
               <ChartContainerWrapper>
                 <RadaChart
                   data2={dataRadarSM}
-                  title={t("chart.CSection")}
+                  title={t('chart.CSection')}
                   lables={labelsNK}
                 />
               </ChartContainerWrapper>
@@ -157,7 +157,7 @@ const Home = ({ isLoading, value, setValue, setIsLoading }) => {
               setValue={(e) => {
                 if (!isAllNaNK) {
                   showConfirm({
-                    title: t("dashBoard.pediatricNodata"),
+                    title: t('dashBoard.pediatricNodata'),
                     hideCancel: true,
                   });
                   return;
@@ -166,19 +166,19 @@ const Home = ({ isLoading, value, setValue, setIsLoading }) => {
               }}
             />
           }
-          <div className="content-chart">
+          <div className='content-chart'>
             {value === EDepartment.OBSTETRIC && (
               <BornComponent
                 data={ObstetricsData}
                 dataList={dashboardData}
-                department="SK"
+                department='SK'
               />
             )}
             {value === EDepartment.PEDIATRIC ? (
               <BornComponent
                 data={ChildData}
                 dataList={dashboardData}
-                department="NK"
+                department='NK'
               />
             ) : (
               <div />

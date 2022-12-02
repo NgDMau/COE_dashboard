@@ -42,7 +42,7 @@ const CountryOverview = ({ setIsLoading }) => {
       getOverviewCountry();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [citySelected]);
+  }, []);
 
   const dataRadarSK = useMemo(() => {
     if (!overviewCountry) {
