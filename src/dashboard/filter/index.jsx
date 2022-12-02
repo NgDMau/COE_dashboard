@@ -25,6 +25,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { storeSetTab } from "../../store/document-reducer";
 import Loading from "../../components/common/Loading/Loading";
 import moment from "moment";
+import { getListQuanter } from "../../helpers/getListQuanter";
 
 const FilterComponent = ({ disabled, screen }) => {
   const { t } = useTranslation();
@@ -114,25 +115,8 @@ const FilterComponent = ({ disabled, screen }) => {
       });
   };
 
-  const getQuarter = (d) => {
-    const quan = Math.floor(moment(d).month() / 3) + 1;
-    return `Q${quan}/${moment(d).year()}`;
-  };
-
   const listQuater = useMemo(() => {
-    const arr = [];
-    [-1, 0, 1, 2, 3, 4, 5, 6].forEach((element, index) => {
-      if (index === 0) {
-        arr.push(moment(new Date()));
-      } else {
-        const month = moment(arr[element]).subtract(3, "months");
-        arr.push(month);
-      }
-    });
-    const newQuater = arr.map((element) => {
-      return getQuarter(element);
-    });
-    return newQuater;
+    return getListQuanter();
   }, [moment]);
 
   useEffect(() => {

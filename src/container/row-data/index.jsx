@@ -5,10 +5,10 @@ import { Spin, Table } from "antd";
 import { useState } from "react";
 import { linkApi } from "../../common/ngok";
 import { useSelector } from "react-redux";
-import { Excel } from "antd-table-saveas-excel";
 import { ButtonDownLoadWrapper } from "../document/styled";
 import { useTranslation } from "react-i18next";
 import { sendPost } from "../../api/axios";
+import { getListQuanter } from "../../helpers/getListQuanter";
 
 const RowData = React.memo(() => {
   const { t } = useTranslation();
@@ -18,19 +18,19 @@ const RowData = React.memo(() => {
   const citiesData = useSelector((state) => state.data.citiesData);
   const citySelected = useSelector((state) => state.data.citySelected);
   const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
-  const dashboardData = useSelector((state) => state?.data?.dashboardData);
+  const listQuanter = getListQuanter();
 
   const [isLoading, setIsLoading] = useState(false);
   const [rowData, setRowData] = useState([]);
   const [numEntries, setNumEntries] = useState({});
 
   const time = useMemo(() => {
-    const timeString = dashboardData[currentQuarter]?.time.split("/");
+    const timeString = listQuanter[currentQuarter]?.split("/");
     return {
-      quarter: timeString[0][1],
-      year: timeString[1],
+      quarter: timeString[0][1] || "",
+      year: timeString[1] || "",
     };
-  }, [currentQuarter, dashboardData]);
+  }, [currentQuarter, listQuanter]);
   const getDataRow = async (page) => {
     if (isLoading) {
       return;
