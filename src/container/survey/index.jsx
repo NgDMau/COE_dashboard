@@ -6,34 +6,24 @@ import { CityWrapper, LinkHeader, SurveyLinkWrapper } from "./styled";
 import ChartLink from "./chart";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-
-import { linkApi } from "../../common/ngok";
 import { useTranslation } from "react-i18next";
+
+import { sendGet } from "../../api/axios";
 
 const SurveyLink = () => {
   const { t } = useTranslation();
-  const user = localStorage.getItem("user")
-    ? JSON.parse(localStorage.getItem("user"))
-    : null;
-  const hospitalSelected = useSelector(
-    (state) => state?.data?.hospitalSelected
-  );
+
   const citySelected = useSelector((state) => state.data.citySelected);
   const [dataTableChart, setDatableChart] = useState([]);
+  const [linkUrl, setLineUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const getDataDashboard = async (code) => {
     setIsLoading(true);
-    const myHeaders = new Headers({
-      Authorization: "Token " + user?.token,
-      "Content-Type": "application/x-www-form-urlencoded",
-    });
-    fetch(`${linkApi}/dm/data/process?province=${code}`, {
-      method: "POST",
-      headers: myHeaders,
-    })
-      .then((response) => response.json())
-      .then((data) => {
+    try {
+      const data = await sendGet(`/dm/data/process?province=${code}`);
+      if (data?.status === "successful") {
+        setLineUrl(data?.survey_url);
         const dataClone = [...data?.data];
         const chartData = [];
         chartData.push([
@@ -53,8 +43,18 @@ const SurveyLink = () => {
           chartData.push(item);
         });
         setDatableChart(chartData || []);
-      })
-      .finally(() => setIsLoading(false));
+      }
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const indicesState = async (data) => {
+    const response = sendGet(
+      `/dm/data/province/survey_progress/export?province_code=66&year=2021&quarter=2&type=xlsx&data=${data}`
+    );
+    console.log(response);
   };
 
   useEffect(() => {
@@ -75,12 +75,18 @@ const SurveyLink = () => {
                 <CityWrapper>{citySelected?.name}</CityWrapper>
                 <Button
                   className="link"
-                  onClick={() => {
-                    window.open("https://bmte.vn/form/quang_nam/v2");
-                  }}
+                  onClick={() => indicesState("calls_stats")}
                 >
-                  {" "}
-                  {t("screen.surveyLink")}
+                  indices_stats
+                </Button>
+                <Button
+                  className="link"
+                  onClick={() => indicesState("indices_stats")}
+                >
+                  calls_stats
+                </Button>
+                <Button className="link" onClick={() => window.open(linkUrl)}>
+                  {t("surveyLink.link")}
                 </Button>
               </LinkHeader>
 
