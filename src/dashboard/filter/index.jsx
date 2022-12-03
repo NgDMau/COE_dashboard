@@ -37,6 +37,9 @@ const FilterComponent = ({ disabled, screen }) => {
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
+
+  console.log("useruseruseruseruser", user);
+
   const hospitalSelected = useSelector(
     (state) => state?.data?.hospitalSelected
   );
@@ -152,6 +155,7 @@ const FilterComponent = ({ disabled, screen }) => {
         {!disabled || patch === SCREEN_DEFAULT[2] ? (
           <Select
             defaultValue={defaultCity || t("common.none")}
+            value={citySelected?.name || t("common.none")}
             className="select-city"
             onChange={(e) => {
               getHostPital(citiesData[e].code);

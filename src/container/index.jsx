@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 
 import Document from "./document";
 import i18next from "i18next";
@@ -22,7 +22,9 @@ import { EDepartment } from "../common/const";
 import { SCREEN_DEFAULT } from "../common/ngok";
 import { storeSetLanguage } from "../store/auth-reducer";
 import {
+  storeSetCitySelected,
   storeSetDashboardData,
+  storeSethospitalSelected,
   storeSetTableData,
 } from "../store/data-reducer";
 import {
@@ -169,8 +171,17 @@ function PathComponent({ screen, setScreen }) {
   return (
     <PathWrapper>
       <div>
-        <span onClick={() => setScreen(1)}>{t("screen.home")}</span> /{" "}
-        {screenFake[screen - 1]}
+        <span
+          onClick={() => {
+            dispatch(storeSetCitySelected(null));
+            dispatch(storeSethospitalSelected(null));
+            setScreen(1);
+            // window.location.reload();
+          }}
+        >
+          {t("screen.home")}
+        </span>{" "}
+        / {screenFake[screen - 1]}
       </div>
       <Dropdown overlay={menu} placement="bottomLeft">
         <Buttonanguage>
