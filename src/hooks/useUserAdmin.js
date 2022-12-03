@@ -30,7 +30,7 @@ export const useUserAdmin = () => {
         email,
         password,
         role,
-        province_code,
+        province_code: province_code || "none",
       });
       if (response?.status === "successful") {
         getListUser();
@@ -68,7 +68,6 @@ export const useUserAdmin = () => {
         user_id,
       });
       if (response?.status === "successfully") {
-        // getListUser();
         setUser(
           userList?.map((element) => {
             if (element?.id === user_id) {

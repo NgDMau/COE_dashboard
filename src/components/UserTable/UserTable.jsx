@@ -32,6 +32,11 @@ const UserTable = () => {
     },
     {
       title: "Địa chỉ mail",
+      dataIndex: "province_name",
+      key: "province_name",
+    },
+    {
+      title: "Tỉnh/Thành phố",
       dataIndex: "email",
       key: "email",
     },

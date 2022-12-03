@@ -9,11 +9,16 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import { sendGet } from "../../api/axios";
+import { linkApi } from "../../common/ngok";
+import { getListQuanter } from "../../helpers/getListQuanter";
 
 const SurveyLink = () => {
   const { t } = useTranslation();
 
   const citySelected = useSelector((state) => state.data.citySelected);
+  const listQuanter = getListQuanter();
+  const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
+
   const [dataTableChart, setDatableChart] = useState([]);
   const [linkUrl, setLineUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -51,9 +56,13 @@ const SurveyLink = () => {
   };
 
   const indicesState = async (data) => {
-    const response = sendGet(
-      `/dm/data/province/survey_progress/export?province_code=66&year=2021&quarter=2&type=xlsx&data=${data}`
+    const timeString = listQuanter[currentQuarter]?.split("/");
+    const response = await sendGet(
+      `/dm/data/province/survey_progress/export?province_code=${citySelected?.code}&year=${timeString[1]}&quarter=${timeString[0][1]}&type=xlsx&data=${data}`
     );
+    if (response?.status === "successful") {
+      window.open(`${linkApi}/${response?.data?.url}`);
+    }
     console.log(response);
   };
 
@@ -77,13 +86,13 @@ const SurveyLink = () => {
                   className="link"
                   onClick={() => indicesState("calls_stats")}
                 >
-                  indices_stats
+                  calls_stats
                 </Button>
                 <Button
                   className="link"
                   onClick={() => indicesState("indices_stats")}
                 >
-                  calls_stats
+                  indices_stats
                 </Button>
                 <Button className="link" onClick={() => window.open(linkUrl)}>
                   {t("surveyLink.link")}

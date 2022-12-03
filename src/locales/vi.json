@@ -177,7 +177,8 @@
     "password": "Mật khẩu",
     "cancel": "Hủy",
     "inputNewPassword": "Vui lòng nhập mật khẩu mới !",
-    "save": "Lưu"
+    "save": "Lưu",
+    "fullInformation": "Vui lòng nhập đầy đủ thông tin."
   },
   "overview": {
     "criteriaObstetrics": "Tiêu chí về Sản khoa"
