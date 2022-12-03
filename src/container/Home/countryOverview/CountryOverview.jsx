@@ -10,6 +10,7 @@ import VietNamChart from "../../../components/VietNamChart/VietNamChart";
 import PairRadarChart from "../../../components/RadaChart/PairRadarChart";
 import { storeSetCountryOverviewData } from "../../../store/data-reducer";
 import { useMemo } from "react";
+import ExplainChart from "../explainChart/ExplaonChart";
 
 const CountryOverview = ({ setIsLoading }) => {
   const { t } = useTranslation();
@@ -98,6 +99,7 @@ const CountryOverview = ({ setIsLoading }) => {
           data1={dataRadarSK?.SM}
           title={t("overview.criteriaObstetrics")}
         />
+        <ExplainChart />
       </ChartContainerWrapper>
 
       <ChartContainerWrapper>

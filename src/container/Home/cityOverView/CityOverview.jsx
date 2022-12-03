@@ -6,6 +6,7 @@ import PairRadarChart from "../../../components/RadaChart/PairRadarChart";
 import RadaChart from "../../../components/RadaChart/RadaChart";
 import { storeSetCityOverviewData } from "../../../store/data-reducer";
 import { ChartContainerWrapper, ChartWrapper } from "../../styled";
+import ExplainChart from "../explainChart/ExplaonChart";
 
 const CityOverview = ({ setIsLoading }) => {
   const { t } = useTranslation();
@@ -96,6 +97,7 @@ const CityOverview = ({ setIsLoading }) => {
           data1={dataRadarSK?.SM}
           title={t("overview.criteriaObstetrics")}
         />
+        <ExplainChart />
       </ChartContainerWrapper>
 
       <ChartContainerWrapper>

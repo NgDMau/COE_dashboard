@@ -10,7 +10,9 @@
     "engLish": "English",
     "welcome": "Chào mừng",
     "retypePassword": "Nhập lại mật khẩu",
-    "none": "Trống"
+    "none": "Trống",
+    "vaginalDelievery": "Sinh thường",
+    "CSection": "Sinh mổ"
   },
   "obstetricsData": {
     "obstetricsKS_1": "Thực hiện da kề da",

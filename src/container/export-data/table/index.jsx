@@ -100,9 +100,6 @@ const TableExport = ({ department, listData }) => {
       return null;
     }
     const arr = dataExport?.map((element, index) => {
-      if (index >= dataExport?.length - 2) {
-        return "passed";
-      }
       return (
         dashboardData[currentQuarter]?.data[department][index + 1]?.values
           ?.result || null
@@ -133,7 +130,7 @@ const TableExport = ({ department, listData }) => {
           <div className="criteria">{dataElement.criteria}</div>
           <div className="achieve">
             {dashboardData[currentQuarter]?.data[department][index + 1]?.values
-              ?.result === "passed" || index >= dataExport?.length - 2 ? (
+              ?.result === "passed" ? (
               <img alt="" src={accept} />
             ) : (
               <div />

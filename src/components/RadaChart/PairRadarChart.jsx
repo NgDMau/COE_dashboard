@@ -25,7 +25,7 @@ const PairRadarChart = React.memo(({ data1, data2, isNomal, title }) => {
             item: labelsData[index],
             score: element,
             user: "a",
-            type: "1",
+            type: t("common.vaginalDelievery"),
           };
         })
         .concat(
@@ -34,12 +34,12 @@ const PairRadarChart = React.memo(({ data1, data2, isNomal, title }) => {
               item: labelsData[index],
               score: element,
               user: "b",
-              type: "2",
+              type: t("common.CSection"),
             };
           })
         ) || []
     );
-  }, [data1, data2]);
+  }, [data1, data2, t]);
   const config = {
     data,
     fill: "red",
@@ -101,14 +101,18 @@ const PairRadarChart = React.memo(({ data1, data2, isNomal, title }) => {
       stroke: "red",
       shape: "circle",
       color: (datum) => {
-        return datum?.type === "1" ? "#FEA628" : "#5A6882";
+        return datum?.type === t("common.vaginalDelievery")
+          ? "#FEA628"
+          : "#5A6882";
       },
     },
 
     lineStyle: (x) => {
       return {
-        stroke: x?.type === "1" ? "#FEA628" : "#5A6882",
-        shadowColor: x?.type === "1" ? "#FEA628" : "#5A6882",
+        stroke:
+          x?.type === t("common.vaginalDelievery") ? "#FEA628" : "#5A6882",
+        shadowColor:
+          x?.type === t("common.vaginalDelievery") ? "#FEA628" : "#5A6882",
         lineWidth: 3,
       };
     },
