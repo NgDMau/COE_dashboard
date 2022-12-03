@@ -144,8 +144,12 @@ const FilterComponent = ({ disabled, screen }) => {
             {t("filter.back")}
           </div>
         )}
-        {!disabled && <span>{t("filter.city")}</span>}
-        {!disabled ? (
+        {!disabled || patch === SCREEN_DEFAULT[2] ? (
+          <span>{t("filter.city")}</span>
+        ) : (
+          <div />
+        )}
+        {!disabled || patch === SCREEN_DEFAULT[2] ? (
           <Select
             defaultValue={defaultCity || t("common.none")}
             className="select-city"
@@ -196,7 +200,8 @@ const FilterComponent = ({ disabled, screen }) => {
             )}
           </Select>
         )}
-        {(!disabled || !hospitalSelected) && patch !== SCREEN_DEFAULT[4] ? (
+        {(!disabled || !hospitalSelected || patch === SCREEN_DEFAULT[2]) &&
+        patch !== SCREEN_DEFAULT[4] ? (
           <div>
             {listQuater?.length > 0 && (
               <Select

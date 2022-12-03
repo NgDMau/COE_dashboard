@@ -88,7 +88,11 @@ const AppContainer = ({ screen, title, setScreen }) => {
       <div className="header">
         <PathComponent screen={screen} setScreen={setScreen} />
         <FilterComponent
-          disabled={patch === SCREEN_DEFAULT[4] || patch === SCREEN_DEFAULT[6]}
+          disabled={
+            patch === SCREEN_DEFAULT[2] ||
+            patch === SCREEN_DEFAULT[4] ||
+            patch === SCREEN_DEFAULT[6]
+          }
           screen={screen}
           setScreen={setScreen}
         />

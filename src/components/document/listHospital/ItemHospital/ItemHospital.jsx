@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import getImagePath from "../../../../helpers/image";
 import { showConfirm } from "../../../../helpers/modal-confirm";
 import {
@@ -15,6 +16,7 @@ import {
 } from "./styled";
 
 const ItemHospital = React.memo(({ item, onUpdate, onDelete }) => {
+  const { t } = useTranslation();
   const [isUpdate, setIsUpdate] = useState(false);
   const [valueYear, setValueYear] = useState(item?.last_awarded_year || "");
   const [valueName, setValuename] = useState(item?.name || "");
@@ -50,7 +52,7 @@ const ItemHospital = React.memo(({ item, onUpdate, onDelete }) => {
               alt=""
               onClick={() => {
                 showConfirm({
-                  title: "Do you want to delete " + item?.name + " ?",
+                  title: t("document.confirmDelete") + item?.name + " ?",
                   onOk: () => {
                     onDelete();
                   },

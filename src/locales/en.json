@@ -100,7 +100,7 @@
     "sectionMothers": "Caesarean mothers",
     "normalMother": "Normal birth mother",
     "link": "Link khảo sát",
-    "summaryReport":"Provincial Index Summary Report",
+    "summaryReport": "Provincial Index Summary Report",
     "interviews": "Report Summary of successful interviews"
   },
   "development": "Project in development",
@@ -135,7 +135,8 @@
     "createDocument": "Create Document",
     "clickDrag": "Click or drag file to this area to upload",
     "searchOrUpload": "Please search or upload a document",
-    "decisionInstruction": "Decision/instruction"
+    "decisionInstruction": "Decision/instruction",
+    "confirmDelete": "Do you want to delete "
   },
   "exportData": {
     "indexHospitals": "Index of hospitals in the province/city",

@@ -70,6 +70,10 @@ const SurveyLink = () => {
     getDataDashboard(citySelected?.code);
   }, [citySelected]);
 
+  if (!citySelected || citySelected?.code === -1) {
+    return <div />;
+  }
+
   return (
     <SurveyLinkWrapper>
       <div className="container">
@@ -91,8 +95,7 @@ const SurveyLink = () => {
                   className="link"
                   onClick={() => indicesState("indices_stats")}
                 >
-
-                  {t('surveyLink.interviews')}
+                  {t("surveyLink.interviews")}
                 </Button>
                 <Button className="link" onClick={() => window.open(linkUrl)}>
                   {t("surveyLink.link")}

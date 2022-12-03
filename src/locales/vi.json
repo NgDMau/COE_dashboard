@@ -141,7 +141,8 @@
     "createDocument": "Tạo mới tài liệu",
     "clickDrag": "Nhấp hoặc kéo tệp để tải lên",
     "searchOrUpload": "Vui lòng tìm kiếm hoặc tải lên một tài liệu",
-    "decisionInstruction": "Quyết định/hướng dẫn"
+    "decisionInstruction": "Quyết định/hướng dẫn",
+    "confirmDelete": "Bạn có chắc muốn xóa "
   },
   "exportData": {
     "indexHospitals": "Chỉ số của các bệnh viện trong tỉnh/thành phố",
