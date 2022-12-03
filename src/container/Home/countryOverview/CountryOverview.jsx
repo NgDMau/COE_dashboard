@@ -11,6 +11,7 @@ import PairRadarChart from "../../../components/RadaChart/PairRadarChart";
 import { storeSetCountryOverviewData } from "../../../store/data-reducer";
 import { useMemo } from "react";
 import ExplainChart from "../explainChart/ExplaonChart";
+import { useLableData } from "../../../hooks/useLableData";
 
 const CountryOverview = ({ setIsLoading }) => {
   const { t } = useTranslation();
@@ -18,6 +19,7 @@ const CountryOverview = ({ setIsLoading }) => {
   const overviewCountry = useSelector((state) => state.data.overviewCountry);
   const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
   const citySelected = useSelector((state) => state.data.citySelected);
+  const { labelsNK } = useLableData();
 
   const checkValue = (dashboardDataProps) => {
     if (!dashboardDataProps) return 0;
@@ -103,7 +105,11 @@ const CountryOverview = ({ setIsLoading }) => {
       </ChartContainerWrapper>
 
       <ChartContainerWrapper>
-        <RadaChart data2={dataRadarNK} title={t("chart.pediatric")} />
+        <RadaChart
+          data2={dataRadarNK}
+          title={t("chart.pediatric")}
+          lables={labelsNK}
+        />
       </ChartContainerWrapper>
       <VietNamChart />
     </ChartWrapper>

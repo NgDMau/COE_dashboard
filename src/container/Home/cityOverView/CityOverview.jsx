@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendGet } from "../../../api/axios";
 import PairRadarChart from "../../../components/RadaChart/PairRadarChart";
 import RadaChart from "../../../components/RadaChart/RadaChart";
+import { useLableData } from "../../../hooks/useLableData";
 import { storeSetCityOverviewData } from "../../../store/data-reducer";
 import { ChartContainerWrapper, ChartWrapper } from "../../styled";
 import ExplainChart from "../explainChart/ExplaonChart";
@@ -14,6 +15,7 @@ const CityOverview = ({ setIsLoading }) => {
   const citySelected = useSelector((state) => state.data.citySelected);
   const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
   const overviewCity = useSelector((state) => state.data.overviewCity);
+  const { labelsNK } = useLableData();
 
   const checkValue = (dashboardDataProps) => {
     if (!dashboardDataProps) return 0;
@@ -101,7 +103,11 @@ const CityOverview = ({ setIsLoading }) => {
       </ChartContainerWrapper>
 
       <ChartContainerWrapper>
-        <RadaChart data2={dataRadarNK} title={t("chart.pediatric")} />
+        <RadaChart
+          data2={dataRadarNK}
+          title={t("chart.pediatric")}
+          lables={labelsNK}
+        />
       </ChartContainerWrapper>
     </ChartWrapper>
   );
