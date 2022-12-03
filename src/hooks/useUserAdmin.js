@@ -16,13 +16,21 @@ export const useUserAdmin = () => {
     } catch (error) {}
   };
 
-  const createUser = async ({ password, username, email, role, callback }) => {
+  const createUser = async ({
+    password,
+    username,
+    email,
+    role,
+    province_code,
+    callback,
+  }) => {
     try {
       const response = await sendPost("/user/create", {
         username,
         email,
         password,
         role,
+        province_code,
       });
       if (response?.status === "successful") {
         getListUser();

@@ -23,7 +23,7 @@ const ItemHospital = React.memo(({ item, onUpdate, onDelete }) => {
     setIsUpdate(false);
   };
   const onSave = () => {
-    onUpdate(valueYear, valueName);
+    onUpdate(valueYear, valueName, item?.code);
     setIsUpdate(false);
   };
 

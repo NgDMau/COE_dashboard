@@ -196,7 +196,7 @@ const FilterComponent = ({ disabled, screen }) => {
             )}
           </Select>
         )}
-        {!disabled || patch === SCREEN_DEFAULT[2] || !hospitalSelected ? (
+        {(!disabled || !hospitalSelected) && patch !== SCREEN_DEFAULT[4] ? (
           <div>
             {listQuater?.length > 0 && (
               <Select
