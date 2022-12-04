@@ -24,6 +24,28 @@ const VietNamChart = ({ countryData }) => {
 
   const [content, setContent] = useState("");
   const [selected, setSelected] = useState("");
+  const [selectCity, setSelectCity] = useState("");
+
+  const getCityDataSelected = async (cityName) => {
+    const find = citiesData?.find(
+      (element) =>
+        element?.code_name ===
+        removeVietnameseTones(cityName?.toLowerCase())?.replaceAll(" ", "")
+    );
+    if (find) {
+      const dataCity = countryData[currentQuarter]?.data?.map_data?.data?.find(
+        (element) => element?.province_code === find?.code
+      );
+      setSelectCity(dataCity);
+    }
+  };
+
+  const returnNumberSelected = (value) => {
+    if (value === "NaN") {
+      return "(0%)";
+    }
+    return `(${value || 0}%)`;
+  };
 
   const getmedium = (arr) => {
     let sum = 0;
@@ -50,6 +72,13 @@ const VietNamChart = ({ countryData }) => {
           removeVietnameseTones(cityName?.toLowerCase())?.replaceAll(" ", "")
       ) || null;
     if (find) {
+      if (
+        !countryData ||
+        !countryData[currentQuarter] ||
+        !countryData[currentQuarter]?.data?.map_data?.data
+      ) {
+        return 0;
+      }
       const dataCity =
         countryData[currentQuarter]?.data?.map_data?.data?.find(
           (element) => element?.province_code === find?.code
@@ -118,11 +147,11 @@ const VietNamChart = ({ countryData }) => {
   const selectData = useMemo(() => {
     const list = [
       t("common.none"),
-      t("common.afterBirth") + t("common.vaginalDelievery"),
-      t("common.afterBirth") + t("common.CSection"),
-      t("common.hospitalStay") + t("common.vaginalDelievery"),
-      t("common.hospitalStay") + t("common.CSection"),
-      t("common.exclusivelyBreastfed") + t("common.vaginalDelievery"),
+      t("common.afterBirth") + t("common.vaginalDelievery2"),
+      t("common.afterBirth") + t("common.CSection2"),
+      t("common.hospitalStay") + t("common.vaginalDelievery2"),
+      t("common.hospitalStay") + t("common.CSection2"),
+      t("common.exclusivelyBreastfed") + t("common.vaginalDelievery2"),
     ];
     return list;
   }, [countryData, t]);
@@ -141,6 +170,25 @@ const VietNamChart = ({ countryData }) => {
             return <Select.Option key={String(index)}>{element}</Select.Option>;
           })}
         </Select>
+      </CountryWrapper>
+      <CountryWrapper>
+        <b>
+          {t("userManagement.city")}: {selectCity?.province_name}
+        </b>
+        <div>
+          {t("common.afterBirth")} : {t("common.vaginalDelievery")}{" "}
+          {returnNumberSelected(selectCity?.SK_4_ST)}, {t("common.CSection")}
+          {returnNumberSelected(selectCity?.SK_4_SM)}
+        </div>
+        <div>
+          {t("common.hospitalStay")} : {t("common.vaginalDelievery")}
+          {returnNumberSelected(selectCity?.SK_5_ST)}, {t("common.CSection")}
+          {returnNumberSelected(selectCity?.SK_5_SM)}
+        </div>
+        <div>
+          {t("common.exclusivelyBreastfed")} : {t("common.vaginalDelievery")}{" "}
+          {returnNumberSelected(selectCity?.NK_4)}
+        </div>
       </CountryWrapper>
       <div>
         <ColorGroup>
@@ -172,7 +220,7 @@ const VietNamChart = ({ countryData }) => {
                     key={geo.rsmKey}
                     geography={geo}
                     onClick={() => {
-                      checkColor(getCityData(geo?.properties?.ten_tinh));
+                      getCityDataSelected(geo?.properties?.ten_tinh);
                     }}
                     onMouseEnter={() => {
                       if (geo?.properties?.ten_tinh) {

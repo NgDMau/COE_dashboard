@@ -13,9 +13,9 @@
     "none": "-- ALL --",
     "vaginalDelievery": "Vaginal Delievery",
     "CSection": "Caesarean",
-    "afterBirth": "Early Breastfeeding After Birth",
-    "hospitalStay": "Postpartum infants are exclusively breastfed during hospital stay",
-    "exclusivelyBreastfed": "Children < 1 month of hospital treatment are exclusively breastfed"
+    "afterBirth": "Early Breastfeeding After Birth ",
+    "hospitalStay": "Postpartum infants are exclusively breastfed during hospital stay ",
+    "exclusivelyBreastfed": "Children < 1 month of hospital treatment are exclusively breastfed "
   },
   "obstetricsData": {
     "obstetricsKS_1": "Skin to skin contact",
