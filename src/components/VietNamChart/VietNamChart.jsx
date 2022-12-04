@@ -25,10 +25,24 @@ const VietNamChart = ({ countryData }) => {
   const [content, setContent] = useState("");
   const [selected, setSelected] = useState("");
 
+  const getmedium = (arr) => {
+    let sum = 0;
+    let number = 0;
+    arr.forEach((element) => {
+      if (element !== "N/A" && element !== "NaN") {
+        sum += element;
+        number++;
+      }
+    });
+    console.log(sum / number);
+    return sum / number;
+  };
+
   const getCityData = (cityName) => {
     if (!cityName) {
       return 0;
     }
+
     const find =
       citiesData?.find(
         (element) =>
@@ -39,6 +53,15 @@ const VietNamChart = ({ countryData }) => {
       const dataCity = countryData[currentQuarter]?.data?.map_data?.data?.find(
         (element) => element?.province_code === find?.code
       );
+      if (selected == 0) {
+        return getmedium([
+          dataCity?.SK_4_ST,
+          dataCity?.SK_4_SM,
+          dataCity?.SK_5_ST,
+          dataCity?.SK_5_SM,
+          dataCity?.NK_4,
+        ]);
+      }
       if (selected == 1) {
         return returnNumber(dataCity?.SK_4_ST);
       }
@@ -63,6 +86,9 @@ const VietNamChart = ({ countryData }) => {
     if (value === "NaN") {
       return 0;
     }
+    if (value === "N/A") {
+      return 0;
+    }
     return value || 0;
   };
 
@@ -82,7 +108,7 @@ const VietNamChart = ({ countryData }) => {
     if (number >= 80 && number < 100) {
       return listColor[4];
     }
-    return listColor[0]
+    return listColor[0];
   };
 
   const selectData = useMemo(() => {
