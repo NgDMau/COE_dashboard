@@ -13,6 +13,7 @@ import {
   ContentWrapper,
   CountryWrapper,
   HeaderTableWrapper,
+  TextBlack,
   VietNamChartWrapper,
 } from "./styled";
 
@@ -38,10 +39,10 @@ const VietNamChart = ({ countryData }) => {
   const [selectCity, setSelectCity] = useState("");
 
   const getCityDataSelected = async (cityName) => {
-    const find = citiesData?.find(
-      (element) =>
-        element?.code_name ===
-        removeVietnameseTones(cityName?.toLowerCase())?.replaceAll(" ", "")
+    const find = citiesData?.find((element) =>
+      removeVietnameseTones(cityName?.toLowerCase())
+        ?.replaceAll(" ", "")
+        .includes(element?.code_name)
     );
     if (find) {
       const dataCity = countryData[currentQuarter]?.data?.map_data?.data?.find(
@@ -55,7 +56,7 @@ const VietNamChart = ({ countryData }) => {
     if (value === "NaN") {
       return "0%";
     }
-    return `${value || 0}%`;
+    return `${value.toFixed(2) || 0}%`;
   };
 
   const getmedium = (arr) => {
@@ -76,10 +77,10 @@ const VietNamChart = ({ countryData }) => {
     }
 
     const find =
-      citiesData?.find(
-        (element) =>
-          element?.code_name ===
-          removeVietnameseTones(cityName?.toLowerCase())?.replaceAll(" ", "")
+      citiesData?.find((element) =>
+        removeVietnameseTones(cityName?.toLowerCase())
+          ?.replaceAll(" ", "")
+          .includes(element?.code_name)
       ) || null;
     if (find) {
       if (
@@ -207,6 +208,10 @@ const VietNamChart = ({ countryData }) => {
       </CountryWrapper>
       <div>
         <ColorGroup>
+          <Tag color="#fff">
+            <TextBlack>Chưa có số liệu</TextBlack>
+          </Tag>
+          <Tag color="#bdc3c7">N/A</Tag>
           <Tag color="#b7eb8f">0-20</Tag>
           <Tag color="#95de64">20-40</Tag>
           <Tag color="#73d13d">40-60</Tag>

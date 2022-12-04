@@ -153,7 +153,7 @@ const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
                 password: password,
                 username: useName,
                 email: email,
-                role: isSupperUser ? "admin" : null,
+                role: isSupperUser ? "admin" : "staff",
                 province_code: city?.code,
                 callback: () => {
                   setIsSupperUser(false);

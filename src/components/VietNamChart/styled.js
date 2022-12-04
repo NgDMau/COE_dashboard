@@ -10,7 +10,12 @@ export const ContentWrapper = styled.div`
   height: 30px;
 `;
 export const ColorGroup = styled.div`
-  margin-left: 200px;
+  margin-left: 150px;
+  .ant-tag {
+    min-width: 40px;
+    text-align: center;
+    border: 1px solid black;
+  }
 `;
 export const CountryWrapper = styled.div`
   margin-bottom: 10px;
@@ -22,7 +27,8 @@ export const HeaderTableWrapper = styled.div`
   width: 100%;
   display: flex;
   border: 1px solid #bdc3c7;
-  border-bottom: ${(props) => (props?.borderbottom ? "1px solid #bdc3c7" : "none")};
+  border-bottom: ${(props) =>
+    props?.borderbottom ? "1px solid #bdc3c7" : "none"};
 `;
 export const Content = styled.div`
   width: 60%;
@@ -37,4 +43,7 @@ export const BothWrapper = styled.div`
   width: 40%;
   border-left: 1px solid #bdc3c7;
   text-align: center;
+`;
+export const TextBlack = styled.div`
+  color: black;
 `;
