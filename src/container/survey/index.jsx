@@ -14,7 +14,9 @@ import { getListQuanter } from "../../helpers/getListQuanter";
 
 const SurveyLink = () => {
   const { t } = useTranslation();
-
+  const user = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
   const citySelected = useSelector((state) => state.data.citySelected);
   const listQuanter = getListQuanter();
   const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
@@ -26,10 +28,12 @@ const SurveyLink = () => {
   const getDataDashboard = async (code) => {
     setIsLoading(true);
     try {
-      const data = await sendGet(`/dm/data/process?province=${code}`);
+      const data = await sendGet(
+        `dm/data/province/survey_progress?province_code=${user?.province_code}`
+      );
       if (data?.status === "successful") {
         setLineUrl(data?.survey_url);
-        const dataClone = [...data?.data];
+        const dataClone = [...data?.data[currentQuarter]?.data];
         const chartData = [];
         chartData.push([
           "hospital_name",
@@ -63,12 +67,11 @@ const SurveyLink = () => {
     if (response?.status === "successful") {
       window.open(`${linkApi}/${response?.data?.url}`);
     }
-    console.log(response);
   };
 
   useEffect(() => {
     getDataDashboard(citySelected?.code);
-  }, [citySelected]);
+  }, [citySelected, currentQuarter]);
 
   if (!citySelected || citySelected?.code === -1) {
     return <div />;
