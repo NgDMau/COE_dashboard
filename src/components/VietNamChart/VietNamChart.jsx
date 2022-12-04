@@ -40,7 +40,6 @@ const VietNamChart = ({ countryData }) => {
         (element) => element?.province_code === find?.code
       );
       if (selected == 1) {
-        console.log("returnNumber(dataCity?.SK_4_ST)", selected);
         return returnNumber(dataCity?.SK_4_ST);
       }
       if (selected == 2) {
@@ -56,7 +55,6 @@ const VietNamChart = ({ countryData }) => {
         return returnNumber(dataCity?.NK_4);
       }
     } else {
-      console.log(1111111111);
       return 0;
     }
   };
