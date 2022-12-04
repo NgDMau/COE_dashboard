@@ -12,7 +12,10 @@
     "retypePassword": "Nhập lại mật khẩu",
     "none": "Trống",
     "vaginalDelievery": "Sinh thường",
-    "CSection": "Sinh mổ"
+    "CSection": "Sinh mổ",
+    "afterBirth":"Bú sớm sau sinh",
+    "hospitalStay":"Trẻ sau sinh được bú mẹ hoàn toàn trong thời gian ở viện",
+    "exclusivelyBreastfed":"Trẻ < 1 tháng điều trị tại viện được bú mẹ hoàn toàn"
   },
   "obstetricsData": {
     "obstetricsKS_1": "Thực hiện da kề da",

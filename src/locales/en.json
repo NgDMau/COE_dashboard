@@ -12,7 +12,10 @@
     "retypePassword": "retype password",
     "none": "None",
     "vaginalDelievery": "Vaginal Delievery",
-    "CSection": "Caesarean"
+    "CSection": "Caesarean",
+    "afterBirth": "Early Breastfeeding After Birth",
+    "hospitalStay": "Postpartum infants are exclusively breastfed during hospital stay",
+    "exclusivelyBreastfed": "Children < 1 month of hospital treatment are exclusively breastfed"
   },
   "obstetricsData": {
     "obstetricsKS_1": "Skin to skin contact",

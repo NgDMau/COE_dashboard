@@ -111,7 +111,9 @@ const CountryOverview = ({ setIsLoading }) => {
           lables={labelsNK}
         />
       </ChartContainerWrapper>
-      <VietNamChart />
+      <ChartContainerWrapper>
+        <VietNamChart countryData={overviewCountry} />
+      </ChartContainerWrapper>
     </ChartWrapper>
   );
 };
