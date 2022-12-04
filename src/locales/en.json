@@ -169,18 +169,26 @@
     "errorPassword": "Wrong username or password"
   },
   "userManagement": {
-    "permission": "Permission",
     "superuser": "Admin",
     "staff": "Staff",
-    "city": "City",
     "nameCity": "City name",
     "userName": "User name",
-    "email": "Email",
     "password": "Password",
     "cancel": "Cancel",
     "inputNewPassword": "Please enter a new password!",
     "save": "Save",
-    "fullInformation": "Please enter full information."
+    "fullInformation": "Please enter full information.",
+    "userAdministration": "User Administration",
+    "user": "User",
+    "city": "City",
+    "email": "Email",
+    "permission": "Permission",
+    "permission_sort": "Permission",
+    "dateCreated": "Date created",
+    "addUser": "Add User",
+    "confirmDelete": "Are you sure you want to delete the user?",
+    "editUser": "Edit users",
+    "createUser": "Create Account"
   },
   "overview": {
     "criteriaObstetrics": "Criteria for Obstetrics"

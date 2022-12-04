@@ -177,18 +177,26 @@
     "errorPassword": "Tên người dùng hoặc mật khẩu sai"
   },
   "userManagement": {
-    "permission": "Quyền tài khoản",
     "superuser": "Người quản lý tài khoản",
     "staff": "Nhân viên",
-    "city": "Tỉnh/Thành phố",
     "nameCity": "Tên Tỉnh/Thành phố",
     "userName": "Tên tài khoản",
-    "email": "Email",
     "password": "Mật khẩu",
     "cancel": "Hủy",
     "inputNewPassword": "Vui lòng nhập mật khẩu mới !",
     "save": "Lưu",
-    "fullInformation": "Vui lòng nhập đầy đủ thông tin."
+    "fullInformation": "Vui lòng nhập đầy đủ thông tin.",
+    "userAdministration": "Quản trị người dùng",
+    "user": "Người dùng",
+    "city": "Tỉnh/Thành phố",
+    "email": "Địa chỉ email",
+    "permission": "Quyền tài khoản",
+    "permission_sort": "Quyền",
+    "dateCreated": "Ngày tạo",
+    "addUser": "Thêm người dùng",
+    "confirmDelete": "Bạn có chắc muốn xóa người dùng?",
+    "editUser": "Chỉnh sửa người dùng",
+    "createUser": "Tạo tài khoản"
   },
   "overview": {
     "criteriaObstetrics": "Tiêu chí về Sản khoa"

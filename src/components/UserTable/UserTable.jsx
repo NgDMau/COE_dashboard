@@ -9,8 +9,10 @@ import EditUser from "./EditUser/EditUser";
 import { showConfirm } from "../../helpers/modal-confirm";
 import { useUserAdmin } from "../../hooks/useUserAdmin";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 
 const UserTable = () => {
+  const { t } = useTranslation();
   const [modalData, setModalData] = useState(false);
   const closeModal = (open) => {
     setModalData(open);
@@ -26,28 +28,28 @@ const UserTable = () => {
       render: (_, _item, index) => <div>{index + 1}</div>,
     },
     {
-      title: "Người dùng",
+      title: t("userManagement.user"),
       dataIndex: "username",
       key: "username",
     },
     {
-      title: "Tỉnh/Thành phố",
+      title: t("userManagement.city"),
       dataIndex: "province_name",
       key: "province_name",
     },
     {
-      title: "Địa chỉ mail",
+      title: t("userManagement.email"),
       dataIndex: "email",
       key: "email",
     },
     {
-      title: "Quyền",
+      title: t("userManagement.permission_sort"),
       dataIndex: "is_superuser",
       key: "is_superuser",
       render: (record) => <div>{record ? "Admin" : "Người dùng"}</div>,
     },
     {
-      title: "Ngày tạo",
+      title: t("userManagement.dateCreated"),
       dataIndex: "date_joined",
       key: "date_joined",
       render: (record) => <div>{moment(record).format("DD/MM/YYYY")}</div>,
@@ -56,7 +58,7 @@ const UserTable = () => {
       title: () => {
         return (
           <BtnAddUser onClick={() => setModalData(true)}>
-            Thêm người dùng
+            {t("userManagement.addUser")}
           </BtnAddUser>
         );
       },
@@ -83,7 +85,7 @@ const UserTable = () => {
             alt=""
             onClick={() => {
               showConfirm({
-                title: "Bạn có chắc muốn xóa người dùng?",
+                title: t("userManagement.confirmDelete"),
                 onOk: () => {
                   deleteUser({ user_id: String(item?.id) });
                 },
@@ -116,7 +118,11 @@ const UserTable = () => {
         visible={!!modalData}
         setVisible={closeModal}
         width={500}
-        title={modalData?.isEdit ? "Chỉnh sửa người dùng" : "Tạo tài khoản"}
+        title={
+          modalData?.isEdit
+            ? t("userManagement.editUser")
+            : t("userManagement.createUser")
+        }
         onCancel={() => {
           setModalData(false);
         }}
