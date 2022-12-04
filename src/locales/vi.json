@@ -199,6 +199,8 @@
     "createUser": "Tạo tài khoản"
   },
   "overview": {
-    "criteriaObstetrics": "Tiêu chí về Sản khoa"
+    "criteriaObstetrics": "Tiêu chí về Sản khoa",
+    "notParticipate": "Chưa tham gia",
+    "noDataYet": "Chưa có số liệu"
   }
 }

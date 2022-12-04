@@ -191,6 +191,8 @@
     "createUser": "Create Account"
   },
   "overview": {
-    "criteriaObstetrics": "Criteria for Obstetrics"
+    "criteriaObstetrics": "Criteria for Obstetrics",
+    "notParticipate": "Not participate",
+    "noDataYet": "No data yet"
   }
 }

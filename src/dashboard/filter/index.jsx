@@ -251,14 +251,14 @@ const FilterComponent = ({ disabled, screen }) => {
           {t("filter.generateReport")}
         </div>
       ) : null}
-      {(patch === SCREEN_DEFAULT[1] || patch === "/") &&
+      {/* {(patch === SCREEN_DEFAULT[1] || patch === "/") &&
       !hospitalSelected &&
       citySelected &&
       dashboardData ? (
         <BtnExportCity onClick={() => null}>
           {t("dashBoard.provincialReport")}
         </BtnExportCity>
-      ) : null}
+      ) : null} */}
 
       {patch === SCREEN_DEFAULT[6] && (
         <div className="export" onClick={exportPdfData}>

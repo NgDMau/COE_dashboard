@@ -212,9 +212,9 @@ const VietNamChart = ({ countryData }) => {
       <div>
         <ColorGroup>
           <Tag color="#fff">
-            <TextBlack>Chưa có số liệu</TextBlack>
+            <TextBlack>{t("overview.notParticipate")}</TextBlack>
           </Tag>
-          <Tag color="#bdc3c7">N/A</Tag>
+          <Tag color="#bdc3c7">{t("overview.noDataYet")}</Tag>
           <Tag color="#b7eb8f">0-20</Tag>
           <Tag color="#95de64">20-40</Tag>
           <Tag color="#73d13d">40-60</Tag>
