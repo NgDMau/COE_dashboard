@@ -4,9 +4,19 @@ import { ChartExportWrapper } from './styled';
 import { useSelector } from 'react-redux';
 import { LinePoint } from '../../../components/common/line-chart/LinePoint';
 import TableChart from './table-chart';
+import { useMemo } from 'react';
 
 const ChartExport = ({ elementST, elementSM, criteria, index, department }) => {
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
+  const timeLine = useMemo(() => {
+    if (!dashboardData) {
+      return null;
+    }
+    const response = dashboardData?.map((element) => {
+      return element?.time;
+    });
+    return response || [];
+  }, [dashboardData]);
   return (
     <ChartExportWrapper>
       <HeaderExport />
@@ -15,7 +25,7 @@ const ChartExport = ({ elementST, elementSM, criteria, index, department }) => {
         <LinePoint
           dataST={elementST}
           dataSM={elementSM}
-          time={dashboardData?.time}
+          time={timeLine}
           hiddenCaesarean={department === 'NK'}
           department={index >= 6 ? 'NK' : department}
           passLevelST={criteria.STRate}
