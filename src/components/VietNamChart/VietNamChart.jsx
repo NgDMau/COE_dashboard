@@ -4,9 +4,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-import { sendGet } from "../../api/axios";
 import { removeVietnameseTones } from "../../helpers/convertVie";
-import Loading from "../common/Loading/Loading";
 import {
   ColorGroup,
   ContentWrapper,
@@ -61,7 +59,9 @@ const VietNamChart = ({ countryData }) => {
     <VietNamChartWrapper>
       {selectCity && (
         <CountryWrapper>
-          <b>Thành phố {selectCity?.province_name}</b>
+          <b>
+            {t("userManagement.city")}: {selectCity?.province_name}
+          </b>
           <div>
             {t("common.afterBirth")} : {t("common.vaginalDelievery")}{" "}
             {returnNumber(selectCity?.SK_4_ST)}, {t("common.CSection")}
