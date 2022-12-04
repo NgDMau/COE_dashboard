@@ -125,7 +125,7 @@ const Home = ({ isLoading, value, setValue, setIsLoading }) => {
           <Spin size="large" />
         </SpinWrapper>
       )}
-      {hospitalSelected && !isLoading ? (
+      {hospitalSelected && hospitalSelected?.code !== -1 && !isLoading ? (
         <>
           <ChartWrapper>
             {dataRadarST && (
