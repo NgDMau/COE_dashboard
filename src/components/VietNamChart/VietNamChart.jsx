@@ -67,7 +67,6 @@ const VietNamChart = ({ countryData }) => {
         number++;
       }
     });
-    console.log(sum / number);
     return sum / number;
   };
 

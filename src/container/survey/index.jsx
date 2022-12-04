@@ -27,9 +27,13 @@ const SurveyLink = () => {
 
   const getDataDashboard = async (code) => {
     setIsLoading(true);
+    let newcode = user?.province_code;
+    if(user?.is_superuser === "True" && citySelected && citySelected?.code !== -1){
+      newcode = citySelected?.code
+    }
     try {
       const data = await sendGet(
-        `dm/data/province/survey_progress?province_code=${user?.province_code}`
+        `dm/data/province/survey_progress?province_code=${newcode}`
       );
       if (data?.status === "successful") {
         setLineUrl(data?.survey_url);

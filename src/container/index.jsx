@@ -93,7 +93,8 @@ const AppContainer = ({ screen, title, setScreen }) => {
           disabled={
             patch === SCREEN_DEFAULT[2] ||
             patch === SCREEN_DEFAULT[4] ||
-            patch === SCREEN_DEFAULT[6]
+            patch === SCREEN_DEFAULT[6] ||
+            patch === SCREEN_DEFAULT[7]
           }
           screen={screen}
           setScreen={setScreen}

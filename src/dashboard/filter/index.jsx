@@ -37,7 +37,7 @@ const FilterComponent = ({ disabled, screen }) => {
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
-
+  console.log("useruseruser", user);
   const hospitalSelected = useSelector(
     (state) => state?.data?.hospitalSelected
   );
@@ -145,8 +145,14 @@ const FilterComponent = ({ disabled, screen }) => {
             {t("filter.back")}
           </div>
         )}
-        {!disabled ? <span>{t("filter.city")}</span> : <div />}
-        {!disabled ? (
+        {!disabled ||
+        (patch === SCREEN_DEFAULT[2] && user?.is_superuser === "True") ? (
+          <span>{t("filter.city")}</span>
+        ) : (
+          <div />
+        )}
+        {!disabled ||
+        (patch === SCREEN_DEFAULT[2] && user?.is_superuser === "True") ? (
           <Select
             defaultValue={defaultCity || t("common.none")}
             value={citySelected?.name || t("common.none")}
@@ -199,7 +205,8 @@ const FilterComponent = ({ disabled, screen }) => {
           </Select>
         )}
         {(!disabled || !hospitalSelected || patch === SCREEN_DEFAULT[2]) &&
-        patch !== SCREEN_DEFAULT[4] ? (
+        patch !== SCREEN_DEFAULT[4] &&
+        patch !== SCREEN_DEFAULT[7] ? (
           <div>
             {listQuater?.length > 0 && (
               <Select
