@@ -31,12 +31,12 @@ const UserTable = () => {
       key: "username",
     },
     {
-      title: "Địa chỉ mail",
+      title: "Tỉnh/Thành phố",
       dataIndex: "province_name",
       key: "province_name",
     },
     {
-      title: "Tỉnh/Thành phố",
+      title: "Địa chỉ mail",
       dataIndex: "email",
       key: "email",
     },

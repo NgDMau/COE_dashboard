@@ -6,9 +6,13 @@ import { useSelector } from "react-redux";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import { removeVietnameseTones } from "../../helpers/convertVie";
 import {
+  BornWrapper,
+  BothWrapper,
   ColorGroup,
+  Content,
   ContentWrapper,
   CountryWrapper,
+  HeaderTableWrapper,
   VietNamChartWrapper,
 } from "./styled";
 
@@ -175,20 +179,25 @@ const VietNamChart = ({ countryData }) => {
         <b>
           {t("userManagement.city")}: {selectCity?.province_name}
         </b>
-        <div>
-          {t("common.afterBirth")} : {t("common.vaginalDelievery")}{" "}
-          {returnNumberSelected(selectCity?.SK_4_ST)}, {t("common.CSection")}
-          {returnNumberSelected(selectCity?.SK_4_SM)}
-        </div>
-        <div>
-          {t("common.hospitalStay")} : {t("common.vaginalDelievery")}
-          {returnNumberSelected(selectCity?.SK_5_ST)}, {t("common.CSection")}
-          {returnNumberSelected(selectCity?.SK_5_SM)}
-        </div>
-        <div>
-          {t("common.exclusivelyBreastfed")} : {t("common.vaginalDelievery")}{" "}
-          {returnNumberSelected(selectCity?.NK_4)}
-        </div>
+        <HeaderTableWrapper>
+          <Content></Content>
+          <BornWrapper>{t("common.vaginalDelievery")}</BornWrapper>
+          <BornWrapper>{t("common.CSection")}</BornWrapper>
+        </HeaderTableWrapper>
+        <HeaderTableWrapper>
+          <Content>{t("common.afterBirth")}</Content>
+          <BornWrapper>{returnNumberSelected(selectCity?.SK_4_ST)}</BornWrapper>
+          <BornWrapper>{returnNumberSelected(selectCity?.SK_4_SM)}</BornWrapper>
+        </HeaderTableWrapper>
+        <HeaderTableWrapper>
+          <Content>{t("common.hospitalStay")}</Content>
+          <BornWrapper>{returnNumberSelected(selectCity?.SK_5_ST)}</BornWrapper>
+          <BornWrapper>{returnNumberSelected(selectCity?.SK_5_SM)}</BornWrapper>
+        </HeaderTableWrapper>
+        <HeaderTableWrapper borderbottom>
+          <Content>{t("common.exclusivelyBreastfed")} </Content>
+          <BothWrapper>{returnNumberSelected(selectCity?.NK_4)}</BothWrapper>
+        </HeaderTableWrapper>
       </CountryWrapper>
       <div>
         <ColorGroup>
