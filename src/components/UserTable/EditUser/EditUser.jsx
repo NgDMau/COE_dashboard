@@ -28,13 +28,22 @@ const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
       setUserName(modalData?.username || "");
       setEmail(modalData?.email || "");
       setPassword("");
+      const find = citiesData?.find(
+        (element) => element?.code === Number(modalData?.province_code)
+      );
+      if (find) {
+        setCity(find);
+      } else {
+        setCity("");
+      }
     } else {
       setIsSupperUser(false);
       setUserName("");
       setEmail("");
       setPassword("");
+      setCity("");
     }
-  }, [modalData]);
+  }, [modalData, citiesData]);
 
   return (
     <EditUserWrapper>
@@ -58,7 +67,8 @@ const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
       <div>
         <Title>{t("userManagement.city")}</Title>
         <SelectedCity
-          defaultValue={t("common.none")}
+          defaultValue={city?.name || t("common.none")}
+          value={city?.name || t("common.none")}
           onChange={(e) => {
             setCity(citiesData[e]);
           }}
@@ -126,11 +136,25 @@ const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
                 },
               });
             } else {
+              if (
+                !password ||
+                !useName ||
+                !email ||
+                city.code === -1 ||
+                !city
+              ) {
+                showConfirm({
+                  title: t("userManagement.fullInformation"),
+                  hideCancel: true,
+                });
+                return;
+              }
               createUser({
                 password: password,
                 username: useName,
                 email: email,
-                role: isSupperUser ? "admin" : null,
+                role: isSupperUser ? "admin" : "staff",
+                province_code: city?.code,
                 callback: () => {
                   setIsSupperUser(false);
                   setUserName("");

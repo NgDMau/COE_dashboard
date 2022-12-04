@@ -6,35 +6,38 @@ import { CityWrapper, LinkHeader, SurveyLinkWrapper } from "./styled";
 import ChartLink from "./chart";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-
-import { linkApi } from "../../common/ngok";
 import { useTranslation } from "react-i18next";
+
+import { sendGet } from "../../api/axios";
+import { linkApi } from "../../common/ngok";
+import { getListQuanter } from "../../helpers/getListQuanter";
 
 const SurveyLink = () => {
   const { t } = useTranslation();
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
-  const hospitalSelected = useSelector(
-    (state) => state?.data?.hospitalSelected
-  );
   const citySelected = useSelector((state) => state.data.citySelected);
+  const listQuanter = getListQuanter();
+  const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
+
   const [dataTableChart, setDatableChart] = useState([]);
+  const [linkUrl, setLineUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const getDataDashboard = async (code) => {
     setIsLoading(true);
-    const myHeaders = new Headers({
-      Authorization: "Token " + user?.token,
-      "Content-Type": "application/x-www-form-urlencoded",
-    });
-    fetch(`${linkApi}/dm/data/process?province=${code}`, {
-      method: "POST",
-      headers: myHeaders,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const dataClone = [...data?.data];
+    let newcode = user?.province_code;
+    if(user?.is_superuser === "True" && citySelected && citySelected?.code !== -1){
+      newcode = citySelected?.code
+    }
+    try {
+      const data = await sendGet(
+        `dm/data/province/survey_progress?province_code=${newcode}`
+      );
+      if (data?.status === "successful") {
+        setLineUrl(data?.survey_url);
+        const dataClone = [...data?.data[currentQuarter]?.data];
         const chartData = [];
         chartData.push([
           "hospital_name",
@@ -53,13 +56,26 @@ const SurveyLink = () => {
           chartData.push(item);
         });
         setDatableChart(chartData || []);
-      })
-      .finally(() => setIsLoading(false));
+      }
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const indicesState = async (data) => {
+    const timeString = listQuanter[currentQuarter]?.split("/");
+    const response = await sendGet(
+      `/dm/data/province/survey_progress/export?province_code=${citySelected?.code}&year=${timeString[1]}&quarter=${timeString[0][1]}&type=xlsx&data=${data}`
+    );
+    if (response?.status === "successful") {
+      window.open(`${linkApi}/${response?.data?.url}`);
+    }
   };
 
   useEffect(() => {
     getDataDashboard(citySelected?.code);
-  }, [citySelected]);
+  }, [citySelected, currentQuarter]);
 
   return (
     <SurveyLinkWrapper>
@@ -72,15 +88,20 @@ const SurveyLink = () => {
           ) : (
             <>
               <LinkHeader>
-                <CityWrapper>{citySelected?.name}</CityWrapper>
                 <Button
                   className="link"
-                  onClick={() => {
-                    window.open("https://bmte.vn/form/quang_nam/v2");
-                  }}
+                  onClick={() => indicesState("calls_stats")}
                 >
-                  {" "}
-                  {t("screen.surveyLink")}
+                  {t("surveyLink.summaryReport")} {citySelected?.name}
+                </Button>
+                <Button
+                  className="link"
+                  onClick={() => indicesState("indices_stats")}
+                >
+                  {t("surveyLink.interviews")}
+                </Button>
+                <Button className="link" onClick={() => window.open(linkUrl)}>
+                  {t("surveyLink.link")}
                 </Button>
               </LinkHeader>
 

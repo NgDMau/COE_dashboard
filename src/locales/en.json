@@ -10,7 +10,12 @@
     "engLish": "English",
     "welcome": "Welcome",
     "retypePassword": "retype password",
-    "none": "None"
+    "none": "-- ALL --",
+    "vaginalDelievery": "Vaginal Delievery",
+    "CSection": "Caesarean",
+    "afterBirth": "Early Breastfeeding After Birth ",
+    "hospitalStay": "Postpartum infants are exclusively breastfed during hospital stay ",
+    "exclusivelyBreastfed": "Children < 1 month of hospital treatment are exclusively breastfed "
   },
   "obstetricsData": {
     "obstetricsKS_1": "Skin to skin contact",
@@ -98,7 +103,10 @@
     "notParticipate": "Not participate",
     "underMonth": "Mothers with children under 1 month old",
     "sectionMothers": "Caesarean mothers",
-    "normalMother": "Normal birth mother"
+    "normalMother": "Normal birth mother",
+    "link": "Link khảo sát",
+    "summaryReport": "Provincial Index Summary Report",
+    "interviews": "Report Summary of successful interviews"
   },
   "development": "Project in development",
   "dashBoard": {
@@ -132,7 +140,8 @@
     "createDocument": "Create Document",
     "clickDrag": "Click or drag file to this area to upload",
     "searchOrUpload": "Please search or upload a document",
-    "decisionInstruction": "Decision/instruction"
+    "decisionInstruction": "Decision/instruction",
+    "confirmDelete": "Do you want to delete "
   },
   "exportData": {
     "indexHospitals": "Index of hospitals in the province/city",
@@ -160,16 +169,31 @@
     "errorPassword": "Wrong username or password"
   },
   "userManagement": {
-    "permission": "Permission",
     "superuser": "Admin",
     "staff": "Staff",
-    "city": "City",
     "nameCity": "City name",
     "userName": "User name",
-    "email": "Email",
     "password": "Password",
     "cancel": "Cancel",
     "inputNewPassword": "Please enter a new password!",
-    "save": "Save"
+    "save": "Save",
+    "fullInformation": "Please enter full information.",
+    "userAdministration": "User Administration",
+    "user": "User",
+    "city": "City",
+    "email": "Email",
+    "permission": "Permission",
+    "permission_sort": "Permission",
+    "dateCreated": "Date created",
+    "addUser": "Add User",
+    "confirmDelete": "Are you sure you want to delete the user?",
+    "editUser": "Edit users",
+    "createUser": "Create Account"
+  },
+  "overview": {
+    "criteriaObstetrics": "Criteria for Obstetrics",
+    "notParticipate": "Not participate",
+    "noDataYet": "No data yet",
+    "index": "Index"
   }
 }

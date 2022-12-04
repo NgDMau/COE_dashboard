@@ -6,6 +6,7 @@ export const ChartContainerWrapper = styled.div`
   border: 1px solid #ecf0f1;
   padding: 12px;
   margin-bottom: 20px;
+  position: relative;
 `;
 export const SpinWrapper = styled.div`
   width: 70vw;

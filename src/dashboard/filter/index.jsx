@@ -25,6 +25,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { storeSetTab } from "../../store/document-reducer";
 import Loading from "../../components/common/Loading/Loading";
 import moment from "moment";
+import { getListQuanter } from "../../helpers/getListQuanter";
 
 const FilterComponent = ({ disabled, screen }) => {
   const { t } = useTranslation();
@@ -36,6 +37,7 @@ const FilterComponent = ({ disabled, screen }) => {
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
+  console.log("useruseruser", user);
   const hospitalSelected = useSelector(
     (state) => state?.data?.hospitalSelected
   );
@@ -51,13 +53,8 @@ const FilterComponent = ({ disabled, screen }) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingScreen, setIsLoadingScreen] = useState(false);
-  console.log("hostPitalshostPitalshostPitals", hostPitals);
   const defaultCity = useMemo(() => {
-    return (
-      citiesData?.find(
-        (element) => element?.id === hospitalSelected?.province_id
-      )?.name || ""
-    );
+    return citySelected?.name || "";
   }, [hospitalSelected, citiesData]);
   const exportPdfData = async () => {
     setIsLoadingScreen(true);
@@ -96,7 +93,12 @@ const FilterComponent = ({ disabled, screen }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        dispatch(storeSetCitiesData(data?.provinces || []));
+        const reDataCity = data?.provinces;
+        reDataCity.unshift({
+          name: t("common.none"),
+          code: -1,
+        });
+        dispatch(storeSetCitiesData(reDataCity || []));
       });
   };
 
@@ -112,32 +114,20 @@ const FilterComponent = ({ disabled, screen }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        dispatch(storeSetHostpitalData(data?.hospitals || []));
+        const reDataCity = data?.hospitals;
+        reDataCity.unshift({
+          name: t("common.none"),
+          code: -1,
+        });
+        dispatch(storeSetHostpitalData(reDataCity || []));
       })
       .finally(() => {
         setIsLoading(false);
       });
   };
 
-  const getQuarter = (d) => {
-    const quan = Math.floor(moment(d).month() / 3) + 1;
-    return `Q${quan}/${moment(d).year()}`;
-  };
-
   const listQuater = useMemo(() => {
-    const arr = [];
-    [-1, 0, 1, 2, 3, 4, 5, 6].forEach((element, index) => {
-      if (index === 0) {
-        arr.push(moment(new Date()));
-      } else {
-        const month = moment(arr[element]).subtract(3, "months");
-        arr.push(month);
-      }
-    });
-    const newQuater = arr.map((element) => {
-      return getQuarter(element);
-    });
-    return newQuater;
+    return getListQuanter();
   }, [moment]);
 
   useEffect(() => {
@@ -155,10 +145,17 @@ const FilterComponent = ({ disabled, screen }) => {
             {t("filter.back")}
           </div>
         )}
-        {!disabled && <span>{t("filter.city")}</span>}
-        {!disabled ? (
+        {!disabled ||
+        (patch === SCREEN_DEFAULT[2] && user?.is_superuser === "True") ? (
+          <span>{t("filter.city")}</span>
+        ) : (
+          <div />
+        )}
+        {!disabled ||
+        (patch === SCREEN_DEFAULT[2] && user?.is_superuser === "True") ? (
           <Select
             defaultValue={defaultCity || t("common.none")}
+            value={citySelected?.name || t("common.none")}
             className="select-city"
             onChange={(e) => {
               getHostPital(citiesData[e].code);
@@ -207,7 +204,9 @@ const FilterComponent = ({ disabled, screen }) => {
             )}
           </Select>
         )}
-        {!disabled || patch === SCREEN_DEFAULT[2] || !hospitalSelected ? (
+        {(!disabled || !hospitalSelected || patch === SCREEN_DEFAULT[2]) &&
+        patch !== SCREEN_DEFAULT[4] &&
+        patch !== SCREEN_DEFAULT[7] ? (
           <div>
             {listQuater?.length > 0 && (
               <Select
@@ -252,14 +251,14 @@ const FilterComponent = ({ disabled, screen }) => {
           {t("filter.generateReport")}
         </div>
       ) : null}
-      {(patch === SCREEN_DEFAULT[1] || patch === "/") &&
+      {/* {(patch === SCREEN_DEFAULT[1] || patch === "/") &&
       !hospitalSelected &&
       citySelected &&
       dashboardData ? (
         <BtnExportCity onClick={() => null}>
           {t("dashBoard.provincialReport")}
         </BtnExportCity>
-      ) : null}
+      ) : null} */}
 
       {patch === SCREEN_DEFAULT[6] && (
         <div className="export" onClick={exportPdfData}>

@@ -1,19 +1,21 @@
-import { Spin } from "antd";
 import React from "react";
+import { Spin } from "antd";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+
 import { HeaderScreen } from "..";
 import { EDepartment } from "../../common/const";
-import PairRadarChart from "../../components/RadaChart/PairRadarChart";
-import RadaChart from "../../components/RadaChart/RadaChart";
-import VietNamChart from "../../components/VietNamChart/VietNamChart";
 import { showConfirm } from "../../helpers/modal-confirm";
 import { useLableData } from "../../hooks/useLableData";
-import BornComponent from "../born";
 import { ChartContainerWrapper, ChartWrapper, SpinWrapper } from "../styled";
 
-const Home = ({ isLoading, value, setValue }) => {
+import CountryOverview from "./countryOverview/CountryOverview";
+import BornComponent from "../born";
+import CityOverview from "./cityOverView/CityOverview";
+import RadaChart from "../../components/RadaChart/RadaChart";
+
+const Home = ({ isLoading, value, setValue, setIsLoading }) => {
   const { t } = useTranslation();
   const currentQuarter = useSelector((state) => state?.data?.currentQuarter);
   const citySelected = useSelector((state) => state.data.citySelected);
@@ -104,48 +106,18 @@ const Home = ({ isLoading, value, setValue }) => {
       }) || [];
     return data || null;
   }, [dashboardData, value, currentQuarter]);
-
   return (
     <div>
-      {!hospitalSelected && (
+      {!hospitalSelected || hospitalSelected?.code === -1 ? (
         <>
-          {!citySelected && !isLoading ? (
-            <ChartWrapper>
-              <ChartContainerWrapper>
-                <PairRadarChart
-                  data2={[60, 80, 50, 90, 95, 75]}
-                  data1={[70, 75, 80, 85, 60, 65]}
-                  title="Tiêu chí về Sản khoa"
-                />
-              </ChartContainerWrapper>
-
-              <ChartContainerWrapper>
-                <RadaChart
-                  data2={[70, 70, 70, 70, 70, 70]}
-                  title={t("chart.pediatric")}
-                />
-              </ChartContainerWrapper>
-              <VietNamChart />
-            </ChartWrapper>
+          {!citySelected || citySelected?.code === -1 ? (
+            <CountryOverview setIsLoading={setIsLoading} />
           ) : (
-            <ChartWrapper>
-              <ChartContainerWrapper>
-                <PairRadarChart
-                  data2={[23, 79, 87, 98, 78, 65]}
-                  data1={[34, 56, 87, 54, 43, 43]}
-                  title="Tiêu chí về Sản khoa"
-                />
-              </ChartContainerWrapper>
-
-              <ChartContainerWrapper>
-                <RadaChart
-                  data2={[34, 56, 87, 54, 43, 43]}
-                  title={t("chart.pediatric")}
-                />
-              </ChartContainerWrapper>
-            </ChartWrapper>
+            <CityOverview setIsLoading={setIsLoading} />
           )}
         </>
+      ) : (
+        <div />
       )}
 
       {isLoading && (
@@ -153,7 +125,7 @@ const Home = ({ isLoading, value, setValue }) => {
           <Spin size="large" />
         </SpinWrapper>
       )}
-      {hospitalSelected && !isLoading ? (
+      {hospitalSelected && hospitalSelected?.code !== -1 && !isLoading ? (
         <>
           <ChartWrapper>
             {dataRadarST && (

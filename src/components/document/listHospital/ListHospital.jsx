@@ -20,17 +20,9 @@ const ListHospital = () => {
   const [hospital, setHospital] = useState(null);
   const token = useSelector((state) => state?.auth?.token);
   const getDataAwarded = async () => {
-    const response = await sendGet("/dm/data/hospital?code=61");
+    const response = await sendGet("/dm/data/hospital?info=awarded");
     if (response?.status === "successful") {
-      setHospital([
-        response?.hospital,
-        response?.hospital,
-        response?.hospital,
-        response?.hospital,
-        response?.hospital,
-        response?.hospital,
-        response?.hospital,
-      ]);
+      setHospital(response?.hospitals);
     }
   };
 
@@ -38,12 +30,12 @@ const ListHospital = () => {
     getDataAwarded();
   }, []);
 
-  const onUpdate = async (year, name) => {
+  const onUpdate = async (year, name, code) => {
     const myHeaders = new Headers({
       Authorization: "Token " + token,
       "Content-Type": "application/x-www-form-urlencoded",
     });
-    fetch(`${linkApi}/dm/data/hospital?code=61`, {
+    fetch(`${linkApi}/dm/data/hospital?code=${code}`, {
       method: "POST",
       headers: myHeaders,
       body: new URLSearchParams({
@@ -52,11 +44,14 @@ const ListHospital = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        const arrUpdate = [];
-        for (let i = 0; i < hospital.length; i++) {
-          arrUpdate.push(data?.hospital);
-        }
-        setHospital(arrUpdate);
+        setHospital(
+          hospital?.map((element) => {
+            if (data?.hospital?.code === element.code) {
+              return data?.hospital;
+            }
+            return element;
+          })
+        );
         message.success(`Updated successfully.`);
       })
       .catch(() => {

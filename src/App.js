@@ -20,9 +20,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import StyleGlobal from "./styles";
 
 const RootRouter = function () {
-  const user = localStorage.getItem("user")
-    ? JSON.parse(localStorage.getItem("user"))
-    : null;
   const location = useLocation();
   const navigate = useNavigate();
   const token = useSelector((state) => state?.auth?.token);
@@ -57,13 +54,12 @@ const RootRouter = function () {
       }
     };
 
-
-    coeSocket.onclose = function(e) {
+    coeSocket.onclose = function (e) {
       if (coeSocket.readyState == 3) {
-          coeSocket = null
-          setTimeout(function() {
-              wsConnectionCOE(url)
-          }, 5000)
+        coeSocket = null;
+        setTimeout(function () {
+          wsConnectionCOE(url);
+        }, 5000);
       }
     };
   }
@@ -78,6 +74,7 @@ const RootRouter = function () {
       navigate("/login");
     }
   }, [token]);
+//<<<<<<< HEAD
 
   // wsConnectionCOE(COE_WS_URL);
   console.log("locationlocation", location);
@@ -85,6 +82,8 @@ const RootRouter = function () {
 
 //=======
 //>>>>>>> 600adee32c31919741a8e03c4f623a843e542d66
+////=======
+//>>>>>>> 52fdb239d16641f85f62a047d67110039c2be949
   return (
     <div>
       <Suspense>

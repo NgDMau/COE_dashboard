@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 
 import Document from "./document";
 import i18next from "i18next";
 
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Dropdown, Menu, Segmented } from "antd";
@@ -22,7 +22,9 @@ import { EDepartment } from "../common/const";
 import { SCREEN_DEFAULT } from "../common/ngok";
 import { storeSetLanguage } from "../store/auth-reducer";
 import {
+  storeSetCitySelected,
   storeSetDashboardData,
+  storeSethospitalSelected,
   storeSetTableData,
 } from "../store/data-reducer";
 import {
@@ -91,14 +93,20 @@ const AppContainer = ({ screen, title, setScreen }) => {
           disabled={
             patch === SCREEN_DEFAULT[2] ||
             patch === SCREEN_DEFAULT[4] ||
-            patch === SCREEN_DEFAULT[6]
+            patch === SCREEN_DEFAULT[6] ||
+            patch === SCREEN_DEFAULT[7]
           }
           screen={screen}
           setScreen={setScreen}
         />
       </div>
       {patch === SCREEN_DEFAULT[1] || patch === "/" ? (
-        <Home isLoading={isLoading} value={value} setValue={setValue} />
+        <Home
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+          value={value}
+          setValue={setValue}
+        />
       ) : (
         <div />
       )}
@@ -114,6 +122,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
 export default AppContainer;
 
 function PathComponent({ screen, setScreen }) {
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const language = useSelector((state) => state?.auth?.language);
@@ -164,8 +173,18 @@ function PathComponent({ screen, setScreen }) {
   return (
     <PathWrapper>
       <div>
-        <span onClick={() => setScreen(1)}>{t("screen.home")}</span> /{" "}
-        {screenFake[screen - 1]}
+        <span
+          onClick={() => {
+            dispatch(storeSetCitySelected(null));
+            dispatch(storeSethospitalSelected(null));
+            setScreen(1);
+            navigate("/");
+            // window.location.reload();
+          }}
+        >
+          {t("screen.home")}
+        </span>{" "}
+        / {screenFake[screen - 1]}
       </div>
       <Dropdown overlay={menu} placement="bottomLeft">
         <Buttonanguage>

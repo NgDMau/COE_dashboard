@@ -10,7 +10,14 @@
     "engLish": "English",
     "welcome": "Chào mừng",
     "retypePassword": "Nhập lại mật khẩu",
-    "none": "Trống"
+    "none": "-- Tất cả --",
+    "vaginalDelievery": "Sinh thường",
+    "CSection": "Sinh mổ",
+    "vaginalDelievery2": "(Sinh thường)",
+    "CSection2": "(Sinh mổ)",
+    "afterBirth": "Bú sớm sau sinh ",
+    "hospitalStay": "Trẻ sau sinh được bú mẹ hoàn toàn trong thời gian ở viện ",
+    "exclusivelyBreastfed": "Trẻ < 1 tháng điều trị tại viện được bú mẹ hoàn toàn "
   },
   "obstetricsData": {
     "obstetricsKS_1": "Thực hiện da kề da",
@@ -104,7 +111,10 @@
     "notParticipate": "Chưa tham gia",
     "underMonth": "Bà mẹ có con dưới 1 tháng tuổi",
     "sectionMothers": "Bà mẹ sinh mổ",
-    "normalMother": "Bà mẹ sinh thường"
+    "normalMother": "Bà mẹ sinh thường",
+    "link": "Link khảo sát",
+    "summaryReport": "Báo cáo Tổng hợp chỉ số của tỉnh",
+    "interviews": "Báo cáo Tổng hợp các cuộc phỏng vấn thành công"
   },
   "development": "Dự án đang phát triển",
   "dashBoard": {
@@ -138,7 +148,8 @@
     "createDocument": "Tạo mới tài liệu",
     "clickDrag": "Nhấp hoặc kéo tệp để tải lên",
     "searchOrUpload": "Vui lòng tìm kiếm hoặc tải lên một tài liệu",
-    "decisionInstruction": "Quyết định/hướng dẫn"
+    "decisionInstruction": "Quyết định/hướng dẫn",
+    "confirmDelete": "Bạn có chắc muốn xóa "
   },
   "exportData": {
     "indexHospitals": "Chỉ số của các bệnh viện trong tỉnh/thành phố",
@@ -166,16 +177,31 @@
     "errorPassword": "Tên người dùng hoặc mật khẩu sai"
   },
   "userManagement": {
-    "permission": "Quyền tài khoản",
     "superuser": "Người quản lý tài khoản",
     "staff": "Nhân viên",
-    "city": "Tỉnh/Thành phố",
     "nameCity": "Tên Tỉnh/Thành phố",
     "userName": "Tên tài khoản",
-    "email": "Email",
     "password": "Mật khẩu",
     "cancel": "Hủy",
     "inputNewPassword": "Vui lòng nhập mật khẩu mới !",
-    "save": "Lưu"
+    "save": "Lưu",
+    "fullInformation": "Vui lòng nhập đầy đủ thông tin.",
+    "userAdministration": "Quản trị người dùng",
+    "user": "Người dùng",
+    "city": "Tỉnh/Thành phố",
+    "email": "Địa chỉ email",
+    "permission": "Quyền tài khoản",
+    "permission_sort": "Quyền",
+    "dateCreated": "Ngày tạo",
+    "addUser": "Thêm người dùng",
+    "confirmDelete": "Bạn có chắc muốn xóa người dùng?",
+    "editUser": "Chỉnh sửa người dùng",
+    "createUser": "Tạo tài khoản"
+  },
+  "overview": {
+    "criteriaObstetrics": "Tiêu chí về Sản khoa",
+    "notParticipate": "Chưa tham gia",
+    "noDataYet": "Chưa có số liệu",
+    "index": "Chỉ số"
   }
 }
