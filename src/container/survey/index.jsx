@@ -92,13 +92,13 @@ const SurveyLink = () => {
                   className="link"
                   onClick={() => indicesState("calls_stats")}
                 >
-                  {t("surveyLink.summaryReport")} {citySelected?.name}
+                  {t("surveyLink.interviews")}
                 </Button>
                 <Button
                   className="link"
                   onClick={() => indicesState("indices_stats")}
                 >
-                  {t("surveyLink.interviews")}
+                  {t("surveyLink.summaryReport")} {citySelected?.name}
                 </Button>
                 <Button className="link" onClick={() => window.open(linkUrl)}>
                   {t("surveyLink.link")}
