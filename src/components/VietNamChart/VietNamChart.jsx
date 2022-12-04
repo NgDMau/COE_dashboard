@@ -190,9 +190,15 @@ const VietNamChart = ({ countryData }) => {
           {t("userManagement.city")}: {selectCity?.province_name}
         </b>
         <HeaderTableWrapper>
-          <Content></Content>
-          <BornWrapper>{t("common.vaginalDelievery")}</BornWrapper>
-          <BornWrapper>{t("common.CSection")}</BornWrapper>
+          <Content>
+            <b>{t("overview.index")}</b>
+          </Content>
+          <BornWrapper>
+            <b>{t("common.vaginalDelievery")}</b>
+          </BornWrapper>
+          <BornWrapper>
+            <b>{t("common.CSection")}</b>
+          </BornWrapper>
         </HeaderTableWrapper>
         <HeaderTableWrapper>
           <Content>{t("common.afterBirth")}</Content>

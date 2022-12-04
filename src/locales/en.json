@@ -193,6 +193,7 @@
   "overview": {
     "criteriaObstetrics": "Criteria for Obstetrics",
     "notParticipate": "Not participate",
-    "noDataYet": "No data yet"
+    "noDataYet": "No data yet",
+    "index": "Index"
   }
 }
