@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Document from "./document";
 import i18next from "i18next";
 
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Dropdown, Menu, Segmented } from "antd";
@@ -121,6 +121,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
 export default AppContainer;
 
 function PathComponent({ screen, setScreen }) {
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const language = useSelector((state) => state?.auth?.language);
@@ -176,6 +177,7 @@ function PathComponent({ screen, setScreen }) {
             dispatch(storeSetCitySelected(null));
             dispatch(storeSethospitalSelected(null));
             setScreen(1);
+            navigate("/");
             // window.location.reload();
           }}
         >

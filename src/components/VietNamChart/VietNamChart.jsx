@@ -19,7 +19,14 @@ import {
 const vietnamGeoUrl =
   "https://res.cloudinary.com/pv-duc/raw/upload/v1626132866/province.json?fbclid=IwAR1fDTBNTPRKAq9Vw2JXrKWmhL8mQI_S9yLcgB9uTyTPKxUe492rj1-vowQ";
 
-const listColor = ["#b7eb8f", "#95de64", "#73d13d", "#52c41a", "#389e0d"];
+const listColor = [
+  "#bdc3c7",
+  "#b7eb8f",
+  "#95de64",
+  "#73d13d",
+  "#52c41a",
+  "#389e0d",
+];
 const VietNamChart = ({ countryData }) => {
   const { t } = useTranslation();
   const vietnam = [vietnamGeoUrl];
@@ -46,9 +53,9 @@ const VietNamChart = ({ countryData }) => {
 
   const returnNumberSelected = (value) => {
     if (value === "NaN") {
-      return "(0%)";
+      return "0%";
     }
-    return `(${value || 0}%)`;
+    return `${value || 0}%`;
   };
 
   const getmedium = (arr) => {
@@ -115,35 +122,35 @@ const VietNamChart = ({ countryData }) => {
         return returnNumber(dataCity?.NK_4);
       }
     } else {
-      return 0;
+      return null;
     }
   };
 
   const returnNumber = (value) => {
-    if (value === "NaN") {
-      return 0;
-    }
-    if (value === "N/A") {
-      return 0;
-    }
-    return value || 0;
+    return value;
   };
 
   const checkColor = (number) => {
-    if (number < 20) {
+    if (number === null) {
+      return "#fff";
+    }
+    if (number === 0 || number === "NaN") {
       return listColor[0];
     }
-    if (number >= 20 && number < 40) {
+    if (number < 20) {
       return listColor[1];
     }
-    if (number >= 40 && number < 60) {
+    if (number >= 20 && number < 40) {
       return listColor[2];
     }
-    if (number >= 60 && number < 80) {
+    if (number >= 40 && number < 60) {
       return listColor[3];
     }
-    if (number >= 80 && number < 100) {
+    if (number >= 60 && number < 80) {
       return listColor[4];
+    }
+    if (number >= 80 && number < 100) {
+      return listColor[5];
     }
     return listColor[0];
   };
@@ -158,7 +165,7 @@ const VietNamChart = ({ countryData }) => {
       t("common.exclusivelyBreastfed") + t("common.vaginalDelievery2"),
     ];
     return list;
-  }, [countryData, t]);
+  }, [t, listColor]);
 
   return (
     <VietNamChartWrapper>

@@ -90,7 +90,6 @@ const CityOverview = ({ setIsLoading }) => {
       }) || [];
     return dataST;
   }, [overviewCity, currentQuarter]);
-  console.log("11111", 111);
   return (
     <ChartWrapper>
       <ChartContainerWrapper>
