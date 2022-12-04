@@ -56,6 +56,9 @@ const VietNamChart = ({ countryData }) => {
     if (value === "NaN") {
       return "0%";
     }
+    if (!value) {
+      return "0%";
+    }
     return `${value.toFixed(2) || 0}%`;
   };
 
