@@ -147,12 +147,8 @@ const FilterComponent = ({ disabled, screen }) => {
             {t("filter.back")}
           </div>
         )}
-        {!disabled || patch === SCREEN_DEFAULT[2] ? (
-          <span>{t("filter.city")}</span>
-        ) : (
-          <div />
-        )}
-        {!disabled || patch === SCREEN_DEFAULT[2] ? (
+        {!disabled ? <span>{t("filter.city")}</span> : <div />}
+        {!disabled ? (
           <Select
             defaultValue={defaultCity || t("common.none")}
             value={citySelected?.name || t("common.none")}

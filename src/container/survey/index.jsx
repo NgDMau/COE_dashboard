@@ -73,10 +73,6 @@ const SurveyLink = () => {
     getDataDashboard(citySelected?.code);
   }, [citySelected, currentQuarter]);
 
-  if (!citySelected || citySelected?.code === -1) {
-    return <div />;
-  }
-
   return (
     <SurveyLinkWrapper>
       <div className="container">

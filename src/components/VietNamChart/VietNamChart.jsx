@@ -50,9 +50,13 @@ const VietNamChart = ({ countryData }) => {
           removeVietnameseTones(cityName?.toLowerCase())?.replaceAll(" ", "")
       ) || null;
     if (find) {
-      const dataCity = countryData[currentQuarter]?.data?.map_data?.data?.find(
-        (element) => element?.province_code === find?.code
-      );
+      const dataCity =
+        countryData[currentQuarter]?.data?.map_data?.data?.find(
+          (element) => element?.province_code === find?.code
+        ) || null;
+      if (!dataCity) {
+        return 0;
+      }
       if (selected == 0) {
         return getmedium([
           dataCity?.SK_4_ST,
