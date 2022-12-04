@@ -10,8 +10,11 @@ export const ContentWrapper = styled.div`
   height: 30px;
 `;
 export const ColorGroup = styled.div`
-  margin-left: 100px;
+  margin-left: 200px;
 `;
 export const CountryWrapper = styled.div`
   margin-bottom: 10px;
+  .select {
+    width: 500px;
+  }
 `;
