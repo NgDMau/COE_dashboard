@@ -21,7 +21,6 @@ const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [city, setCity] = useState("");
-  console.log("citycitycitycity", modalData);
 
   useEffect(() => {
     if (modalData && modalData !== false && modalData?.isEdit) {
@@ -33,7 +32,6 @@ const EditUser = ({ modalData, setIsOpen, createUser, updateUser }) => {
         (element) => element?.code === Number(modalData?.province_code)
       );
       if (find) {
-        console.log("findddd", find);
         setCity(find);
       } else {
         setCity("");

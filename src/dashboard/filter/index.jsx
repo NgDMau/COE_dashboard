@@ -38,8 +38,6 @@ const FilterComponent = ({ disabled, screen }) => {
     ? JSON.parse(localStorage.getItem("user"))
     : null;
 
-  console.log("useruseruseruseruser", user);
-
   const hospitalSelected = useSelector(
     (state) => state?.data?.hospitalSelected
   );

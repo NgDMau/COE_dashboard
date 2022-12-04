@@ -21,7 +21,12 @@ import { Layout, Menu, Modal } from "antd";
 import { useState } from "react";
 import { storeSetCollapse } from "../store/dashboard-reducer";
 import storage from "redux-persist/lib/storage";
-import { storeSetCitiesData, storeSetCitySelected, storeSethospitalSelected, storeSetHostpitalData } from "../store/data-reducer";
+import {
+  storeSetCitiesData,
+  storeSetCitySelected,
+  storeSethospitalSelected,
+  storeSetHostpitalData,
+} from "../store/data-reducer";
 
 const { Sider } = Layout;
 
@@ -89,12 +94,14 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
           <Menu
             mode="inline"
             defaultSelectedKeys={[`${screen}`]}
+            selectedKeys={[`${screen}`]}
             onSelect={(e) => {
+              console.log(e);
               if (Number(e.key) === 4 && user?.is_superuser === "False") {
                 showConfirm();
               }
               if (Number(e.key) === 5) {
-                setScreen(Number(7));
+                setScreen(Number(5));
                 navigate(`${SCREEN_DEFAULT[7]}`);
                 return;
               }
