@@ -133,6 +133,7 @@ const Home = ({ isLoading, value, setValue, setIsLoading }) => {
                 <RadaChart
                   data2={dataRadarST}
                   isNormal
+                  lables={value !== EDepartment.OBSTETRIC && labelsNK}
                   title={
                     value === EDepartment.OBSTETRIC
                       ? t("chart.vaginalDelievery")
@@ -143,11 +144,7 @@ const Home = ({ isLoading, value, setValue, setIsLoading }) => {
             )}
             {dataRadarSM && value === EDepartment.OBSTETRIC ? (
               <ChartContainerWrapper>
-                <RadaChart
-                  data2={dataRadarSM}
-                  title={t("chart.CSection")}
-                  lables={labelsNK}
-                />
+                <RadaChart data2={dataRadarSM} title={t("chart.CSection")} />
               </ChartContainerWrapper>
             ) : (
               <div />
