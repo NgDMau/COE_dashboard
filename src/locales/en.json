@@ -53,7 +53,13 @@
     "radar_3": "Exclusive breastfeeding during hospital stay",
     "radar_4": "Breastfeeding counseling",
     "radar_5": "Code compliance",
-    "radar_6": "Breastfeeding advice"
+    "radar_6": "Breastfeeding advice",
+    "radar_NK_1": "Take care of Kangaroo",
+    "radar_NK_2": "Mom daily visit > once",
+    "radar_NK_3": "Child breastfed totally while in hospital",
+    "radar_NK_4": "Feeding the baby with a bottle",
+    "radar_NK_5": "Comply with Decree 100",
+    "radar_NK_6": "Med staffs advising breastfeeding"
   },
   "screen": {
     "surveyResults": "Statistics",
