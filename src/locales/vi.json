@@ -94,7 +94,9 @@
     "normalRate": "Mức đạt sinh thường",
     "receivedTitle": "Đạt danh hiệu BV xuất sắc 2022",
     "pediatric": "Khoa Nhi",
-    "surveyStatistics": "Thống kê số lượng khảo sát"
+    "surveyStatistics": "Thống kê số lượng khảo sát",
+    "parameter": "Chỉ số",
+    "passLevel": "Mức đạt"
   },
   "born": {
     "criteria": "Tiêu chí",

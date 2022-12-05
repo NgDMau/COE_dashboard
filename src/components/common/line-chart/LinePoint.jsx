@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,12 +8,12 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
-import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
-import { useMemo } from 'react';
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import { faker } from "@faker-js/faker";
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import { useMemo } from "react";
 
 ChartJS.register(
   CategoryScale,
@@ -29,7 +29,7 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'bottom',
+      position: "bottom",
     },
     title: {
       display: true,
@@ -40,9 +40,9 @@ export const options = {
   },
   scales: {
     y: {
-      type: 'linear',
+      type: "linear",
       display: true,
-      position: 'right',
+      position: "right",
       min: -0,
       max: 100,
       // grid: {
@@ -68,7 +68,7 @@ export function LinePoint({
 }) {
   const { t } = useTranslation();
   const labels = Array.from({ length: 8 }, (_, i) => {
-    return time ? time[i] : '';
+    return time ? time[i] : "";
   });
 
   function difference(a, b) {
@@ -170,11 +170,11 @@ export function LinePoint({
 
     datasets: [
       {
-        label: t('chart.vaginalDelievery'),
+        label: t("chart.vaginalDelievery"),
         data: dataSTFormat?.format || [],
-        borderColor: '#0984e3',
-        backgroundColor: 'rgb(9, 132, 227,0.5)',
-        pointStyle: 'circle',
+        borderColor: "#0984e3",
+        backgroundColor: "rgb(9, 132, 227,0.5)",
+        pointStyle: "circle",
         borderWidth: 2,
         pointRadius: (element) => {
           const checked = dataSTFormat?.listNull.find(
@@ -190,11 +190,11 @@ export function LinePoint({
         },
       },
       {
-        label: t('chart.CSection'),
+        label: t("chart.CSection"),
         data: dataSMFormat?.format || [],
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        pointStyle: 'circle',
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        pointStyle: "circle",
         borderWidth: 2,
         pointRadius: (element) => {
           const checked = dataSMFormat?.listNull.find(
@@ -210,30 +210,30 @@ export function LinePoint({
         },
       },
       {
-        label: t('chart.normalRate'),
+        label: t("chart.normalRate"),
         fill: false,
-        backgroundColor: '#0984e3',
-        borderColor: '#0984e3',
+        backgroundColor: "#0984e3",
+        borderColor: "#0984e3",
         borderDash: [5, 5],
         data: labels.map(() =>
           faker.datatype.number({ min: rateNormal, max: rateNormal })
         ),
         borderWidth: 2,
-        pointStyle: 'hidden',
+        pointStyle: "hidden",
         pointRadius: 0,
         pointHoverRadius: 0,
       },
       {
-        label: t('chart.caesareanRate'),
+        label: t("chart.caesareanRate"),
         fill: false,
-        backgroundColor: 'red',
-        borderColor: 'red',
+        backgroundColor: "red",
+        borderColor: "red",
         borderDash: [5, 5],
         borderWidth: 2,
         data: labels.map(() =>
           faker.datatype.number({ min: rateCaesarean, max: rateCaesarean })
         ),
-        pointStyle: 'hidden',
+        pointStyle: "hidden",
         pointRadius: 0,
         pointHoverRadius: 0,
       },
@@ -249,11 +249,11 @@ export function LinePoint({
     labels,
     datasets: [
       {
-        label: 'Chỉ số',
+        label: t("chart.parameter"),
         data: dataSTFormat?.format || [],
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        pointStyle: 'circle',
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        pointStyle: "circle",
         borderWidth: 2,
         pointRadius: (element) => {
           const checked = dataSTFormat?.listNull.find(
@@ -269,16 +269,16 @@ export function LinePoint({
         },
       },
       {
-        label: 'Mức đạt',
+        label: t("chart.passLevel"),
         fill: false,
-        backgroundColor: 'red',
-        borderColor: 'red',
+        backgroundColor: "red",
+        borderColor: "red",
         borderDash: [5, 5],
         borderWidth: 2,
         data: labels.map(() =>
           faker.datatype.number({ min: rateNormal, max: rateNormal })
         ),
-        pointStyle: 'hidden',
+        pointStyle: "hidden",
         pointRadius: 0,
         pointHoverRadius: 0,
       },
@@ -286,6 +286,6 @@ export function LinePoint({
   };
 
   return (
-    <Line options={options} data={department === 'NK' ? dataNK : dataSK} />
+    <Line options={options} data={department === "NK" ? dataNK : dataSK} />
   );
 }

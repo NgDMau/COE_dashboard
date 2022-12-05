@@ -92,7 +92,9 @@
     "normalRate": "Normal fertility rate",
     "receivedTitle": "Received the title of excellent BV 2022",
     "pediatric": "Pediatric",
-    "surveyStatistics": "Statistics of the number of surveys"
+    "surveyStatistics": "Statistics of the number of surveys",
+    "parameter": "Parameter",
+    "passLevel": "Pass level"
   },
   "born": {
     "criteria": "Criteria",
