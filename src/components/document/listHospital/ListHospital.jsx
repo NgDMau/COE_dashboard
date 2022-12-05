@@ -3,6 +3,7 @@ import moment from "moment";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { sendGet, sendPost } from "../../../api/axios";
 import { linkApi } from "../../../common/ngok";
@@ -17,6 +18,7 @@ import {
 } from "./styled";
 
 const ListHospital = () => {
+  const { t } = useTranslation();
   const [hospital, setHospital] = useState(null);
   const token = useSelector((state) => state?.auth?.token);
   const getDataAwarded = async () => {
@@ -52,10 +54,10 @@ const ListHospital = () => {
             return element;
           })
         );
-        message.success(`Updated successfully.`);
+        message.success(t('document.updateSuccess'));
       })
       .catch(() => {
-        message.warning(`Updated error.`);
+        message.warning(t('document.updateError'));
       })
       .finally(() => {});
   };
@@ -68,11 +70,11 @@ const ListHospital = () => {
 
   return (
     <ListHospitalWrapper>
-      <TitleListHospital>Code awarded hospitals</TitleListHospital>
+      <TitleListHospital>{t("document.awardedHospitals")}</TitleListHospital>
       <SelectWrapper>
         <SelectHospitals
           showSearch
-          placeholder="Search for hospital"
+          placeholder={t("document.searchHostpital")}
           optionFilterProp="children"
           filterOption={(input, option) => option?.children?.includes(input)}
           filterSort={(optionA, optionB) =>
@@ -85,7 +87,7 @@ const ListHospital = () => {
             <Select.Option value={index}>{element?.name}</Select.Option>
           ))}
         </SelectHospitals>
-        <Tooltip placement="right" title="Add awared hospital">
+        <Tooltip placement="right" title={t("document.addHospital")}>
           <IconAdd src={getImagePath("more.png")} alt="" />
         </Tooltip>
       </SelectWrapper>

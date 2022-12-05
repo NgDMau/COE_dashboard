@@ -1,6 +1,6 @@
-import { Button } from 'antd';
-import styled from 'styled-components';
-import { rem } from '../helpers/rem/px-to-rem';
+import { Button } from "antd";
+import styled from "styled-components";
+import { rem } from "../helpers/rem/px-to-rem";
 
 export const ChartContainerWrapper = styled.div`
   border: 1px solid #ecf0f1;
@@ -15,7 +15,10 @@ export const SpinWrapper = styled.div`
   margin-top: ${rem(100)};
 `;
 export const ChartWrapper = styled.div`
-  width: 80vw;
+  ${(props) =>
+    props?.isCollapse
+      ? `calc(100vw - ${rem(85)})`
+      : `calc(100vw - ${rem(230)})`};
   display: flex;
   flex-direction: column;
   justify-content: center;

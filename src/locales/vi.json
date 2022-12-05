@@ -58,7 +58,7 @@
     "radar_6": "Tư vấn nuôi con bằng sữa mẹ",
     "radar_NK_1": "Thực hiện chăm sóc Kangaroo",
     "radar_NK_2": "Mẹ được thăm con ít nhất 1 lần/ngày",
-    "radar_NK_3": "Trẻ được ăn sữa mẹ hoàn toàn trong thời gian ở viện",
+    "radar_NK_3": "Trẻ ăn sữa mẹ hoàn toàn trong thời gian ở viện",
     "radar_NK_4": "Cho trẻ ăn sữa bằng bình bú",
     "radar_NK_5": "Tuân thủ Nghị định 100",
     "radar_NK_6": "NVYT tư vấn và hướng dẫn NCBSM"
@@ -94,7 +94,9 @@
     "normalRate": "Mức đạt sinh thường",
     "receivedTitle": "Đạt danh hiệu BV xuất sắc 2022",
     "pediatric": "Khoa Nhi",
-    "surveyStatistics": "Thống kê số lượng khảo sát"
+    "surveyStatistics": "Thống kê số lượng khảo sát",
+    "parameter": "Chỉ số",
+    "passLevel": "Mức đạt"
   },
   "born": {
     "criteria": "Tiêu chí",
@@ -149,7 +151,12 @@
     "clickDrag": "Nhấp hoặc kéo tệp để tải lên",
     "searchOrUpload": "Vui lòng tìm kiếm hoặc tải lên một tài liệu",
     "decisionInstruction": "Quyết định/hướng dẫn",
-    "confirmDelete": "Bạn có chắc muốn xóa "
+    "confirmDelete": "Bạn có chắc muốn xóa ",
+    "createSuccess": "Tạo mới thành công.",
+    "searchHostpital": "Tìm kiếm bệnh viện",
+    "addHospital": "Thêm bệnh viện",
+    "updateSuccess": "Cập nhật thành công.",
+    "updatedError": "Cập nhật thất bại."
   },
   "exportData": {
     "indexHospitals": "Chỉ số của các bệnh viện trong tỉnh/thành phố",
