@@ -149,7 +149,12 @@
     "clickDrag": "Click or drag file to this area to upload",
     "searchOrUpload": "Please search or upload a document",
     "decisionInstruction": "Decision/instruction",
-    "confirmDelete": "Do you want to delete "
+    "confirmDelete": "Do you want to delete ",
+    "createSuccess": "Create successfully.",
+    "searchHostpital": "Search for hospital",
+    "addHospital": "Add awared hospital",
+    "updateSuccess": "Updated successfully.",
+    "updatedError": "Updated error."
   },
   "exportData": {
     "indexHospitals": "Index of hospitals in the province/city",

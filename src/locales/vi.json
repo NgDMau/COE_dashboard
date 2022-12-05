@@ -151,7 +151,12 @@
     "clickDrag": "Nhấp hoặc kéo tệp để tải lên",
     "searchOrUpload": "Vui lòng tìm kiếm hoặc tải lên một tài liệu",
     "decisionInstruction": "Quyết định/hướng dẫn",
-    "confirmDelete": "Bạn có chắc muốn xóa "
+    "confirmDelete": "Bạn có chắc muốn xóa ",
+    "createSuccess": "Tạo mới thành công.",
+    "searchHostpital": "Tìm kiếm bệnh viện",
+    "addHospital": "Thêm bệnh viện",
+    "updateSuccess": "Cập nhật thành công.",
+    "updatedError": "Cập nhật thất bại."
   },
   "exportData": {
     "indexHospitals": "Chỉ số của các bệnh viện trong tỉnh/thành phố",
