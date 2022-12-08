@@ -12,7 +12,6 @@ import {
 import { Line } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
 import { useMemo } from "react";
 
 ChartJS.register(
@@ -43,16 +42,9 @@ export const options = {
       type: "linear",
       display: true,
       position: "right",
-      min: -0,
-      max: 100,
-      // grid: {
-      //   display: false,
-      // },
-    },
-    x: {
-      // grid: {
-      //   display: false,
-      // },
+      step: 5,
+      min: -10,
+      max: 110,
     },
   },
 };
@@ -70,6 +62,19 @@ export function LinePoint({
   const labels = Array.from({ length: 8 }, (_, i) => {
     return time ? time[i] : "";
   });
+
+  const renderCircle = (innerText = "100", size = 30, color = "red") => {
+    const svg_encoded = encodeURIComponent(`
+    <svg width="49" height="52" viewBox="0 0 49 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="49" height="52" rx="24.5" fill="${color}"/>
+      <text x="8" y="33" font-size="1.5em" font-weight="bold" fill="white">${innerText}</text>
+    </svg>
+    `);
+    const svg_uri = `data:image/svg+xml;charset=UTF-8,${svg_encoded}`;
+    const illu = new Image(size, size);
+    illu.src = svg_uri;
+    return illu;
+  };
 
   function difference(a, b) {
     return Math.abs(a - b);
@@ -174,7 +179,9 @@ export function LinePoint({
         data: dataSTFormat?.format || [],
         borderColor: "#0984e3",
         backgroundColor: "rgb(9, 132, 227,0.5)",
-        pointStyle: "circle",
+        pointStyle: dataSTFormat?.format?.map((element) =>
+          renderCircle(element, 25, `rgb(9, 132, 227, 0.8)`)
+        ),
         borderWidth: 2,
         pointRadius: (element) => {
           const checked = dataSTFormat?.listNull.find(
@@ -194,7 +201,9 @@ export function LinePoint({
         data: dataSMFormat?.format || [],
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
-        pointStyle: "circle",
+        pointStyle: dataSTFormat?.format?.map((element) =>
+          renderCircle(element, 25, `rgba(255, 99, 132, 0.8)`)
+        ),
         borderWidth: 2,
         pointRadius: (element) => {
           const checked = dataSMFormat?.listNull.find(
@@ -253,7 +262,9 @@ export function LinePoint({
         data: dataSTFormat?.format || [],
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
-        pointStyle: "circle",
+        pointStyle: dataSTFormat?.format?.map((element) =>
+        renderCircle(element, 25, `rgba(255, 99, 132, 0.8)`)
+      ),
         borderWidth: 2,
         pointRadius: (element) => {
           const checked = dataSTFormat?.listNull.find(
