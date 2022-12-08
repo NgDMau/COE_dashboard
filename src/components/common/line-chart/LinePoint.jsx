@@ -63,11 +63,22 @@ export function LinePoint({
     return time ? time[i] : "";
   });
 
+  const position = (value) => {
+    if (!value && value !== 0) return "0";
+    if (value === 100) {
+      return "6";
+    }
+    if (value === 0) return "18";
+    return "12";
+  };
+
   const renderCircle = (innerText = "100", size = 30, color = "red") => {
     const svg_encoded = encodeURIComponent(`
     <svg width="49" height="52" viewBox="0 0 49 52" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="49" height="52" rx="24.5" fill="${color}"/>
-      <text x="8" y="33" font-size="1.5em" font-weight="bold" fill="white">${innerText}</text>
+      <text x="${position(
+        innerText
+      )}" y="33" font-size="1.5em" font-weight="bold" fill="white">${innerText}</text>
     </svg>
     `);
     const svg_uri = `data:image/svg+xml;charset=UTF-8,${svg_encoded}`;
@@ -263,8 +274,8 @@ export function LinePoint({
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
         pointStyle: dataSTFormat?.format?.map((element) =>
-        renderCircle(element, 25, `rgba(255, 99, 132, 0.8)`)
-      ),
+          renderCircle(element, 25, `rgba(255, 99, 132, 0.8)`)
+        ),
         borderWidth: 2,
         pointRadius: (element) => {
           const checked = dataSTFormat?.listNull.find(
