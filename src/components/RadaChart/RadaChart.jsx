@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { RadarWrapper, TitleChart } from "./styled";
 import { Radar } from "@ant-design/plots";
 
-const RadaChart = React.meno(({ data2, isNormal, title, lables }) => {
+const RadaChart = React.memo(({ data2, isNormal, title, lables }) => {
   const { t } = useTranslation();
   const labelsData = lables || [
     t("obstetricsData.radar_1"),

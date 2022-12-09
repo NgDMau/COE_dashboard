@@ -84,12 +84,12 @@ export const useLableData = () => {
   ];
 
   const labelsNK = [
-    t("obstetricsData.radar_NK_1"),
-    t("obstetricsData.radar_NK_2"),
-    t("obstetricsData.radar_NK_3"),
-    t("obstetricsData.radar_NK_4"),
-    t("obstetricsData.radar_NK_5"),
-    t("obstetricsData.radar_NK_6"),
+    t("obstetricsData.radar_1"),
+    t("obstetricsData.radar_2"),
+    t("obstetricsData.radar_3"),
+    t("obstetricsData.radar_4"),
+    t("obstetricsData.radar_5"),
+    t("obstetricsData.radar_6"),
   ];
 
   return {
