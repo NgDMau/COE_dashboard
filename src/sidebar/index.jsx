@@ -73,16 +73,17 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
     setTitle(listFormReport[0]);
   }, [setTitle]);
   return (
-    <SiderbarWrapper collapse={isCollapse}>
+    <SiderbarWrapper
+      collapse={isCollapse}
+      onMouseEnter={() => setIsCollapse(false)}
+      onMouseLeave={() => setIsCollapse(true)}
+    >
       <div>
         <div className="logo">
           <img className="img-logo" src={logo} alt="" />
-          <MenuIconWrapper
-            src={isCollapse ? menuIcon : backIcon}
-            alt=""
-            onClick={() => setIsCollapse(!isCollapse)}
-            collapse={isCollapse}
-          />
+          {isCollapse && (
+            <MenuIconWrapper src={menuIcon} alt="" collapse={isCollapse} />
+          )}
         </div>
 
         <Sider
