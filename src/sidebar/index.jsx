@@ -97,8 +97,15 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
             defaultSelectedKeys={[`${screen}`]}
             selectedKeys={[`${screen}`]}
             onSelect={(e) => {
-              if (Number(e.key) === 4 && user?.is_superuser === "False") {
+              console.log(e.key);
+              if (
+                (Number(e.key) === 4 ||
+                  Number(e.key) === 3 ||
+                  Number(e.key) === 5) &&
+                user?.is_superuser === "False"
+              ) {
                 showConfirm();
+                return;
               }
               if (Number(e.key) === 5) {
                 setScreen(Number(5));
