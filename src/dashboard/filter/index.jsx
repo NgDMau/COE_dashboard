@@ -26,6 +26,7 @@ import { storeSetTab } from "../../store/document-reducer";
 import Loading from "../../components/common/Loading/Loading";
 import moment from "moment";
 import { getListQuanter } from "../../helpers/getListQuanter";
+import { removeAccents } from "../../helpers/convertVie";
 
 const FilterComponent = ({ disabled, screen }) => {
   const { t } = useTranslation();
@@ -62,15 +63,20 @@ const FilterComponent = ({ disabled, screen }) => {
   const defaultCity = useMemo(() => {
     return citySelected?.name || "";
   }, [hospitalSelected, citiesData]);
+  console.log("citySelectedcitySelectedcitySelected", hospitalSelected);
   const exportPdfData = async () => {
     setIsLoadingScreen(true);
     setTimeout(() => {
       const element = document.getElementById("exportDagta");
       const element2 = document.getElementById("exportDagta2");
       const time = listQuater[7 - currentQuarter].replace("/", "_");
-
-      const fileName = `KQKS_SK_${time}.pdf`;
-      const fileName2 = `KQKS_NK_${time}.pdf`;
+      const hostpitalName =
+        removeAccents(
+          hospitalSelected?.name?.toLowerCase()?.replaceAll(" ", "")
+        ) || "";
+      const timeStamp = new Date().getTime();
+      const fileName = `KQKS_SanKhoa_${hostpitalName}_${time}_${timeStamp}.pdf`;
+      const fileName2 = `KQKS_NhiKhoa_${hostpitalName}_${time}_${timeStamp}.pdf`;
       const opt = {
         margin: 1,
         image: { type: "jpeg", quality: 0.98 },
