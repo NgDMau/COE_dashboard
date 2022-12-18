@@ -107,6 +107,27 @@ const BornComponent = ({ data, isGeneral, dataList, department }) => {
     });
     return response || [];
   }, [dataMainSK, data, dataList, department]);
+  const violationDecree = useMemo(() => {
+    if (!dataList || !dataMainSK || dataMainSK?.length === 0) {
+      return null;
+    }
+    const response = [1, 2, 3, 4, 5, 6, 7, 8]?.map((element) => {
+      return department === "SK"
+        ? dataList[element]?.data[department]?.[11]?.values?.PER || 0
+        : dataList[element]?.data[department]?.[8]?.values?.PER || 0;
+    });
+    return response || [];
+  }, [dataList, department, dataMainSK]);
+  console.log("datadata", dataList);
+
+  const quanterViolation = useMemo(() => {
+    if (!dataList) {
+      return {};
+    }
+    return department === "SK"
+      ? dataList[currentQuarter]?.data[department]?.[11]?.values || {}
+      : dataList[currentQuarter]?.data[department]?.[8]?.values || {};
+  }, [currentQuarter, dataList, department]);
 
   return (
     <BornWrapper>
@@ -147,6 +168,34 @@ const BornComponent = ({ data, isGeneral, dataList, department }) => {
             />
           </div>
         ))}
+      <div className="row">
+        <div className="stt">{data?.length + 1}</div>
+        <div className="criteria">Vi phạm nghị định 100</div>
+        <div className="chart">
+          <div className="container-chart">
+            <LinePoint
+              hiddenCaesarean={"NK"}
+              dataST={violationDecree}
+              time={timeLine}
+              department={"NK"}
+              passLevelST={0}
+              passLevelSM={0}
+            />
+          </div>
+        </div>
+
+        <div className="w-20">
+          {quanterViolation?.PER}
+          {quanterViolation?.PER !== "N/A" ? "%" : ""}
+        </div>
+        <div className="w-10 border-none">
+          {quanterViolation?.result === "passed" ? (
+            <img alt="" src={accept} />
+          ) : (
+            <div />
+          )}
+        </div>
+      </div>
     </BornWrapper>
   );
 };

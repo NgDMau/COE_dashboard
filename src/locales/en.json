@@ -169,7 +169,9 @@
     "withVaginalDelivery": "With a normal birth",
     "withCSection": "With cesarean section",
     "quarter": "Quarter",
-    "index": "Index"
+    "index": "Index",
+    "formulaMilk": "Health workers advise using formula milk",
+    "hospitalPremises": "Violation on hospital premises"
   },
   "app": {
     "breastfeeding": "Centers of Excellence for Breastfeeding",

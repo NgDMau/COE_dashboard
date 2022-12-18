@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { SpinWrapper } from "../styled";
 import { Spin } from "antd";
+import GroupColumn from "../../components/GroupColumn/GroupColumn";
 
 const ExportData = () => {
   const { t } = useTranslation();
@@ -208,11 +209,9 @@ const ExportData = () => {
                 </div>
               );
             })}
-
-            {/* <div className="page html2pdf__page-break">
-              <ObstetricTitle>{t("exportData.obstetric")}</ObstetricTitle>
-              <RankExport />
-            </div> */}
+            <div className="page html2pdf__page-break">
+              <GroupColumn department="SK" />
+            </div>
           </div>
         ) : (
           <SpinWrapper>
@@ -250,13 +249,11 @@ const ExportData = () => {
                   </div>
                 );
               })}
-
-              {/* <div className="page html2pdf__page-break">
-              <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle>
-              <RankExport />
-            </div> */}
             </div>
           )}
+          <div className="page html2pdf__page-break">
+            <GroupColumn department="NK" />
+          </div>
         </ExportWrapper>
       )}
     </>

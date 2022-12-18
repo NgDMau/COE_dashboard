@@ -101,7 +101,7 @@ export function LinePoint({
   const dataSMFormat = useMemo(() => {
     let sum = 0;
     const listNull = [];
-    const format = dataSM.map((element, index) => {
+    const format = dataSM?.map((element, index) => {
       if (element !== null) {
         sum++;
       }
@@ -143,7 +143,7 @@ export function LinePoint({
   const dataSTFormat = useMemo(() => {
     let sum = 0;
     const listNull = [];
-    const format = dataST.map((element, index) => {
+    const format = dataST?.map((element, index) => {
       if (element !== null) {
         sum++;
       }

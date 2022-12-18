@@ -171,7 +171,9 @@
     "withVaginalDelivery": "Với sinh thường",
     "withCSection": "Với sinh mổ",
     "quarter": "Quý",
-    "index": "STT"
+    "index": "STT",
+    "formulaMilk": "CBYT tư vấn sử dụng sữa ngoài",
+    "hospitalPremises": "Vi phạm trong khuôn viên bệnh viện"
   },
   "app": {
     "breastfeeding": "Bệnh viện thực hành nuôi con bằng sữa mẹ Xuất sắc",
