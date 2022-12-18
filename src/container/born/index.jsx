@@ -32,7 +32,7 @@ function RowComponent({
           />
         </div>
       </div>
-      {department === "SK" ? (
+      {department === "SK" && 6 > index ? (
         <>
           <div className="w-10">
             {elementData?.ST || "0"}
