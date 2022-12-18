@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import { rem } from "../../../helpers/rem/px-to-rem";
 
+export const STT = styled.div`
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-right: 1px solid #000;
+`;
 export const TableExportWrapper = styled.div`
   .quarter {
     color: #00a8ff;
@@ -17,18 +25,27 @@ export const TableExportWrapper = styled.div`
     border: 1px solid #000;
     font-weight: 600;
     .content {
-      width: 35%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30%;
       padding: ${rem(10)};
       text-align: center;
       border-right: 1px solid #000;
     }
     .criteria {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 50%;
       padding: ${rem(10)};
       text-align: center;
       border-right: 1px solid #000;
     }
     .achieve {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 15%;
       padding: ${rem(10)};
       text-align: center;
@@ -42,7 +59,7 @@ export const TableExportWrapper = styled.div`
     border-top: none;
     font-weight: 600;
     .content {
-      width: 35%;
+      width: 30%;
       padding: ${rem(6)};
       border-right: 1px solid #000;
     }

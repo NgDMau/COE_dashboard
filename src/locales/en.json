@@ -168,7 +168,8 @@
     "pediatric": "Pediatric",
     "withVaginalDelivery": "With a normal birth",
     "withCSection": "With cesarean section",
-    "quarter": "Quarter"
+    "quarter": "Quarter",
+    "index": "Index"
   },
   "app": {
     "breastfeeding": "Centers of Excellence for Breastfeeding",
