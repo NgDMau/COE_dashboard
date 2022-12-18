@@ -8,19 +8,14 @@ import overview from "../assets/icon/overview.svg";
 import document from "../assets/icon/document.svg";
 import database from "../assets/icon/database.png";
 import userIcon from "../assets/icon/user.png";
-import menuIcon from "../assets/icon/menu.png";
-import backIcon from "../assets/icon/back.png";
 import logoutIcon from "../assets/icon/logout.png";
 
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import { storeSetToken } from "../store/auth-reducer";
-import { SCREEN_DEFAULT } from "../common/ngok";
+import { screenReverst, SCREEN_DEFAULT } from "../common/ngok";
 import { useTranslation } from "react-i18next";
 import { Layout, Menu, Modal } from "antd";
-import { useState } from "react";
-import { storeSetCollapse } from "../store/dashboard-reducer";
-import storage from "redux-persist/lib/storage";
 import {
   storeSetCitiesData,
   storeSetCitySelected,
@@ -32,16 +27,13 @@ const { Sider } = Layout;
 
 const AppSidebar = ({ screen, setScreen, setTitle }) => {
   const { t } = useTranslation();
+  const location = useLocation();
+  const patch = location?.pathname.replace("/", "") || "dashboard";
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
-
-  const isCollapse = useSelector((state) => state.dashboard.isCollapse);
-  const setIsCollapse = (isOpen) => {
-    dispatch(storeSetCollapse(isOpen));
-  };
 
   const { confirm } = Modal;
   const showConfirm = () => {
@@ -73,17 +65,10 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
     setTitle(listFormReport[0]);
   }, [setTitle]);
   return (
-    <SiderbarWrapper
-      collapse={isCollapse}
-      onMouseEnter={() => setIsCollapse(false)}
-      onMouseLeave={() => setIsCollapse(true)}
-    >
+    <SiderbarWrapper>
       <div>
         <div className="logo">
           <img className="img-logo" src={logo} alt="" />
-          {isCollapse && (
-            <MenuIconWrapper src={menuIcon} alt="" collapse={isCollapse} />
-          )}
         </div>
 
         <Sider
@@ -94,11 +79,18 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
         >
           <Menu
             mode="inline"
-            defaultSelectedKeys={[`${screen}`]}
-            selectedKeys={[`${screen}`]}
+            defaultSelectedKeys={[`${screenReverst[`${patch}`]}`]}
+            // selectedKeys={[`${screen}`]}
             onSelect={(e) => {
-              if (Number(e.key) === 4 && user?.is_superuser === "False") {
+              console.log(e.key);
+              if (
+                (Number(e.key) === 4 ||
+                  Number(e.key) === 3 ||
+                  Number(e.key) === 5) &&
+                user?.is_superuser === "False"
+              ) {
                 showConfirm();
+                return;
               }
               if (Number(e.key) === 5) {
                 setScreen(Number(5));
@@ -112,14 +104,14 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
             items={items2.map((element, index) => ({
               key: String(index + 1),
               icon: <img src={icons[index]} alt="" />,
-              label: isCollapse ? "" : element,
+              label: element,
             }))}
           />
         </Sider>
       </div>
-      <ButtonLogout onClick={logout} collapse={isCollapse}>
+      <ButtonLogout onClick={logout}>
         <img src={logoutIcon} alt="" />
-        <span>{!isCollapse && t("screen.logout")}</span>
+        <span>{t("screen.logout")}</span>
       </ButtonLogout>
     </SiderbarWrapper>
   );

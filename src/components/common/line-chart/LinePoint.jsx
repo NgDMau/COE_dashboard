@@ -72,7 +72,7 @@ export function LinePoint({
     return "12";
   };
 
-  const renderCircle = (innerText = "100", size = 30, color = "red") => {
+  const renderCircle = (innerText, size = 30, color = "red") => {
     const svg_encoded = encodeURIComponent(`
     <svg width="49" height="52" viewBox="0 0 49 52" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="49" height="52" rx="24.5" fill="${color}"/>
@@ -212,7 +212,7 @@ export function LinePoint({
         data: dataSMFormat?.format || [],
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
-        pointStyle: dataSTFormat?.format?.map((element) =>
+        pointStyle: dataSMFormat?.format?.map((element) =>
           renderCircle(element, 25, `rgba(255, 99, 132, 0.8)`)
         ),
         borderWidth: 2,
@@ -248,7 +248,7 @@ export function LinePoint({
         fill: false,
         backgroundColor: "red",
         borderColor: "red",
-        borderDash: [5, 5],
+        borderDash: [3, 3],
         borderWidth: 2,
         data: labels.map(() =>
           faker.datatype.number({ min: rateCaesarean, max: rateCaesarean })

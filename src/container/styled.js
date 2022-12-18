@@ -15,10 +15,6 @@ export const SpinWrapper = styled.div`
   margin-top: ${rem(100)};
 `;
 export const ChartWrapper = styled.div`
-  ${(props) =>
-    props?.isCollapse
-      ? `calc(100vw - ${rem(85)})`
-      : `calc(100vw - ${rem(230)})`};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,10 +88,7 @@ export const ContainerWrapper = styled.div`
     }
   }
   .content-chart {
-    width: ${(props) =>
-      props?.isCollapse
-        ? `calc(100vw - ${rem(85)})`
-        : `calc(100vw - ${rem(230)})`};
+    width: calc(100vw - ${rem(230)});
     padding-top: 1em;
     margin-left: ${rem(10)};
     margin-top: ${rem(20)};

@@ -26,6 +26,7 @@ import { storeSetTab } from "../../store/document-reducer";
 import Loading from "../../components/common/Loading/Loading";
 import moment from "moment";
 import { getListQuanter } from "../../helpers/getListQuanter";
+import { removeAccents } from "../../helpers/convertVie";
 
 const FilterComponent = ({ disabled, screen }) => {
   const { t } = useTranslation();
@@ -50,21 +51,35 @@ const FilterComponent = ({ disabled, screen }) => {
   const citiesData = useSelector((state) => state.data.citiesData);
   const hostPitals = useSelector((state) => state.data.hostPitals);
   const tabDocument = useSelector((state) => state.document.tab);
-
+  const listQuater = useMemo(() => {
+    return getListQuanter();
+  }, [moment]);
+  console.log(
+    "listQuater[currentQuarter]listQuater[currentQuarter]",
+    listQuater[currentQuarter].split("/")[0]
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingScreen, setIsLoadingScreen] = useState(false);
   const defaultCity = useMemo(() => {
     return citySelected?.name || "";
   }, [hospitalSelected, citiesData]);
+  console.log("citySelectedcitySelectedcitySelected", hospitalSelected);
   const exportPdfData = async () => {
     setIsLoadingScreen(true);
     setTimeout(() => {
       const element = document.getElementById("exportDagta");
       const element2 = document.getElementById("exportDagta2");
+      const time = listQuater[7 - currentQuarter].replace("/", "_");
+      const hostpitalName =
+        removeAccents(
+          hospitalSelected?.name?.toLowerCase()?.replaceAll(" ", "")
+        ) || "";
+      const timeStamp = new Date().getTime();
+      const fileName = `KQKS_SanKhoa_${hostpitalName}_${time}_${timeStamp}.pdf`;
+      const fileName2 = `KQKS_NhiKhoa_${hostpitalName}_${time}_${timeStamp}.pdf`;
       const opt = {
         margin: 1,
         image: { type: "jpeg", quality: 0.98 },
-        filename: "KQKS_Q2_2022.pdf",
         html2canvas: { scale: 1 },
         jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
         pagebreak: { mode: ["legacy"] },
@@ -72,13 +87,13 @@ const FilterComponent = ({ disabled, screen }) => {
       html2pdf().set(opt);
       html2pdf()
         .from(element)
-        .save("KQKS_SK_Q2_2022.pdf")
+        .save(fileName)
         .then(() => {
           setTimeout(() => {
             setIsLoadingScreen(false);
           }, 500);
         });
-      html2pdf().from(element2).save("KQKS_NK_Q2_2022.pdf");
+      html2pdf().from(element2).save(fileName2);
     }, 0);
   };
 
@@ -125,10 +140,6 @@ const FilterComponent = ({ disabled, screen }) => {
         setIsLoading(false);
       });
   };
-
-  const listQuater = useMemo(() => {
-    return getListQuanter();
-  }, [moment]);
 
   useEffect(() => {
     getCities();

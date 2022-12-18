@@ -3,6 +3,11 @@ import background from "../../assets/brand/bg-app.jpg";
 import background1 from "../../assets/brand/img_1.JPG";
 import background2 from "../../assets/brand/img_2.jpg";
 
+export const LoginView = styled.div`
+  position: absolute;
+  top: 16px;
+  left: 16px;
+`;
 export const AppsWrapper = styled.div`
   height: 100vh;
   width: 100vw;
@@ -21,6 +26,7 @@ export const AppsWrapper = styled.div`
     }
   }
   .item {
+    position: relative;
     width: 33vw;
     height: 33vw;
     padding: 10px;
