@@ -50,7 +50,13 @@ const FilterComponent = ({ disabled, screen }) => {
   const citiesData = useSelector((state) => state.data.citiesData);
   const hostPitals = useSelector((state) => state.data.hostPitals);
   const tabDocument = useSelector((state) => state.document.tab);
-
+  const listQuater = useMemo(() => {
+    return getListQuanter();
+  }, [moment]);
+  console.log(
+    "listQuater[currentQuarter]listQuater[currentQuarter]",
+    listQuater[currentQuarter].split("/")[0]
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingScreen, setIsLoadingScreen] = useState(false);
   const defaultCity = useMemo(() => {
@@ -61,10 +67,13 @@ const FilterComponent = ({ disabled, screen }) => {
     setTimeout(() => {
       const element = document.getElementById("exportDagta");
       const element2 = document.getElementById("exportDagta2");
+      const time = listQuater[7 - currentQuarter].replace("/", "_");
+
+      const fileName = `KQKS_SK_${time}.pdf`;
+      const fileName2 = `KQKS_NK_${time}.pdf`;
       const opt = {
         margin: 1,
         image: { type: "jpeg", quality: 0.98 },
-        filename: "KQKS_Q2_2022.pdf",
         html2canvas: { scale: 1 },
         jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
         pagebreak: { mode: ["legacy"] },
@@ -72,13 +81,13 @@ const FilterComponent = ({ disabled, screen }) => {
       html2pdf().set(opt);
       html2pdf()
         .from(element)
-        .save("KQKS_SK_Q2_2022.pdf")
+        .save(fileName)
         .then(() => {
           setTimeout(() => {
             setIsLoadingScreen(false);
           }, 500);
         });
-      html2pdf().from(element2).save("KQKS_NK_Q2_2022.pdf");
+      html2pdf().from(element2).save(fileName2);
     }, 0);
   };
 
@@ -125,10 +134,6 @@ const FilterComponent = ({ disabled, screen }) => {
         setIsLoading(false);
       });
   };
-
-  const listQuater = useMemo(() => {
-    return getListQuanter();
-  }, [moment]);
 
   useEffect(() => {
     getCities();
