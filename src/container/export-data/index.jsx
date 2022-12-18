@@ -210,6 +210,7 @@ const ExportData = () => {
               );
             })}
             <div className="page html2pdf__page-break">
+              <ObstetricTitle>{t("exportData.obstetric")}</ObstetricTitle>
               <GroupColumn department="SK" />
             </div>
           </div>
@@ -252,6 +253,7 @@ const ExportData = () => {
             </div>
           )}
           <div className="page html2pdf__page-break">
+            <ObstetricTitle>{t("exportData.pediatric")}</ObstetricTitle>
             <GroupColumn department="NK" />
           </div>
         </ExportWrapper>
