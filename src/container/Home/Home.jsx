@@ -50,20 +50,12 @@ const Home = ({ isLoading, value, setValue, setIsLoading }) => {
           const sevenData =
             value === 1
               ? checkValue(
-                  dashboardData[currentQuarter]?.data?.SK[7]?.values?.ST
+                  dashboardData[currentQuarter]?.data?.SK[11]?.values?.PER
                 ) || 0
               : checkValue(
-                  dashboardData[currentQuarter]?.data?.NK[6]?.values?.ST
+                  dashboardData[currentQuarter]?.data?.NK[8]?.values?.PER
                 ) || 0;
-          const eightData =
-            value === 1
-              ? checkValue(
-                  dashboardData[currentQuarter]?.data?.SK[8]?.values?.ST
-                ) || 0
-              : checkValue(
-                  dashboardData[currentQuarter]?.data?.NK[7]?.values?.ST
-                ) || 0;
-          return (sevenData + eightData) / 2;
+          return sevenData;
         }
         return value === 1
           ? checkValue(
@@ -88,13 +80,13 @@ const Home = ({ isLoading, value, setValue, setIsLoading }) => {
         if (element === 5) {
           const sevenData =
             value === 1
-              ? checkValue(dashboardData[7]?.data?.SK[element]?.values?.SM)
-              : checkValue(dashboardData[6]?.data?.NK[element]?.values?.SM);
-          const eightData =
-            value === 1
-              ? checkValue(dashboardData[8]?.data?.SK[element]?.values?.SM)
-              : checkValue(dashboardData[7]?.data?.NK[element]?.values?.SM);
-          return (sevenData + eightData) / 2;
+              ? checkValue(
+                  dashboardData[currentQuarter]?.data?.SK[11]?.values?.PER
+                ) || 0
+              : checkValue(
+                  dashboardData[currentQuarter]?.data?.NK[8]?.values?.PER
+                ) || 0;
+          return sevenData;
         }
         return value === 1
           ? checkValue(
