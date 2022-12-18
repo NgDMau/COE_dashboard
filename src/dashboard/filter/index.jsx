@@ -72,7 +72,7 @@ const FilterComponent = ({ disabled, screen }) => {
       const time = listQuater[7 - currentQuarter].replace("/", "_");
       const hostpitalName =
         removeAccents(
-          hospitalSelected?.name?.toLowerCase()?.replaceAll(" ", "")
+          hospitalSelected?.name?.replaceAll(" ", "_")
         ) || "";
       const timeStamp = new Date().getTime();
       const fileName = `KQKS_SanKhoa_${hostpitalName}_${time}_${timeStamp}.pdf`;
