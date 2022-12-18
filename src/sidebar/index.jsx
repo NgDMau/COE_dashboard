@@ -8,19 +8,14 @@ import overview from "../assets/icon/overview.svg";
 import document from "../assets/icon/document.svg";
 import database from "../assets/icon/database.png";
 import userIcon from "../assets/icon/user.png";
-import menuIcon from "../assets/icon/menu.png";
-import backIcon from "../assets/icon/back.png";
 import logoutIcon from "../assets/icon/logout.png";
 
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import { storeSetToken } from "../store/auth-reducer";
-import { SCREEN_DEFAULT } from "../common/ngok";
+import { screenReverst, SCREEN_DEFAULT } from "../common/ngok";
 import { useTranslation } from "react-i18next";
 import { Layout, Menu, Modal } from "antd";
-import { useState } from "react";
-import { storeSetCollapse } from "../store/dashboard-reducer";
-import storage from "redux-persist/lib/storage";
 import {
   storeSetCitiesData,
   storeSetCitySelected,
@@ -32,6 +27,8 @@ const { Sider } = Layout;
 
 const AppSidebar = ({ screen, setScreen, setTitle }) => {
   const { t } = useTranslation();
+  const location = useLocation();
+  const patch = location?.pathname.replace("/", "") || "dashboard";
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = localStorage.getItem("user")
@@ -82,8 +79,8 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
         >
           <Menu
             mode="inline"
-            defaultSelectedKeys={[`${screen}`]}
-            selectedKeys={[`${screen}`]}
+            defaultSelectedKeys={[`${screenReverst[`${patch}`]}`]}
+            // selectedKeys={[`${screen}`]}
             onSelect={(e) => {
               console.log(e.key);
               if (
