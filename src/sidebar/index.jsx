@@ -38,11 +38,6 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
     ? JSON.parse(localStorage.getItem("user"))
     : null;
 
-  const isCollapse = useSelector((state) => state.dashboard.isCollapse);
-  const setIsCollapse = (isOpen) => {
-    dispatch(storeSetCollapse(isOpen));
-  };
-
   const { confirm } = Modal;
   const showConfirm = () => {
     confirm({
@@ -73,17 +68,10 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
     setTitle(listFormReport[0]);
   }, [setTitle]);
   return (
-    <SiderbarWrapper
-      collapse={isCollapse}
-      onMouseEnter={() => setIsCollapse(false)}
-      onMouseLeave={() => setIsCollapse(true)}
-    >
+    <SiderbarWrapper>
       <div>
         <div className="logo">
           <img className="img-logo" src={logo} alt="" />
-          {isCollapse && (
-            <MenuIconWrapper src={menuIcon} alt="" collapse={isCollapse} />
-          )}
         </div>
 
         <Sider
@@ -119,14 +107,14 @@ const AppSidebar = ({ screen, setScreen, setTitle }) => {
             items={items2.map((element, index) => ({
               key: String(index + 1),
               icon: <img src={icons[index]} alt="" />,
-              label: isCollapse ? "" : element,
+              label: element,
             }))}
           />
         </Sider>
       </div>
-      <ButtonLogout onClick={logout} collapse={isCollapse}>
+      <ButtonLogout onClick={logout}>
         <img src={logoutIcon} alt="" />
-        <span>{!isCollapse && t("screen.logout")}</span>
+        <span>{t("screen.logout")}</span>
       </ButtonLogout>
     </SiderbarWrapper>
   );

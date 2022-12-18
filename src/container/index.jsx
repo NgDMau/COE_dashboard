@@ -39,7 +39,6 @@ const AppContainer = ({ screen, title, setScreen }) => {
   const dispath = useDispatch();
   const location = useLocation();
   const patch = location?.pathname || "/dashboard";
-  const isCollapse = useSelector((state) => state.dashboard.isCollapse);
 
   const hospitalSelected = useSelector(
     (state) => state?.data?.hospitalSelected
@@ -86,7 +85,7 @@ const AppContainer = ({ screen, title, setScreen }) => {
   }, [hospitalSelected]);
 
   return (
-    <ContainerWrapper isCollapse={isCollapse}>
+    <ContainerWrapper>
       <div className="header">
         <PathComponent screen={screen} setScreen={setScreen} />
         <FilterComponent

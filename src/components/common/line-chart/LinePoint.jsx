@@ -248,7 +248,7 @@ export function LinePoint({
         fill: false,
         backgroundColor: "red",
         borderColor: "red",
-        borderDash: [5, 5],
+        borderDash: [3, 3],
         borderWidth: 2,
         data: labels.map(() =>
           faker.datatype.number({ min: rateCaesarean, max: rateCaesarean })
