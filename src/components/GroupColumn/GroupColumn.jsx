@@ -30,9 +30,9 @@ ChartJS.register(
   ChartDataLabels
 );
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
 
 const GroupColumn = ({ department }) => {
+  const labels = getListQuanter().reverse();
   const { t } = useTranslation();
   const dashboardData = useSelector((state) => state?.data?.dashboardData);
   const dataChart = useMemo(() => {
@@ -72,10 +72,8 @@ const GroupColumn = ({ department }) => {
         label: t("obstetricsData.radar_5"),
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgb(255, 99, 132,0.8)",
-
-        // pointStyle: renderCircle("5", 25, `rgb(9, 132, 227, 0.8)`),
         yAxisID: "y1",
-        borderWidth: 0,
+        borderWidth: 1,
         pointRadius: 12,
         fill: false,
         data: dataChart?.lineData,
