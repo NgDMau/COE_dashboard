@@ -171,7 +171,8 @@
     "quarter": "Quarter",
     "index": "Index",
     "formulaMilk": "Health workers advise using formula milk",
-    "hospitalPremises": "Violation on hospital premises"
+    "hospitalPremises": "Violation on hospital premises",
+    "noRating": "No rating"
   },
   "app": {
     "breastfeeding": "Centers of Excellence for Breastfeeding",
