@@ -99,9 +99,8 @@ const RootRouter = function () {
           </Routes>
         ) : (
           <Routes>
-            <Route path="/apps" element={<AppsPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/" element={<AppsPage />} />
+            <Route path="/" element={<LoginPage />} />
           </Routes>
         )}
       </Suspense>
