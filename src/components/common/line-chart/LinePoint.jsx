@@ -206,6 +206,7 @@ export function LinePoint({
           );
           return checked ? 0 : 6;
         },
+        datalabels: { display: false },
       },
       {
         label: t("chart.CSection"),
@@ -228,6 +229,7 @@ export function LinePoint({
           );
           return checked ? 0 : 6;
         },
+        datalabels: { display: false },
       },
       {
         label: t("chart.normalRate"),
@@ -255,6 +257,8 @@ export function LinePoint({
         ),
         pointStyle: "hidden",
         pointRadius: 0,
+        datalabels: { display: false },
+
         pointHoverRadius: 0,
       },
     ],
@@ -289,6 +293,7 @@ export function LinePoint({
           );
           return checked ? 0 : 6;
         },
+        datalabels: { display: false },
       },
       {
         label: t("chart.passLevel"),
@@ -303,6 +308,7 @@ export function LinePoint({
         pointStyle: "hidden",
         pointRadius: 0,
         pointHoverRadius: 0,
+        datalabels: { display: false },
       },
     ],
   };

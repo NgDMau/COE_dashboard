@@ -4,6 +4,7 @@ import accept from "../../assets/born/accept.png";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { LinePoint } from "../../components/common/line-chart/LinePoint";
+import GroupColumn from "../../components/GroupColumn/GroupColumn";
 
 function RowComponent({
   obstetric,
@@ -173,14 +174,7 @@ const BornComponent = ({ data, isGeneral, dataList, department }) => {
         <div className="criteria">Vi phạm nghị định 100</div>
         <div className="chart">
           <div className="container-chart">
-            <LinePoint
-              hiddenCaesarean={"NK"}
-              dataST={violationDecree}
-              time={timeLine}
-              department={"NK"}
-              passLevelST={0}
-              passLevelSM={0}
-            />
+            <GroupColumn department={department} />
           </div>
         </div>
 
