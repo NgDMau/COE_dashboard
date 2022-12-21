@@ -69,7 +69,7 @@ const GroupColumn = ({ department }) => {
     datasets: [
       {
         type: "line",
-        label: t("obstetricsData.radar_5"),
+        label: t("obstetricsData.radar_6"),
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgb(255, 99, 132,0.8)",
         yAxisID: "y1",

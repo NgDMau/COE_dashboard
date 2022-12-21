@@ -50,9 +50,15 @@ const CityOverview = ({ setIsLoading }) => {
       return null;
     }
     const dataST =
-      [1, 2, 3, 4, 5, 6]?.map((element) => {
+      [2, 3, 4, 5, 6, 11]?.map((element) => {
         if (!overviewCity[currentQuarter]?.data?.SK) return null;
-
+        if (element === 11) {
+          const sevenData =
+            checkValue(
+              overviewCity[currentQuarter]?.data?.NK[11]?.values?.PER
+            ) || 0;
+          return sevenData;
+        }
         return (
           checkValue(
             overviewCity[currentQuarter]?.data?.SK[element]?.values?.ST
@@ -60,9 +66,15 @@ const CityOverview = ({ setIsLoading }) => {
         );
       }) || [];
     const dataSM =
-      [1, 2, 3, 4, 5, 6]?.map((element) => {
+      [2, 3, 4, 5, 6, 11]?.map((element) => {
         if (!overviewCity[currentQuarter]?.data?.SK) return null;
-
+        if (element === 11) {
+          const sevenData =
+            checkValue(
+              overviewCity[currentQuarter]?.data?.NK[11]?.values?.PER
+            ) || 0;
+          return sevenData;
+        }
         return (
           checkValue(
             overviewCity[currentQuarter]?.data?.SK[element]?.values?.SM
@@ -79,9 +91,15 @@ const CityOverview = ({ setIsLoading }) => {
       return null;
     }
     const dataST =
-      [1, 2, 3, 4, 5, 6]?.map((element) => {
+      [1, 2, 3, 4, 5, 8]?.map((element) => {
         if (!overviewCity[currentQuarter]?.data?.NK) return null;
-
+        if (element === 8) {
+          const sevenData =
+            checkValue(
+              overviewCity[currentQuarter]?.data?.NK[8]?.values?.PER
+            ) || 0;
+          return sevenData;
+        }
         return (
           checkValue(
             overviewCity[currentQuarter]?.data?.NK[element]?.values?.ST

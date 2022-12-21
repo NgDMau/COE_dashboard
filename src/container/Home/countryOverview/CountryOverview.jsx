@@ -52,9 +52,15 @@ const CountryOverview = ({ setIsLoading }) => {
       return null;
     }
     const dataST =
-      [1, 2, 3, 4, 5, 6]?.map((element) => {
+      [2, 3, 4, 5, 6, 11]?.map((element) => {
         if (!overviewCountry[currentQuarter]?.data?.SK) return null;
-
+        if (element === 11) {
+          const sevenData =
+            checkValue(
+              overviewCountry[currentQuarter]?.data?.NK[11]?.values?.PER
+            ) || 0;
+          return sevenData;
+        }
         return (
           checkValue(
             overviewCountry[currentQuarter]?.data?.SK[element]?.values?.ST
@@ -62,9 +68,15 @@ const CountryOverview = ({ setIsLoading }) => {
         );
       }) || [];
     const dataSM =
-      [1, 2, 3, 4, 5, 6]?.map((element) => {
+      [2, 3, 4, 5, 6, 11]?.map((element) => {
         if (!overviewCountry[currentQuarter]?.data?.SK) return null;
-
+        if (element === 11) {
+          const sevenData =
+            checkValue(
+              overviewCountry[currentQuarter]?.data?.NK[11]?.values?.PER
+            ) || 0;
+          return sevenData;
+        }
         return (
           checkValue(
             overviewCountry[currentQuarter]?.data?.SK[element]?.values?.SM
@@ -81,9 +93,15 @@ const CountryOverview = ({ setIsLoading }) => {
       return null;
     }
     const dataST =
-      [1, 2, 3, 4, 5, 6]?.map((element) => {
+      [1, 2, 3, 4, 5, 8]?.map((element) => {
         if (!overviewCountry[currentQuarter]?.data?.NK) return null;
-
+        if (element === 8) {
+          const sevenData =
+            checkValue(
+              overviewCountry[currentQuarter]?.data?.NK[8]?.values?.PER
+            ) || 0;
+          return sevenData;
+        }
         return (
           checkValue(
             overviewCountry[currentQuarter]?.data?.NK[element]?.values?.ST
