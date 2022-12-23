@@ -171,7 +171,7 @@ const BornComponent = ({ data, isGeneral, dataList, department }) => {
         ))}
       <div className="row">
         <div className="stt">{data?.length + 1}</div>
-        <div className="criteria">Vi phạm nghị định 100</div>
+        <div className="criteria">{t("obstetricsData.radar_6")}</div>
         <div className="chart">
           <div className="container-chart">
             <GroupColumn department={department} />

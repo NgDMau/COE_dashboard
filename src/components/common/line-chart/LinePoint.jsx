@@ -244,6 +244,7 @@ export function LinePoint({
         pointStyle: "hidden",
         pointRadius: 0,
         pointHoverRadius: 0,
+        datalabels: { display: false },
       },
       {
         label: t("chart.caesareanRate"),

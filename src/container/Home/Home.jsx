@@ -41,12 +41,12 @@ const Home = ({ isLoading, value, setValue, setIsLoading }) => {
       return null;
     }
     const data =
-      [1, 2, 3, 4, 5, 6]?.map((element) => {
+      [2, 3, 4, 5, 6, 11]?.map((element) => {
         if (value === 1 && !dashboardData[currentQuarter]?.data?.SK)
           return null;
         if (value === 2 && !dashboardData[currentQuarter]?.data?.NK)
           return null;
-        if (element === 5) {
+        if (element === 11) {
           const sevenData =
             value === 1
               ? checkValue(
@@ -62,7 +62,7 @@ const Home = ({ isLoading, value, setValue, setIsLoading }) => {
               dashboardData[currentQuarter]?.data?.SK[element]?.values?.ST
             ) || 0
           : checkValue(
-              dashboardData[currentQuarter]?.data?.NK[element]?.values?.ST
+              dashboardData[currentQuarter]?.data?.NK[element - 1]?.values?.ST
             ) || 0;
       }) || [];
     return data || null;
@@ -72,12 +72,12 @@ const Home = ({ isLoading, value, setValue, setIsLoading }) => {
       return null;
     }
     const data =
-      [1, 2, 3, 4, 5, 6]?.map((element) => {
+      [2, 3, 4, 5, 6, 11]?.map((element) => {
         if (value === 1 && !dashboardData[currentQuarter]?.data?.SK)
           return null;
         if (value === 2 && !dashboardData[currentQuarter]?.data?.NK)
           return null;
-        if (element === 5) {
+        if (element === 11) {
           const sevenData =
             value === 1
               ? checkValue(
